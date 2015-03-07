@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="car_door_front_margin_left_side">25dp</dimen>
+    <dimen name="car_door_front_margin_right_side">145dp</dimen>
+    <dimen name="car_door_front_margin_top">96dp</dimen>
+    <dimen name="car_door_rear_margin_top">146dp</dimen>
+    <dimen name="car_door_rear_margin_left_side">25dp</dimen>
+    <dimen name="car_door_rear_margin_right_side">145dp</dimen>
+    <dimen name="car_door_rear_trunk_margin_top">215dp</dimen>
+</resources>

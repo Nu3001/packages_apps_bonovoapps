@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Настройки</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title">Найти файл микропрограммного обеспечения?</string>
+    <string name="agree">согласен</string>
+    <string name="cancel">отмена</string>
+    <string name="button">Проверить обновления</string>
+    <string name="mcuversion">Версия микропрограммного обеспечения: </string>
+    <string name="sysversion">Версия прошивки: </string>
+    <string name="androidversion">Версия Android: </string>
+    <string name="loga">SD-карта не установлена или не указан файл обновлений</string>
+    <string name="asternmute">Whether astern mute</string>
+    <string name="lightstate">Настройка задних фонарей автомобиля</string>
+    <string name="rearview_camera">Камера заднего вида</string>
+    <string name="other">Другие настройки автомобиля: </string>
+    <string name="reminder">Не добавлять функции интерфейса</string>
+    <string name="basic">Основная информация:</string>
+
+</resources>

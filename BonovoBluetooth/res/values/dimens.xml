@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    
+    <!-- bonovo dial -->
+    <integer name="dialpad_layout_weight_digits">20</integer>
+    <integer name="dialpad_layout_weight_dialpad">65</integer>
+    <dimen name="dialpad_vertical_margin">2dip</dimen>
+    <dimen name="dialpad_digits_text_size">38sp</dimen>
+    <dimen name="dialpad_center_margin">3dp</dimen>
+    <dimen name="dialpad_button_margin">2dp</dimen>
+    <dimen name="fake_menu_button_min_width">56dip</dimen>
+    <dimen name="in_call_end_button_height">74dp</dimen>
+    <dimen name="in_call_button_height">76dp</dimen>
+    <dimen name="call_banner_height">@dimen/in_call_end_button_height</dimen>
+    <dimen name="glowpadview_inner_radius">15dip</dimen>
+    <dimen name="glowpadview_target_placement_radius">182dip</dimen>
+    <dimen name="glowpadview_snap_margin">40dip</dimen>
+    <dimen name="glowpadview_glow_radius">75dip</dimen>
+    <dimen name="keyguard_lockscreen_outerring_diameter">364dp</dimen>
+    <dimen name="incoming_call_widget_circle_size">94dp</dimen>
+    <dimen name="incoming_call_widget_asset_margin">28dp</dimen>
+	
+    <dimen name="call_time_left_margin">20dp</dimen>
+    <dimen name="call_info_bottom_margin">20dp</dimen>
+    <dimen name="dialog_bt_info_left_margin">8dp</dimen>
+    <dimen name="dialog_bt_info_right_margin">8dp</dimen>
+    <dimen name="switch_function_button_width">200dp</dimen>
+    <dimen name="switch_function_button_higth">66px</dimen>
+    <dimen name="volume_button_width">105px</dimen>
+    <dimen name="volume_button_hight">66px</dimen>
+    
+    <dimen name="title_margin_left">38dp</dimen>
+    <dimen name="title_margin_top">4dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="music_bg_margin_top">70dp</dimen>
+    <dimen name="button_bt_status_margin_left">40dp</dimen>
+    <dimen name="button_bt_status_margin_top">80dp</dimen>
+    <dimen name="imageView_bt_status_margin_top">80dp</dimen>
+    <dimen name="text_link_status_phone_margin_right">40dp</dimen>
+    <dimen name="call_button_height">120dp</dimen>
+    <dimen name="call_info_text_size">18sp</dimen>
+    <dimen name="call_number_text_size">33sp</dimen>
+
+</resources>

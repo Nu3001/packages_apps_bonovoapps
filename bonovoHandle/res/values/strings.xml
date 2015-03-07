@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">bonovoHandle</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="set_value">Set Brightness value</string>
+    <string name="get_value">Brightness value</string>
+    <string name="get_button">Get Value</string>
+    <string name="set_button">Set Value</string>
+    <string name="def_volume">10</string>
+	<string name="title_activity_power">Power</string>
+	<string name="action_settings">Settings</string>
+
+</resources>

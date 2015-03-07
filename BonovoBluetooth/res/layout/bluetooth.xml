@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <FrameLayout 
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+        <ViewStub 
+            android:id="@+id/stubSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/activity_bluetooth_settings"
+            android:visibility="visible"/>
+        <ViewStub 
+            android:id="@+id/stubMusic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/activity_bluetooth_music"
+            android:visibility="gone"/>
+ 
+    </FrameLayout>
+    
+    <ImageView 
+        android:id="@+id/imageViewBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/setting_bg_bottom_bar"
+        android:contentDescription="@string/description_bottom_bg"/>
+    
+    <LinearLayout 
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        
+        <Button
+	        android:id="@+id/btnPhone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/description_phone_button"
+	        android:background="@drawable/setting_bottom_img"
+	        android:textColor="@android:color/white"
+	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+	        style="@android:attr/buttonBarButtonStyle" />
+	    
+	    <Button
+	        android:id="@+id/btnSettings"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/description_settings_button"
+	        android:background="@drawable/setting_bottom_img"
+	        android:visibility="gone"
+	        android:textColor="@android:color/white"
+	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+	        style="@android:attr/buttonBarButtonStyle" />
+	
+	    <Button
+	        android:id="@+id/btnMusic"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:visibility="gone"
+	        android:text="@string/description_music_button"
+	        android:background="@drawable/setting_bottom_img"
+	        android:textColor="@android:color/white"
+	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+	        style="@android:attr/buttonBarButtonStyle" />
+	
+	    <Button
+	        android:id="@+id/btnSyncContacts"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/description_sync_button"
+	        android:background="@drawable/setting_bottom_img"
+	        android:textColor="@android:color/white"
+	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+	        style="@android:attr/buttonBarButtonStyle" />
+
+	</LinearLayout>
+		
+    <ImageButton
+        android:id="@+id/btnVolDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/setting_volume_img"
+        android:src="@drawable/ic_sound_down"
+        android:contentDescription="@string/description_sub_volume" />
+
+    <ImageButton
+        android:id="@+id/btnVolAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btnVolDown"
+        android:background="@drawable/setting_volume_img"
+        android:contentDescription="@string/description_add_volume"
+        android:src="@drawable/ic_sound_up" />
+   
+
+    
+</RelativeLayout>

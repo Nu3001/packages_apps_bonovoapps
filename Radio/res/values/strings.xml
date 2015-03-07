@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Radio</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">Settings</string>
+    <string name="am">A M</string>
+    <string name="fine">Fine</string>
+    <string name="step">Step</string>
+    <string name="auto">Auto</string>
+    <string name="radio_volume">Radio-Volume</string>
+    <string name="fmsearch">是否开始搜索FM波段的频率？</string>
+    <string name="amsearch">是否开始搜索AM波段的频率？</string>
+    <string name="import_title">Import-Preset</string>
+    <string name="import_preset">Preset</string>
+    <string name="import_define">Define</string>
+    <string name="import_area">Area</string>
+    <string name="import_province">Province</string>
+    <string name="import_city">City</string>
+    <string name="edit_dialog_freq">Freq</string>
+    <string name="edit_dialog_shortname">Short</string>
+    <string name="edit_dialog_fullname">Full</string>
+    <string name="import_import">Import</string>
+    <string name="playing">Playing</string>
+    <string name="edit_channel">Edit Channel</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="valid_freq_fm">Please Enter Valid FM Freq：87.5-108.0MHz</string>
+    <string name="valid_freq_am">Please Enter Valid AM Freq：520-1710KHz</string>
+    <string name="searchwait">Searching Now, Please Wait For A While...</string>
+    <string name="china">CHN</string>
+    <string name="japan">JPN</string>
+    <string name="europe">EUR</string>
+    <string name="system">Type Selection</string>
+    <string name="volume">Volume</string>
+    <string name="remote">Remote Control</string>
+    <string name="lead">Lead</string>
+    <string name="remind">Remind</string>
+    <string name="describe">Whether Automatic Searching And Save?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="searching">Searching Now,Do Not Switching Channel</string>
+    <string name="clear">Clear</string>
+    <string name="unrealized">Function to achieve</string>
+</resources>

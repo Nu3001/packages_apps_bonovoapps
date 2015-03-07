@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MCU升级</string>
+    <string name="sysversion">当前系统版本号: </string>
+    <string name="mcuversion">当前MCU软件版本号: </string>
+    <string name="androidversion">当前Android版本号: </string>
+    <string name="button">检查更新</string>
+    <string name="title">发现MCU升级文件，是否升级？</string>
+    <string name="agree">确定</string>
+    <string name="cancel">取消</string>
+    <string name="loga">未装载SD卡或没有指定的升级文件</string>
+    <string name="asternmute">倒车静音</string>
+    <string name="lightstate">车灯自动背光调节</string>
+    <string name="rearview_camera">倒车后视</string>
+    <string name="other">关于车辆设置: </string>
+    <string name="reminder">此界面功能暂未添加</string>
+    <string name="basic">BOX基本信息：</string>
+    <string name="autovolume">车速自动音量调节</string>
+</resources>

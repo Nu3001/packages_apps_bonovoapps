@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/image_radar_front_level1_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level1_margin1"
+        android:src="@drawable/image_radar_front_level1_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level1_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level1_margin2"
+        android:layout_above="@id/image_radar_front_level1_right_1"
+        android:src="@drawable/image_radar_front_level1_right_2" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level2_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level2_margin1"
+        android:src="@drawable/image_radar_front_level2_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level2_right_2"
+        android:layout_marginRight="@dimen/radar_level2_margin2"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/image_radar_front_level2_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level2_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level3_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level3_margin1"
+        android:src="@drawable/image_radar_front_level3_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level3_right_2"
+        android:layout_marginRight="@dimen/radar_level3_margin2"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/image_radar_front_level3_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level3_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level4_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level4_margin1"
+        android:src="@drawable/image_radar_front_level4_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level4_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level4_margin2"
+        android:layout_above="@id/image_radar_front_level4_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level4_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level5_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level5_margin1"
+        android:src="@drawable/image_radar_front_level5_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level5_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level5_margin2"
+        android:layout_above="@id/image_radar_front_level5_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level5_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level6_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level6_margin1"
+        android:src="@drawable/image_radar_front_level6_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level6_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level6_margin2"
+        android:layout_above="@id/image_radar_front_level6_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level6_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level7_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level7_margin1"
+        android:src="@drawable/image_radar_front_level7_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level7_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level7_margin2"
+        android:layout_above="@id/image_radar_front_level7_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level7_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level8_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level8_margin1"
+        android:src="@drawable/image_radar_front_level8_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level8_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level8_margin2"
+        android:layout_above="@id/image_radar_front_level8_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level8_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level9_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level9_margin1"
+        android:src="@drawable/image_radar_front_level9_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level9_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level9_margin2"
+        android:layout_above="@id/image_radar_front_level9_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level9_right_2"/>
+
+    <ImageView
+        android:id="@+id/image_radar_front_level10_right_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/radar_level10_margin1"
+        android:src="@drawable/image_radar_front_level10_right_1" />
+
+    <ImageView
+        android:id="@+id/image_radar_front_level10_right_2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/radar_level10_margin2"
+        android:layout_above="@id/image_radar_front_level10_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_radar_front_level10_right_2"/>
+</RelativeLayout>

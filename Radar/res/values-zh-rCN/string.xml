@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">雷达</string>
+    <string name="action_settings">设置</string>
+
+	<string name="switch_screen">你可以通过点击屏幕切换显示雷达或者倒车后视</string>
+</resources>

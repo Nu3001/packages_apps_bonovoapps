@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/incomingButtonContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ImageButton android:id="@+id/answerButton"
+	    android:layout_width="match_parent"
+	    android:layout_height="@dimen/call_button_height"
+	    android:layout_alignParentTop="true"
+	    android:state_enabled="false"
+	    android:contentDescription="@string/description_target_answer"
+	    android:background="@android:color/holo_green_light"
+	    android:src="@drawable/ic_dial_incoming_call"/>
+	
+	<View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialpad_button_margin"
+        android:id="@+id/answerViewMargin"
+        android:layout_below="@id/answerButton"
+        android:background="#33000000" />
+	
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/tvTelephoneInfo"
+	    android:layout_centerVertical="true"
+	    android:layout_marginLeft="@dimen/dialpad_center_margin"
+	    android:textSize="@dimen/call_info_text_size"/>
+	
+	<TextView 
+	    android:id="@+id/tvTelephoneNumber"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"
+	    android:layout_above="@id/tvTelephoneInfo"
+	    android:layout_marginLeft="@dimen/dialpad_center_margin"
+	    android:textSize="@dimen/call_number_text_size"
+	    android:textColor="@color/incoming_number_color"/>
+	
+	<Chronometer 
+	    android:id="@+id/timer"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"
+	    android:layout_toRightOf="@id/tvTelephoneInfo"
+	    android:layout_centerVertical="true"
+	    android:layout_marginLeft="@dimen/call_time_left_margin"
+	    android:textSize="@dimen/call_info_text_size"/>
+	
+    <ImageButton android:id="@+id/endCallButton"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/call_button_height"
+         android:layout_alignParentBottom="true"
+         android:state_enabled="false"
+         android:background="@drawable/end_call_background"
+         android:contentDescription="@string/description_dial_button"
+         android:src="@drawable/ic_dial_endcall" />
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dialpad_button_margin"
+         android:id="@+id/endCallViewMargin"
+         android:layout_above="@id/endCallButton"
+         android:background="#33000000" />
+
+</RelativeLayout>

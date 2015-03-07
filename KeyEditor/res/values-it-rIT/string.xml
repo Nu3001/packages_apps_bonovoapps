@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ConfiguratoreTasti</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="hello_world">Ciao mondo!</string>
+
+    <string name="description_image_panel">pannello tasti</string>
+    <string name="description_image_ir">ir tasti</string>
+    <string name="description_image_ext">tasti esterni</string>
+    <string name="description_panel">pannello</string>
+    <string name="description_ir">IR</string>
+    <string name="description_ext">ESTERNO</string>
+    
+    <!-- keys -->
+    <string name="mode_custom">Custom Mode</string>
+    <string name="mode_normal">Normal Mode</string>
+    <string name="get_data">Get Key ID</string>
+    <string name="set_key">Set Key ID</string>
+    <string name="addr_code">Address Code:</string>
+    <string name="scan_code">Scan Code:</string>
+    <string name="key_code">Key Code:</string>
+    <string name="test">Test</string>
+    <string name="press_btn">premi</string>
+    <string name="undef">indefinito</string>
+    <string name="import_config">Importa</string>
+    <string name="export_config">Esporta</string>
+    <string name="read_config">Leggi</string>
+    <string name="save_config">Salva</string>
+    <string name="new_config">Nuovo</string>
+    <string name="clean_config">Pulisci</string>
+    <string name="delet_config">Cancella</string>
+    <string name="next_page">Pagina Succ</string>
+    <string name="prev_page">Pagina Prec</string>
+    <string name="title_panel">Pannello</string>
+    <string name="title_ir">IR</string>
+    <string name="title_external">EXTERNAL</string>
+    <string name="menu_set_accuracy">Imposta precisione</string>
+    <string name="read_accuracy">Leggi precisione</string>
+    
+    <string name="home">Home</string>
+    <string name="back">Indietro</string>
+    <string name="key0">0</string>
+    <string name="key1">1</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="key_star">*</string>
+    <string name="key_pound">#</string>
+    <string name="key_up">↑(Su)</string>
+    <string name="key_down">↓(Giù)</string>
+    <string name="key_left">←(Sinistra)</string>
+    <string name="key_right">→(Destra)</string>
+    <string name="key_ok">OK</string>
+    <string name="volume_up">Volume+</string>
+    <string name="volume_down">Volume-</string>
+    <string name="power">Power</string>
+    <string name="explorer">Explorer</string>
+    <string name="envelope">Envlope</string>
+    <string name="menu">Menu</string>
+    <string name="search">Cerca</string>
+    <string name="media_play_pause">Play/Pause</string>
+    <string name="media_stop">Stop Media</string>
+    <string name="media_next">Succ Media</string>
+    <string name="media_prev">Prec Media</string>
+    <string name="media_rewind">Indietro Media</string>
+    <string name="media_fast_forward">Avanti Veloce Media</string>
+    <string name="page_up">Pagina SU</string>
+    <string name="page_down">Pagina Giù</string>
+    <string name="mute">Mute</string>
+    <string name="calendar">Calendario</string>
+    <string name="music">Musica</string>
+    <string name="calculator">Calcolatrice</string>
+    <string name="radio">Radio</string>
+    <string name="navi">Navigazione</string>
+    <string name="dvd">DVD</string>
+    <string name="ThirdG">3G</string>
+    <string name="camera">Camera</string>
+    <string name="bt_phone">Bt Phone</string>
+    <string name="bt_answer">Bt Rispondi</string>
+    <string name="bt_hang_up">Bt Chiudi</string>
+    <string name="bt_answer_hang">Bt Rispondi/Chiudi</string>
+    <string name="bt_switch_audio">Commuta Bt Audio</string>
+    <string name="radio_turn_up">Accendi Radio</string>
+    <string name="radio_turn_down">Spegni Radio</string>
+    <string name="radio_switch_fmam">FM/AM</string>
+    
+    
+    <string name="save_successfully">salvataggio_effettuato</string>
+    <string name="import_which_files">selezionare un file da caricare</string>
+    <string name="import_successfully">Caricamento completato</string>
+    <string name="new_files_name">Inserire il nuovo nome del file</string>
+    <string name="save_failed">nessun nome inserito e salvataggio non riuscito</string>
+    <string name="saved_successfully">La nuova configurazione è stata salvata</string>
+    <string name="empty_conf">La configurazione corrente è stata cancellata</string>
+    <string name="allow_delete1">Non si può cancellare la configurazione di default</string>
+    <string name="allow_delete2">Non si può cancellare la configurazione corrente</string>
+    <string name="delete_conf">Cancellazione completata</string>
+    <string name="save_repeat_failes">Il file già esiste</string>
+    <string name="delete_select">Seleziona il file da cancellare</string>
+    
+    <string name="info_serv_start_and_exit_addr">Il dispositivo non è stato trovato nel sistema! vuoi caricare IrConfigApp per configurare un nuovo dispositivo infrarossi?</string>
+    <string name="info_main_start_and_exit_addr">Il dispositivo è stato trovato nel sistema! vuoi importare il file di configurazione?</string>
+    <string name="info_main_start_and_not_exit_addr">Il dispositivo non è stato trovato nel sistema! Vuoi creare un nuovo file di configurazione?</string>
+    <string name="info_errno_intent">Error Intent！</string>
+    <string name="new_dialog_title">Nuovo dispositivo infrarossi</string>
+    <string name="new_dialog_ok">OK</string>
+    <string name="new_dialog_cancel">Cancella</string>
+    <string name="select_conf">Seleziona Config file</string>
+    <string name="delete_conf_info">Cancella File</string>
+    <string name="clear_btns_title">Clean Key</string>
+    <string name="clear_btns_info">Vuoi cancellare tutte le funzioni dei tasti correnti?</string>
+    
+    <string name="def_accuracy">0</string>
+    <string name="accuracy_info">Accuratezza è </string>
+    <string name="error_set_ir_accuracy">Impossibile impostare precisione del telecomando, che deve essere 0.</string>
+</resources>

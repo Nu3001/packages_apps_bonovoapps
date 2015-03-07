@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bluetooth</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="description_phone_button">Phone</string>
+    <string name="description_music_button">Music</string>
+    <string name="description_settings_button">Settings</string>
+    <string name="description_sync_button">Sync Contacts</string>
+    <string name="description_bottom_bg">Bottom background</string>
+    <string name="description_add_volume">Turn up volume button</string>
+    <string name="description_sub_volume">Turn down volume button</string>
+    <string name="description_background_bg">Backgroud View</string>
+    <string name="setting_button_bluetooth_status_open">Power On</string>
+    <string name="setting_button_bluetooth_status_closed">Power Off</string>
+    
+    <string name="bluetooth_name">NAME:</string>
+    <string name="bluetooth_default_name">AVNIS</string>
+    <string name="bluetooth_pincode">PIN:</string>
+    <string name="bluetooth_default_pincode">8888</string>
+    <string name="call_default_number">13261899155</string>
+    <string name="bluetooth_status_opened">bluetooth opened</string>
+    <string name="bluetooth_status_closed">bluetooth closed</string>
+    <!-- string name="phone_link_status_opened">Phone Linked</string>
+    <string name="phone_link_status_closed">Phone Unlinked</string -->
+    <string name="phone_link_status_opened">Linked</string>
+    <string name="phone_link_status_closed">Unlinked</string>
+    
+    <!-- button name -->
+    <string name="setting_button_bluetooth_setting">Setting</string>
+    <string name="setting_button_bluetooth_music">Music</string>
+    <string name="simcontacts">Contacts</string>
+    <string name="downloadcontacts">Synch phone book</string>
+    <string name="title">Sych Contacts</string>
+    <string name="tn_dial">Dial</string>
+    <string name="title_activity_bonovo_dial">BonovoDial</string>
+    <string name="title_activity_bonovo_bluetooth_dial">BonovoBluetoothDial</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="description_delete_button">backspace</string>
+    <string name="description_image_button_one">one</string>
+    <string name="description_image_button_two">two</string>
+    <string name="description_image_button_three">three</string>
+    <string name="description_image_button_four">four</string>
+    <string name="description_image_button_five">five</string>
+    <string name="description_image_button_six">six</string>
+    <string name="description_image_button_seven">seven</string>
+    <string name="description_image_button_eight">eight</string>
+    <string name="description_image_button_nine">nine</string>
+    <string name="description_image_button_zero">zero</string>
+    <string name="description_image_button_star">star</string>
+    <string name="description_image_button_pound">pound</string>
+    <string name="description_dial_button">dial</string>
+    <string name="description_search_button">search</string>
+    <string name="action_menu_overflow_description">More options</string>
+    <string name="dialerIconLabel">Phone</string>
+    <string name="recentCallsIconLabel">Call log</string>
+    <string name="dialerAllContactsLabel">Favorites and all contacts</string>
+    <string name="title_activity_bonovo_bluetooth_handfree">BlueToothHandfree</string>
+    <string name="title_activity_bonovo_bluetooth_in_call_screen">BonovoBluetoothInCallScreen</string>
+    <string name="onscreenAudioText">Audio</string>
+    <string name="onscreenHoldText">Hold</string>
+    <string name="onscreenSwapCallsText">Swap</string>
+    <string name="onscreenShowDialpadText">Dialpad</string>
+	<string name="onscreenAddCallText">Add call</string>
+	<string name="onscreenMergeCallsText">Merge calls</string>
+	<string name="onscreenEndCallText">End</string>
+	<string name="onscreenMuteText">Mute</string>
+	<string name="description_target_answer">Answer</string>
+    <string name="description_target_send_sms">Send SMS</string>
+    <string name="description_target_decline">Decline</string>
+    <string name="description_phone_incoming">Call waiting</string>
+    <string name="description_phone_dialing">Dialing</string>
+    <string name="description_phone_in_call">In call</string>
+    <string name="description_phone_hang_up">Hang up</string>
+    <string name="description_phone_call_time">Talk time</string>
+    <string name="description_sync_select">Synchronization Select</string>
+    <string name="description_sync_sim">Sim: sync the contacts in sim card</string>
+    <string name="description_sync_phone">Phone: sync the contacts in the phone book</string>
+    <string name="description_title_setting">BlueToothSetting</string>
+    <string name="description_title_music">BlueToothMusic</string>
+    <string name="description_dial_info">The HFP of bluetooth is disconnect</string>
+    <string name="description_bt_info">You can change bluetooth name and pin code:</string>
+    <string name="description_bt_name_hint">Up to 32 characters</string>
+    <string name="description_bt_pin_hint">Up to 16 numbers</string>
+    <string name="description_updata_name_fail">Update bluetooth name failed!</string>
+    <string name="description_updata_pin_fail">Update bluetooth pin failed!</string>
+    
+    <string name="description_music_disable">Music function is disable because the bluetooth server is disconnect or the bluetooth is powered off.</string>
+    <string name="description_phone_disable">Phone function is disable because the bluetooth server is disconnect or the bluetooth is powered off.</string>
+    <string name="description_sync_contacts_disable">You can not sync contacts because the bluetooth server is disconnect or the bluetooth is powered off.</string>
+    <string name="description_volume_disable">You can not change volume because the bluetooth server is disconnect or the bluetooth is powered off.</string>
+    <string name="description_switch_bt_music">Bt music</string>
+    <string name="description_switch_bt_status">Bt status</string>
+    <string name="description_sync_contacts_wait_info">Please agree PBAP request in you phone.</string>
+    <string name="description_reading_contacts_info">Reading contacts :</string>
+    <string name="description_writing_contacts_info">Writing contacts into database</string>
+    <string name="description_sync_contacts_complete">The contacts has been complete synchronization, this window will be removed</string>
+    <string name="description_sync_contacts_error">Read contacts timeout! The contacts count that will be write in database : </string>
+    <string name="description_sync_contacts_notsupport">The phone donot support down load phone book through AT protocal!</string>
+
+</resources>

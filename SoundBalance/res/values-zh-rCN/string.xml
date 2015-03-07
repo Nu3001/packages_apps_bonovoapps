@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">声音平衡</string>
+    <string name="action_settings">设置</string>
+
+    <string name="front_left">前左</string>
+    <string name="front_right">前右</string>
+    <string name="rear_left">后左</string>
+    <string name="rear_right">后右</string>
+    
+    <string name="max_volume">100%</string>
+</resources>

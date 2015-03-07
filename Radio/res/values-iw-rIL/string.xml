@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">רדיו</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="am">A M</string>
+    <string name="fine">Fine</string>
+    <string name="step">Step</string>
+    <string name="auto">Auto</string>
+    <string name="radio_volume">עוצמת רדיו</string>
+    <string name="fmsearch">לאשר חיפוש FM?</string>
+    <string name="amsearch">לאשר חיפוש AM?</string>
+    <string name="import_title">ייבא הגדרות קבועות מראש</string>
+    <string name="import_preset">קבוע מראש</string>
+    <string name="import_define">הגדר</string>
+    <string name="import_area">אזור</string>
+    <string name="import_province">מחוז</string>
+    <string name="import_city">עיר</string>
+    <string name="edit_dialog_freq">תדר</string>
+    <string name="edit_dialog_shortname">בקצרה</string>
+    <string name="edit_dialog_fullname">בפרוט</string>
+    <string name="import_import">ייבא</string>
+    <string name="playing">מנגן</string>
+    <string name="edit_channel">ערוך ערוץ</string>
+    <string name="alert_dialog_ok">אישור</string>
+    <string name="alert_dialog_cancel">בטל</string>
+    <string name="valid_freq_fm">אנא בחר תדר FM בטווח תקין: 87.5-108.0MHz</string>
+    <string name="valid_freq_am">אנא בחר תדר AM בטווח תקין: 520-1710KHz</string>
+    <string name="searchwait">סורק, אנא המתן</string>
+    <string name="china">CHN</string>
+    <string name="japan">JPN</string>
+    <string name="europe">EUR</string>
+    <string name="system">בחירת סוג</string>
+    <string name="volume">עוצמה</string>
+    <string name="remote">שלט רחוק</string>
+    <string name="lead">Lead</string>
+    <string name="remind">תזכורת</string>
+    <string name="describe">האם לבצע סריקה אוטומטית ולשמור?</string>
+    <string name="ok">אישור</string>
+    <string name="cancel">בטל</string>
+    <string name="searching">סורק, נא לא להחליף ערוץ</string>
+    <string name="clear">נקה</string>
+    <string name="unrealized">פונקציה זו לא ממומשת</string>
+</resources>

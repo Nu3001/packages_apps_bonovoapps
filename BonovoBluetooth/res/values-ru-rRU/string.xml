@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bluetooth</string>
+    <string name="action_settings">Настройки</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="description_phone_button">Телефон</string>
+    <string name="description_music_button">Музыка</string>
+    <string name="description_settings_button">Настройки</string>
+    <string name="description_sync_button">Синхронизировать контакты</string>
+    <string name="description_bottom_bg">Bottom background</string>
+    <string name="description_add_volume">Увеличить громкость</string>
+    <string name="description_sub_volume">Уменьшить громкость</string>
+    <string name="description_background_bg">Backgroud View</string>
+    <string name="setting_button_bluetooth_status_open">Вкл.</string>
+    <string name="setting_button_bluetooth_status_closed">Выкл.</string>
+    
+    <string name="bluetooth_name">Название:</string>
+    <string name="bluetooth_default_name">AVNIS</string>
+    <string name="bluetooth_pincode">PIN:</string>
+    <string name="bluetooth_default_pincode">8888</string>
+    <string name="call_default_number">13261899155</string>
+    <string name="bluetooth_status_opened">bluetooth включён</string>
+    <string name="bluetooth_status_closed">bluetooth выключен</string>
+    <!-- string name="phone_link_status_opened">Устройство подключено</string>
+    <string name="phone_link_status_closed">Устройство отключено</string -->
+    <string name="phone_link_status_opened">Подключено</string>
+    <string name="phone_link_status_closed">Отключено</string>
+    
+    <!-- button name -->
+    <string name="setting_button_bluetooth_setting">Настройки</string>
+    <string name="setting_button_bluetooth_music">Музыка</string>
+    <string name="simcontacts">Контакты</string>
+    <string name="downloadcontacts">Синхронизировать телефонную книгу</string>
+    <string name="title">Синхронизировать контакты</string>
+    <string name="tn_dial">Набор номера</string>
+    <string name="title_activity_bonovo_dial">BonovoDial</string>
+    <string name="title_activity_bonovo_bluetooth_dial">BonovoBluetoothDial</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="description_delete_button">Очистить</string>
+    <string name="description_image_button_one">один</string>
+    <string name="description_image_button_two">два</string>
+    <string name="description_image_button_three">три</string>
+    <string name="description_image_button_four">четыре</string>
+    <string name="description_image_button_five">пять</string>
+    <string name="description_image_button_six">шесть</string>
+    <string name="description_image_button_seven">семь</string>
+    <string name="description_image_button_eight">восемь</string>
+    <string name="description_image_button_nine">девять</string>
+    <string name="description_image_button_zero">ноль</string>
+    <string name="description_image_button_star">звёздочка</string>
+    <string name="description_image_button_pound">решётка</string>
+    <string name="description_dial_button">набрать номер</string>
+    <string name="description_search_button">поиск</string>
+    <string name="action_menu_overflow_description">Дополнительно</string>
+    <string name="dialerIconLabel">Телефон</string>
+    <string name="recentCallsIconLabel">Журнал</string>
+    <string name="dialerAllContactsLabel">Избранное и все звонки</string>
+    <string name="title_activity_bonovo_bluetooth_handfree">BlueTooth громкая связь</string>
+    <string name="title_activity_bonovo_bluetooth_in_call_screen">BonovoBluetoothInCallScreen</string>
+    <string name="onscreenAudioText">Звук</string>
+    <string name="onscreenHoldText">Удержание</string>
+    <string name="onscreenSwapCallsText">Swap</string>
+    <string name="onscreenShowDialpadText">Клавиатура</string>
+	<string name="onscreenAddCallText">Звонок другому абоненту</string>
+	<string name="onscreenMergeCallsText">Объединить звонки</string>
+	<string name="onscreenEndCallText">Завершить</string>
+	<string name="onscreenMuteText">Вычлючить звук</string>
+	<string name="description_target_answer">Ответить</string>
+    <string name="description_target_send_sms">Отправить SMS</string>
+    <string name="description_target_decline">Отклонить</string>
+    <string name="description_phone_incoming">Ожидание звонка</string>
+    <string name="description_phone_dialing">Набор номера</string>
+    <string name="description_phone_in_call">Во время вызова</string>
+    <string name="description_phone_hang_up">Завершить звонок</string>
+    <string name="description_phone_call_time">Время разговора</string>
+    <string name="description_sync_select">Выбор синхронизации</string>
+    <string name="description_sync_sim">Sim: синхронизировать контакты на sim-карте</string>
+    <string name="description_sync_phone">Телефон: синхронизировать контакты в телефонной книге</string>
+    <string name="description_title_setting">Настройки BlueTooth</string>
+    <string name="description_title_music">BlueTooth Музыка</string>
+    <string name="description_dial_info">Устройство bluetooth отключено</string>
+    <string name="description_bt_info">Вы можете изменить название bluetooth-устройства и pin-код:</string>
+    <string name="description_bt_name_hint">До 32 символов</string>
+    <string name="description_bt_pin_hint">До 16 цифр</string>
+    <string name="description_updata_name_fail">Изменить название bluetooth-устройства не удалось!</string>
+    <string name="description_updata_pin_fail">Изменить bluetooth pin не удалось!</string>
+    
+    <string name="description_music_disable">Функция музыки отключена, потому что bluetooth-сервер отключён или bluetooth выключен.</string>
+    <string name="description_phone_disable">Функция телефона отключена, потому что bluetooth-сервер отключён или bluetooth выключен.</string>
+    <string name="description_sync_contacts_disable">Вы не можете синхронизировать контакты, потому что bluetooth-сервер отключён или bluetooth выключен.</string>
+    <string name="description_volume_disable">Вы не можете изменить громкость, потому что bluetooth-сервер отключён или bluetooth выключен.</string>
+    <string name="description_switch_bt_music">Bt музыка</string>
+
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description_bt_info"
+        android:textSize="@dimen/title_text_size" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="@dimen/dialog_bt_info_left_margin"
+        android:layout_marginRight="@dimen/dialog_bt_info_right_margin">
+
+	    <TextView
+	        android:id="@+id/tvDialogBtName"
+	        android:layout_width="80dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/bluetooth_name"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <EditText
+	        android:id="@+id/etDialogBtName"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="@string/description_bt_name_hint" />
+	    	<requestFocus />
+    </LinearLayout>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dialog_bt_info_left_margin"
+        android:layout_marginRight="@dimen/dialog_bt_info_right_margin">
+	    <TextView
+	        android:id="@+id/tvDialogBtPinCode"
+	        android:layout_width="80dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/bluetooth_pincode"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <EditText
+	        android:id="@+id/etDialogBtPinCode"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number"
+	        android:hint="@string/description_bt_pin_hint" >
+	    </EditText>
+    </LinearLayout>
+
+</LinearLayout>

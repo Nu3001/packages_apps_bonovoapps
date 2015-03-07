@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Радио</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">Настройки</string>
+    <string name="am">AM</string>
+    <string name="radio_volume">Громкость</string>
+    <string name="fmsearch">Поиск FM-радиостанций</string>
+    <string name="amsearch">Поиск AM-радиостанций</string>
+    <string name="import_title">Импорт списка радиостанций</string>
+    <string name="import_preset">Импорт предустановленных радиостанций</string>
+    <string name="import_define">Определить</string>
+    <string name="import_area">Регион</string>
+    <string name="import_province">Область</string>
+    <string name="import_city">Город</string>
+    <string name="import_import">Импорт</string>
+    <string name="playing">Проигрывание</string>
+    <string name="edit_channel">Редактировать станцию</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Отмена</string>
+    <string name="valid_freq_fm">Пожалуйста, введите FM частоту из диапазона：87.5-108.0 MHz</string>
+    <string name="valid_freq_am">Пожалуйста, введите AM частоту из диапазона：520-1710 KHz</string>
+    <string name="searchwait">Идёт поиск. Пожалуйста, подождите...</string>
+    <string name="system">Тип радиостанции</string>
+    <string name="volume">Громкость</string>
+    <string name="remote">Удалённое управление</string>
+    <string name="lead">Lead</string>
+    <string name="remind">Напоминание</string>
+    <string name="describe">Выполнить автоматический поиск и сохранение радиостанций?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="searching">Идёт поиск, не переключайте частоту</string>
+    <string name="clear">Очистить</string>
+    <string name="unrealized">Результат не получен</string>
+</resources>

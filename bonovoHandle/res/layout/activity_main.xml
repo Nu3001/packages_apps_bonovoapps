@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_medium"
+	        android:text="@string/get_value" />
+	    
+	    <TextView
+	        android:id="@+id/mvalue"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_medium"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:padding="@dimen/padding_medium"
+	        android:text="@string/set_value" />
+
+	    <TextView
+	        android:id="@+id/brightvalue"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:padding="@dimen/padding_medium"/>
+	     
+    </LinearLayout>
+    
+    <SeekBar
+	        android:id="@+id/set_value"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:max="255"
+			android:progress="0"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Button 
+	        android:id="@+id/mbutton_get"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/get_button">
+    	</Button>
+    
+	    <Button 
+	        android:id="@+id/mbutton_set"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/set_button">
+	    </Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/driver_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    
+</LinearLayout>

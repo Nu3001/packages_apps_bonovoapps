@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_seat_margin_top">80dp</dimen>
+    <dimen name="dimen_seat_margin_center">70dp</dimen>
+    <dimen name="dimen_seat_heating_margin_top">160dp</dimen>
+    <dimen name="dimen_seat_heating_margin_center">50dp</dimen>
+    <dimen name="dimen_middle_wind_margin_top">70dp</dimen>
+    <dimen name="dimen_middle_wind_margin_center">200dp</dimen>
+    <dimen name="dimen_middle_power_off_string_size">100sp</dimen>
+</resources>

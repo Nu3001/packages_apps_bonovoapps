@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg2"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/lead"
+        android:textSize="30sp" />
+
+    <ImageButton
+        android:id="@+id/btnimport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="352dp"
+        android:layout_marginTop="109dp"
+        android:background="@drawable/btnimport" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="219dp"
+        android:text="@string/remote"
+        android:textSize="30sp" />
+
+    <ToggleButton
+        android:id="@+id/remote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="352dp"
+        android:layout_marginTop="219dp" 
+	/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="328dp"
+        android:text="@string/system"
+        android:textSize="30sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="433dp"
+        android:text="@string/volume"
+        android:textSize="30sp" />
+    
+    <SeekBar
+        android:id="@+id/seek"
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="281dp"
+        android:layout_marginTop="444dp"
+        android:progressDrawable="@drawable/seekbar_img"
+        android:thumb="@drawable/thumb" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/checkchina" >
+
+        <RadioButton
+            android:id="@+id/checkjapan"
+            android:layout_marginLeft="283dp"
+            android:layout_marginTop="332dp"
+            android:text="@string/japan"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/checkchina"
+            android:layout_marginTop="332dp"
+            android:text="@string/china"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/checkeurope"
+            android:layout_marginTop="332dp"
+            android:text="@string/europe"
+            android:textSize="25sp" />
+    </RadioGroup>
+
+</RelativeLayout>

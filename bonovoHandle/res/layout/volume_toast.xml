@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/ic_lock_ringer_on" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:text="@string/def_volume" />
+
+</LinearLayout>

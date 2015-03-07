@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/air_conditioner_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/air_conditioner_top"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image_top_ac"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_ac" />
+
+        <ImageView
+            android:id="@+id/image_top_acmax"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_acmax" />
+
+        <ImageView
+            android:id="@+id/image_top_auto"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_auto" />
+
+        <ImageView
+            android:id="@+id/image_top_front_max"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_max" />
+
+        <ImageView
+            android:id="@+id/image_top_back"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_back" />
+
+        <ImageView
+            android:id="@+id/image_top_dual"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/air_conditioner_top_dual" />
+
+        <ImageView
+            android:id="@+id/image_top_cycle"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/cycle_drawable" />
+
+        <ImageView
+            android:id="@+id/image_top_rearlock"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/rearlock" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/middle_container"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/air_conditioner_middle">
+
+  	<TextView
+            android:id="@+id/power_off_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:textSize="@dimen/dimen_middle_power_off_string_size"
+            android:text="@string/air_containing_off_string"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <View
+            android:id="@+id/center_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_seat_margin_center"
+            android:layout_marginTop="@dimen/dimen_seat_margin_top"
+            android:layout_toLeftOf="@id/center_view"
+            android:src="@drawable/air_conditioner_middle_seat_left" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_seat_margin_center"
+            android:layout_marginTop="@dimen/dimen_seat_margin_top"
+            android:layout_toRightOf="@id/center_view"
+            android:src="@drawable/air_conditioner_middle_seat_right" />
+
+        <ImageView
+            android:id="@+id/image_middle_seat_right_heating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_seat_heating_margin_center"
+            android:layout_marginTop="@dimen/dimen_seat_heating_margin_top"
+            android:layout_toRightOf="@id/center_view"
+            android:src="@drawable/right_seat_heating_drawable" />
+
+        <ImageView
+            android:id="@+id/image_middle_seat_left_heating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_seat_heating_margin_center"
+            android:layout_marginTop="@dimen/dimen_seat_heating_margin_top"
+            android:layout_toLeftOf="@id/center_view"
+            android:src="@drawable/left_seat_heating_drawable" />
+
+        <ImageView
+            android:id="@+id/image_middle_window_left_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/center_view"
+            android:src="@drawable/air_conditioner_middle_window_wind" />
+
+        <ImageView
+            android:id="@+id/image_middle_window_right_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/center_view"
+            android:src="@drawable/air_conditioner_middle_window_wind" />
+
+        <ImageView
+            android:id="@+id/image_middle_wind_right_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_middle_wind_margin_center"
+            android:layout_marginTop="@dimen/dimen_middle_wind_margin_top"
+            android:layout_toRightOf="@id/center_view"
+            android:src="@drawable/middle_right_wind_drawable" />
+
+        <ImageView
+            android:id="@+id/image_middle_wind_left_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_middle_wind_margin_center"
+            android:layout_marginTop="@dimen/dimen_middle_wind_margin_top"
+            android:layout_toLeftOf="@id/center_view"
+            android:src="@drawable/middle_left_wind_drawable" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/air_conditioner_top"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_bottom_left_temp"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/air_conditioner_bottom_weak_wind" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:id="@+id/image_bottom_wind7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/wind_indicator_drawable" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/air_conditioner_bottom_strong_wind" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_bottom_right_temp"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>
+

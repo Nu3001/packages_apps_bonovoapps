@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">视频输入2</string>
+
+    <string name="failed_open_serial">打开串口失败，无法切换视频！</string>
+</resources>

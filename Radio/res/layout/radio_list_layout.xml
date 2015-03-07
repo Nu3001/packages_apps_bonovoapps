@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- title layout -->
+
+    <RelativeLayout
+        android:id="@+id/import_title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:background="@drawable/title_bar" >
+
+        <ImageButton
+            android:id="@+id/import_button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/btnclose"
+            android:contentDescription="@string/app_name" />
+
+    </RelativeLayout>
+
+    <!-- middle area -->
+
+    <RelativeLayout
+        android:id="@+id/import_middle_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="0.39"
+        android:background="@drawable/importbg" >
+
+        <Button
+            android:id="@+id/import_button_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/import_middle_btn"
+            android:drawableLeft="@drawable/import_country"
+            android:drawablePadding="10dp"
+            android:text="@string/import_area"
+            android:textColor="@android:color/white"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/import_button_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/import_button_area"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/import_middle_btn"
+            android:drawableLeft="@drawable/import_province"
+            android:drawablePadding="10dp"
+            android:text="@string/import_province"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/import_button_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/import_button_province"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/import_middle_btn"
+            android:drawableLeft="@drawable/import_city"
+            android:drawablePadding="10dp"
+            android:text="@string/import_city"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/import_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/import_button_area"
+            android:cacheColorHint="#00000000"
+            android:divider="#000"
+            android:fadeScrollbars="true"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:scrollbarDefaultDelayBeforeFade="2000"
+            android:scrollbarFadeDuration="3000"
+            android:scrollbarSize="27dp"
+            android:scrollbarStyle="outsideOverlay"/>
+
+        <Button
+            android:id="@+id/import_button_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/import_bottom_btn"
+            android:text="@string/import_import"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+        
+    </RelativeLayout>
+
+    <!-- bottom area -->
+<!-- 
+    <RelativeLayout
+        android:id="@+id/import_bottom_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_bar" >
+
+         
+        <Button
+            android:id="@+id/import_button_preset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/import_bottom_btn"
+            android:text="@string/import_preset"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/import_button_define"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/import_button_preset"
+            android:background="@drawable/import_bottom_btn"
+            android:text="@string/import_define"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+            
+        
+         <Button
+            android:id="@+id/import_button_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/import_bottom_btn"
+            android:text="@string/import_import"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+    -->
+
+</LinearLayout>

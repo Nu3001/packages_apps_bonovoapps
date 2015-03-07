@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Обучение кнопок</string>
+    <string name="action_settings">Настройки</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="description_image_panel">Панель кнопок</string>
+    <string name="description_image_ir">Кнопки пульта управления</string>
+    <string name="description_image_ext">Кнопки на руле</string>
+    <string name="description_panel">Панель</string>
+    <string name="description_ir">Пульт управления</string>
+    <string name="description_ext">Кнопки на руле</string>
+    
+    <!-- keys -->
+    <string name="mode_custom">Пользовательский режим</string>
+    <string name="mode_normal">Обычный режим</string>
+    <string name="get_data">Получить ID кнопки</string>
+    <string name="set_key">Задать ID кнопки</string>
+    <string name="addr_code">Адрес кода:</string>
+    <string name="scan_code">Сканировать код:</string>
+    <string name="key_code">Код кнопки:</string>
+    <string name="test">Тест</string>
+    <string name="press_btn">нажать</string>
+    <string name="undef">не задано</string>
+    <string name="import_config">Импорт</string>
+    <string name="export_config">Экспорт</string>
+    <string name="read_config">Прочитать</string>
+    <string name="save_config">Сохранить</string>
+    <string name="new_config">Новый</string>
+    <string name="clean_config">Очистить</string>
+    <string name="delet_config">Удалить</string>
+    <string name="next_page">Следующая страница</string>
+    <string name="prev_page">Предыдущая страница</string>
+    <string name="title_panel">Панель</string>
+    <string name="title_ir">Пульт управления</string>
+    <string name="title_external">Кнопки на руле</string>
+    <string name="menu_set_accuracy">Задать погрешность</string>
+    <string name="read_accuracy">Прочитать погрешность</string>
+    
+    <string name="home">Домой</string>
+    <string name="back">Назад</string>
+    <string name="key0">0</string>
+    <string name="key1">1</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="key_star">*</string>
+    <string name="key_pound">#</string>
+    <string name="key_up">↑(Вверх)</string>
+    <string name="key_down">↓(Вниз)</string>
+    <string name="key_left">←(Влеов)</string>
+    <string name="key_right">→(Вправо)</string>
+    <string name="key_ok">OK</string>
+    <string name="volume_up">Громкость+</string>
+    <string name="volume_down">Громкость-</string>
+    <string name="power">Питание</string>
+    <string name="explorer">Проводник</string>
+    <string name="envelope">Почта</string>
+    <string name="menu">Меню</string>
+    <string name="search">Поиск</string>
+    <string name="media_play_pause">Проигрывание/Пауза</string>
+    <string name="media_stop">Остановить воспроизведение</string>
+    <string name="media_next">Следующий файл</string>
+    <string name="media_prev">Предыдущий файл</string>
+    <string name="media_rewind">Перемотка назад</string>
+    <string name="media_fast_forward">Перемотка вперёд</string>
+    <string name="page_up">Следующая страница</string>
+    <string name="page_down">Предыдущая страница</string>
+    <string name="mute">Выключить звук</string>
+    <string name="calendar">Календарь</string>
+    <string name="music">Музыка</string>
+    <string name="calculator">Калькулятор</string>
+    <string name="radio">Радио</string>
+    <string name="navi">Навигация</string>
+    <string name="dvd">DVD</string>
+    <string name="ThirdG">3G</string>
+    <string name="camera">Камера</string>
+    <string name="bt_phone">Bluetooth телефон</string>
+    <string name="bt_answer">Ответить по Bluetooth </string>
+    <string name="bt_hang_up">Завершить звонок по Bluetooth</string>
+    <string name="bt_answer_hang">Bluetooth ответить/завершить</string>
+    <string name="bt_switch_audio">Переключит Bluetooth звук</string>
+    <string name="radio_turn_up">Включить радио</string>
+    <string name="radio_turn_down">Выключить радио</string>
+    <string name="radio_switch_fmam">FM/AM</string>
+    
+    
+    <string name="save_successfully">сохранено успешно</string>
+    <string name="import_which_files">пожалуйста, выберите файл для загрузки</string>
+    <string name="import_successfully">Файл загружен успешно</string>
+    <string name="new_files_name">Пожалуйста, введите имя для нового файла</string>
+    <string name="save_failed">Имя файла не задано и файл не сохранён</string>
+    <string name="saved_successfully">Новый файл конфигурации сохранён успешно</string>
+    <string name="empty_conf">Текущая конфигурация была очищена</string>
+    <string name="allow_delete1">Конфигурацию по умолчанию удалять нельзя</string>
+    <string name="allow_delete2">Запущенную конфигурацию удалять нельзя</string>
+    <string name="delete_conf">Удалено успешно</string>
+    <string name="save_repeat_failes">Файл уже существует</string>
+    <string name="delete_select">Пожалуйста, выберите файл для удаления</string>
+    
+    <string name="info_serv_start_and_exit_addr">Используется новое устройство, которое не было обнаружено в системе! Вы хотите запустить конфигурирование нового пульта управления?</string>
+    <string name="info_main_start_and_exit_addr">Используется новое устройство, которое не было обнаружено в системе! Вы хотите импортировать файл конфигурации?</string>
+    <string name="info_main_start_and_not_exit_addr">Используется новое устройство, которое не было обнаружено в системе! Вы хотите создать новый файл конфигурации для него?</string>
+    <string name="info_errno_intent">Смысловая ошибка！</string>
+    <string name="new_dialog_title">Новый пульт управления</string>
+    <string name="new_dialog_ok">OK</string>
+    <string name="new_dialog_cancel">Отмена</string>
+    <string name="select_conf">Выберите файл конфигурации</string>
+    <string name="delete_conf_info">Удалить файлы</string>
+    <string name="clear_btns_title">Очистить кнопки</string>
+    <string name="clear_btns_info">Вы хотите очистить все кнопки используемого устройства?</string>
+    
+    <string name="def_accuracy">0</string>
+    <string name="accuracy_info">Погрешность </string>
+    <string name="error_set_ir_accuracy">Нельзя задать погрешность пульта управления, погршность должна быть 0.</string>
+</resources>

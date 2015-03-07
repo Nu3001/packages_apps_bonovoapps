@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="back_radar_margin">165dp</dimen>
+    <dimen name="front_radar_margin">170dp</dimen>
+
+    <dimen name="radar_level1_margin1">23dp</dimen>
+    <dimen name="radar_level1_margin2">0dp</dimen>
+    <dimen name="radar_level2_margin1">33dp</dimen>
+    <dimen name="radar_level2_margin2">7dp</dimen>
+    <dimen name="radar_level3_margin1">43dp</dimen>
+    <dimen name="radar_level3_margin2">15dp</dimen>
+    <dimen name="radar_level4_margin1">53dp</dimen>
+    <dimen name="radar_level4_margin2">23dp</dimen>
+    <dimen name="radar_level5_margin1">63dp</dimen>
+    <dimen name="radar_level5_margin2">29dp</dimen>
+    <dimen name="radar_level6_margin1">73dp</dimen>
+    <dimen name="radar_level6_margin2">34dp</dimen>
+    <dimen name="radar_level7_margin1">85dp</dimen>
+    <dimen name="radar_level7_margin2">43dp</dimen>
+    <dimen name="radar_level8_margin1">98dp</dimen>
+    <dimen name="radar_level8_margin2">51dp</dimen>
+    <dimen name="radar_level9_margin1">110dp</dimen>
+    <dimen name="radar_level9_margin2">57dp</dimen>
+    <dimen name="radar_level10_margin1">124dp</dimen>
+    <dimen name="radar_level10_margin2">64dp</dimen>
+</resources>

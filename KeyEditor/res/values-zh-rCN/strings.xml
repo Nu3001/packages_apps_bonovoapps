@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">按键编辑器</string>
+    <string name="action_settings">设置</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="description_image_panel">前面板按键</string>
+    <string name="description_image_ir">红外按键</string>
+    <string name="description_image_ext">方控按键</string>
+    <string name="description_panel">前面板按键</string>
+    <string name="description_ir">红外按键</string>
+    <string name="description_ext">方控按键</string>
+    
+    <!-- keys -->
+    <string name="mode_custom">订制模式</string>
+    <string name="mode_normal">普通模式</string>
+    <string name="get_data">获取按键数据</string>
+    <string name="set_key">设置按键消息</string>
+    <string name="addr_code">地址码:</string>
+    <string name="scan_code">键值码:</string>
+    <string name="key_code">消息码:</string>
+    <string name="test">测试</string>
+    <string name="press_btn">请按键</string>
+    <string name="undef">未定义</string>
+    <string name="import_config">加载配置</string>
+    <string name="export_config">导出配置</string>
+    <string name="read_config">读取配置</string>
+    <string name="save_config">保存配置</string>
+    <string name="clean_config">清空定义</string>
+    <string name="delet_config">删除文件</string>
+    <string name="next_page">下一页</string>
+    <string name="prev_page">上一页</string>
+    <string name="title_panel">前面板按键</string>
+    <string name="title_ir">红外</string>
+    <string name="title_external">外部按键</string>
+    <string name="menu_set_accuracy">设置误差值</string>
+    <string name="read_accuracy">读取误差值</string>
+    
+    <string name="home">主界面</string>
+    <string name="back">返回</string>
+    <string name="key0">0</string>
+    <string name="key1">1</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="key_star">*</string>
+    <string name="key_pound">#</string>
+    <string name="key_up">↑（上）</string>
+    <string name="key_down">↓（下）</string>
+    <string name="key_left">←（左）</string>
+    <string name="key_right">→（右）</string>
+    <string name="key_ok">确认</string>
+    <string name="volume_up">音量+</string>
+    <string name="volume_down">音量-</string>
+    <string name="power">电源</string>
+    <string name="explorer">浏览器</string>
+    <string name="envelope">信件</string>
+    <string name="menu">菜单</string>
+    <string name="search">搜索</string>
+    <string name="media_play_pause">播放/暂停</string>
+    <string name="media_stop">停止</string>
+    <string name="media_next">下一曲</string>
+    <string name="media_prev">上一曲</string>
+    <string name="media_rewind">快退</string>
+    <string name="media_fast_forward">快进</string>
+    <string name="page_up">翻页-</string>
+    <string name="page_down">翻页+</string>
+    <string name="mute">静音</string>
+    <string name="calendar">日历</string>
+    <string name="music">音乐</string>
+    <string name="calculator">计算器</string>
+    <string name="radio">收音机</string>
+    <string name="navi">导航</string>
+    <string name="dvd">DVD</string>
+    <string name="ThirdG">3G</string>
+    <string name="camera">摄像头</string>
+    <string name="bt_phone">蓝牙电话</string>
+    <string name="bt_answer">接听蓝牙电话</string>
+    <string name="bt_hang_up">挂断蓝牙电话</string>
+    <string name="bt_answer_hang">蓝牙电话接听/挂断</string>
+    <string name="bt_switch_audio">蓝牙音频切换</string>
+    <string name="radio_turn_up">调谐+</string>
+    <string name="radio_turn_down">调谐-</string>
+    <string name="radio_switch_fmam">FM/AM</string>
+    
+    <string name="info_serv_start_and_exit_addr">使用了新的红外遥控设备！是否要启动 IrConfigApp 来对新的红外遥控设备进行配置？</string>
+    <string name="info_main_start_and_exit_addr">使用了新的红外遥控设备！而且系统中存在相关的配置文件，是否导入？</string>
+    <string name="info_main_start_and_not_exit_addr">使用了新的红外遥控设备！但是系统中不存在相关的配置文件，是否要新建配置文件？</string>
+    <string name="info_errno_intent">错误的启动信息！</string>
+    <string name="new_dialog_title">新的红外遥控设备</string>
+    <string name="new_dialog_ok">确定</string>
+    <string name="new_dialog_cancel">取消</string>
+    <string name="select_conf">请选择配置文件</string>
+    <string name="delete_conf_info">请选择要删除的文件</string>
+    <string name="clear_btns_title">清空按键提示</string>
+    <string name="clear_btns_info">是否要清空当前使用按键定义？</string>
+    <string name="accuracy_info">误差值是</string>
+    <string name="error_set_ir_accuracy">不能为红外遥控器设置误差值，红外遥控器的误差值为0</string>
+    
+    <string name="dose_not_support">不支持</string>
+</resources>

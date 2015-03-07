@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="hello_world">Hola Mundo!</string>
+    <string name="title">Encontrada actualización de MCU, ¿Desea permitir la actualización?</string>
+    <string name="agree">De acuerdo</string>
+    <string name="cancel">Cancelar</string>
+    <string name="button">Comprobar actualización</string>
+    <string name="mcuversion">MCU Versión: </string>
+    <string name="sysversion">Versión de sistema: </string>
+    <string name="androidversion">Versión Android: </string>
+    <string name="loga">No cargue la tarjeta SD o un archivo de actualización si no se especifica</string>
+    <string name="asternmute">Mute en marcha atrás</string>
+    <string name="lightstate">Detección de luz marcha atrás</string>
+    <string name="rearview_camera">AV-IN</string>
+    <string name="other">Otros ajustes del coche: </string>
+    <string name="reminder">No se ha añadido la función inteface</string>
+    <string name="basic">Información Básica:</string>
+
+</resources>

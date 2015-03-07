@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".KeyEditorActivity" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFFFF">
+        <TextView 
+            android:id="@+id/tvExt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/description_ext"
+            android:drawableTop="@drawable/external_normal"/>
+        <TextView 
+            android:id="@+id/tvIr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/description_ir"
+            android:drawableTop="@drawable/ir_normal"/>
+        <TextView 
+            android:id="@+id/tvPanel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/description_panel"
+            android:drawableTop="@drawable/panel_normal"/>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@android:color/darker_gray"/>
+    
+    <include 
+        android:id="@+id/items"
+        layout="@layout/item_list" />
+
+</LinearLayout>

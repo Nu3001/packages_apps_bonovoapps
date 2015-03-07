@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+    <item android:drawable="@drawable/air_conditioner_middle_up_left" android:maxLevel="0"/>
+    <item android:drawable="@drawable/air_conditioner_middle_obliqueup_left" android:maxLevel="1"/>
+    <item android:drawable="@drawable/air_conditioner_middle_parallel_left" android:maxLevel="2"/>
+    <item android:drawable="@drawable/air_conditioner_middle_down_left" android:maxLevel="3"/>
+    <item android:drawable="@drawable/air_conditioner_middle_parallelup_left" android:maxLevel="4"/>
+    <item android:drawable="@drawable/air_conditioner_middle_downup_left" android:maxLevel="5"/>
+    <item android:drawable="@drawable/air_conditioner_middle_parallelfront_left" android:maxLevel="6"/>
+    <item android:drawable="@drawable/air_conditioner_middle_obliqueup_down_left" android:maxLevel="7"/>
+    <item android:drawable="@drawable/air_conditioner_middle_paralledown_left" android:maxLevel="8"/>
+    <item android:drawable="@drawable/air_conditioner_middle_paralleldownup_left" android:maxLevel="9"/>
+    <item android:drawable="@drawable/air_conditioner_middle_paralleldownfront_left" android:maxLevel="10"/>
+-->
+    <item android:drawable="@drawable/air_conditioner_middle_parallel_left" android:maxLevel="1"/>
+    <item android:drawable="@drawable/air_conditioner_middle_up_left" android:maxLevel="2"/>
+    <item android:drawable="@drawable/air_conditioner_middle_down_left" android:maxLevel="3"/>
+    <item android:drawable="@drawable/air_conditioner_middle_paralledown_left" android:maxLevel="4"/>
+    <item android:drawable="@drawable/air_conditioner_middle_downup_left" android:maxLevel="5"/>
+    <item android:drawable="@drawable/air_conditioner_middle_parallelup_left" android:maxLevel="6"/>
+    <item android:drawable="@drawable/air_conditioner_middle_paralleldownup_left" android:maxLevel="7"/>
+</level-list>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+android:id/background" android:drawable="@drawable/sound_1" />
+	<!--ȫ������ͼ  -->
+	<item android:id="@+android:id/SecondaryProgress"
+		android:drawable="@drawable/sound_1" />
+	<!-- �������ͼ -->
+	<item android:id="@+android:id/progress" android:drawable="@drawable/sound_2" />
+</layer-list>

@@ -1,0 +1,208 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".BonovoMcuActivity" >
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/basic"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/basic"
+                android:layout_marginTop="7dp"
+                android:background="?android:attr/listDivider" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/basic"
+                android:layout_marginTop="15dp"
+                android:text="@string/button" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/switch_page" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button1"
+                android:layout_below="@+id/button1"
+                android:layout_marginTop="20dp"
+                android:text="@string/mcuversion"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/versionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView1"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/textView1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/versionView"
+                android:layout_marginTop="14dp"
+                android:text="@string/sysversion"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/systemView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView2"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/textView2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_below="@+id/textView2"
+                android:layout_marginTop="14dp"
+                android:text="@string/androidversion"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/androidView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/textView3"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/other"
+                android:textSize="20sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textView4"
+                android:layout_marginTop="7dp"
+                android:background="?android:attr/listDivider" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+				android:layout_alignParentRight="true"
+                android:background="@drawable/switch_page2" />
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_marginTop="15dp"
+                android:checked="true"
+                android:maxLength="25"
+                android:text="@string/asternmute" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/checkBox1"
+                android:layout_marginLeft="200dp"
+                android:layout_toRightOf="@+id/checkBox1"
+                android:checked="true"
+                android:maxLength="25"
+                android:text="@string/rearview_camera" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/checkBox1"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/listDivider" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkBox1"
+                android:layout_marginTop="20dp"
+                android:maxLength="42"
+                android:text="@string/lightstate" />
+
+            <SeekBar
+                android:id="@+id/seekBarLight"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/checkBox2"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@id/checkBox2"
+                android:visibility="gone" />
+            
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/checkBox2"
+                android:layout_marginTop="15dp"
+                android:background="?android:attr/listDivider" />
+            
+            <CheckBox
+                android:id="@+id/checkBoxvolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkBox2"
+                android:layout_marginTop="30dp"
+                android:maxLength="42"
+                android:text="@string/autovolume" />
+            
+            <SeekBar
+                android:id="@+id/seekBarAutoVolume"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/checkBoxvolume"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@id/checkBoxvolume" />
+        </RelativeLayout>
+    </ViewFlipper>
+
+</RelativeLayout>

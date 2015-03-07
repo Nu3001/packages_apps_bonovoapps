@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg">
+
+    <ImageView
+        android:id="@+id/car_door_front_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/car_door_front_margin_left_side"
+        android:layout_marginTop="@dimen/car_door_front_margin_top"
+        android:src="@drawable/car_door_left_front" />
+
+    <ImageView
+        android:id="@+id/car_door_front_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/car_door_front_margin_right_side"
+        android:layout_marginTop="@dimen/car_door_front_margin_top"
+        android:src="@drawable/car_door_right_front" />
+
+    <ImageView
+        android:id="@+id/car_door_rear_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/car_door_rear_margin_left_side"
+        android:layout_marginTop="@dimen/car_door_rear_margin_top"
+        android:src="@drawable/car_door_left_rear" />
+
+    <ImageView
+        android:id="@+id/car_door_rear_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/car_door_rear_margin_right_side"
+        android:layout_marginTop="@dimen/car_door_rear_margin_top"
+        android:src="@drawable/car_door_right_rear" />
+
+    <ImageView
+        android:id="@+id/car_door_rear_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/car_door_rear_trunk_margin_top"
+        android:src="@drawable/car_door_trunk_lid" />
+</RelativeLayout>

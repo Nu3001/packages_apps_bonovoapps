@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="hello_world">Ciao!</string>
+    <string name="title">Trovato aggiornamento MCU, autorizza l\'aggiornamento?</string>
+    <string name="agree">D\'accordo</string>
+    <string name="cancel">cancella</string>
+    <string name="button">Check Update</string>
+    <string name="mcuversion">MCU Verison: </string>
+    <string name="sysversion">System Verison: </string>
+    <string name="androidversion">Android Verison: </string>
+    <string name="loga">SD card mancante o file non specificato</string>
+    <string name="asternmute">Whether astern mute</string>
+    <string name="lightstate">Car light backlight adjust</string>
+    <string name="rearview_camera">AV-IN</string>
+    <string name="other">Altre impostazioni: </string>
+    <string name="reminder">Did not add the interface function</string>
+    <string name="basic">Informazioni base:</string>
+
+</resources>

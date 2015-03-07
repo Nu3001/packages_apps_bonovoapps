@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <EditText
+        android:id="@+id/freq_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dip"
+        android:layout_toRightOf="@+id/freq_view"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:autoText="false"
+        android:capitalize="none"
+        android:gravity="fill_horizontal"
+        android:maxLength="5"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="30sp"
+	android:digits="1234567890."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <EditText
+        android:id="@+id/short_name_edit"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/freq_edit"
+        android:layout_marginTop="21dip"
+        android:layout_toRightOf="@id/freq_view"
+        android:scrollHorizontally="true"
+        android:autoText="false"
+        android:capitalize="none"
+        android:singleLine="true"
+        android:maxLength="7"
+        android:gravity="fill_horizontal"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <EditText
+        android:id="@+id/full_name_edit"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dip"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="21dip"
+        android:layout_below="@id/short_name_edit"
+        android:layout_toRightOf="@id/freq_view"
+        android:scrollHorizontally="true"
+        android:autoText="false"
+        android:capitalize="none"
+        android:singleLine="true"
+        android:maxLength="16"
+        android:gravity="fill_horizontal"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <TextView
+         android:id="@+id/freq_view"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/short_name_edit"
+         android:layout_alignLeft="@+id/short_name_view"
+         android:gravity="left"
+         android:text="@string/edit_dialog_freq"
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:textSize="30sp" />
+
+     <TextView
+         android:id="@+id/short_name_view"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/short_name_edit"
+         android:layout_alignLeft="@+id/full_name_view"
+         android:gravity="left"
+         android:text="@string/edit_dialog_shortname"
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:textSize="30sp" />
+
+     <TextView
+         android:id="@+id/full_name_view"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/full_name_edit"
+         android:layout_alignParentLeft="true"
+         android:layout_marginLeft="28dp"
+         android:gravity="left"
+         android:text="@string/edit_dialog_fullname"
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:textSize="30sp" />
+    
+    </RelativeLayout>

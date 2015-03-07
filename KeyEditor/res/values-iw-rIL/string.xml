@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">עריכת כפתור</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="hello_world">שלום עולם!</string>
+
+    <string name="description_image_panel">לוח מקשים</string>
+    <string name="description_image_ir">כפתור אינפרא רדום</string>
+    <string name="description_image_ext">steering wheel keys</string>
+    <string name="description_panel">לוח</string>
+    <string name="description_ir">אינפרא אדום</string>
+    <string name="description_ext">STEERING WHEEL</string>
+    
+    <!-- keys -->
+    <string name="mode_custom">מצב מותאם אישית</string>
+    <string name="mode_normal">מצב רגיל</string>
+    <string name="get_data">קבל קוד זיהוי</string>
+    <string name="set_key">הגדר קודד זיהוי</string>
+    <string name="addr_code">שדה הכנסת קוד:</string>
+    <string name="scan_code">סרוק קוד:</string>
+    <string name="key_code">קוד מפתח:</string>
+    <string name="test">בדיקה</string>
+    <string name="press_btn">לחץ</string>
+    <string name="undef">לא מוגדר</string>
+    <string name="import_config">ייבא</string>
+    <string name="export_config">ייצא</string>
+    <string name="read_config">קרא</string>
+    <string name="save_config">שמור</string>
+    <string name="clean_config">נקה</string>
+    <string name="delet_config">מחק</string>
+    <string name="next_page">דף הבא</string>
+    <string name="prev_page">דף קודם</string>
+    <string name="title_panel">לוח</string>
+    <string name="title_ir">אינפרא אדום</string>
+    <string name="title_external">חיצוני</string>
+    <string name="menu_set_accuracy">הגדר דיוק</string>
+    <string name="read_accuracy">קרא דיוק</string>
+    
+    <string name="home">בית</string>
+    <string name="back">אחורה</string>
+    <string name="key0">0</string>
+    <string name="key1">1</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="key_star">*</string>
+    <string name="key_pound">#</string>
+    <string name="key_up">↑(למעלה)</string>
+    <string name="key_down">↓(למטה)</string>
+    <string name="key_left">←(שמאלה)</string>
+    <string name="key_right">→(ימינה)</string>
+    <string name="key_ok">אישור</string>
+    <string name="volume_up">עוצמה+</string>
+    <string name="volume_down">עוצמה-</string>
+    <string name="power">הדלקה</string>
+    <string name="explorer">חקור</string>
+    <string name="envelope">מעטפה</string>
+    <string name="menu">תפריט</string>
+    <string name="search">חיפוש</string>
+    <string name="media_play_pause">נגן\החזק</string>
+    <string name="media_stop">עצור שמע</string>
+    <string name="media_next">רצועת שמע הבאה</string>
+    <string name="media_prev">רצועת שמע קודמת</string>
+    <string name="media_rewind">הרץ אחורה שמע</string>
+    <string name="media_fast_forward">הרץ קדימה שמע</string>
+    <string name="page_up">דף מעלה</string>
+    <string name="page_down">דף מטה</string>
+    <string name="mute">השתק</string>
+    <string name="calendar">לוח שנה</string>
+    <string name="music">מוסיקה</string>
+    <string name="calculator">מחשבון</string>
+    <string name="radio">רדיו</string>
+    <string name="navi">ניווט</string>
+    <string name="dvd">די.וי.די</string>
+    <string name="ThirdG">3G</string>
+    <string name="camera">מצלמה</string>
+    <string name="bt_phone">טלפון בלוטות\'</string>
+    <string name="bt_answer">מענה בלוטות\'</string>
+    <string name="bt_hang_up">ניתוק בלוטות\'</string>
+    <string name="bt_answer_hang">ניתוק\מענה בלוטות\'</string>
+    <string name="bt_switch_audio">החלף שמע בלוטות\'</string>
+    <string name="radio_turn_up">הגבר רדיו</string>
+    <string name="radio_turn_down">החלש רדיו</string>
+    <string name="radio_switch_fmam">FM/AM</string>
+    
+    <string name="info_serv_start_and_exit_addr">שימוש במכשיר חדש נמצא במערכת! האם אתה רוצה להפעיל  את תצורת האינפרא אדום עבור פונקציית שלט רחוק אינפרא  אדום החדש?</string>
+    <string name="info_main_start_and_exit_addr">שימוש במכשיר חדש נמצא במערכת! האם אתה רוצה לייבא את קובץ התצורה?</string>
+    <string name="info_main_start_and_not_exit_addr">שימוש במכשיר חדש נמצא במערכת! האם אתה רוצה לייצר קובץ תצורה חדש?</string>
+    <string name="info_errno_intent">הכוונה שגויה!</string>
+    <string name="new_dialog_title">שלט רחוק אינפרא אדום חדש</string>
+    <string name="new_dialog_ok">אישור</string>
+    <string name="new_dialog_cancel">בטל</string>
+    <string name="select_conf">בחר קובץ תצורה</string>
+    <string name="delete_conf_info">מחק קבצים</string>
+    <string name="clear_btns_title">נקה שדה</string>
+    <string name="clear_btns_info">האם תרצה לבטל את כל המקשים אשר בשימוש במכשיר?</string>
+    
+    <string name="def_accuracy">0</string>
+    <string name="accuracy_info">רמת הדיוק היא </string>
+    <string name="error_set_ir_accuracy">לא ניתן להגדיר את רמת הדיוק של האינפרא אדום בשלט הרחוק. רמת הדיוק באינפרא אדום של השלט רחוק חייבת להיות 0.</string>
+</resources>
