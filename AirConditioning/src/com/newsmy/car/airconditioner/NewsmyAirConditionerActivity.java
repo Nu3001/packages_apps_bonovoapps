@@ -16,7 +16,7 @@ import android.view.WindowManager;
  */
 public class NewsmyAirConditionerActivity extends Activity {
     private static final String TAG = "NewsmyAirConditionerActivity";
-    private static final boolean D = false;
+    private static final boolean D = true;
     private static final int DISPLAY_DURATION = 2 * 1000;
     private static final String AIR_CONDITION_SP_NAME = "air_condition_sp";
     private AirConditionUIController mViewController;
@@ -36,9 +36,13 @@ public class NewsmyAirConditionerActivity extends Activity {
 
         AirConditioning initAirConditioning;
         if (savedInstanceState != null) {
+		    if (D)
+                Log.d(TAG, "onCreate!-->savedInstanceState");
             final Bundle bundle = savedInstanceState.getBundle(AirConditioning.BUNDLE_NAME);
             initAirConditioning = AirConditioning.bundle2AirCondition(bundle);
         } else {
+			if (D)
+                Log.d(TAG, "onCreate!-->no!!! savedInstanceState");
             mSp = getSharedPreferences(AIR_CONDITION_SP_NAME, MODE_PRIVATE);
             initAirConditioning = AirConditioning.restoreAirCondition(mSp);
         }
@@ -86,6 +90,11 @@ public class NewsmyAirConditionerActivity extends Activity {
         if (airConditionIntent == null)
             return;
         final Bundle bundle = airConditionIntent.getBundleExtra(AirConditioning.BUNDLE_NAME);
+		
+        Boolean isDisplay = Boolean.valueOf(bundle.getBoolean("display"));
+        if(!isDisplay.booleanValue()) {
+            finish();
+        }
 
         final AirConditioning airConditioning = AirConditioning.bundle2AirCondition(bundle);
         // test
