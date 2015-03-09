@@ -17,9 +17,9 @@ public class MainActivity extends Activity {
     
     public MainActivity() {
         receiver = new BroadcastReceiver(this) {
-            
-            public void onReceive(Context p1, Intent p2) {
-                if(p2.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")) {
+			@Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")) {
                     finish();
                 }
             }
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
     }
 
     private IntentFilter getIntentFilter() {
-        IntentFilter "myIntentFilter" = new IntentFilter("android.intent.action.BONOVO_SLEEP_KEY");
-        return "myIntentFilter";
+        IntentFilter myIntentFilter = new IntentFilter("android.intent.action.BONOVO_SLEEP_KEY");
+        return myIntentFilter;
     }
 }

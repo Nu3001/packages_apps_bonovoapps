@@ -61,6 +61,12 @@
                 <action  android:name="com.bonovo.bonovohandle.HandleService"/>
             </intent-filter>
         </service>
+		
+        <receiver android:name=".HandleService$S8VolumeRecevier">
+            <intent-filter>
+                <action android:name="request_s8_info"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

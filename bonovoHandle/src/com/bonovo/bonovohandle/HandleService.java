@@ -63,6 +63,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
     private final String LOUT2_VOLUME = "LOUT2_VOLUME";
     private final String ROUT2_VOLUME = "ROUT2_VOLUME";
 	private final String STORAGE = "storage";
+	private final String STORAGE_S8 = "storage_s8";
 	private final String PROCESS = "process";
 	private final String APPLICATIONS = "applications";
 	private final String BONOVO_RADIO = "com.example.radio";
@@ -72,6 +73,14 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 	private SeekBar mSeekBar = null;
 	private boolean mMute = false;
     private boolean mIsAirplaneOn = false;
+	
+	private int carType = 0;
+	private static int s8Volume = 0;
+    private int serialType = 0;
+	
+	
+    private SharedPreferences preferences;
+    private SharedPreferences preferences2;
 
     private static final boolean mIsKillProcessWhenScreenOff = false;
 
@@ -95,6 +104,18 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 		
 		public HandleService getService(){
 			return HandleService.this;
+		}
+	}
+	
+	public class S8VolumeRecevier extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context p1, Intent p2) {
+			SharedPreferences sp = p1.getSharedPreferences("storage_s8", 0x1);
+			int s8_Vol = sp.getInt("VOLUME", 0xf);
+			Intent s8VolumeIntent = new Intent("com.android.internal.car.can.action.ACTION_S8_VOLUME_CHANGED");
+			s8VolumeIntent.putExtra("s8_volume", s8_Vol);
+			p1.sendBroadcast(s8VolumeIntent);
 		}
 	}
 
@@ -219,6 +240,30 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                 volume = getChannelVolume(CHANNEL_ROUT2_VOL);
                 sb_intent.putExtra(ROUT2_VOLUME, volume);
                 mContext.sendBroadcast(sb_intent);
+            }else if(intent.getAction().equals("com.android.internal.car.can.action.CAR_TYPE_RESPONSE")){
+                carType = intent.getIntExtra("car_type", 0);
+                Log.d("HandleService", "car_type = " + carType);
+            }else if(intent.getAction().equals("com.android.internal.car.can.action.RECEIVED")){
+                Bundle bundle = intent.getBundleExtra("sonata8_bundle");
+                if(bundle == null) {
+                    Log.v("HandleService", "bundle is null");
+                    return;
+                }
+                s8Volume = bundle.getInt("s8_volume", 0xf);
+                Log.v("HandleService", "S8volume= " + s8Volume);
+            }else if(intent.getAction().equals("android.intent.action.SEND_FOR_HANDLER_CAR_TYPE")){
+                carType = intent.getIntExtra("handler_car_type", 0);
+                Log.v("HandleService", "Can Receiver Car_Type Changed carType=" + carType);
+            }else if(intent.getAction().equals("com.android.internal.car.can.action.SERIAL_TYPE_CHANGED")){
+                serialType = intent.getIntExtra("serial_type", 0);
+                preferences = context.getApplicationContext().getSharedPreferences("serial_checked_result_handlerService", 1);
+                preferences.edit().putInt("radioButton_Checked_Flag", serialType).commit();
+                Log.v("HandleService", "MCU to HandlerService--> serialType=" + serialType);
+            }else if(intent.getAction().equals("com.android.internal.car.can.action.CAR_TYPE_CHANGED")){
+                carType = intent.getIntExtra("car_type", 0);
+                preferences2 = context.getApplicationContext().getSharedPreferences("car_checked_result_handlerService", 1);
+                preferences2.edit().putInt("radioButton_Checked_Flag", carType).commit();
+                Log.v("HandleService", "MCU to HandlerService--> carType=" + carType);
             }
 		}
 	};
@@ -428,6 +473,13 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
         myIntentFilter.addAction("android.intent.action.BONOVO_GET_SOUND_BALANCE");
         myIntentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         myIntentFilter.addAction(Intent.ACTION_SCREEN_ON);
+        myIntentFilter.addAction("com.android.internal.car.can.action.CAR_TYPE_RESPONSE");
+        myIntentFilter.addCategory("com.android.internal.car.can.Car");
+        myIntentFilter.addAction("com.android.internal.car.can.action.RECEIVED");
+        myIntentFilter.addCategory("com.android.internal.car.can.Sonata8");
+        myIntentFilter.addAction("android.intent.action.SEND_FOR_HANDLER_CAR_TYPE");
+        myIntentFilter.addAction("com.android.internal.car.can.action.SERIAL_TYPE_CHANGED");
+        myIntentFilter.addAction("com.android.internal.car.can.action.CAR_TYPE_CHANGED");
 		return myIntentFilter;
 	};
 	
@@ -457,6 +509,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             setWakeupStatus(true);
         }
 
+		readSharePreForS8();
         int volume = 100;
         volume = getChannelVolume(CHANNEL_LOUT1_VOL);
         if(volume >= 0){
@@ -475,6 +528,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             setChannelVolumeNoSave(CHANNEL_ROUT2_VOL, volume);
         }
 
+		registerReceiver(myReceiver, getIntentFilter());
 		volume = getVolume();
 		if(volume == -1){
 			setVolume(DEF_VOLUME);
@@ -485,7 +539,6 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 		mMute = getMuteStatus();
 		setMuteStatus(mMute);
 //		Log.d(TAG, "+++++++++ volume:" + volume + " mMute:" + mMute);
-		this.registerReceiver(myReceiver, getIntentFilter());
 
 		if(mInitProcessList == null){
 			mInitProcessList = new ArrayList<String>();
@@ -651,6 +704,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 		mSeekBar = (SeekBar)d.getWindow().findViewById(R.id.seekBar);
 		
 		mSeekBar.setMax(MAX_VOLUME);
+		Log.e("HandleService", "setProgress-->arg= " + volume);
 		mSeekBar.setProgress(volume);
 		mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
@@ -672,6 +726,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 					boolean fromUser) {
 				// TODO Auto-generated method stub
 				if(mMute){
+				    Log.e("HandleService", "onProgressChanged-->mMute!!!!");
 					mMute = !mMute;
 					mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
 					setMuteStatus(mMute);
@@ -724,23 +779,44 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 	}
 	
 	private boolean setVolume(int volume){
-		if(jniSetVolume(volume) != 0){
-			Log.e(TAG, "setVolume(" + volume + ") failed.");
-			return false;
-		}
-		SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
-		Editor editor = sp.edit();
-		editor.putInt(SYSTEM_VOLUME, volume);
-		editor.commit();
-		return true;
+        Log.e("HandleService", "setVolume!!!");
+        if(carType != 1) {
+            if(jniSetVolume(volume) != 0) {
+                Log.e("HandleService", "setVolume(" + volume + ") failed.");
+                return false;
+            }
+            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("VOLUME", volume);
+            editor.commit();
+        } else {
+            Log.e("HandleService", "setVolume!!!--->sendBroadcst with volume =" + volume);
+            sp = mContext.getSharedPreferences("storage_s8", 0x1);
+            editor = sp.edit();
+            editor.putInt("VOLUME", volume);
+            editor.commit();
+            Intent s8VolumeIntent = new Intent("com.android.internal.car.can.action.ACTION_S8_VOLUME_CHANGED");
+            s8VolumeIntent.putExtra("s8_volume", volume);
+            sendBroadcast(s8VolumeIntent);
+        }
+        return true;
 	}
 	
 	private int getVolume(){
-		int volume;
-		SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
-		volume = sp.getInt(SYSTEM_VOLUME, -1);
-		
-		return volume;
+
+        Log.e("HandleService", "getVolume!!!");
+        if(carType != 0x1) {
+            Log.e("HandleService", "getVolume!!!--->is not Sonata8");
+            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            int volume = sp.getInt("VOLUME", -1);
+            Log.e("HandleService", "getVolume!!!return--->SharedPreferences volume=" + volume);
+            return volume;
+        } else {
+            sp = mContext.getSharedPreferences("storage_s8", 0x1);
+            s8Volume = sp.getInt("VOLUME", 0xf);
+            Log.e("HandleService", "getVolume!!!return--->s8Volume=" + s8Volume);
+            return s8Volume;
+        }
 	}
 
     /*@
@@ -855,5 +931,12 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 
     public boolean notifyMcuWakeUp(){
         return jniOnWakeUp();
+    }
+	
+    private void readSharePreForS8() {
+        preferences = getSharedPreferences("serial_checked_result_handlerService", 0x1);
+        serialType = preferences.getInt("radioButton_Checked_Flag", 0x0);
+        preferences2 = getSharedPreferences("car_checked_result_handlerService", 0x1);
+        carType = preferences2.getInt("radioButton_Checked_Flag", 0x0);
     }
 }
