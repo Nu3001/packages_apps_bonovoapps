@@ -1,0 +1,171 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+         >
+		<TextView
+            android:id="@+id/textFL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/front_left" 
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textFR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/front_right"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/rear_left"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+       	<TextView
+            android:id="@+id/textRR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/rear_right"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp" >
+       	<TextView
+            android:id="@+id/textFL_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textFR_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textRL_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+       	<TextView
+            android:id="@+id/textRR_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="30dp" >
+
+        <SeekBar
+            android:id="@+id/seekBarFL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarFR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarRR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="50dp" >
+       	<TextView
+            android:id="@+id/textFL_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/max_volume"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textFR_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/max_volume"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/textRL_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/max_volume"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+       	<TextView
+            android:id="@+id/textRR_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/max_volume"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>
