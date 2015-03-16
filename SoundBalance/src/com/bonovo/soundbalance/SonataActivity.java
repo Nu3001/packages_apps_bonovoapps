@@ -109,7 +109,7 @@ public class SonataActivity extends Activity implements SeekBar.OnSeekBarChangeL
         mTreSeekBar.setOnSeekBarChangeListener(this);
 		
         mREButton = (Button)findViewById(R.id.reset);
-        mREButton.setOnClickListener(new View.OnClickListener(this) {
+        mREButton.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
                 mLRSeekBar.setProgress(20);

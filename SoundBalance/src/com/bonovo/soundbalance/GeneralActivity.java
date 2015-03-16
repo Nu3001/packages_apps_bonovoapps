@@ -1,6 +1,7 @@
 package com.bonovo.soundbalance;
 
 import android.app.Activity;
+import android.content.Context;
 import android.widget.SeekBar;
 import android.content.BroadcastReceiver;
 import android.widget.TextView;
@@ -59,7 +60,33 @@ public class GeneralActivity extends Activity implements SeekBar.OnSeekBarChange
 		mFRSeekBar.setOnSeekBarChangeListener(this);
 		mRLSeekBar.setOnSeekBarChangeListener(this);
 		mRRSeekBar.setOnSeekBarChangeListener(this);
-		
+
+        mBroadcastReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // TODO Auto-generated method stub
+                if(intent.getAction().equals("android.intent.action.BONOVO_SOUND_BALANCE")){
+                    int volFL = intent.getIntExtra(LOUT1_VOLUME, -1);
+                    int volFR = intent.getIntExtra(ROUT1_VOLUME, -1);
+                    int volRL = intent.getIntExtra(LOUT2_VOLUME, -1);
+                    int volRR = intent.getIntExtra(ROUT2_VOLUME, -1);
+                    if(volFL >= 0 && volFL <= 100){
+                        mFLSeekBar.setProgress(volFL);
+                    }
+                    if(volFR >= 0 && volFR <= 100){
+                        mFRSeekBar.setProgress(volFR);
+                    }
+                    if(volRL >= 0 && volRL <= 100){
+                        mRLSeekBar.setProgress(volRL);
+                    }
+                    if(volRR >= 0 && volRR <= 100){
+                        mRRSeekBar.setProgress(volRR);
+                    }
+                }
+            }
+        };
+
         registerReceiver(mBroadcastReceiver, getIntentFilter());
         Intent intent = new Intent("android.intent.action.BONOVO_GET_SOUND_BALANCE");
         sendBroadcast(intent);
@@ -111,30 +138,4 @@ public class GeneralActivity extends Activity implements SeekBar.OnSeekBarChange
         super.onDestroy();
         unregisterReceiver(mBroadcastReceiver);
     }
-	
-	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-		
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			if(intent.getAction().equals("android.intent.action.BONOVO_SOUND_BALANCE")){
-				int volFL = intent.getIntExtra(LOUT1_VOLUME, -1);
-				int volFR = intent.getIntExtra(ROUT1_VOLUME, -1);
-				int volRL = intent.getIntExtra(LOUT2_VOLUME, -1);
-				int volRR = intent.getIntExtra(ROUT2_VOLUME, -1);
-				if(volFL >= 0 && volFL <= 100){
-					mFLSeekBar.setProgress(volFL);
-				}
-				if(volFR >= 0 && volFR <= 100){
-					mFRSeekBar.setProgress(volFR);
-				}
-				if(volRL >= 0 && volRL <= 100){
-					mRLSeekBar.setProgress(volRL);
-				}
-				if(volRR >= 0 && volRR <= 100){
-					mRRSeekBar.setProgress(volRR);
-				}
-			}
-		}
-	};
 }
