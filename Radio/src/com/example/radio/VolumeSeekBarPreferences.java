@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.view.Window;
+import java.lang.Runnable;
 
 public class VolumeSeekBarPreferences extends DialogPreference implements SeekBar.OnSeekBarChangeListener {
 	private static final String ANDROID_NS = "http://schemas.android.com/apk/res/android";
@@ -21,7 +22,6 @@ public class VolumeSeekBarPreferences extends DialogPreference implements SeekBa
 	private static final String ATTR_MAX_VALUE = "maxValue";
 	private static final String ATTR_MIN_VALUE = "minValue";
 	private static final String PREFERENCE_NS = "http://schemas.android.com/apk/res/com.example.radio";
-	private VolumeSeekBarPreferences.seekBarCallBack back;
 	private Dialog dialog;
 	private Handler handler;
 	private ImageView imageView;
@@ -33,14 +33,11 @@ public class VolumeSeekBarPreferences extends DialogPreference implements SeekBa
 	private SeekBar mSeekBar;
 	private TextView mValueText;
 	private final int REMOVE_DIALOG_TIME = 2000;
-	Thread thread;
+    private seekBarCallBack back;
 
-	public static interface seekBarCallBack
+	public interface seekBarCallBack
 	{
-
-
 		public abstract int getSeekBarVolume();
-
 
 		public abstract void setSeekBarVolume(int i);
 
@@ -119,12 +116,12 @@ public class VolumeSeekBarPreferences extends DialogPreference implements SeekBa
 			handler.postDelayed(thread, REMOVE_DIALOG_TIME);
 		}
 	}
-	Thread thread = (new Runnable() {
+	private Runnable thread = new Runnable(){
 		
 		public void run() {
 			dialog.dismiss();
 		}
-	});
+	};
 	
 	public void setSeekbarListener(VolumeSeekBarPreferences.seekBarCallBack barCallBack) {
 		back = barCallBack;

@@ -61,7 +61,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements Preferen
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		SharedPreferences modelpre = context.getSharedPreferences("CHECKED", 0x0);
 		if(preference == checkBoxRemote) {
-			if(newValue.booleanValue()) {
+			if(((CheckBoxPreference)newValue).isChecked()) {
 				callbackSetting.setRemoteModel(true);
 			} else {
 				callbackSetting.setRemoteModel(false);
@@ -96,8 +96,23 @@ public class MyPreferenceFragment extends PreferenceFragment implements Preferen
 	
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
 		if(preference == seekBarPreferences) {
-			return seekBarPreferences;
+			return true;
 		}
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
+
+    /*
+	 * Use the callback function, so that the method IntentActivity Service calls to implementation Fragment of an indirect call Service
+	 */
+    public interface CallbackSetting {
+        public int getVolume();
+
+        public void setVolume(int volume);
+
+        public void setRemoteModel(boolean flag);
+
+        public void readModelInfo();
+
+    }
+
 }
