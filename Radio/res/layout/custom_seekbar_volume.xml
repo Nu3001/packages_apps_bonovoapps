@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:id="@id/image" android:background="@drawable/ic_volume" android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="3.0dip" android:layout_marginTop="8.0dip" />
+        <SeekBar android:id="@id/seekbar1" android:layout_width="370.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" />
+    </LinearLayout>
+    <TextView android:id="@id/text3" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</LinearLayout>

@@ -22,6 +22,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -791,8 +792,8 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             editor.commit();
         } else {
             Log.e("HandleService", "setVolume!!!--->sendBroadcst with volume =" + volume);
-            sp = mContext.getSharedPreferences("storage_s8", 0x1);
-            editor = sp.edit();
+            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
             editor.putInt("VOLUME", volume);
             editor.commit();
             Intent s8VolumeIntent = new Intent("com.android.internal.car.can.action.ACTION_S8_VOLUME_CHANGED");
@@ -812,7 +813,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             Log.e("HandleService", "getVolume!!!return--->SharedPreferences volume=" + volume);
             return volume;
         } else {
-            sp = mContext.getSharedPreferences("storage_s8", 0x1);
+            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
             s8Volume = sp.getInt("VOLUME", 0xf);
             Log.e("HandleService", "getVolume!!!return--->s8Volume=" + s8Volume);
             return s8Volume;

@@ -73,7 +73,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				if (DEBUG) Log.d(TAG, "<myu>RadioImportActivity button province");
 				mCitySel = -1;
 				showPlayList();
-				mCityButton.setVisibility(View.INVISIBLE); // 设置组件为invisible不可见
+				mCityButton.setVisibility(View.INVISIBLE);
 				mImportButton.setVisibility(View.INVISIBLE);
 				break;
 			case R.id.import_button_city:
@@ -147,7 +147,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 
 	}
 
-	// 显示播放列表
+	// 锟斤拷示锟斤拷锟斤拷锟叫憋拷
 	private void showPlayList() {
 
 		ArrayList<ListItem> viewList = null;
@@ -177,7 +177,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				viewList.add(item);
 			}
 		}
-		refreshList(viewList); // 刷新列表
+		refreshList(viewList); // 刷锟斤拷锟叫憋拷
 
 	}
 
@@ -187,12 +187,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		mListView.invalidate();
 	}
 
-	private BroadcastReceiver myReceiver = new BroadcastReceiver() { /*
-																	 * 新增
-																	 * BroadcastReceiver类的myReceiver
-																	 * ，当监听广播消息
-																	 * 出现的时候会被Android启动运行
-																	 */
+	private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
@@ -204,7 +199,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		}
 	};
 
-	private IntentFilter getIntentFilter() { /* 注册 BroadcastReceiver */
+	private IntentFilter getIntentFilter() {
 
 		IntentFilter myIntentFilter = new IntentFilter(RadioService.MSG_CLOSE);
 		return myIntentFilter;
@@ -230,7 +225,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		mService = ((RadioService.ServiceBinder) service).getService();
 		lstart1 = System.currentTimeMillis();
 		if (mService.radioReadXML()) {
-			lstart2 = System.currentTimeMillis(); // 指定要立刻显示
+			lstart2 = System.currentTimeMillis();
 			showPlayList();
 		} else {
 			if (DEBUG) Log.v(TAG, "radioReadXML  is null");

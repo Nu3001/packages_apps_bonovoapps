@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:example="http://schemas.android.com/apk/res/com.example.radio">
+    <PreferenceCategory>
+        <com.example.radio.VolumeSeekBarPreferences android:persistent="true" android:title="@string/volume_change" android:key="seekBarPreference" android:summary="@string/volume_change_info" android:dialogTitle="@string/volume" example:minValue="0" example:maxValue="100" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/remote">
+        <CheckBoxPreference android:title="@string/remote_info" android:key="checkbox_remote_preference" android:summary="@string/remote_checked" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/lead">
+        <Preference android:persistent="false" android:title="@string/lead_info">
+            <intent android:targetPackage="com.example.radio" android:action="com.example.radio.RadioImportActivity" android:targetClass="com.example.radio.RadioImportActivity" />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/system">
+        <ListPreference android:entries="@array/department" android:title="@string/system_choose" android:key="countries_list_preference" android:defaultValue="2" android:dialogTitle="@string/system_choose_title" android:entryValues="@array/department_value" />
+    </PreferenceCategory>
+</PreferenceScreen>

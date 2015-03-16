@@ -5,6 +5,7 @@ import com.android.internal.car.can.CarDoor;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ public class MainActivity extends Activity {
     private BroadcastReceiver receiver;
     
     public MainActivity() {
-        receiver = new BroadcastReceiver(this) {
+        receiver = new BroadcastReceiver() {
 			@Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")) {

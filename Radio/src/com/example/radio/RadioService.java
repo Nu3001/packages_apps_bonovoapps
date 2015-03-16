@@ -531,6 +531,46 @@ public class RadioService extends Service implements RadioInterface,
 		return curFreq;
 	}
 
+    public void clearAllContent()
+    {
+        if (getRadioType() == 0 || getRadioType() == 1)
+        {
+            for (int i = 0; i < 48; i++)
+            {
+                ChannelItem channelitem = new ChannelItem();
+                channelitem.freq = "";
+                channelitem.name = "";
+                channelitem.abridge = "";
+                setChannelItem(i, channelitem);
+            }
+
+        } else
+        if (getRadioType() == 2)
+        {
+            for (int k = 48; k < 96; k++)
+            {
+                ChannelItem channelitem2 = new ChannelItem();
+                channelitem2.freq = "";
+                channelitem2.name = "";
+                channelitem2.abridge = "";
+                setChannelItem(k, channelitem2);
+            }
+
+        } else
+        if (getRadioType() == 3)
+        {
+            for (int j = 96; j < 144; j++)
+            {
+                ChannelItem channelitem1 = new ChannelItem();
+                channelitem1.freq = "";
+                channelitem1.name = "";
+                channelitem1.abridge = "";
+                setChannelItem(j, channelitem1);
+            }
+
+        }
+    }
+
 	@Override
 	public int fineLeft(int freq) {
 		// TODO Auto-generated method stub

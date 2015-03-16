@@ -307,12 +307,12 @@ public class RadioActivity extends Activity implements
 				gone_Empty_ButtonView();
 				break;
 			case R.id.btnclear:
-				AlertDialog.Builder builder = new AlertDialog.Builder(RadioActivity.this))
-					.setTitle(R.string.remind)
-					.setCancelable(true)
-					.setMessage(R.string.clear_single_channel)
-					.setPositiveButton(R.string.ok,
-						new DialogInterface.OnClickListener() {
+				new AlertDialog.Builder(RadioActivity.this)
+                     .setTitle(R.string.remind)
+			         .setCancelable(true)
+					 .setMessage(R.string.clear_single_channel)
+					 .setPositiveButton(R.string.ok,
+					     new DialogInterface.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog, int which)
@@ -326,8 +326,8 @@ public class RadioActivity extends Activity implements
 								updateFreqView();
 							}
 						})
-					.setNegativeButton(R.string.cancel,
-						new android.content.DialogInterface.OnClickListener() {
+					 .setNegativeButton(R.string.cancel,
+						 new android.content.DialogInterface.OnClickListener() {
 						
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -354,8 +354,8 @@ public class RadioActivity extends Activity implements
 				if(!radioService.mIsSearchThreadRunning){
 					updateFreqView();
 					radioSetSelect(RadioService.RADIO_FM2);
-					mMiddleButtonForward.setVisibility(false);
-					mMiddleButtonBackward.setVisibility(false)
+					mMiddleButtonForward.setVisibility(View.INVISIBLE);
+                    mMiddleButtonBackward.setVisibility(View.INVISIBLE);
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
@@ -389,7 +389,7 @@ public class RadioActivity extends Activity implements
 				break;
 			case R.id.btnsetting:
 				if (DEBUG)
-					Log.d(TAG, "btnsrtting has worked");
+					Log.d(TAG, "btnsetting has worked");
 				Intent setting = new Intent("com.example.radio.IntentActivity");
 				//setting.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 				RadioActivity.this.startActivity(setting);
@@ -564,19 +564,19 @@ public class RadioActivity extends Activity implements
 			showDialog(DIALOG_EDIT);
 			break;
 		case R.id.btnclear:
-			LayoutInflater lauoutInflater = LayoutInflater.from(this);
-			checkbox = lauoutInflater.inflate(R.layout.checkbox, 0);
+			LayoutInflater layoutInflater = LayoutInflater.from(this);
+			checkbox = layoutInflater.inflate(R.layout.checkbox, null);
 			cBox = (CheckBox)checkbox.findViewById(R.id.check);
 			SharedPreferences pre = getSharedPreferences("checkvalue", 0);
 			String value = pre.getString("ischeck", "");
 			if(value.endsWith("1")) {
-				createDialog().dismiss();
+                mInputDialog.dismiss();
 				radioService.clearAllContent();
 				gone_Empty_ButtonView();
 				updateChannelList();
 				updateFreqView();
 			} else {
-				createDialog().show();
+                mInputDialog.show();
 			}
 			break;
 		case R.id.btnfm1:
@@ -684,7 +684,8 @@ public class RadioActivity extends Activity implements
 	}
 	
 	public void clear_Single_Content() {
-		if((radioService.getRadioType() == RadioService.RADIO_FM1) || (radioService.getRadioType() == RADIO_FM2)) {
+		if((radioService.getRadioType() == RadioService.RADIO_FM1) || (radioService.getRadioType() ==
+                RadioService.RADIO_FM2)) {
 			RadioService.ChannelItem item = new RadioService.ChannelItem();
 			item.freq = "";
 			item.name = "";
@@ -699,7 +700,7 @@ public class RadioActivity extends Activity implements
 			item.name = "";
 			item.abridge = "";
 			if(channelBtn[FOCUS_BUTTON_ID].isSelected()) {
-				radioService.setChannelItem((FOCUS_BUTTON_ID + RADIO_FM_COUNT), item);
+				radioService.setChannelItem((FOCUS_BUTTON_ID + RadioService.RADIO_FM_COUNT), item);
 			}
 		} else if(radioService.getRadioType() == 0x3) {
 			RadioService.ChannelItem item = new RadioService.ChannelItem();
@@ -707,7 +708,8 @@ public class RadioActivity extends Activity implements
 			item.name = "";
 			item.abridge = "";
 			if(channelBtn[FOCUS_BUTTON_ID].isSelected()) {
-				radioService.setChannelItem((FOCUS_BUTTON_ID + RADIO_FM_COUNT + RADIO_AM_COUNT), item);
+				radioService.setChannelItem((FOCUS_BUTTON_ID + RadioService.RADIO_FM_COUNT +
+                        RadioService.RADIO_AM_COUNT), item);
 			}
 		}
 		HEART_STATIC_FLAG = 0;
@@ -741,10 +743,10 @@ public class RadioActivity extends Activity implements
 			}
 		}
 		else if(radioService.getRadioType() == RadioService.RADIO_AM) {
-			i = 0x5f;
-			gone_ID = 0x0;
+			int i = 0x5f;
+			int gone_ID = 0x0;
 			for(; i > 0x30; i = i - 0x1) {
-				item = radioService.getChannelItem(i);
+                RadioService.ChannelItem item = radioService.getChannelItem(i);
 				if(!item.freq.equals("")) {
 					break;
 				}
@@ -759,10 +761,10 @@ public class RadioActivity extends Activity implements
 			}
 		}
 		else if(radioService.getRadioType() == 0x3) {
-			i = 0x8f;
-			gone_ID = 0x0;
+			int i = 0x8f;
+			int gone_ID = 0x0;
 			for(; i > 0x60; i = i - 0x1) {
-				item = radioService.getChannelItem(i);
+                RadioService.ChannelItem item = radioService.getChannelItem(i);
 				if(!item.freq.equals("")) {
 					break;
 				}
@@ -1462,17 +1464,17 @@ public class RadioActivity extends Activity implements
 				}
 			}
 		} else if(radioService.getRadioType() == RadioService.RADIO_AM) {
-			id = 0x5f;
+			int id = 0x5f;
 			for(; id > 0x30; id--) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return id;
 				}
 			}
 		}else if(radioService.getRadioType() == 0x3) {
-			id = 0x8f;
+			int id = 0x8f;
 			for(; id > 0x60; id--) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return id;
 				}
@@ -1497,7 +1499,7 @@ public class RadioActivity extends Activity implements
 				id = first_Effective_ChannelItem_For_Lastsong();
 			}
 			for(; id < 0x60; id++) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return (id - 0x30);
 				}
@@ -1507,7 +1509,7 @@ public class RadioActivity extends Activity implements
 				id = first_Effective_ChannelItem_For_Lastsong();
 			}
 			for(; id < 0x90; id++) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return (id - 0x60);
 				}
@@ -1567,14 +1569,14 @@ public class RadioActivity extends Activity implements
 			}
 		}else if(radioService.getRadioType() == RadioService.RADIO_AM) {
 			for(; startId > 0x30; startId--) {
-				item = radioService.getChannelItem(startId);
+                RadioService.ChannelItem item = radioService.getChannelItem(startId);
 				if(!item.freq.equals("")) {
 					return (startId - 0x30);
 				}
 			}
 		}else if(radioService.getRadioType() == 0x3) {
 			for(; startId > 0x60; startId--) {
-				item = radioService.getChannelItem(startId);
+                RadioService.ChannelItem item = radioService.getChannelItem(startId);
 				if(!item.freq.equals("")) {
 					return (startId - 0x60);
 				}
@@ -1593,17 +1595,17 @@ public class RadioActivity extends Activity implements
 				}
 			}
 		}else if(radioService.getRadioType() == RadioService.RADIO_AM) {
-			id = 0x30;
+			int id = 0x30;
 			for(; id < 0x60; id++) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return (id - 0x30);
 				}
 			}
 		}else if(radioService.getRadioType() == 0x3) {
-			id = 0x60;
+			int id = 0x60;
 			for(; id < 0x90; id++) {
-				item = radioService.getChannelItem(id);
+                RadioService.ChannelItem item = radioService.getChannelItem(id);
 				if(!item.freq.equals("")) {
 					return (id - 0x60);
 				}
@@ -1614,7 +1616,7 @@ public class RadioActivity extends Activity implements
 	
 	public void lastSong() {
 		int checkedId = 0;
-		ChannelItem item;
+        RadioService.ChannelItem item;
 		int curId = 0;
 		int effective_id = 0;
 		int curChannel = radioService.getCurChannelId();
@@ -1681,7 +1683,7 @@ public class RadioActivity extends Activity implements
 	}
 	
 	public void add_or_clear_Collect() {
-		String curfreq = 0;
+		String curfreq = "0";
 		int OUTSCOPE = 0, OUTSCOPE_FLAG = 1;
 		int START = 0, END = 0, END_EMPTY = 0;
 		int focus_btn = radioService.getCurChannelId();
@@ -1768,14 +1770,14 @@ public class RadioActivity extends Activity implements
 						} else if(radioService.getRadioType() == RadioService.RADIO_AM) {
 							checkedId = FOCUS_BUTTON_ID + 0x30;
 						}
-						item = radioService.getChannelItem(checkedId);
-						for(int i = 0x60; i < 0x90; i++) {
-							if(radioService.getChannelItem(i).freq.equals(item.freq)) {
-								item = radioService.getChannelItem(i);
+                        RadioService.ChannelItem item = radioService.getChannelItem(checkedId);
+						for(int i2 = 0x60; i < 0x90; i2++) {
+							if(radioService.getChannelItem(i2).freq.equals(item.freq)) {
+								item = radioService.getChannelItem(i2);
 								item.freq = "";
 								item.name = "";
 								item.abridge = "";
-								radioService.setChannelItem(i, item);
+								radioService.setChannelItem(i2, item);
 								updateChannelList();
 								updateFreqView();
 							}

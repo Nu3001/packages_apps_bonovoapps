@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f5551a73-4751-4f32-921d-ae17c2102321" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/add_collect_to_d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/add_collect_to_u.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_save_d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_save_u.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_u.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/content_clear_d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/content_clear_u.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/ic_volume.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/ic_volume_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/BonovoApps.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values/arrays.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values/attrs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnaddheart.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnclear.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect_heart.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect_save.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout/checkbox.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/checkbox.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout-sw480dp/checkbox.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/checkbox.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values/colors.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout/custom_seekbar_volume.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout/empty_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values/ids.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/layout/preference_setting.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values/public.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values-es-rES/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values-it-rIT/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values-iw-rIL/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values-ru-rRU/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Radio/res/values-zh-rCN/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-ldpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/btnchannel.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/channel_d.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/channel_u.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/number9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/drawable-mdpi/point.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-es-rES/string.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-it-rIT/string.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-iw-rIL/string.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-ru-rRU/string.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-sw600dp/dimens.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values-zh-rCN/string.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Radio/res/values/color.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/am_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/am_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/am_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/am_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg2.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg6.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bg6.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_bar.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_bar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_button_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_button_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_button_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/bottom_button_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/channel_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/channel_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/channel_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/channel_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxbtn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxbtn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxbtn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxbtn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxclossbtn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxclossbtn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboximportbtn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboximportbtn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboximportbtn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboximportbtn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxopenbtn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/checkboxopenbtn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/close_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/close_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/close_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/close_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_button_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_button_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_button_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_button_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finebackward_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finebackward_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finebackward_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finebackward_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/fineforward_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/fineforward_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/fineforward_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/fineforward_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finetuning_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finetuning_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finetuning_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/finetuning_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/function_bar.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/function_bar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_ash.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_ash.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/home_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/ic_launcher-web.png" afterPath="$PROJECT_DIR$/Radio/ic_launcher-web.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_channel.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_channel.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_city.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_city.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_country.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_country.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_province.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_province.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_slider_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_slider_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_slip_bg.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_slip_bg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/importbg.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/importbg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number0.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number0.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number1.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number2.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number3.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number4.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number5.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number5.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number6.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number6.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number7.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number7.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number8.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number8.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number9.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/number9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_1.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_2.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_3.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/page_3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/point.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/point.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/radio.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/radio.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_1.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_2.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_3.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepbackward_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepbackward_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepbackward_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepbackward_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepforward_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepforward_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepforward_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stepforward_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stereo.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/stereo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/switch_button_d.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/switch_button_d.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/switch_button_u.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/switch_button_u.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/title.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/title.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/title_bar.png" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/title_bar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/AndroidManifest.xml" afterPath="$PROJECT_DIR$/Radio/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bonovoHandle/src/com/bonovo/bonovohandle/HandleService.java" afterPath="$PROJECT_DIR$/bonovoHandle/src/com/bonovo/bonovohandle/HandleService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CarDoor/src/com/newsmy/car/cardoor/MainActivity.java" afterPath="$PROJECT_DIR$/CarDoor/src/com/newsmy/car/cardoor/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioActivity.java" afterPath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioImportActivity.java" afterPath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioImportActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioInterface.java" afterPath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioService.java" afterPath="$PROJECT_DIR$/Radio/src/com/example/radio/RadioService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnbottom.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnbottom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnbottonam.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnbottonam.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnchannel.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnchannel.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnclose.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnclose.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfine.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfine.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfinebackward.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfinebackward.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfineforward.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnfineforward.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnhome.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnhome.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnimport.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnimport.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnremote.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnremote.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnstepbackward.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnstepbackward.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnstepforward.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnstepforward.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnswitch.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/btnswitch.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values/dimens.xml" afterPath="$PROJECT_DIR$/Radio/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values-sw720dp-land/dimens.xml" afterPath="$PROJECT_DIR$/Radio/res/values-sw720dp-land/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_bottom_btn.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/import_middle_btn.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout/list_item.xml" afterPath="$PROJECT_DIR$/Radio/res/layout/list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw340dp/list_item.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw480dp/list_item.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw480dp/list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw600dp/list_item.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/menu/radio.xml" afterPath="$PROJECT_DIR$/Radio/res/menu/radio.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout/radio_dialog_edit.xml" afterPath="$PROJECT_DIR$/Radio/res/layout/radio_dialog_edit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_dialog_edit.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_dialog_edit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_dialog_edit.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_dialog_edit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_dialog_edit.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_dialog_edit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout/radio_list_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout/radio_list_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_list_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_list_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_list_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_list_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_list_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_list_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout/radio_player_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout/radio_player_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_player_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_player_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_player_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw480dp/radio_player_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_player_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_player_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout/radio_setting_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout/radio_setting_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_setting_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_setting_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_setting_layout.xml" afterPath="$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_setting_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/seekbar_img.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/seekbar_img.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/setting.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/sound_bottom_btn.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values/strings.xml" afterPath="$PROJECT_DIR$/Radio/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values/styles.xml" afterPath="$PROJECT_DIR$/Radio/res/values/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values-v11/styles.xml" afterPath="$PROJECT_DIR$/Radio/res/values-v11/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/values-v14/styles.xml" afterPath="$PROJECT_DIR$/Radio/res/values-v14/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/thumb.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/thumb.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Radio/res/drawable-nodpi/thumb01.xml" afterPath="$PROJECT_DIR$/Radio/res/drawable-nodpi/thumb01.xml" />
+    </list>
+    <ignored path="BonovoApps.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="BonovoApps" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="RadioActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Radio/src/com/example/radio/RadioActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="4.826923" vertical-offset="8846" max-vertical-offset="28500">
+              <caret line="573" column="41" selection-start-line="573" selection-start-column="41" selection-end-line="573" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="btncollect_heart.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect_heart.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.10123734" vertical-offset="0" max-vertical-offset="889">
+              <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/CarDoor/src/com/newsmy/car/cardoor/MainActivity.java" />
+        <option value="$PROJECT_DIR$/bonovoHandle/src/com/bonovo/bonovohandle/HandleService.java" />
+        <option value="$PROJECT_DIR$/Radio/src/com/example/radio/RadioService.java" />
+        <option value="$PROJECT_DIR$/Radio/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/Radio/src/com/example/radio/RadioImportActivity.java" />
+        <option value="$PROJECT_DIR$/Radio/src/com/example/radio/RadioInterface.java" />
+        <option value="$PROJECT_DIR$/Radio/src/com/example/radio/RadioActivity.java" />
+        <option value="$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect_heart.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="543" />
+    <option name="y" value="14" />
+    <option name="width" value="1382" />
+    <option name="height" value="1079" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BonovoApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Radio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable-nodpi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Default" />
+      </pane>
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="FullScreen" value="false" />
+    <property name="options.lastSelected" value="editor.preferences.appearance" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5551a73-4751-4f32-921d-ae17c2102321" name="Default" comment="" />
+      <created>1426357243399</created>
+      <updated>1426357243399</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="543" y="14" width="1382" height="1079" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969433" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969433" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2530303" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969433" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Radio/Android.mk">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="990">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.11111111" vertical-offset="90" max-vertical-offset="990">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/Android.mk">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarDoor/src/com/newsmy/car/cardoor/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="1260">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bonovoHandle/src/com/bonovo/bonovohandle/HandleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.0" vertical-offset="11625" max-vertical-offset="14085">
+          <caret line="799" column="51" selection-start-line="799" selection-start-column="51" selection-end-line="799" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="889">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout/empty_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="876">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout-sw340dp/radio_player_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout-sw600dp/radio_player_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0958904" vertical-offset="0" max-vertical-offset="1605">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_d.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/drawable-nodpi/collect_u.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80989873" vertical-offset="90" max-vertical-offset="1035">
+          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/src/com/example/radio/RadioInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.121527776" vertical-offset="0" max-vertical-offset="864">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/src/com/example/radio/RadioImportActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46180555" vertical-offset="2676" max-vertical-offset="3540">
+          <caret line="227" column="49" selection-start-line="227" selection-start-column="49" selection-end-line="227" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/src/com/example/radio/RadioService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3653846" vertical-offset="7131" max-vertical-offset="15705">
+          <caret line="528" column="29" selection-start-line="528" selection-start-column="15" selection-end-line="528" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout/radio_player_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03533569" vertical-offset="0" max-vertical-offset="1620">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout/checkbox.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.034246575" vertical-offset="0" max-vertical-offset="876">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout/radio_list_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17667845" vertical-offset="0" max-vertical-offset="849">
+          <caret line="10" column="282" selection-start-line="10" selection-start-column="278" selection-end-line="10" selection-end-column="282" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/layout/radio_setting_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1943463" vertical-offset="0" max-vertical-offset="849">
+          <caret line="11" column="68" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/src/com/example/radio/RadioActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.826923" vertical-offset="8846" max-vertical-offset="28500">
+          <caret line="573" column="41" selection-start-line="573" selection-start-column="41" selection-end-line="573" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Radio/res/drawable-nodpi/btncollect_heart.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10123734" vertical-offset="0" max-vertical-offset="889">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
