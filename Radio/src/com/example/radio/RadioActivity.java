@@ -570,13 +570,13 @@ public class RadioActivity extends Activity implements
 			SharedPreferences pre = getSharedPreferences("checkvalue", 0);
 			String value = pre.getString("ischeck", "");
 			if(value.endsWith("1")) {
-                mInputDialog.dismiss();
+                createDialog().dismiss();
 				radioService.clearAllContent();
 				gone_Empty_ButtonView();
 				updateChannelList();
 				updateFreqView();
 			} else {
-                mInputDialog.show();
+                createDialog().show();
 			}
 			break;
 		case R.id.btnfm1:
@@ -713,7 +713,7 @@ public class RadioActivity extends Activity implements
 			}
 		}
 		HEART_STATIC_FLAG = 0;
-		mButtonAddHeart.setBackground(getResources().getDrawable(R.id.btncollect_heart));
+		mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.btncollect_heart));
 	}
 	
 	private void gone_Empty_ButtonView() {
@@ -863,7 +863,7 @@ public class RadioActivity extends Activity implements
 			if (channelBtn[i].isSelected()) {
 				channelBtn[i].setSelected(false);
 			}
-			mButtonAddHeart.setBackground(getResources().getDrawable(R.id.btncollect_heart));
+			mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.btncollect_heart));
 			HEART_STATIC_FLAG = 0;
 			for(int start = 0x60; start < 0x90; start++) {
 				if(radioService.getChannelItem(start).freq.equals(item.freq)) {
@@ -1473,7 +1473,7 @@ public class RadioActivity extends Activity implements
 					updateFreqView();
 					localEditor.commit();
 					}
-				}})
+				})
 			.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 				}})
@@ -1744,7 +1744,6 @@ public class RadioActivity extends Activity implements
 					if(DEBUG) Log.v("RadioActivity", "(" + i + ")= " + radioService.getChannelItem(i).freq);
 					if(OUTSCOPE == OUTSCOPE_FLAG) {
 						Toast.makeText(getApplicationContext(), R.string.invalid, 0).show();
-						break;
 						return;
 					}
 					if(radioService.getChannelItem(i).freq.equals("")) {
@@ -1769,7 +1768,7 @@ public class RadioActivity extends Activity implements
 							}
 							updateChannelList();
 							updateFreqView();
-							mButtonAddHeart.setBackground(getResources().getDrawable(R.id.collect_d));
+							mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_d));
 							HEART_STATIC_FLAG = 1;
 							Toast.makeText(getApplicationContext(), R.string.is_addHeart_toast, 0).show();
 							return;
