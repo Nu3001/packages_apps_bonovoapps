@@ -695,7 +695,7 @@ public class RadioService extends Service implements RadioInterface,
 				item.name = "";
 				item.abridge = "";
 				setChannelItem(i, item);
-		} else if(getRadioType() == 0x3){
+		} else if(getRadioType() == RADIO_COLLECT){
 			for (int i = 96; i < RADIO_CHANNEL_COUNT; i++) {
 				ChannelItem item = new ChannelItem();
 				item.freq = "";
@@ -939,14 +939,14 @@ public class RadioService extends Service implements RadioInterface,
 						curFreq = Integer.parseInt(mChannelList
 								.get(curChannelId).freq);
 					} else if (curChannelId >= 0x60 && curChannelId < RADIO_CHANNEL_COUNT) {
-                        radioType = 0x3;
+                        radioType = RADIO_COLLECT;
                         if((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.contains(".")) {
                             curFreq = (Integer.parseInt((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.replaceAll("\\.", "")) * 10);
                         } else {
 							curFreq = Integer.parseInt((RadioService.ChannelItem)mChannelList.get(curChannelId).freq);
 						}
 					}
-				} else if (0x3 == radioType) {
+				} else if (RADIO_COLLECT == radioType) {
 					if (curChannelId < RADIO_PAGE_COUNT) {
 						radioType = RADIO_FM1;
 						curFreq = Integer.parseInt(mChannelList
@@ -980,7 +980,7 @@ public class RadioService extends Service implements RadioInterface,
 						curFreq = Integer.parseInt(mChannelList
 								.get(curChannelId).freq);
 					} else if(curChannelId >= 0x60 && curChannelId < RADIO_CHANNEL_COUNT) {
-                        radioType = 0x3;
+                        radioType = RADIO_COLLECT;
                         if((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.contains(".")) {
                             curFreq = (Integer.parseInt((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.replaceAll("\\.", "")) * 10);
                         } else {
@@ -1018,7 +1018,7 @@ public class RadioService extends Service implements RadioInterface,
                     mChannelList.add(fmNum ++, item);
                     Log.v("RadioService", "111111mChannelList.size() = " + mChannelList.size());
                 }
-                if(getRadioType() == 0x3) {
+                if(getRadioType() == RADIO_COLLECT) {
                     mChannelList.add(collectNum ++, item);
                     Log.v("RadioService", "222222mChannelList.size() = " + mChannelList.size());
                 }
@@ -1060,7 +1060,7 @@ public class RadioService extends Service implements RadioInterface,
 		} else if (RADIO_AM == radioType) {
 			curFreq = Integer
 					.parseInt(mChannelList.get(fmNum + curChannelId).freq);
-		} else if (0x3 == radioType) {
+		} else if (RADIO_COLLECT == radioType) {
             if((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.contains(".")) {
                 curFreq = (Integer.parseInt((RadioService.ChannelItem)mChannelList.get(curChannelId).freq.replaceAll("\\.", "")) * 10);
             } else {
@@ -1125,7 +1125,7 @@ public class RadioService extends Service implements RadioInterface,
                 channelitem2.abridge = "";
                 setChannelItem(i, channelitem2);
             }
-        } else if (getRadioType() == 3) {
+        } else if (getRadioType() == RADIO_COLLECT) {
             for (int i = 96; i < RADIO_CHANNEL_COUNT; i++) {
                 ChannelItem channelitem1 = new ChannelItem();
                 channelitem1.freq = "";

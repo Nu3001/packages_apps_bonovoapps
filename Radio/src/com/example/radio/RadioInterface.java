@@ -5,7 +5,9 @@ public interface RadioInterface {
 	public static final int RADIO_FM1 = 0;
 	public static final int RADIO_FM2 = 1;
 	public static final int RADIO_AM = 2;
+	public static final int RADIO_COLLECT = 3;
 
+	public void clearAllContent();
 	public int fineLeft(int freq);
 	public int fineRight(int freq);
 	public int stepLeft(int freq);
