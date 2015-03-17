@@ -43,7 +43,7 @@ public class RadioService extends Service implements RadioInterface,
 	
 	public static final int CHINA_MODEL = 0;
 	public static final int JAPAN_MODEL = 1;
-	public static final int USA_MODEL = 2;
+	public static final int EUROPE_MODEL = 2;
 	
 
 	private static final int RADIO_OPEN_7415 = 1;
@@ -1108,7 +1108,7 @@ public class RadioService extends Service implements RadioInterface,
 	};
 
 	public void clearAllContent() {
-        if (getRadioType() == 0 || getRadioType() == 1) {
+        if (getRadioType() == RADIO_FM1 || getRadioType() == RADIO_FM2) {
             for (int i = 0; i < 48; i++) {
                 ChannelItem channelitem = new ChannelItem();
                 channelitem.freq = "";
@@ -1117,7 +1117,7 @@ public class RadioService extends Service implements RadioInterface,
                 setChannelItem(i, channelitem);
             }
 
-        } else if (getRadioType() == 2) {
+        } else if (getRadioType() == RADIO_AM) {
             for (int i = 48; i < 96; i++) {
                 ChannelItem channelitem2 = new ChannelItem();
                 channelitem2.freq = "";
@@ -1146,8 +1146,8 @@ public class RadioService extends Service implements RadioInterface,
             FM_LOW_FREQ = 7600;
             AM_HIGH_FREQ = 1620;
             AM_LOW_FREQ = 522;
-        } else if(RADIO_MODEL == USA_MODEL) {
-            jniSetModel(USA_MODEL);
+        } else if(RADIO_MODEL == EUROPE_MODEL) {
+            jniSetModel(EUROPE_MODEL);
             FM_HIGH_FREQ = 10800;
             FM_LOW_FREQ = 8700;
             AM_HIGH_FREQ = 1620;

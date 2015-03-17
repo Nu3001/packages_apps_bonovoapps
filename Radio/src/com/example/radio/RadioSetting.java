@@ -128,19 +128,38 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 		checkChinaButton = (RadioButton) findViewById(R.id.checkchina);
 		checkEuropeButton = (RadioButton) findViewById(R.id.checkeurope);
 		
+        SharedPreferences modelpre = getSharedPreferences("CHECKED", 0x0);
+        if(modelpre.getInt("modelCheck", checkChinaButton.getId()) == checkChinaButton.getId()) {
+            checkChinaButton.setChecked(true);
+        } else if(modelpre.getInt("modelCheck", checkJapanButton.getId()) == checkJapanButton.getId()) {
+            checkJapanButton.setChecked(true);
+        } else if(modelpre.getInt("modelCheck", checkEuropeButton.getId()) == checkEuropeButton.getId()) {
+            checkEuropeButton.setChecked(true);
+        }
+		
 		mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
 				if(checkedId == checkJapanButton.getId()){
-					if (DEBUG) Log.v(TAG, "checkJapanButton is checked!!!");
-					Toast.makeText(getApplicationContext(), R.string.unrealized, Toast.LENGTH_SHORT).show();
+                    modelpre.edit().putInt("radioModel", JAPAN_MODEL).putInt("modelCheck", checkedId).commit();
+                    mSerivce2.readAndSetModelInfo();
+                    Intent intent = new Intent();
+                    intent.setAction("updateFreqView");
+                    sendBroadcast(intent);
 				}else if(checkedId == checkChinaButton.getId()){
-					if (DEBUG) Log.v(TAG, "checkChinaButton is checked!!!");
+                    modelpre.edit().putInt("radioModel", CHINA_MODEL).putInt("modelCheck", checkedId).commit();
+                    mSerivce2.readAndSetModelInfo();
+                    Intent intent = new Intent();
+                    intent.setAction("updateFreqView");
+                    sendBroadcast(intent);
 				}else if(checkedId == checkEuropeButton.getId()){
-					if (DEBUG) Log.v(TAG, "checkEuropeButton is checked!!!");
-					Toast.makeText(getApplicationContext(), R.string.unrealized, Toast.LENGTH_SHORT).show();
+					modelpre.edit().putInt("radioModel", EUROPE_MODEL).putInt("modelCheck", checkedId).commit();
+                    mSerivce2.readAndSetModelInfo();
+                    Intent intent = new Intent();
+                    intent.setAction("updateFreqView");
+                    sendBroadcast(intent);
 				}
 			}
 		});		

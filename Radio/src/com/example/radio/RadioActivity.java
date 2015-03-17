@@ -924,7 +924,7 @@ public class RadioActivity extends Activity implements
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(false);
 			mButtonButtoncollect.setSelected(false);
-		} else if (3 == radioService.getRadioType()) {
+		} else if (RadioService.RADIO_COLLECT == radioService.getRadioType()) {
 			((TextView)findViewById(R.id.radiotype)).setText("\u6536\u85cf\u680f");
 			((TextView)findViewById(R.id.radiohz)).setText(" ");
 			mButtonButtonFm1.setSelected(false);
@@ -961,7 +961,7 @@ public class RadioActivity extends Activity implements
 			if((radioService.getCurChannelId() < 0x60) || (radioService.getCurChannelId() >= 0x90)) {
 				radioService.turnFmAm(0);
 			}
-		} else if (3 == type) {
+		} else if (RadioService.RADIO_COLLECT == type) {
 			((TextView) findViewById(R.id.radiotype)).setText("\u6536\u85cf\u680f");
 			((TextView) findViewById(R.id.radiohz)).setText(" ");
 			mButtonButtonFm1.setSelected(false);
