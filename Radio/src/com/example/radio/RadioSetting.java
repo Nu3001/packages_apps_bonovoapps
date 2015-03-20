@@ -128,7 +128,7 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 		checkChinaButton = (RadioButton) findViewById(R.id.checkchina);
 		checkEuropeButton = (RadioButton) findViewById(R.id.checkeurope);
 		
-        SharedPreferences modelpre = getSharedPreferences("CHECKED", 0x0);
+        final SharedPreferences modelpre = getSharedPreferences("CHECKED", 0x0);
         if(modelpre.getInt("modelCheck", checkChinaButton.getId()) == checkChinaButton.getId()) {
             checkChinaButton.setChecked(true);
         } else if(modelpre.getInt("modelCheck", checkJapanButton.getId()) == checkJapanButton.getId()) {
@@ -143,19 +143,19 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
 				if(checkedId == checkJapanButton.getId()){
-                    modelpre.edit().putInt("radioModel", JAPAN_MODEL).putInt("modelCheck", checkedId).commit();
+                    modelpre.edit().putInt("radioModel", RadioService.JAPAN_MODEL).putInt("modelCheck", checkedId).commit();
                     mSerivce2.readAndSetModelInfo();
                     Intent intent = new Intent();
                     intent.setAction("updateFreqView");
                     sendBroadcast(intent);
 				}else if(checkedId == checkChinaButton.getId()){
-                    modelpre.edit().putInt("radioModel", CHINA_MODEL).putInt("modelCheck", checkedId).commit();
+                    modelpre.edit().putInt("radioModel", RadioService.CHINA_MODEL).putInt("modelCheck", checkedId).commit();
                     mSerivce2.readAndSetModelInfo();
                     Intent intent = new Intent();
                     intent.setAction("updateFreqView");
                     sendBroadcast(intent);
 				}else if(checkedId == checkEuropeButton.getId()){
-					modelpre.edit().putInt("radioModel", EUROPE_MODEL).putInt("modelCheck", checkedId).commit();
+					modelpre.edit().putInt("radioModel", RadioService.EUROPE_MODEL).putInt("modelCheck", checkedId).commit();
                     mSerivce2.readAndSetModelInfo();
                     Intent intent = new Intent();
                     intent.setAction("updateFreqView");

@@ -702,7 +702,7 @@ public class RadioActivity extends Activity implements
 			if(channelBtn[FOCUS_BUTTON_ID].isSelected()) {
 				radioService.setChannelItem((FOCUS_BUTTON_ID + RadioService.RADIO_FM_COUNT), item);
 			}
-		} else if(radioService.getRadioType() == RADIO_COLLECT) {
+		} else if(radioService.getRadioType() == RadioService.RADIO_COLLECT) {
 			RadioService.ChannelItem item = new RadioService.ChannelItem();
 			item.freq = "";
 			item.name = "";

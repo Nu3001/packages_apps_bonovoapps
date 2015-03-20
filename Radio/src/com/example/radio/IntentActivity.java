@@ -27,7 +27,7 @@ public class IntentActivity extends Activity implements ServiceConnection, MyPre
 	}
 	
 	public void onServiceConnected(ComponentName name, IBinder service) {
-		radioService = ((RadioService.ServiceBinder)ibinder)service.getService();
+		radioService = ((RadioService.ServiceBinder) service).getService();
 		fragmentManager = getFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		MyPreferenceFragment fragment = new MyPreferenceFragment();
