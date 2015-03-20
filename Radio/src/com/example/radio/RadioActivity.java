@@ -4,6 +4,7 @@ import com.example.radio.RadioInterface.RadioStatusChangeListener;
 import com.example.radio.RadioService.ChannelItem;
 
 import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -104,6 +105,8 @@ public class RadioActivity extends Activity implements
 	private Button[] channelBtn = new Button[CHANNEL_SIZE];
 	Intent serviceIntent = new Intent("com.example.RadioService");
 
+    private int mRadioVolume; // store radio volume for ducking purposes
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -112,7 +115,8 @@ public class RadioActivity extends Activity implements
 		
 		registerReceiver(myBroadcastReveiver, getIntentFilter());
 
-		radioService.isLive = true;
+        radioService.isLive = true;
+
 		if(DEBUG) Log.d(TAG, "++++++onCreate()");
 	}
 
@@ -139,6 +143,7 @@ public class RadioActivity extends Activity implements
 		mRemoteControlClientReceiverComponent = new ComponentName(
 						getPackageName(), MediaButtonIntentReceiver.class.getName());
 		audioManager.unregisterMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
+        audioManager.abandonAudioFocus(afChangeListener);
 		if(DEBUG) Log.d(TAG, "++++++onDestroy()");
 	}
 
@@ -162,13 +167,35 @@ public class RadioActivity extends Activity implements
 		AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
 		//注册接收的Receiver
 		ComponentName mRemoteControlClientReceiverComponent;
-		mRemoteControlClientReceiverComponent = new ComponentName(
-				getPackageName(), MediaButtonIntentReceiver.class.getName());
-		//注册MediaButton
-		audioManager.registerMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
-				
+
+        mRemoteControlClientReceiverComponent = new ComponentName(
+                    getPackageName(), MediaButtonIntentReceiver.class.getName());
+            //注册MediaButton
+        audioManager.registerMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
+
 		if(DEBUG) Log.d(TAG, "++++++onResume()");
 	}
+
+    OnAudioFocusChangeListener afChangeListener = new OnAudioFocusChangeListener() {
+       public void onAudioFocusChange(int focusChange) {
+         if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+              // System has requested no ducking - lower to 0.  Store current volume for later
+             mRadioVolume = radioService.getVolume();
+             radioService.setVolume(0);
+         } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+             // Duck volume by 50% - Store current volume for later
+             mRadioVolume = radioService.getVolume();
+             radioService.setVolume(mRadioVolume/2);
+         } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                // restore audio volume
+             radioService.setVolume(mRadioVolume);
+         } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+             radioService.stopService(new Intent("com.example.RadioService"));
+             finish();
+                // Stop playback
+         }
+        }
+    };
 
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -895,6 +922,14 @@ public class RadioActivity extends Activity implements
 		if (DEBUG)
 			Log.v(TAG, "RadioService is connected");
 		radioService = ((RadioService.ServiceBinder) service).getService();
+        mRadioVolume = radioService.getVolume();
+        AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
+        int result = audioManager.requestAudioFocus(afChangeListener,
+                // Use the music stream.
+                AudioManager.STREAM_MUSIC,
+                // Request permanent focus.
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+
 		radioService.registStatusListener(mRadioStatusListener);	
 		curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 		gone_Empty_ButtonView();
@@ -1430,8 +1465,7 @@ public class RadioActivity extends Activity implements
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
+	public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
 		radioService.setVolume(progress);
 	}
 

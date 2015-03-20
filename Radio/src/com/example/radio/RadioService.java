@@ -8,6 +8,8 @@ import org.xmlpull.v1.XmlPullParser;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.Notification.Builder;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -15,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.media.AudioManager;
 import android.os.Binder;
@@ -85,7 +88,6 @@ public class RadioService extends Service implements RadioInterface,
 	// show the FM back play notification on the title bar
 	private static final int NOTIFICATION_ID = 1;
 	PendingIntent contentIntent;
-	Notification notification;
 
 	// ������ SharedPreferences
 	private int functionId = 0; // 0:΢�� 1������ 2���Զ�
@@ -93,6 +95,7 @@ public class RadioService extends Service implements RadioInterface,
 	private int curFreq;
 	private int radioType = RADIO_FM1;
 	private int radioVolume;
+    private int radioDuckVolume;
 	private int radioMute;
 	AudioManager mAudioManager;
 	private static int mVolume = 100;
@@ -238,13 +241,12 @@ public class RadioService extends Service implements RadioInterface,
 			
 //		}).start();
 
-		// handle event with audio
-		// remove by bonovo zbiao
+		// handle event with audio focus
+
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE); /* �������� */
-//********* removed by bonovo zbiao 
+
 		mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
 				AudioManager.AUDIOFOCUS_GAIN);
-		//radioVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 		this.registerReceiver(myReceiver, getIntentFilter());
 	}
 
@@ -252,7 +254,7 @@ public class RadioService extends Service implements RadioInterface,
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-//******** remove by bonovo zbiao
+        //******** remove by bonovo zbiao
 		mAudioManager.abandonAudioFocus(this);
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
@@ -414,15 +416,15 @@ public class RadioService extends Service implements RadioInterface,
 		contentIntent = PendingIntent.getActivity(getApplicationContext(), 0,
 		new Intent(getApplicationContext(),
 		RadioActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-		notification = new Notification(R.drawable.import_channel,
-				contentTitle, 0);
-		notification.flags |= Notification.FLAG_ONGOING_EVENT; // ��flag����Ϊ���������ô֪ͨ�ͻ���QQһ��һֱ��״̬����ʾ
-		// ָ��״̬��Ҫ��ʾ����Ϣ���������
-		notification.setLatestEventInfo(getApplicationContext(), contentTitle,
-				contentText, contentIntent);
-		startForeground(NOTIFICATION_ID, notification); // ����״̬����Ϣ
-
-	}
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        final Notification.Builder builder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher))
+                .setOngoing(true);
+        nm.notify(NOTIFICATION_ID,builder.build());
+    }
 
 	@Override
 	public void onAudioFocusChange(int focusChange) {
@@ -431,17 +433,23 @@ public class RadioService extends Service implements RadioInterface,
 			Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
 		switch (focusChange) {
 		case AudioManager.AUDIOFOCUS_GAIN:
+            // Restore volume
+            setVolume(radioDuckVolume);
 			break;
 		case AudioManager.AUDIOFOCUS_LOSS:
-			//************ removed by bonovo zbiao
-			//stopService(new Intent("com.example.RadioService"));
-			//this.stopSelf();
+			stopService(new Intent("com.example.RadioService"));
+			this.stopSelf();
 			break;
 		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+            // Reduce volume to Zero - save current volume;
+            radioDuckVolume = getVolume();
+            setVolume(0);
 			break;
 		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+            // reduce volume by 50%
+            radioDuckVolume = getVolume();
+            setVolume(getVolume() / 2);
 			break;
-
 		}
 
 	}
@@ -641,10 +649,7 @@ public class RadioService extends Service implements RadioInterface,
 		CharSequence contentTitle = getResources().getString(R.string.app_name);
 		CharSequence contentText = getResources().getString(R.string.playing)
 				+ ": " + changeCurFreqToCS(curFreq);
-		notification.when = System.currentTimeMillis();
-		notification.setLatestEventInfo(context, contentTitle, contentText,
-				contentIntent);
-		startForeground(NOTIFICATION_ID, notification);
+        updatePlaybackTitle();
 	}
 
 	@Override
