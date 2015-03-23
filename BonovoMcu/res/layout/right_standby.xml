@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="10.0dip" android:paddingTop="25.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0sp" android:textColor="#ff00ced1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/list_standby" />
+    <View android:background="?android:listDivider" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="7.0dip" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RadioGroup android:id="@id/standbyGroup" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <RadioButton android:id="@id/no_hour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="@string/standby_no_standby" />
+            <RadioButton android:id="@id/half_hour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/standby_half_hour" />
+            <RadioButton android:id="@id/one_hour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/standby_one_hour" />
+            <RadioButton android:id="@id/two_hour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/standby_two_hour" />
+            <RadioButton android:id="@id/half_day" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/standby_half_day" />
+            <RadioButton android:id="@id/one_day" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/standby_one_day" />
+        </RadioGroup>
+        <TextView android:textSize="15.0dip" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="100.0dip" android:text="@string/action_settings" />
+    </LinearLayout>
+</LinearLayout>

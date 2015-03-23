@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Setari</string>
+    <string name="mcuversion">Versiune MCU:</string>
+    <string name="sysversion">Veriune sistem:</string>
+    <string name="androidversion">Versiune android:</string>
+    <string name="asternmute">Sunet camera</string>
+    <string name="lightstate">Iluminare taste si dim ecran</string>
+    <string name="rearview_camera">AV-IN</string>
+    <string name="hello_world">Buna ziua!</string>
+    <string name="title">Actualizare MCU detectata, autorizati actualizarea?</string>
+    <string name="agree">Ok</string>
+    <string name="cancel">Anulare</string>
+    <string name="button">verifica actualizare</string>
+    <string name="loga">SD card lipseste sau versiune incorecta</string>
+    <string name="other">Alte informatii:</string>
+    <string name="reminder">Nu a fosta adaugata functia de baza</string>
+    <string name="basic">Informatii de baza:</string>
+</resources>

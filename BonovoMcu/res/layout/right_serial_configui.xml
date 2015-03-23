@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="10.0dip" android:paddingTop="25.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0sp" android:textColor="#ff00ced1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/list_serial_config" />
+    <View android:background="?android:listDivider" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="7.0dip" />
+    <RadioGroup android:id="@id/radioGroup1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RadioButton android:id="@id/radioOBD" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="@string/serial_label_OBD" />
+        <RadioButton android:id="@id/radioCAN" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/serial_label_CAN" />
+        <RadioButton android:id="@id/radioNON" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="@string/serial_label_Non" />
+    </RadioGroup>
+</LinearLayout>

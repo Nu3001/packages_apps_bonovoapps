@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Настройки</string>
+    <string name="mcuversion">Версия MCU:</string>
+    <string name="sysversion">Версия прошивки:</string>
+    <string name="androidversion">Версия Android:</string>
+    <string name="asternmute">Выключать звук при работе задней камеры</string>
+    <string name="lightstate">Яркость зависит от подсветки панели приборов</string>
+    <string name="rearview_camera">Камера заднего вида</string>
+    <string name="mcu_diatext">Обнаружено обновление MCU!</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title">Найдено обновление MCU. Вы хотите установить его?</string>
+    <string name="agree">Согласен</string>
+    <string name="cancel">Отмена</string>
+    <string name="button">Проверить обновления</string>
+    <string name="loga">SD-карта не установлена или не указан файл обновлений</string>
+    <string name="other">Другие настройки автомобиля:</string>
+    <string name="reminder">Не добавлять функции интерфейса</string>
+    <string name="basic">Основная информация:</string>
+    <string name="autovolume">Громкость зависит от скорости:</string>
+</resources>

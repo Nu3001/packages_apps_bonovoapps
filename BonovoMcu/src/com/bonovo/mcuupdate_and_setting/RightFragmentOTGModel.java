@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.view.View;
 
 public class RightFragmentOTGModel extends Fragment {
-    private int PRESSHOST;
-    private int PRESSSLAVE;
+    private int PRESSHOST = 1;
+    private int PRESSSLAVE = 2;
     private CallBackOTG backOTG;
     private Activity context;
     private RadioButton hostBtn;
@@ -23,11 +23,6 @@ public class RightFragmentOTGModel extends Fragment {
 	
 	public static interface CallBackOTG {
         public abstract void switchOTG(int i);
-    }
-    
-    public RightFragmentOTGModel() {
-        PRESSHOST = 1;
-        PRESSSLAVE = 2;
     }
     
     public void onAttach(Activity activity) {
@@ -51,14 +46,14 @@ public class RightFragmentOTGModel extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == hostBtn.getId()) {
                     otgFlag = PRESSHOST;
-                    preferences = context.getSharedPreferences("otg model", 0x1);
+                    preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
                     preferences.edit().putInt("otg checked", otgFlag).commit();
                     backOTG.switchOTG(otgFlag);
                     return;
                 }
                 if(checkedId == slaveBtn.getId()) {
                     otgFlag = PRESSSLAVE;
-                    preferences = context.getSharedPreferences("otg model", 0x1);
+                    preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
                     preferences.edit().putInt("otg checked", otgFlag).commit();
                     backOTG.switchOTG(otgFlag);
                 }
@@ -76,7 +71,7 @@ public class RightFragmentOTGModel extends Fragment {
     }
     
     private void readSharePreConfig() {
-        preferences = context.getSharedPreferences("otg model", 0x1);
+        preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
         otgFlag = preferences.getInt("otg checked", PRESSHOST);
     }
     
