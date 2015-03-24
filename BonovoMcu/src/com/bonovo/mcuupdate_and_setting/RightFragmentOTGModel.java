@@ -43,6 +43,7 @@ public class RightFragmentOTGModel extends Fragment {
         checkRadioButton();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             
+			@Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == hostBtn.getId()) {
                     otgFlag = PRESSHOST;

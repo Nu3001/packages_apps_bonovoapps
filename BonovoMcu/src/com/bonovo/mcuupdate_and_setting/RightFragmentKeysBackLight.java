@@ -22,23 +22,13 @@ public class RightFragmentKeysBackLight extends Fragment {
     private int intG;
     private int intR;
     private SharedPreferences myShare;
-    private SeekBar seekbarB;
-    private SeekBar seekbarG;
-    private SeekBar seekbarR;
-    private TextView textviewB;
-    private TextView textviewG;
-    private TextView textviewR;
-    private MyViewRectMID viewmid;
-    
-    public RightFragmentKeysBackLight() {
-        textviewR = 0;
-        textviewG = 0;
-        textviewB = 0;
-        viewmid = 0;
-        seekbarR = 0;
-        seekbarG = 0;
-        seekbarB = 0;
-    }
+    private SeekBar seekbarB = null;
+    private SeekBar seekbarG = null;
+    private SeekBar seekbarR = null;
+    private TextView textviewB = null;
+    private TextView textviewG = null;
+    private TextView textviewR = null;
+    private MyViewRectMID viewmid = null;
     
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -173,27 +163,30 @@ public class RightFragmentKeysBackLight extends Fragment {
     
     class OnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
         
+		@Override
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
         
+		@Override
         public void onStartTrackingTouch(SeekBar seekBar) {
         }
         
+		@Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             switch(seekBar.getId()) {
-                case 2131230744:
+                case R.id.seekBarR:
                 {
                     intR = progress;
                     textviewR.setText("" + intR);
                     break;
                 }
-                case 2131230748:
+                case R.id.seekBarG:
                 {
                     intG = progress;
                     textviewG.setText("" + intG);
                     break;
                 }
-                case 2131230752:
+                case R.id.seekBarB:
                 {
                     intB = progress;
                     textviewB.setText("" + intB);
@@ -206,9 +199,10 @@ public class RightFragmentKeysBackLight extends Fragment {
     
     class OnTouchListener implements View.OnTouchListener {
         
+		@Override
         public boolean onTouch(View v, MotionEvent event) {
             switch(v.getId()) {
-                case 2131230727:
+                case R.id.min1:
                 {
                     seekbarR.setProgress(0xff);
                     seekbarG.setProgress(0xff);
@@ -219,7 +213,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230728:
+                case R.id.min2:
                 {
                     seekbarR.setProgress(0x7f);
                     seekbarG.setProgress(0xff);
@@ -230,7 +224,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230729:
+                case R.id.min3:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0xff);
@@ -241,7 +235,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230730:
+                case R.id.min4:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0xff);
@@ -252,7 +246,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x7f;
                     break;
                 }
-                case 2131230731:
+                case R.id.min5:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0xff);
@@ -263,7 +257,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xff;
                     break;
                 }
-                case 2131230732:
+                case R.id.min6:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0xbf);
@@ -274,7 +268,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xff;
                     break;
                 }
-                case 2131230733:
+                case R.id.min7:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0x7f);
@@ -285,7 +279,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xff;
                     break;
                 }
-                case 2131230735:
+                case R.id.min8:
                 {
                     seekbarR.setProgress(0x0);
                     seekbarG.setProgress(0x0);
@@ -296,7 +290,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xff;
                     break;
                 }
-                case 2131230736:
+                case R.id.min9:
                 {
                     seekbarR.setProgress(0x80);
                     seekbarG.setProgress(0x0);
@@ -307,7 +301,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xff;
                     break;
                 }
-                case 2131230737:
+                case R.id.min10:
                 {
                     seekbarR.setProgress(0xc8);
                     seekbarG.setProgress(0x0);
@@ -318,7 +312,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0xc8;
                     break;
                 }
-                case 2131230738:
+                case R.id.min11:
                 {
                     seekbarR.setProgress(0xff);
                     seekbarG.setProgress(0x0);
@@ -329,7 +323,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x80;
                     break;
                 }
-                case 2131230739:
+                case R.id.min12:
                 {
                     seekbarR.setProgress(0xff);
                     seekbarG.setProgress(0x0);
@@ -340,7 +334,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230740:
+                case R.id.min13:
                 {
                     seekbarR.setProgress(0xff);
                     seekbarG.setProgress(0x3f);
@@ -351,7 +345,7 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230741:
+                case R.id.min14:
                 {
                     seekbarR.setProgress(0xff);
                     seekbarG.setProgress(0xbf);
@@ -362,7 +356,8 @@ public class RightFragmentKeysBackLight extends Fragment {
                     intB = 0x0;
                     break;
                 }
-                case 2131230734:
+                case R.id.mid:
+				default:
                 {
                     break;
                 }

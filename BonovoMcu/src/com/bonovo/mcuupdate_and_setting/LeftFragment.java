@@ -25,7 +25,7 @@ public class LeftFragment extends ListFragment {
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adArrayAdapter = new ArrayAdapter(getActivity(), 0x1090003, getData());
+        adArrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, getData());
         fragmentManager = getFragmentManager();
     }
     
@@ -39,6 +39,7 @@ public class LeftFragment extends ListFragment {
         list.add(getResources().getString(R.string.list_keysbacklight));
         list.add(getResources().getString(R.string.list_otg));
         list.add(getResources().getString(R.string.list_btupdate));
+		// NOTE: Standby is available in the switch, but not in this list? Is it not fully functional yet?
         return list;
     }
     
@@ -115,11 +116,12 @@ public class LeftFragment extends ListFragment {
                 break;
             }
             case 9:
+			default:
             {
-                transaction.commit();
                 break;
             }
         }
+        transaction.commit();
     }
     
     public void onPause() {

@@ -15,11 +15,11 @@ import android.view.View;
 
 public class RightFragmentCarConfig extends Fragment {
     private static int Car_RadioButton_Flag;
-    private final int Sonata8;
-    private final int Sonata8_CHECKED;
-    private final String TAG;
-    private final int Volkswagen;
-    private final int Volkswagen_CHECKED;
+    private final int Sonata8 = 1;
+    private final int Sonata8_CHECKED = 2;
+    private final String TAG = "com.example.fragment.right_car_config";
+    private final int Volkswagen = 0;
+    private final int Volkswagen_CHECKED = 1;
     private BroadcastReceiver broadcastReceiver;
     private Activity context;
     private SharedPreferences preferences;
@@ -28,11 +28,7 @@ public class RightFragmentCarConfig extends Fragment {
     private RadioGroup radioGroup;
     
     public RightFragmentCarConfig() {
-        TAG = "com.example.fragment.right_car_config";
-        Volkswagen = 0;
-        Sonata8 = 1;
-        Volkswagen_CHECKED = 1;
-        Sonata8_CHECKED = 2;
+
         broadcastReceiver = new BroadcastReceiver(this) {
             
 			@Override
@@ -40,13 +36,13 @@ public class RightFragmentCarConfig extends Fragment {
                 if(intent.getAction().equals("com.android.internal.car.can.action.CAR_TYPE_RESPONSE")) {
                     Car_Flag = intent.getIntExtra("car_type", 0);
                     if(Car_Flag == Volkswagen) {
-                        Log.v("com.example.fragment.right_car_config", "3333333");
+                        Log.v(TAG, "3333333");
                         radioButton_Volkswagen.setChecked(true);
                     } else if(Car_Flag == Sonata8) {
-                        Log.v("com.example.fragment.right_car_config", "44444444");
+                        Log.v(TAG, "44444444");
                         radioButton_Sonata8.setChecked(true);
                     } else {
-						Log.v("com.example.fragment.right_car_config", "1111111 --> Car_Flag = " + Car_Flag);
+						Log.v(TAG, "1111111 --> Car_Flag = " + Car_Flag);
 					}
                 }
             }
@@ -108,7 +104,7 @@ public class RightFragmentCarConfig extends Fragment {
     
     private void readSharePreConfig() {
         Car_RadioButton_Flag = FragmentService.carType;
-        Log.v("com.example.fragment.right_car_config", "serial_RadioButton_Flag =" + Car_RadioButton_Flag);
+        Log.v(TAG, "serial_RadioButton_Flag =" + Car_RadioButton_Flag);
     }
     
     private void checkRadioButton() {

@@ -45,6 +45,8 @@ public class McuFragment extends Fragment {
     }
 	
 	public class MyTread implements Runnable {
+	
+	    @Override
         public void run() {
             callbackMcu.cpyfile();
             if (callbackMcu.checkMcu()) {
@@ -77,6 +79,7 @@ public class McuFragment extends Fragment {
 
         handler = new Handler() {
             
+			@Override
             public void handleMessage(Message msg) {
                 int what = msg.what;
                 switch(what) {
@@ -105,8 +108,7 @@ public class McuFragment extends Fragment {
                     }
                     case WHAT_PROGRESS:
                     {
-                        ProgressDialog progressDialog = this$0new ProgressDialog(getActivity());
-                        progressDialog = localint1;
+                        ProgressDialog progressDialog = new ProgressDialog(getActivity());
                         progressDialog.setMax(callbackMcu.getLoopNum());
                         progressDialog.setProgressStyle(1);
                         progressDialog.setTitle(R.string.progress);
@@ -118,8 +120,9 @@ public class McuFragment extends Fragment {
                 }
             }
         };
-        mBroadcastReveiver = new BroadcastReceiver(this) {
+        mBroadcastReveiver = new BroadcastReceiver() {
             
+			@Override
             public void onReceive(Context context, Intent intent) {
                 int date = intent.getIntExtra("loop", 0);
                 progressDialog.setProgress(date);
@@ -131,7 +134,7 @@ public class McuFragment extends Fragment {
         super.onAttach(activity);
         activity.registerReceiver(mBroadcastReveiver, getIntentFilter());
         try {
-            callbackMcu = activity;
+            callbackMcu = (CallbackMcu)activity;
         } catch(Exception e) {
         }
     }
@@ -146,16 +149,19 @@ public class McuFragment extends Fragment {
         upBtn = (Button)view.findViewById(R.id.upbtn);
         upBtn.setOnClickListener(new View.OnClickListener() {
             
+			@Override
             public void onClick(View v) {
                 if((callbackMcu.checkSDCard()) && (callbackMcu.checkFile())) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
                     alertDialog.setMessage(R.string.found).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         
+						@Override
                         public void onClick(DialogInterface dialog, int which) {
                             (new Thread(new MyTread())).start();
                         }
                     }).setNeutralButton("Cancel", DialogInterface.OnClickListener() {
 					
+					    @Override
 						public void onClick(DialogInterface dialog, int which) {
 						}
 					

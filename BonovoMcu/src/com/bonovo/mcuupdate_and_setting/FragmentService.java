@@ -20,7 +20,7 @@ public class FragmentService extends Service {
     private static final int NO_MUTE = 0;
     private int PRESSHOST;
     private int PRESSSLAVE;
-    private final String TAG;
+    private final String TAG = "com.example.fragment.service";
 	private static final int Update_Fail = 1;
     private static final int Update_OK = 2;
     public static final String action = "broadcast";
@@ -74,7 +74,6 @@ public class FragmentService extends Service {
     }
     
     public FragmentService() {
-        TAG = "com.example.fragment.service";
         pathName = "/mnt/external_sd/updatemcu.bin";
         path = new File(pathName);
         PRESSHOST = 1;
