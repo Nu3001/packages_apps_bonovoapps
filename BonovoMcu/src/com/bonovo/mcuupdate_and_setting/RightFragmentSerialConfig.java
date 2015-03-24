@@ -63,11 +63,11 @@ public class RightFragmentSerialConfig extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030008, null);
-        group = (RadioGroup)view.findViewById(0x7f080024);
-        radioButton_OBD = (RadioButton)view.findViewById(0x7f080025);
-        radioButton_CAN = (RadioButton)view.findViewById(0x7f080026);
-        radioButton_NON = (RadioButton)view.findViewById(0x7f080027);
+        View view = inflater.inflate(R.layout.right_serial_configui, null);
+        group = (RadioGroup)view.findViewById(R.id.radioGroup1);
+        radioButton_OBD = (RadioButton)view.findViewById(R.id.radioOBD);
+        radioButton_CAN = (RadioButton)view.findViewById(R.id.radioCAN);
+        radioButton_NON = (RadioButton)view.findViewById(R.id.radioNON);
         readSharePreConfig();
         checkRadioButton();
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

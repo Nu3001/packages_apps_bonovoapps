@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements ServiceConnection, RightFr
         manager = getFragmentManager();
         fragmentTransaction = manager.beginTransaction();
         RigthFragmentVersion rigthFragment = new RigthFragmentVersion();
-        fragmentTransaction.add(R.id.right, rigthFragment, "rigthFragment");
+        fragmentTransaction.add(R.id.rigth, rigthFragment, "rigthFragment");
         fragmentTransaction.commit();
     }
     

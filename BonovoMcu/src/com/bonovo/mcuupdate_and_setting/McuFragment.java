@@ -90,17 +90,17 @@ public class McuFragment extends Fragment {
                     }
                     case WHAT_VERSION_SAME:
                     {
-                        Toast.makeText(getActivity(), 0x7f05001a, 0).show();
+                        Toast.makeText(getActivity(), R.string.version_same, 0).show();
                         break;
                     }
                     case WHAT_UPDATE_FAIL:
                     {
-                        Toast.makeText(getActivity(), 0x7f05001b, 1).show();
+                        Toast.makeText(getActivity(), R.string.update_fail, 1).show();
                         break;
                     }
                     case WHAT_WIPE_FAIL:
                     {
-                        Toast.makeText(getActivity(), 0x7f05001c, 1).show();
+                        Toast.makeText(getActivity(), R.string.wipe_fail, 1).show();
                         break;
                     }
                     case WHAT_PROGRESS:
@@ -109,7 +109,7 @@ public class McuFragment extends Fragment {
                         progressDialog = localint1;
                         progressDialog.setMax(callbackMcu.getLoopNum());
                         progressDialog.setProgressStyle(1);
-                        progressDialog.setTitle(0x7f05001d);
+                        progressDialog.setTitle(R.string.progress);
                         progressDialog.setCanceledOnTouchOutside(false);
                         progressDialog.setCancelable(false);
                         progressDialog.show();
@@ -142,14 +142,14 @@ public class McuFragment extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030003, null);
-        upBtn = (Button)view.findViewById(0x7f080002);
+        View view = inflater.inflate(R.layout.mcu, null);
+        upBtn = (Button)view.findViewById(R.id.upbtn);
         upBtn.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
                 if((callbackMcu.checkSDCard()) && (callbackMcu.checkFile())) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                    alertDialog.setMessage(0x7f050021).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setMessage(R.string.found).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         
                         public void onClick(DialogInterface dialog, int which) {
                             (new Thread(new MyTread())).start();
@@ -161,7 +161,7 @@ public class McuFragment extends Fragment {
 					
 					}).show();
                 } else {
-					Toast.makeText(getActivity(), 0x7f050022, 0).show();
+					Toast.makeText(getActivity(), R.string.not_found, 0).show();
 				}
             }
         });

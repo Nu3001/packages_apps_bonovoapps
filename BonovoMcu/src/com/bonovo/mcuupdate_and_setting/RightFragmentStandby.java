@@ -39,14 +39,14 @@ public class RightFragmentStandby extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f03000a, null);
-        radioGroup = (RadioGroup)view.findViewById(0x7f08002e);
-        halfHourBtn = (RadioButton)view.findViewById(0x7f080030);
-        oneHourBtn = (RadioButton)view.findViewById(0x7f080031);
-        twoHourBtn = (RadioButton)view.findViewById(0x7f080032);
-        halfDayBtn = (RadioButton)view.findViewById(0x7f080033);
-        oneDayBtn = (RadioButton)view.findViewById(0x7f080034);
-        noStandbyBtn = (RadioButton)view.findViewById(0x7f08002f);
+        View view = inflater.inflate(R.layout.right_standby, null);
+        radioGroup = (RadioGroup)view.findViewById(R.id.standbyGroup);
+        halfHourBtn = (RadioButton)view.findViewById(R.id.half_hour);
+        oneHourBtn = (RadioButton)view.findViewById(R.id.one_hour);
+        twoHourBtn = (RadioButton)view.findViewById(R.id.two_hour);
+        halfDayBtn = (RadioButton)view.findViewById(R.id.half_day);
+        oneDayBtn = (RadioButton)view.findViewById(R.id.one_day);
+        noStandbyBtn = (RadioButton)view.findViewById(R.id.no_hour);
         readSharePreConfig();
         checkRadioButton();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

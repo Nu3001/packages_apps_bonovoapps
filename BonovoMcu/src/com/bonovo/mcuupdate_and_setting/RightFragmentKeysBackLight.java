@@ -58,29 +58,29 @@ public class RightFragmentKeysBackLight extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030006, 0x0);
-        viewmid = (MyViewRectMID)view.findViewById(0x7f08000e);
+        View view = inflater.inflate(R.layout.right_keysbacklight, 0x0);
+        viewmid = (MyViewRectMID)view.findViewById(R.id.mid);
         viewmid.setARGB(0xff, intR, intG, intB);
-        textviewR = (TextView)view.findViewById(0x7f080016);
-        textviewG = (TextView)view.findViewById(0x7f08001a);
-        textviewB = (TextView)view.findViewById(0x7f08001e);
+        textviewR = (TextView)view.findViewById(R.id.textValueR);
+        textviewG = (TextView)view.findViewById(R.id.textValueG);
+        textviewB = (TextView)view.findViewById(R.id.textValueB);
         textviewR.setText("" + intR);
         textviewG.setText("" + intG);
         textviewB.setText("" + intB);
-        MyViewRect view1 = (MyViewRect)view.findViewById(0x7f080007);
-        MyViewRect view2 = (MyViewRect)view.findViewById(0x7f080008);
-        MyViewRect view3 = (MyViewRect)view.findViewById(0x7f080009);
-        MyViewRect view4 = (MyViewRect)view.findViewById(0x7f08000a);
-        MyViewRect view5 = (MyViewRect)view.findViewById(0x7f08000b);
-        MyViewRect view6 = (MyViewRect)view.findViewById(0x7f08000c);
-        MyViewRect view7 = (MyViewRect)view.findViewById(0x7f08000d);
-        MyViewRect view8 = (MyViewRect)view.findViewById(0x7f08000f);
-        MyViewRect view9 = (MyViewRect)view.findViewById(0x7f080010);
-        MyViewRect view10 = (MyViewRect)view.findViewById(0x7f080011);
-        MyViewRect view11 = (MyViewRect)view.findViewById(0x7f080012);
-        MyViewRect view12 = (MyViewRect)view.findViewById(0x7f080013);
-        MyViewRect view13 = (MyViewRect)view.findViewById(0x7f080014);
-        MyViewRect view14 = (MyViewRect)view.findViewById(0x7f080015);
+        MyViewRect view1 = (MyViewRect)view.findViewById(R.id.min1);
+        MyViewRect view2 = (MyViewRect)view.findViewById(R.id.min2);
+        MyViewRect view3 = (MyViewRect)view.findViewById(R.id.min3);
+        MyViewRect view4 = (MyViewRect)view.findViewById(R.id.min4);
+        MyViewRect view5 = (MyViewRect)view.findViewById(R.id.min5);
+        MyViewRect view6 = (MyViewRect)view.findViewById(R.id.min6);
+        MyViewRect view7 = (MyViewRect)view.findViewById(R.id.min7);
+        MyViewRect view8 = (MyViewRect)view.findViewById(R.id.min8);
+        MyViewRect view9 = (MyViewRect)view.findViewById(R.id.min9);
+        MyViewRect view10 = (MyViewRect)view.findViewById(R.id.min10);
+        MyViewRect view11 = (MyViewRect)view.findViewById(R.id.min11);
+        MyViewRect view12 = (MyViewRect)view.findViewById(R.id.min12);
+        MyViewRect view13 = (MyViewRect)view.findViewById(R.id.min13);
+        MyViewRect view14 = (MyViewRect)view.findViewById(R.id.min14);
         view1.setARGB(0xff, 0xff, 0xff, 0x0);
         view2.setARGB(0xff, 0x7f, 0xff, 0x0);
         view3.setARGB(0xff, 0x0, 0xff, 0x0);
@@ -109,9 +109,9 @@ public class RightFragmentKeysBackLight extends Fragment {
         view12.setOnTouchListener(new OnTouchListener());
         view13.setOnTouchListener(new OnTouchListener());
         view14.setOnTouchListener(new OnTouchListener());
-        seekbarR = (SeekBar)view.findViewById(0x7f080018);
-        seekbarG = (SeekBar)view.findViewById(0x7f08001c);
-        seekbarB = (SeekBar)view.findViewById(0x7f080020);
+        seekbarR = (SeekBar)view.findViewById(R.id.seekBarR);
+        seekbarG = (SeekBar)view.findViewById(R.id.seekBarG);
+        seekbarB = (SeekBar)view.findViewById(R.id.seekBarB);
         seekbarR.setMax(0xff);
         seekbarG.setMax(0xff);
         seekbarB.setMax(0xff);
@@ -121,7 +121,7 @@ public class RightFragmentKeysBackLight extends Fragment {
         seekbarR.setOnSeekBarChangeListener(new OnSeekBarChangeListener());
         seekbarG.setOnSeekBarChangeListener(new OnSeekBarChangeListener());
         seekbarB.setOnSeekBarChangeListener(new OnSeekBarChangeListener());
-        Button button = (Button)view.findViewById(0x7f080022);
+        Button button = (Button)view.findViewById(R.id.ok);
         button.setOnClickListener(new android.view.View.OnClickListener() {
 
 			@Override
