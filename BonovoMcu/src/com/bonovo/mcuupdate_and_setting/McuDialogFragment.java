@@ -25,7 +25,7 @@ public class McuDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(0x7f030004, null);
+        View view = inflater.inflate(R.layout.mcudialog, null);
         builder.setView(view).setPositiveButton("Update", new DialogInterface.OnClickListener(this) {
             
 			@Override

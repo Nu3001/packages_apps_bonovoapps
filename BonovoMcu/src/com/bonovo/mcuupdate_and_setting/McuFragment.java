@@ -23,7 +23,7 @@ public class McuFragment extends Fragment {
     private final int WHAT_WIPE_FAIL = 0x4;
     private final int WHAT_PROGRESS = 0x5;
     private static final int WIPE_SUCCEED = 0x2;
-    private McuFragment.CallbackMcu callbackMcu;
+    private CallbackMcu callbackMcu;
     private FragmentManager fragmentManager;
     private Handler handler;
     private BroadcastReceiver mBroadcastReveiver;
@@ -49,10 +49,10 @@ public class McuFragment extends Fragment {
             callbackMcu.cpyfile();
             if (callbackMcu.checkMcu()) {
                 if (callbackMcu.wipeMcuAPP() == WIPE_SUCCEED) {
-                    Log.d("McuFragment", "DialogActivity wipeMcuAPP() OK!!!");
-                    handler.sendEmptyMessage(5);
+                    Log.d(TAG "DialogActivity wipeMcuAPP() OK!!!");
+                    handler.sendEmptyMessage(WHAT_PROGRESS);
                     if (callbackMcu.checkdBuffer()) {
-                        handler.sendEmptyMessage(1);
+                        handler.sendEmptyMessage(WHAT_UPDATE_OK);
                         try {
                             Thread.sleep(4000L);
                         } catch (InterruptedException interruptedexception) {
@@ -62,13 +62,13 @@ public class McuFragment extends Fragment {
                         callbackMcu.rebootMcu();
                         getActivity().finish();
                     } else {
-                        handler.sendEmptyMessage(3);
+                        handler.sendEmptyMessage(WHAT_UPDATE_FAIL);
                     }
                 } else {
-                    handler.sendEmptyMessage(4);
+                    handler.sendEmptyMessage(WHAT_WIPE_FAIL);
                 }
             } else {
-                handler.sendEmptyMessage(2);
+                handler.sendEmptyMessage(WHAT_VERSION_SAME);
             }
         }
     }
@@ -83,7 +83,7 @@ public class McuFragment extends Fragment {
                     case WHAT_UPDATE_OK:
                     {
                         progressDialog.dismiss();
-                        ProgressDialog dialog = ProgressDialog.show(getActivity(), getResources().getString(0x7f050023), getResources().getString(0x7f050024));
+                        ProgressDialog dialog = ProgressDialog.show(getActivity(), getResources().getString(R.string.update_ok), getResources().getString(R.string.update_ok_msg));
                         View v = dialog.getWindow().getDecorView();
                         dialog.show();
                         break;

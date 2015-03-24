@@ -99,7 +99,7 @@ public class FragmentService extends Service {
     }
     
     public void onCreate() {
-        Log.v("com.example.fragment.service", "-->Service-->onCreate()");
+        Log.v(TAG, "-->Service-->onCreate()");
         super.onCreate();
         readSharePre();
         SharedPreferences preferences = getSharedPreferences("CAR_CONFIG", 0);
@@ -122,10 +122,10 @@ public class FragmentService extends Service {
             jnirearviewCamera(NO_CAMERA);
         }
         if(mCheckLight) {
-            Log.d("com.example.fragment.service", "mCheckLight is true");
+            Log.d(TAG, "mCheckLight is true");
             jnilowBrigthness(progessBrigth + 10);
         } else {
-            Log.d("com.example.fragment.service", "mCheckLight is false");
+            Log.d(TAG, "mCheckLight is false");
             jnilowBrigthness(0);
         }
         if(mCheckVolume) {
@@ -142,11 +142,11 @@ public class FragmentService extends Service {
     
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
-        Log.v("com.example.fragment.service", "-->Service-->onStart()");
+        Log.v(TAG, "-->Service-->onStart()");
     }
     
     public void onDestroy() {
-        Log.v("com.example.fragment.service", "-->Service-->onDestroy()");
+        Log.v(TAG, "-->Service-->onDestroy()");
         super.onDestroy();
     }
     
@@ -319,7 +319,7 @@ public class FragmentService extends Service {
     public void delMcuFile() {
         if(path.exists()) {
             path.delete();
-            Log.d("com.example.fragment.service", "The updatemcu.bin is del!!!");
+            Log.d(TAG, "The updatemcu.bin is del!!!");
         }
     }
     
