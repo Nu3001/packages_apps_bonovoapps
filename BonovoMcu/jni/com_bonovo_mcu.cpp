@@ -1,4 +1,4 @@
-#define LOG_TAG "com_bonovo_mcu.cpp"
+﻿#define LOG_TAG "com_bonovo_mcu.cpp"
 
 #include <asm/ioctl.h>
 
@@ -36,6 +36,8 @@ static int fd_mcu_status = -1;												// 打开bonovo_handle文件描述符
 #define IOCTL_HANDLE_MCU_LIGHT_STATUS       _IO(HANDLE_CTRL_DEV_MAJOR, 40)
 #define IOCTL_HANDLE_MCU_REVERSE_STATUS       _IO(HANDLE_CTRL_DEV_MAJOR, 41)
 #define IOCTL_HANDLE_GET_BRIGHTNESS		    _IO(HANDLE_CTRL_DEV_MAJOR, 1)
+#define IOCTL_HANDLE_SET_OTG_HOST       _IO(HANDLE_CTRL_DEV_MAJOR, 42)
+#define IOCTL_HANDLE_SET_OTG_SLAVE       _IO(HANDLE_CTRL_DEV_MAJOR, 43)
 
 #define DEBUG_INFO
 #ifdef DEBUG_INFO
@@ -180,7 +182,7 @@ static int android_mcu_wipeMcuAPP(JNIEnv *env, jobject thiz) {
 		read(fd_mcu, buffer, 2);
 		if (buffer[0] == 0 && buffer[1] == 1)
 		{
-			LOGE("%s",message[buffer[0]][buffer[1]]);
+			LOGE("%s","erase ok\n");
 			return 2;
 		}
 	}
@@ -308,11 +310,23 @@ static int android_mcu_rebootMcu(JNIEnv *env, jobject thiz)
 	unsigned char cmdBuf[7] = {0xFA, 0xFA, 0x07, 0x00, 0x85};
 	LOGE("resetMcu()\n");
 
-	 if(fd_mcu < 0)
+	if(fd_mcu < 0)
+	{
+		if((fd_mcu = open(HANDLE_DEV_NAME, O_RDWR|O_NOCTTY)) < 0)
 		{
 			LOGE("The mcu was not be opened.\n");
 			return -1;
 		}
+	}
+	if(fd_tty3 < 0)
+	{
+		if((fd_tty3 = open(RADIO_DEV_NODE, O_RDWR|O_NOCTTY)) < 0)
+		{
+			LOGE("open %s failed,fd=%d(%d,%s)\n", RADIO_DEV_NODE, fd_tty3, errno, strerror(errno));
+			return -1;
+		}
+	}
+	
 	sum = checkSum(cmdBuf, cmdBuf[2]-2);
 	cmdBuf[5] = sum & 0xFF;
 	cmdBuf[6] = (sum>>8)& 0xFF;
@@ -735,6 +749,63 @@ static int android_mcu_autoVolume(JNIEnv *env, jobject thiz, jint percent)
 		}
 }
 
+static int android_mcu_pickColor(JNIEnv *env, jobject thiz, jint r, jint g, jint b)
+{
+	int writeSize,fd;
+	unsigned int sum = 0;
+	unsigned char cmdBuf[10] = {0xFA, 0xFA, 0x0B, 0x00, 0x83, 0x0A};
+	LOGE("pickColor() into!!!");
+
+	cmdBuf[6] = r & 0xFF;
+	cmdBuf[7] = g & 0xFF;
+	cmdBuf[8] = b & 0xFF;
+	sum = checkSum(cmdBuf, cmdBuf[2]-2);
+	cmdBuf[9] = sum & 0xFF;
+	cmdBuf[10] = (sum>>8)& 0xFF;
+
+	if((fd = open(RADIO_DEV_NODE, O_RDWR|O_NOCTTY|O_NONBLOCK)) < 0) {
+			LOGI("======bonovo dev/ttyS3 pickColor open result = %d\n",fd);
+			return -1;
+		} else {
+			writeSize = write(fd, cmdBuf, cmdBuf[2]);
+			LOGE("pickColor writeSize = %d ",writeSize);
+			close(fd);
+			return 0;
+		}
+}
+
+static int android_mcu_switch_OTG(JNIEnv *env, jobject thiz, jint mode)
+{
+	int fd, result, command;
+	fd = open(MCU_CTRL_NODE, O_RDWR|O_NOCTTY|O_NONBLOCK);
+		if (-1 == fd)
+		{
+			LOGE("Can't Open bonovo_handle\n");
+			return(JNI_FALSE);
+		}
+		else
+		{
+			if(mode == 1)
+			{
+				LOGE("open bonovo_handle secess, fd = 0x%x\n",fd);
+				command = IOCTL_HANDLE_SET_OTG_HOST;
+			}
+			else if(mode == 2)
+			{
+				LOGE("open bonovo_handle secess, fd = 0x%x\n",fd);
+				command = IOCTL_HANDLE_SET_OTG_SLAVE;
+			}
+			else
+			{
+				return -1;
+			}
+			result = ioctl(fd, command);
+			close(fd);
+		}
+
+	return result;
+}
+
 static const char *classPathName = "com/example/bonovomcu/McuServicer";
 static JNINativeMethod methods[] = {
    	{"jniCheckMcuVersion","()[B",(void *)android_mcu_checkMcuVersion},
@@ -751,6 +822,8 @@ static JNINativeMethod methods[] = {
    	{"jniautoVolume","(I)I",(void *)android_mcu_autoVolume},
    	{"jniQueryReverse", "()I", (void *)android_mcu_queryReverseStatus},
    	{"jniControlScreen", "(Z)I", (void *)android_mcu_ctrl_screen},
+	{"jniPickColor", "(III)I", (void *)android_mcu_pickColor},
+   	{"jniswitchOTG", "(I)I", (void *)android_mcu_switch_OTG},
 };
 
 /*
