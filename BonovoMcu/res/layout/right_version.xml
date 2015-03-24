@@ -4,15 +4,15 @@
     <TextView android:textSize="20.0sp" android:textColor="#ff00ced1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/version" />
     <View android:background="?android:listDivider" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="7.0dip" />
     <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip">
-        <TextView android:textSize="18.0sp" android:id="@id/android_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/androidversion" />
-        <TextView android:textSize="18.0sp" android:id="@id/is_android_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/android_version" />
+        <TextView android:textSize="18.0sp" android:id="@+id/android_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/androidversion" />
+        <TextView android:textSize="18.0sp" android:id="@+id/is_android_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/android_version" />
     </RelativeLayout>
     <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
-        <TextView android:textSize="18.0sp" android:id="@id/mcu_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mcuversion" />
-        <TextView android:textSize="18.0sp" android:id="@id/is_mcu_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/mcu_version" />
+        <TextView android:textSize="18.0sp" android:id="@+id/mcu_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mcuversion" />
+        <TextView android:textSize="18.0sp" android:id="@+id/is_mcu_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/mcu_version" />
     </RelativeLayout>
     <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
-        <TextView android:textSize="18.0sp" android:id="@id/system_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sysversion" />
-        <TextView android:textSize="18.0sp" android:id="@id/is_system_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/system_version" />
+        <TextView android:textSize="18.0sp" android:id="@+id/system_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sysversion" />
+        <TextView android:textSize="18.0sp" android:id="@+id/is_system_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/system_version" />
     </RelativeLayout>
 </LinearLayout>

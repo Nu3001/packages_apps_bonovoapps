@@ -3,6 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView android:textSize="20.0sp" android:textColor="#ff00ced1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/update" />
     <View android:background="?android:listDivider" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="7.0dip" />
-    <Button android:id="@id/upbtn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:text="@string/check_update" />
-    <TextView android:textAppearance="?android:textAppearanceLarge" android:id="@id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="21.0dip" android:text="@string/notice" />
+    <Button android:id="@+id/upbtn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:text="@string/check_update" />
+    <TextView android:textAppearance="?android:textAppearanceLarge" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="21.0dip" android:text="@string/notice" />
 </LinearLayout>
