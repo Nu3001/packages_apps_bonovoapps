@@ -47,8 +47,8 @@ public class RightFragmentSetting extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030009, null);
-        seekBarBrigthness = (SeekBar)view.findViewById(0x7f08002b);
+        View view = inflater.inflate(R.layout.right_setting, null);
+        seekBarBrigthness = (SeekBar)view.findViewById(R.id.seekBar1);
         seekBarBrigthness.setMax(80);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
         progessBrigthness = sharedPreferences.getInt("Progress", 0x0);
@@ -72,7 +72,7 @@ public class RightFragmentSetting extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-        seekBarVolume = (SeekBar)view.findViewById(0x7f08002d);
+        seekBarVolume = (SeekBar)view.findViewById(R.id.seekBar2);
         seekBarVolume.setMax(40);
         progessVolume = sharedPreferences.getInt("ProgressVolume", 0x0);
         seekBarVolume.setProgress(progessVolume);
@@ -93,7 +93,7 @@ public class RightFragmentSetting extends Fragment {
                 callbackInterface.autoVolume(progress + 10);
             }
         });
-        checkVolume = (CheckBox)view.findViewById(0x7f08002c);
+        checkVolume = (CheckBox)view.findViewById(R.id.checkBoxVolume);
         isCheckVolume = sharedPreferences.getBoolean("volume", false);
         checkVolume.setChecked(isCheckVolume);
         if(isCheckVolume) {
@@ -120,7 +120,7 @@ public class RightFragmentSetting extends Fragment {
     			}
             }
         });
-        checkMute = (CheckBox)view.findViewById(0x7f080028);
+        checkMute = (CheckBox)view.findViewById(R.id.checkBoxMute);
         isCheckMute = sharedPreferences.getBoolean("mute", true);
         checkMute.setChecked(isCheckMute);
         checkMute.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -140,7 +140,7 @@ public class RightFragmentSetting extends Fragment {
 				}
             }
         });
-        checkCamera = (CheckBox)view.findViewById(0x7f080029);
+        checkCamera = (CheckBox)view.findViewById(R.id.checkBoxCamera);
         isCheckCamera = sharedPreferences.getBoolean("camera", true);
         checkCamera.setChecked(isCheckCamera);
         checkCamera.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -160,7 +160,7 @@ public class RightFragmentSetting extends Fragment {
 				}
             }
         });
-        checkBrigthness = (CheckBox)view.findViewById(0x7f08002a);
+        checkBrigthness = (CheckBox)view.findViewById(R.id.checkBoxBrigth);
         isCheckLight = sharedPreferences.getBoolean("brigthconfig", false);
         checkBrigthness.setChecked(isCheckLight);
         if(isCheckLight) {

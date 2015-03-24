@@ -35,10 +35,10 @@ public class RightFragmentOTGModel extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f03000b, null);
-        radioGroup = (RadioGroup)view.findViewById(0x7f080035);
-        hostBtn = (RadioButton)view.findViewById(0x7f080036);
-        slaveBtn = (RadioButton)view.findViewById(0x7f080037);
+        View view = inflater.inflate(R.layout.right_switch_otg, null);
+        radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup3);
+        hostBtn = (RadioButton)view.findViewById(R.id.radioHost);
+        slaveBtn = (RadioButton)view.findViewById(R.id.radioSlave);
         readSharePreConfig();
         checkRadioButton();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

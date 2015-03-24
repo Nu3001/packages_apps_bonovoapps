@@ -26,11 +26,11 @@ public class MainActivity extends Activity implements ServiceConnection, RightFr
         Intent intent = new Intent("com.bonovo.mcuupdate_and_setting.FragmentService");
         bindService(intent, this, BIND_AUTO_CREATE);
         Log.v("com.example.fragment.mainactivity", "-->Activity-->onCreate()");
-        setContentView(0x7f030000);
+        setContentView(R.layout.activity_main);
         manager = getFragmentManager();
         fragmentTransaction = manager.beginTransaction();
         LeftFragment leftfragment = new LeftFragment();
-        fragmentTransaction.add(0x7f080000, leftfragment, "leftfragment");
+        fragmentTransaction.add(R.id.left, leftfragment, "leftfragment");
         fragmentTransaction.commit();
         powerManager = (PowerManager)getSystemService("power");
         wakeLock = powerManager.newWakeLock(0x1a, "My Lock");
@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements ServiceConnection, RightFr
         manager = getFragmentManager();
         fragmentTransaction = manager.beginTransaction();
         RigthFragmentVersion rigthFragment = new RigthFragmentVersion();
-        fragmentTransaction.add(0x7f080001, rigthFragment, "rigthFragment");
+        fragmentTransaction.add(R.id.rigth, rigthFragment, "rigthFragment");
         fragmentTransaction.commit();
     }
     

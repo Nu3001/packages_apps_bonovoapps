@@ -44,12 +44,12 @@ public class RigthFragmentVersion extends Fragment {
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v(TAG, "-->RigthFragment-->onCreateView()");
-        View view = inflater.inflate(0x7f03000c, null);
-        isAndroidVersion = (TextView)view.findViewById(0x7f080039);
+        View view = inflater.inflate(R.layout.right_version, null);
+        isAndroidVersion = (TextView)view.findViewById(R.id.is_android_version);
         isAndroidVersion.setText(Build.VERSION.RELEASE);
-        isMcuVersion = (TextView)view.findViewById(0x7f08003b);
-        isMcuVersion.setText("V" + Integer.toString(callbackFragment1.getMcuVersion()) + getResources().getString(0x7f050025));
-        isSystemVersion = (TextView)view.findViewById(0x7f08003d);
+        isMcuVersion = (TextView)view.findViewById(R.id.is_mcu_version);
+        isMcuVersion.setText("V" + Integer.toString(callbackFragment1.getMcuVersion()) + getResources().getString(R.string.msg_1));
+        isSystemVersion = (TextView)view.findViewById(R.id.is_system_version);
         isSystemVersion.setText(callbackFragment1.getSystemVersion());
         return view;
     }

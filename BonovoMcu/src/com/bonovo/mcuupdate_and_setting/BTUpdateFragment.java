@@ -172,15 +172,15 @@ public class BTUpdateFragment extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030001, 0x0);
-        upBtn = (Button)view.findViewById(0x7f080002);
+        View view = inflater.inflate(R.layout.btupdate, 0x0);
+        upBtn = (Button)view.findViewById(R.id.upbtn);
         upBtn.setOnClickListener(new View.OnClickListener() {
             
 			@Override
             public void onClick(View v) {
                 if(checkSDCard() && checkFile()) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                    alertDialog.setMessage(0x7f050021).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setMessage(R.string.found).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         
                         public void onClick(DialogInterface dialog, int which) {
                             BTUpdateTast();
@@ -190,7 +190,7 @@ public class BTUpdateFragment extends Fragment {
 						}
 					}).show();
                 } else {
-					Toast.makeText(getActivity(), 0x7f050022, 0x0).show();
+					Toast.makeText(getActivity(), R.string.not_found, 0x0).show();
 				}
             }
         });
@@ -298,7 +298,7 @@ public class BTUpdateFragment extends Fragment {
         switch(btUpdateStatus) {
             case BTUPDATESTATUS.LOADFILE:
                 closeALLProgressDialog();
-                progressDialogLoad = ProgressDialog.show(getActivity(), getResources().getString(0x7f05001e), getResources().getString(0x7f05001f));
+                progressDialogLoad = ProgressDialog.show(getActivity(), getResources().getString(R.string.btprogress), getResources().getString(R.string.btloadfile));
                 setbtUpdateStatus(BTUpdateFragment.BTUPDATESTATUS.PROGRESS);
                 break;
             case BTUPDATESTATUS.PROGRESS:
@@ -306,7 +306,7 @@ public class BTUpdateFragment extends Fragment {
                     progressDialog = new ProgressDialog(getActivity());
                     progressDialog.setMax(progressDialogMax);
                     progressDialog.setProgressStyle(0x1);
-                    progressDialog.setTitle(0x7f05001e);
+                    progressDialog.setTitle(R.string.btprogress);
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.setCancelable(false);
                     progressDialog.show();
@@ -320,7 +320,7 @@ public class BTUpdateFragment extends Fragment {
             case BTUPDATESTATUS.COMPLETE:
                 progressDialog.dismiss();
                 if(progressDialogcomplete == null) {
-                    progressDialogcomplete = ProgressDialog.show(getActivity(), getResources().getString(0x7f05001e), getResources().getString(0x7f050020));
+                    progressDialogcomplete = ProgressDialog.show(getActivity(), getResources().getString(R.string.btprogress), getResources().getString(R.string.btunzip));
                 }
 				break;
         }

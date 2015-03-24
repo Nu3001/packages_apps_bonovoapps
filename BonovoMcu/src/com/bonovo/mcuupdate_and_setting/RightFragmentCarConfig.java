@@ -69,10 +69,10 @@ public class RightFragmentCarConfig extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030005, null);
-        radioGroup = (RadioGroup)view.findViewById(0x7f080004);
-        radioButton_Volkswagen = (RadioButton)view.findViewById(0x7f080005);
-        radioButton_Sonata8 = (RadioButton)view.findViewById(0x7f080006);
+        View view = inflater.inflate(R.layout.right_car_configui, null);
+        radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup2);
+        radioButton_Volkswagen = (RadioButton)view.findViewById(R.id.radioVolkswagen);
+        radioButton_Sonata8 = (RadioButton)view.findViewById(R.id.radioSonata8);
         readSharePreConfig();
         checkRadioButton();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

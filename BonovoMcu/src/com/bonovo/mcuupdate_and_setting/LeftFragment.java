@@ -31,19 +31,19 @@ public class LeftFragment extends ListFragment {
     
     public List getData() {
         ArrayList<String> list = new ArrayList<String>();
-        list.add(getResources().getString(0x7f050026));
-        list.add(getResources().getString(0x7f050027));
-        list.add(getResources().getString(0x7f050028));
-        list.add(getResources().getString(0x7f050029));
-        list.add(getResources().getString(0x7f05002a));
-        list.add(getResources().getString(0x7f05002c));
-        list.add(getResources().getString(0x7f050035));
-        list.add(getResources().getString(0x7f05002b));
+        list.add(getResources().getString(R.string.list_version));
+        list.add(getResources().getString(R.string.list_update));
+        list.add(getResources().getString(R.string.list_config));
+        list.add(getResources().getString(R.string.list_serial_config));
+        list.add(getResources().getString(R.string.list_car_config));
+        list.add(getResources().getString(R.string.list_keysbacklight));
+        list.add(getResources().getString(R.string.list_otg));
+        list.add(getResources().getString(R.string.list_btupdate));
         return list;
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030002, null);
+        View view = inflater.inflate(R.layout.left, null);
         setListAdapter(adArrayAdapter);
         adArrayAdapter.notifyDataSetChanged();
         return view;
@@ -57,61 +57,61 @@ public class LeftFragment extends ListFragment {
             case 0:
             {
                 RigthFragmentVersion rigthFragmentVersion = new RigthFragmentVersion();
-                transaction.replace(0x7f080001, rigthFragmentVersion, "rigthFragmentVersion");
+                transaction.replace(R.id.rigth, rigthFragmentVersion, "rigthFragmentVersion");
                 break;
             }
             case 1:
             {
                 McuFragment mcuFragment = new McuFragment();
-                transaction.replace(0x7f080001, mcuFragment, "mchFragment");
+                transaction.replace(R.id.rigth, mcuFragment, "mchFragment");
                 break;
             }
             case 2:
             {
                 RightFragmentSetting rightFragmentSetting = new RightFragmentSetting();
-                transaction.replace(0x7f080001, rightFragmentSetting, "rightFragmentSetting");
+                transaction.replace(R.id.rigth, rightFragmentSetting, "rightFragmentSetting");
                 break;
             }
             case 3:
             {
                 RightFragmentSerialConfig rightFragmentSerialConfig = new RightFragmentSerialConfig();
-                transaction.replace(0x7f080001, rightFragmentSerialConfig, "rightFragmentSerialConfig");
+                transaction.replace(R.id.rigth, rightFragmentSerialConfig, "rightFragmentSerialConfig");
                 break;
             }
             case 4:
             {
                 RightFragmentCarConfig rightFragmentCarConfig = new RightFragmentCarConfig();
-                transaction.replace(0x7f080001, rightFragmentCarConfig, "rightFragmentCarConfig");
+                transaction.replace(R.id.rigth, rightFragmentCarConfig, "rightFragmentCarConfig");
                 break;
             }
             case 5:
             {
                 RightFragmentKeysBackLight rightFragmentKeysBackLight = new RightFragmentKeysBackLight();
-                transaction.replace(0x7f080001, rightFragmentKeysBackLight, "rightFragmentCarConfig");
+                transaction.replace(R.id.rigth, rightFragmentKeysBackLight, "rightFragmentCarConfig");
                 break;
             }
             case 6:
             {
                 RightFragmentOTGModel rightFragmentOTGModel = new RightFragmentOTGModel();
-                transaction.replace(0x7f080001, rightFragmentOTGModel, "rightFragmentOTGModel");
+                transaction.replace(R.id.rigth, rightFragmentOTGModel, "rightFragmentOTGModel");
                 break;
             }
             case 7:
             {
                 BTUpdateFragment fragmentBTUpdate = new BTUpdateFragment();
-                transaction.replace(0x7f080001, fragmentBTUpdate, "fragmentBTUpdate");
+                transaction.replace(R.id.rigth, fragmentBTUpdate, "fragmentBTUpdate");
                 break;
             }
             case 8:
             {
                 RightFragmentStandby fragmentStandby = new RightFragmentStandby();
-                transaction.replace(0x7f080001, fragmentStandby, "fragmentStandby");
+                transaction.replace(R.id.rigth, fragmentStandby, "fragmentStandby");
                 break;
             }
             case 10:
             {
                 RightFragmentScrollView fragmentScrollView = new RightFragmentScrollView();
-                transaction.replace(0x7f080001, fragmentScrollView, "fragmentScrollView");
+                transaction.replace(R.id.rigth, fragmentScrollView, "fragmentScrollView");
                 break;
             }
             case 9:

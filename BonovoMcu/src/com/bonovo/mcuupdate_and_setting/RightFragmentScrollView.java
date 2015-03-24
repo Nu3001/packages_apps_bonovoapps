@@ -20,7 +20,7 @@ public class RightFragmentScrollView extends Fragment {
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(0x7f030007, null);
+        View view = inflater.inflate(R.layout.right_scrollview, null);
         return view;
     }
     
