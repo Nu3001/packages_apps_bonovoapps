@@ -25,6 +25,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_MUSIC" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -50,6 +52,10 @@
                 <action android:name="android.intent.action.MAIN" />
 
 				<category android:name="android.intent.category.APP_BT_PHONE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

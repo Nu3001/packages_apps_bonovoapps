@@ -3,5 +3,8 @@
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_medium">8dp</dimen>
     <dimen name="padding_large">16dp</dimen>
+    <dimen name="icon_width">40dp</dimen>
+    <dimen name="font_width">40dp</dimen>
+    <dimen name="font_size">28sp</dimen>
 
 </resources>

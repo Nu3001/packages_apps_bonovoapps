@@ -32,6 +32,7 @@ import android.os.ServiceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.media.AudioManager;
 import android.widget.ImageView;
@@ -173,12 +174,18 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 				}
 				mHandler.sendMessage(mHandler.obtainMessage(VOLUME_MUTE));
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_UPDATEVOLUME_KEY")){
-				//amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-				//amAudioManager.requestAudioFocus(HandleService.this, AudioManager.STREAM_SYSTEM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
-				//amAudioManager.abandonAudioFocus(HandleService.this);
-				//amAudioManager.requestAudioFocusForCall(AudioManager.STREAM_RING,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
-				//amAudioManager.abandonAudioFocusForCall();
-				//Log.v(TAG, "amAudioManager.requestAudioFocusForCall");
+                // This will show the Volume Dialog without adjusting sound, allowing user to use
+                // seekbar to adjust.
+                if(dial == null){
+                    dial = createVolumeDialog(getVolume());
+                }else{
+                    if(!dial.isShowing()){
+                        dial.show();
+                    }
+                    Message msg = mHandler.obtainMessage(REMOVE_DIALOG);
+                    mHandler.removeMessages(REMOVE_DIALOG);
+                    mHandler.sendMessageDelayed(msg, VOLUME_DIALOGE_TIMEOUT);
+                }
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")){
 				killAppsAndGoHome();
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_WAKEUP_KEY")){
@@ -632,7 +639,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 				if(mMute){
 					mMute = false;
 					setMuteStatus(mMute);
-					mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+					mImageView.setImageResource(R.drawable.ic_sysbar_volume_mute);
 					break;
 				}
 				progress = mSeekBar.getProgress();
@@ -648,7 +655,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 				if(mMute){
 					mMute = false;
 					setMuteStatus(mMute);
-					mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+					mImageView.setImageResource(R.drawable.ic_sysbar_volume);
 					break;
 				}
 				progress = mSeekBar.getProgress();
@@ -661,9 +668,9 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 				mMute = !mMute;
 				if(mImageView != null){
 					if(mMute){
-						mImageView.setImageResource(R.drawable.ic_lock_ringer_off);
+						mImageView.setImageResource(R.drawable.ic_sysbar_volume_mute);
 					}else{
-						mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+						mImageView.setImageResource(R.drawable.ic_sysbar_volume);
 					}
 				}
 				setMuteStatus(mMute);
@@ -680,7 +687,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 	};
 
 	private AlertDialog createVolumeDialog(int volume){
-		View v = View.inflate(mContext, R.layout.volume_toast, null);
+		View v = View.inflate(mContext, R.layout.volume_toast,null);
 		AlertDialog.Builder b = new AlertDialog.Builder(mContext);
 		b.setView(v);
 		AlertDialog d = b.create();
@@ -688,14 +695,14 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 //		d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY);
 		d.show();
 
-		d.getWindow().setLayout(618, 120);
-		d.getWindow().setGravity(Gravity.TOP);
+		d.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		d.getWindow().setGravity(Gravity.BOTTOM);
 		WindowManager.LayoutParams lp = d.getWindow().getAttributes();
 		WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
 		Display dp = wm.getDefaultDisplay();
 //		lp.height = (int)(dp.getHeight() * 0.75);
 //		lp.alpha = 0.6f;
-		lp.y = 80;
+		//lp.y = 80;
 		lp.flags = lp.flags & (~lp.FLAG_DIM_BEHIND);
 		d.getWindow().setAttributes(lp);
 		d.getWindow().addFlags(lp.FLAG_NOT_FOCUSABLE | lp.FLAG_NOT_TOUCH_MODAL | lp.FLAG_WATCH_OUTSIDE_TOUCH);
@@ -705,7 +712,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 		mSeekBar = (SeekBar)d.getWindow().findViewById(R.id.seekBar);
 		
 		mSeekBar.setMax(MAX_VOLUME);
-		Log.e("HandleService", "setProgress-->arg= " + volume);
+		Log.d("HandleService", "setProgress-->arg= " + volume);
 		mSeekBar.setProgress(volume);
 		mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
@@ -727,9 +734,9 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 					boolean fromUser) {
 				// TODO Auto-generated method stub
 				if(mMute){
-				    Log.e("HandleService", "onProgressChanged-->mMute!!!!");
+				    Log.d("HandleService", "onProgressChanged-->mMute!!!!");
 					mMute = !mMute;
-					mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+					mImageView.setImageResource(R.drawable.ic_sysbar_volume_mute);
 					setMuteStatus(mMute);
 				}
 				mTextView.setText(String.valueOf(progress));
@@ -738,9 +745,9 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 		});
 		
 		if(mMute){
-			mImageView.setImageResource(R.drawable.ic_lock_ringer_off);
+			mImageView.setImageResource(R.drawable.ic_sysbar_volume_mute);
 		}else{
-			mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+			mImageView.setImageResource(R.drawable.ic_sysbar_volume);
 		}
 		mImageView.setOnClickListener(new View.OnClickListener() {
 			
@@ -752,9 +759,9 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 				mHandler.sendMessageDelayed(msg, VOLUME_DIALOGE_TIMEOUT);
 				mMute = !mMute;
 				if(mMute){
-					mImageView.setImageResource(R.drawable.ic_lock_ringer_off);
+					mImageView.setImageResource(R.drawable.ic_sysbar_volume_mute);
 				}else{
-					mImageView.setImageResource(R.drawable.ic_lock_ringer_on);
+					mImageView.setImageResource(R.drawable.ic_sysbar_volume);
 				}
 				setMuteStatus(mMute);
 			}
@@ -780,7 +787,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 	}
 	
 	private boolean setVolume(int volume){
-        Log.e("HandleService", "setVolume!!!");
+        Log.d("HandleService", "setVolume!!!");
         if(carType != 1) {
             if(jniSetVolume(volume) != 0) {
                 Log.e("HandleService", "setVolume(" + volume + ") failed.");
@@ -791,7 +798,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             editor.putInt("VOLUME", volume);
             editor.commit();
         } else {
-            Log.e("HandleService", "setVolume!!!--->sendBroadcst with volume =" + volume);
+            Log.d("HandleService", "setVolume!!!--->sendBroadcst with volume =" + volume);
             SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("VOLUME", volume);
@@ -805,17 +812,17 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 	
 	private int getVolume(){
 
-        Log.e("HandleService", "getVolume!!!");
+        Log.d("HandleService", "getVolume!!!");
         if(carType != 0x1) {
-            Log.e("HandleService", "getVolume!!!--->is not Sonata8");
+            Log.d("HandleService", "getVolume!!!--->is not Sonata8");
             SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
             int volume = sp.getInt("VOLUME", -1);
-            Log.e("HandleService", "getVolume!!!return--->SharedPreferences volume=" + volume);
+            Log.d("HandleService", "getVolume!!!return--->SharedPreferences volume=" + volume);
             return volume;
         } else {
             SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
             s8Volume = sp.getInt("VOLUME", 0xf);
-            Log.e("HandleService", "getVolume!!!return--->s8Volume=" + s8Volume);
+            Log.d("HandleService", "getVolume!!!return--->s8Volume=" + s8Volume);
             return s8Volume;
         }
 	}

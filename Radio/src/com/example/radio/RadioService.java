@@ -232,6 +232,8 @@ public class RadioService extends Service implements RadioInterface,
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
 		updatePreferences(RADIO_DATA_SAVE);
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.cancel(NOTIFICATION_ID);
 		if (DEBUG)
 			Log.d(TAG, "onDestroy()  end curfreq is " + curFreq);
 		// this.unregisterReceiver(myReceiver);
@@ -395,7 +397,8 @@ public class RadioService extends Service implements RadioInterface,
                 .setContentTitle(contentTitle)
                 .setContentText(contentText)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher))
-                .setOngoing(true);
+                .setOngoing(true)
+                .setContentIntent(contentIntent);
         nm.notify(NOTIFICATION_ID,builder.build());
     }
 
@@ -617,11 +620,6 @@ public class RadioService extends Service implements RadioInterface,
 	public void setCurChannelId(int id) {
 		// TODO Auto-generated method stub
 		curChannelId = id;
-
-		Context context = getApplicationContext();
-		CharSequence contentTitle = getResources().getString(R.string.app_name);
-		CharSequence contentText = getResources().getString(R.string.playing)
-				+ ": " + changeCurFreqToCS(curFreq);
         updatePlaybackTitle();
 	}
 
@@ -838,9 +836,9 @@ public class RadioService extends Service implements RadioInterface,
 				mVolume = settings.getInt("mvolume", 0);
 				curFreq = settings.getInt("mfreq", 0);
 
-				String[] freqArray = null;
-				String[] nameArray = null;
-				String[] abridgeArray = null;
+				String[] freqArray = new String[0];
+				String[] nameArray = new String[0];
+				String[] abridgeArray = new String[0];
 				String freqStr = settings.getString("freq", null); /* ��ȡ��� */
 				String nameStr = settings.getString("name", null);
 				String abridgeStr = settings.getString("abridge", null);
@@ -905,9 +903,9 @@ public class RadioService extends Service implements RadioInterface,
 				}
 				}
 			} else { // read default data
-            radioReadXML();
-            importChannelList(0, 0, false);
-        }
+                radioReadXML();
+                importChannelList(0, 0, false);
+            }
 	}
 
 
