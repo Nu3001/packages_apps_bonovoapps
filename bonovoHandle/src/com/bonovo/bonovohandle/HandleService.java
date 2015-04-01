@@ -112,7 +112,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 
 		@Override
 		public void onReceive(Context p1, Intent p2) {
-			SharedPreferences sp = p1.getSharedPreferences("storage_s8", 0x1);
+			SharedPreferences sp = p1.getSharedPreferences(STORAGE_S8, 0x1);
 			int s8_Vol = sp.getInt("VOLUME", 0xf);
 			Intent s8VolumeIntent = new Intent("com.android.internal.car.can.action.ACTION_S8_VOLUME_CHANGED");
 			s8VolumeIntent.putExtra("s8_volume", s8_Vol);
@@ -786,13 +786,13 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                 Log.e("HandleService", "setVolume(" + volume + ") failed.");
                 return false;
             }
-            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("VOLUME", volume);
             editor.commit();
         } else {
             Log.e("HandleService", "setVolume!!!--->sendBroadcst with volume =" + volume);
-            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences sp = mContext.getSharedPreferences(STORAGE_S8, MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("VOLUME", volume);
             editor.commit();
@@ -808,12 +808,12 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
         Log.e("HandleService", "getVolume!!!");
         if(carType != 0x1) {
             Log.e("HandleService", "getVolume!!!--->is not Sonata8");
-            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
             int volume = sp.getInt("VOLUME", -1);
             Log.e("HandleService", "getVolume!!!return--->SharedPreferences volume=" + volume);
             return volume;
         } else {
-            SharedPreferences sp = mContext.getSharedPreferences("storage", MODE_PRIVATE);
+            SharedPreferences sp = mContext.getSharedPreferences(STORAGE_S8, MODE_PRIVATE);
             s8Volume = sp.getInt("VOLUME", 0xf);
             Log.e("HandleService", "getVolume!!!return--->s8Volume=" + s8Volume);
             return s8Volume;
