@@ -1,6 +1,7 @@
 package com.bonovo.mcuupdate_and_setting;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.ServiceConnection;
 import android.app.FragmentTransaction;
 import android.app.FragmentManager;
@@ -25,20 +26,20 @@ public class MainActivity extends Activity implements ServiceConnection, RightFr
         super.onCreate(savedInstanceState);
         Intent intent = new Intent("com.bonovo.mcuupdate_and_setting.FragmentService");
         bindService(intent, this, BIND_AUTO_CREATE);
-        Log.v(TAG "-->Activity-->onCreate()");
+        Log.v(TAG, "-->Activity-->onCreate()");
         setContentView(R.layout.activity_main);
         manager = getFragmentManager();
         fragmentTransaction = manager.beginTransaction();
         LeftFragment leftfragment = new LeftFragment();
         fragmentTransaction.add(R.id.left, leftfragment, "leftfragment");
         fragmentTransaction.commit();
-        powerManager = (PowerManager)getSystemService("power");
+        powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(0x1a, "My Lock");
     }
     
     public void onServiceConnected(ComponentName name, IBinder service) {
-        Log.v(TAG "-->Activity-->onServiceConnected()");
-        mService = service.getServicer();
+        Log.v(TAG, "-->Activity-->onServiceConnected()");
+        mService = ((FragmentService.ServiceBinder)service).getServicer();
         manager = getFragmentManager();
         fragmentTransaction = manager.beginTransaction();
         RigthFragmentVersion rigthFragment = new RigthFragmentVersion();
@@ -51,13 +52,13 @@ public class MainActivity extends Activity implements ServiceConnection, RightFr
     
     protected void onStart() {
         super.onStart();
-        Log.v(TAG "-->Activity-->onStart()");
+        Log.v(TAG, "-->Activity-->onStart()");
     }
     
     protected void onResume() {
         super.onResume();
         wakeLock.acquire();
-        Log.v(TAG "-->Activity-->onResume()");
+        Log.v(TAG, "-->Activity-->onResume()");
     }
     
     protected void onPause() {

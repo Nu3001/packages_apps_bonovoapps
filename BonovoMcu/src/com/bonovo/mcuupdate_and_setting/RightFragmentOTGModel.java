@@ -2,6 +2,7 @@ package com.bonovo.mcuupdate_and_setting;
 
 import android.app.Fragment;
 import android.app.Activity;
+import android.content.Context;
 import android.widget.RadioButton;
 import android.content.SharedPreferences;
 import android.widget.RadioGroup;
@@ -47,14 +48,14 @@ public class RightFragmentOTGModel extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == hostBtn.getId()) {
                     otgFlag = PRESSHOST;
-                    preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
+                    preferences = context.getSharedPreferences("otg model", Context.MODE_WORLD_READABLE);
                     preferences.edit().putInt("otg checked", otgFlag).commit();
                     backOTG.switchOTG(otgFlag);
                     return;
                 }
                 if(checkedId == slaveBtn.getId()) {
                     otgFlag = PRESSSLAVE;
-                    preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
+                    preferences = context.getSharedPreferences("otg model", Context.MODE_WORLD_READABLE);
                     preferences.edit().putInt("otg checked", otgFlag).commit();
                     backOTG.switchOTG(otgFlag);
                 }
@@ -72,7 +73,7 @@ public class RightFragmentOTGModel extends Fragment {
     }
     
     private void readSharePreConfig() {
-        preferences = context.getSharedPreferences("otg model", MODE_WORLD_READABLE);
+        preferences = context.getSharedPreferences("otg model", Context.MODE_WORLD_READABLE);
         otgFlag = preferences.getInt("otg checked", PRESSHOST);
     }
     

@@ -94,7 +94,7 @@ public class FragmentService extends Service {
     public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		Log.d(TAG, "onBind()!!!");
-		return serviceBinder;
+		return binder;
     }
     
     public void onCreate() {

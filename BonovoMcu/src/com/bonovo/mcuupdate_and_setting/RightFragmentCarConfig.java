@@ -3,6 +3,8 @@ package com.bonovo.mcuupdate_and_setting;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,7 +31,7 @@ public class RightFragmentCarConfig extends Fragment {
     
     public RightFragmentCarConfig() {
 
-        broadcastReceiver = new BroadcastReceiver(this) {
+        broadcastReceiver = new BroadcastReceiver() {
             
 			@Override
             public void onReceive(Context context, Intent intent) {

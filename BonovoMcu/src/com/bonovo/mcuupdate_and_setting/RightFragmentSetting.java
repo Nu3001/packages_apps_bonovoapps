@@ -42,7 +42,7 @@ public class RightFragmentSetting extends Fragment {
         super.onAttach(activity);
         try {
             callbackInterface = (CallbackInterface)activity;
-        } catch(Exception e) {
+        } catch(Exception ignored) {
         }
     }
     
@@ -59,7 +59,7 @@ public class RightFragmentSetting extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
                 sharedPreferences.edit().putInt("Progress", progress).commit();
-                if(RightFragmentSetting.isCheckLight == 0x1) {
+                if(RightFragmentSetting.isCheckLight) {
                     callbackInterface.lowBrigthness(progress + 10);
                 }
             }
@@ -97,9 +97,9 @@ public class RightFragmentSetting extends Fragment {
         isCheckVolume = sharedPreferences.getBoolean("volume", false);
         checkVolume.setChecked(isCheckVolume);
         if(isCheckVolume) {
-            seekBarVolume.setVisibility(0x0);
+            seekBarVolume.setVisibility(View.VISIBLE);
         } else {
-            seekBarVolume.setVisibility(0x8);
+            seekBarVolume.setVisibility(View.GONE);
         }
         checkVolume.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             
@@ -109,13 +109,13 @@ public class RightFragmentSetting extends Fragment {
                     RightFragmentSetting.isCheckVolume = isChecked;
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
                     sharedPreferences.edit().putBoolean("volume", isChecked).commit();
-                    seekBarVolume.setVisibility(0x0);
+                    seekBarVolume.setVisibility(View.VISIBLE);
                     callbackInterface.autoVolume(RightFragmentSetting.progessVolume + 10);
                 } else {
                     RightFragmentSetting.isCheckVolume = isChecked;
-                    sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
                     sharedPreferences.edit().putBoolean("volume", isChecked).commit();
-                    seekBarVolume.setVisibility(0x8);
+                    seekBarVolume.setVisibility(View.GONE);
                     callbackInterface.autoVolume(0);
     			}
             }
@@ -134,7 +134,7 @@ public class RightFragmentSetting extends Fragment {
                     callbackInterface.setMute(true);
                 } else {
 					RightFragmentSetting.isCheckMute = isChecked;
-					sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
 					sharedPreferences.edit().putBoolean("mute", isChecked).commit();
 					callbackInterface.setMute(false);
 				}
@@ -154,7 +154,7 @@ public class RightFragmentSetting extends Fragment {
                     callbackInterface.setCamera(true);
                 } else {
 					RightFragmentSetting.isCheckCamera = isChecked;
-					sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
 					sharedPreferences.edit().putBoolean("camera", isChecked).commit();
 					callbackInterface.setCamera(false);
 				}
@@ -164,9 +164,9 @@ public class RightFragmentSetting extends Fragment {
         isCheckLight = sharedPreferences.getBoolean("brigthconfig", false);
         checkBrigthness.setChecked(isCheckLight);
         if(isCheckLight) {
-            seekBarBrigthness.setVisibility(0x0);
+            seekBarBrigthness.setVisibility(View.VISIBLE);
         } else {
-            seekBarBrigthness.setVisibility(0x8);
+            seekBarBrigthness.setVisibility(View.GONE);
         }
         checkBrigthness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             
@@ -176,14 +176,14 @@ public class RightFragmentSetting extends Fragment {
                     RightFragmentSetting.isCheckLight = isChecked;
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
                     sharedPreferences.edit().putBoolean("brigthconfig", isChecked).commit();
-                    seekBarBrigthness.setVisibility(0x0);
+                    seekBarBrigthness.setVisibility(View.VISIBLE);
                     callbackInterface.lowBrigthness(RightFragmentSetting.progessBrigthness + 10);
                 } else {
 					RightFragmentSetting.isCheckLight = isChecked;
-					sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CAR_CONFIG", 0x0);
 					sharedPreferences.edit().putBoolean("brigthconfig", isChecked).commit();
-					seekBarBrigthness.setVisibility(0x8);
-					callbackInterface.lowBrigthness(0x0);
+					seekBarBrigthness.setVisibility(View.GONE);
+					callbackInterface.lowBrigthness(0);
 				}
             }
         });

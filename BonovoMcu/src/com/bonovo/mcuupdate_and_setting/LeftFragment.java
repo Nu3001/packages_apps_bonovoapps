@@ -19,7 +19,7 @@ import android.util.Log;
 import android.app.Fragment;
 
 public class LeftFragment extends ListFragment {
-    private ArrayAdapter<String> adArrayAdapter<String>;
+    private ArrayAdapter<String> adArrayAdapter;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     
@@ -51,7 +51,7 @@ public class LeftFragment extends ListFragment {
     }
     
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id, id);
+        super.onListItemClick(l, v, position, id);
         Log.v("leftfragment", "position is " + position);
         transaction = fragmentManager.beginTransaction();
         switch(position) {

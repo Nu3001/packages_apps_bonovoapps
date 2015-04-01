@@ -2,6 +2,11 @@ package com.bonovo.mcuupdate_and_setting;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Message;
 import android.util.Log;
 import java.net.Socket;
 import java.io.InputStream;
@@ -27,6 +32,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class BTUpdateFragment extends Fragment {
     private static final String DESCRIPTOR = "sample.hello";
@@ -91,8 +98,8 @@ public class BTUpdateFragment extends Fragment {
 								handler.sendEmptyMessage(0x2);
 
 							}
+                            inputstream.close();
 						}
-						inputstream.close();
 					} finally {
 						client.close();
 						Log.d(TAG, "SocketServerThread close  client........................");
@@ -133,7 +140,8 @@ public class BTUpdateFragment extends Fragment {
         };
 
         handler = new Handler() {
-            
+
+            @Override
             public void handleMessage(Message msg) {
                 int what = msg.what;
                 switch(what) {
@@ -205,7 +213,7 @@ public class BTUpdateFragment extends Fragment {
         getActivity().unregisterReceiver(mBroadcastReveiver);
     }
     
-    private void setDialogText(View v) {
+    private void setDialogText(View view) {
         if (view instanceof ViewGroup) {
             ViewGroup viewgroup = (ViewGroup)view;
             int i = viewgroup.getChildCount();
@@ -299,12 +307,12 @@ public class BTUpdateFragment extends Fragment {
     
     private void executeTast() {
         switch(btUpdateStatus) {
-            case BTUPDATESTATUS.LOADFILE:
+            case LOADFILE:
                 closeALLProgressDialog();
                 progressDialogLoad = ProgressDialog.show(getActivity(), getResources().getString(R.string.btprogress), getResources().getString(R.string.btloadfile));
                 setbtUpdateStatus(BTUpdateFragment.BTUPDATESTATUS.PROGRESS);
                 break;
-            case BTUPDATESTATUS.PROGRESS:
+            case PROGRESS:
                 if(progressDialog == null) {
                     progressDialog = new ProgressDialog(getActivity());
                     progressDialog.setMax(progressDialogMax);
@@ -320,7 +328,7 @@ public class BTUpdateFragment extends Fragment {
 					progressDialog.setProgress(progressDialogProgress);
 				}
                 break;
-            case BTUPDATESTATUS.COMPLETE:
+            case COMPLETE:
                 progressDialog.dismiss();
                 if(progressDialogcomplete == null) {
                     progressDialogcomplete = ProgressDialog.show(getActivity(), getResources().getString(R.string.btprogress), getResources().getString(R.string.btunzip));

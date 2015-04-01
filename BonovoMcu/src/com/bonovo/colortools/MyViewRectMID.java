@@ -17,7 +17,7 @@ public class MyViewRectMID extends View {
         super.onDraw(canvas);
         paint.setAntiAlias(true);
         paint.setStrokeWidth(3.0f);
-        canvas.drawRect(0.0f, 0.0f, 300.0f, 0.0f, this);
+        canvas.drawRect(0.0f, 0.0f, 300.0f, 200.0f, paint);
     }
     
     public void setARGB(int A, int R, int G, int B) {

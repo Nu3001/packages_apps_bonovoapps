@@ -1,5 +1,8 @@
 package com.bonovo.mcuupdate_and_setting;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Message;
 import android.util.Log;
 import android.os.Handler;
 import android.app.Activity;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class McuFragment extends Fragment {
     private static final String TAG = "McuFragment";
@@ -51,7 +56,7 @@ public class McuFragment extends Fragment {
             callbackMcu.cpyfile();
             if (callbackMcu.checkMcu()) {
                 if (callbackMcu.wipeMcuAPP() == WIPE_SUCCEED) {
-                    Log.d(TAG "DialogActivity wipeMcuAPP() OK!!!");
+                    Log.d(TAG, "DialogActivity wipeMcuAPP() OK!!!");
                     handler.sendEmptyMessage(WHAT_PROGRESS);
                     if (callbackMcu.checkdBuffer()) {
                         handler.sendEmptyMessage(WHAT_UPDATE_OK);
@@ -159,7 +164,7 @@ public class McuFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             (new Thread(new MyTread())).start();
                         }
-                    }).setNeutralButton("Cancel", DialogInterface.OnClickListener() {
+                    }).setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
 					
 					    @Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -179,7 +184,7 @@ public class McuFragment extends Fragment {
         getActivity().unregisterReceiver(mBroadcastReveiver);
     }
     
-    private void setDialogText(View v) {
+    private void setDialogText(View view) {
         if (view instanceof ViewGroup) {
             ViewGroup viewgroup = (ViewGroup)view;
             int i = viewgroup.getChildCount();

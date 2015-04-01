@@ -15,10 +15,10 @@ public class MyViewRect extends View {
     
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(-0x1);
+        canvas.drawColor(-1);
         paint.setAntiAlias(true);
         paint.setStrokeWidth(3.0f);
-        canvas.drawRect(0.0f, 0.0f, 0.0f, 0.0f, this);
+        canvas.drawRect(0.0f, 0.0f, 50.0f, 50.0f, paint);
     }
     
     public void setARGB(int A, int R, int G, int B) {

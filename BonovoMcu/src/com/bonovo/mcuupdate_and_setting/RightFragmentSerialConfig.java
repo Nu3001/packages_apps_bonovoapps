@@ -3,6 +3,8 @@ package com.bonovo.mcuupdate_and_setting;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.widget.RadioGroup;
 import android.content.SharedPreferences;
 import android.widget.RadioButton;
@@ -35,7 +37,7 @@ public class RightFragmentSerialConfig extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals("com.android.internal.car.can.action.SERIAL_TYPE_RESPONSE")) {
                 Serial_Flag = intent.getIntExtra("serial_type", 0x0);
-                if(Serial_Flag == ODB) {
+                if(Serial_Flag == OBD) {
                     radioButton_OBD.setChecked(true);
                 } else if(Serial_Flag == CAN) {
                     radioButton_CAN.setChecked(true);
@@ -74,8 +76,8 @@ public class RightFragmentSerialConfig extends Fragment {
             
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == radioButton_OBD.getId()) {
-                    serial_RadioButton_Flag = ODB_CHECKED;
-                    FragmentService.serialType = ODB;
+                    serial_RadioButton_Flag = OBD_CHECKED;
+                    FragmentService.serialType = OBD;
                     Intent intent = new Intent("com.android.internal.car.can.action.SERIAL_TYPE_CHANGED");
                     intent.putExtra("serial_type", serial_RadioButton_Flag);
                     context.sendBroadcast(intent);
@@ -118,7 +120,7 @@ public class RightFragmentSerialConfig extends Fragment {
     }
     
     private void checkRadioButton() {
-        if(serial_RadioButton_Flag == ODB_CHECKED) {
+        if(serial_RadioButton_Flag == OBD_CHECKED) {
             radioButton_OBD.setChecked(true);
         }else if(serial_RadioButton_Flag == CAN_CHECKED) {
             radioButton_CAN.setChecked(true);

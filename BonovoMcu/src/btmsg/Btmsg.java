@@ -11,13 +11,12 @@ import com.google.protobuf.GeneratedMessageLite;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
 import com.google.protobuf.UninitializedMessageException;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-public final class Btmsg
-{
-    public static final class msg extends GeneratedMessageLite
-    {
+public final class Btmsg {
+    public static final class msg extends GeneratedMessageLite {
 
         public static final int NAME_FIELD_NUMBER = 1;
         public static final int PACKAGEID_FIELD_NUMBER = 3;
@@ -34,19 +33,19 @@ public final class Btmsg
         public static msg getDefaultInstance() {
             return defaultInstance;
         }
-		
+
         public msg getDefaultInstanceForType() {
             return defaultInstance;
         }
-		
+
         public boolean hasName() {
             return hasName;
         }
-		
+
         public String getName() {
             return name_;
         }
-				
+
         public boolean hasPackagetotal() {
             return hasPackagetotal;
         }
@@ -58,24 +57,22 @@ public final class Btmsg
         public boolean hasPackageId() {
             return hasPackageId;
         }
-		
-		public int getPackageId() {
+
+        public int getPackageId() {
             return packageId_;
         }
 
         private void initFields() {
         }
-		
+
         public final boolean isInitialized() {
-            if (!hasName || !hasPackagetotal || !hasPackageId) 
-            {
+            if (!hasName || !hasPackagetotal || !hasPackageId) {
                 return false;
             }
             return true;
         }
-		
-		public void writeTo(CodedOutputStream codedoutputstream) throws IOException
-        {
+
+        public void writeTo(CodedOutputStream codedoutputstream) throws IOException {
             getSerializedSize();
             if (hasName()) {
                 codedoutputstream.writeString(NAME_FIELD_NUMBER, getName());
@@ -87,8 +84,8 @@ public final class Btmsg
                 codedoutputstream.writeInt32(PACKAGEID_FIELD_NUMBER, getPackageId());
             }
         }
-		
-		public int getSerializedSize() {
+
+        public int getSerializedSize() {
             int size = memoizedSerializedSize;
             if (size != -1) {
                 return size;
@@ -96,7 +93,7 @@ public final class Btmsg
 
             size = 0;
             if (hasName()) {
-                size = += CodedOutputStream.computeStringSize(NAME_FIELD_NUMBER, getName());
+                size += CodedOutputStream.computeStringSize(NAME_FIELD_NUMBER, getName());
             }
             if (hasPackagetotal()) {
                 size += CodedOutputStream.computeInt32Size(PACKAGETOTAL_FIELD_NUMBER, getPackagetotal());
@@ -107,17 +104,17 @@ public final class Btmsg
             memoizedSerializedSize = size;
             return size;
         }
-		
-		public static msg parseFrom(ByteString bytestring) throws InvalidProtocolBufferException {
-            return ((Builder)newBuilder().mergeFrom(bytestring)).buildParsed();
+
+        public static msg parseFrom(ByteString bytestring) throws InvalidProtocolBufferException {
+            return ((Builder) newBuilder().mergeFrom(bytestring)).buildParsed();
         }
 
         public static msg parseFrom(ByteString bytestring, ExtensionRegistryLite extensionregistrylite) throws InvalidProtocolBufferException {
-            return ((Builder)newBuilder().mergeFrom(bytestring, extensionregistrylite)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(bytestring, extensionregistrylite)).buildParsed();
         }
 
         public static msg parseFrom(CodedInputStream codedinputstream) throws IOException {
-            return ((Builder)newBuilder().mergeFrom(codedinputstream)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(codedinputstream)).buildParsed();
         }
 
         public static msg parseFrom(CodedInputStream codedinputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
@@ -125,22 +122,22 @@ public final class Btmsg
         }
 
         public static msg parseFrom(InputStream inputstream) throws IOException {
-            return ((Builder)newBuilder().mergeFrom(inputstream)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(inputstream)).buildParsed();
         }
 
         public static msg parseFrom(InputStream inputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
-            return ((Builder)newBuilder().mergeFrom(inputstream, extensionregistrylite)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(inputstream, extensionregistrylite)).buildParsed();
         }
 
         public static msg parseFrom(byte abyte0[]) throws InvalidProtocolBufferException {
-            return ((Builder)newBuilder().mergeFrom(abyte0)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(abyte0)).buildParsed();
         }
 
         public static msg parseFrom(byte abyte0[], ExtensionRegistryLite extensionregistrylite) throws InvalidProtocolBufferException {
-            return ((Builder)newBuilder().mergeFrom(abyte0, extensionregistrylite)).buildParsed();
+            return ((Builder) newBuilder().mergeFrom(abyte0, extensionregistrylite)).buildParsed();
         }
-		
-		public static msg parseDelimitedFrom(InputStream inputstream) throws IOException {
+
+        public static msg parseDelimitedFrom(InputStream inputstream) throws IOException {
             Builder builder = newBuilder();
             if (builder.mergeDelimitedFrom(inputstream)) {
                 return builder.buildParsed();
@@ -158,10 +155,10 @@ public final class Btmsg
             }
         }
 
-        public static Builder newBuilder() {
+        public static msg.Builder newBuilder() {
             return Builder.create();
         }
-		
+
         public Builder newBuilderForType() {
             return newBuilder();
         }
@@ -170,23 +167,11 @@ public final class Btmsg
             return newBuilder().mergeFrom(msg1);
         }
 
-        public volatile MessageLite getDefaultInstanceForType() {
-            return getDefaultInstanceForType();
-        }
-
-        public volatile com.google.protobuf.MessageLite.Builder newBuilderForType() {
-            return newBuilderForType();
-        }
-
         public Builder toBuilder() {
             return newBuilder(this);
         }
 
-        public volatile com.google.protobuf.MessageLite.Builder toBuilder() {
-            return toBuilder();
-        }
-
-        static  {
+        static {
             defaultInstance = new msg(true);
             Btmsg.internalForceInit();
             defaultInstance.initFields();
@@ -207,232 +192,178 @@ public final class Btmsg
             packageId_ = 0;
             memoizedSerializedSize = -1;
         }
-    }
 
-    public static final class msg.Builder extends com.google.protobuf.GeneratedMessageLite.Builder {
+        public static final class Builder extends com.google.protobuf.GeneratedMessageLite.Builder<msg, Builder> {
 
-        private msg result;
+            private msg result;
 
-        private msg buildParsed() throws InvalidProtocolBufferException {
-            if (!isInitialized()) {
-                throw newUninitializedMessageException(result).asInvalidProtocolBufferException();
-            } else {
-                return buildPartial();
-            }
-        }
-
-        private static msg.Builder create() {
-            msg.Builder builder = new msg.Builder();
-            builder.result = new msg();
-            return builder;
-        }
-
-        public msg build() {
-            if (result != null && !isInitialized()) {
-                throw newUninitializedMessageException(result);
-            } else {
-                return buildPartial();
-            }
-        }
-
-        public volatile MessageLite build() {
-            return build();
-        }
-
-        public msg buildPartial() {
-            if (result == null) {
-                throw new IllegalStateException("build() has already been called on this Builder.");
-            } else {
-                msg returnMe = result;
-                result = null;
-                return returnMe;
-            }
-        }
-
-        public volatile MessageLite buildPartial() {
-            return buildPartial();
-        }
-
-        public msg.Builder clear()
-        {
-            if (result == null) {
-                throw new IllegalStateException("Cannot call clear() after build().");
-            } else {
-                result = new msg();
-                return this;
-            }
-        }
-
-        public volatile com.google.protobuf.MessageLite.Builder clear() {
-            return clear();
-        }
-
-        public msg.Builder clearName() {
-            result.hasName = false;
-            result.name_ = msg.getDefaultInstance().getName();
-            return this;
-        }
-
-        public msg.Builder clearPackageId() {
-            result.hasPackageId = false;
-            result.packageId_ = 0;
-            return this;
-        }
-
-        public msg.Builder clearPackagetotal() {
-            result.hasPackagetotal = false;
-            result.packagetotal_ = 0;
-            return this;
-        }
-
-        public msg.Builder clone() {
-            return create().mergeFrom(result);
-        }
-
-        public volatile com.google.protobuf.AbstractMessageLite.Builder clone() {
-            return clone();
-        }
-
-        public volatile com.google.protobuf.GeneratedMessageLite.Builder clone() {
-            return clone();
-        }
-
-        public volatile com.google.protobuf.MessageLite.Builder clone() {
-            return clone();
-        }
-
-        public volatile Object clone() throws CloneNotSupportedException {
-            return clone();
-        }
-
-        public msg getDefaultInstanceForType() {
-            return msg.getDefaultInstance();
-        }
-
-        public volatile GeneratedMessageLite getDefaultInstanceForType() {
-            return getDefaultInstanceForType();
-        }
-
-        public volatile MessageLite getDefaultInstanceForType() {
-            return getDefaultInstanceForType();
-        }
-
-        public String getName() {
-            return result.getName();
-        }
-
-        public int getPackageId() {
-            return result.getPackageId();
-        }
-
-        public int getPackagetotal() {
-            return result.getPackagetotal();
-        }
-
-        public boolean hasName() {
-            return result.hasName();
-        }
-
-        public boolean hasPackageId() {
-            return result.hasPackageId();
-        }
-
-        public boolean hasPackagetotal() {
-            return result.hasPackagetotal();
-        }
-
-        protected msg internalGetResult() {
-            return result;
-        }
-
-        protected volatile GeneratedMessageLite internalGetResult() {
-            return internalGetResult();
-        }
-
-        public boolean isInitialized() {
-            return result.isInitialized();
-        }
-
-        public msg.Builder mergeFrom(msg msg1) {
-            if (msg1 != msg.getDefaultInstance())
-            {
-                if (msg1.hasName()) {
-                    setName(msg1.getName());
-                }
-                if (msg1.hasPackagetotal()) {
-                    setPackagetotal(msg1.getPackagetotal());
-                }
-                if (msg1.hasPackageId()) {
-                    setPackageId(msg1.getPackageId());
+            private msg buildParsed() throws InvalidProtocolBufferException {
+                if (!isInitialized()) {
+                    throw newUninitializedMessageException(result).asInvalidProtocolBufferException();
+                } else {
+                    return buildPartial();
                 }
             }
-            return this;
-        }
 
-        public msg.Builder mergeFrom(CodedInputStream codedinputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
-		
-            while(true) {
-                int tag = codedinputstream.readTag();
-                switch (tag) {
-                default:
-                    if (!parseUnknownField(codedinputstream, extensionregistrylite, tag)) {
-                        return this;
-                    }
-                    break;
+            private static Builder create() {
+                Builder builder = new Builder();
+                builder.result = new msg();
+                return builder;
+            }
 
-                case 0: // '\0'
+            public msg build() {
+                if (result != null && !isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                } else {
+                    return buildPartial();
+                }
+            }
+
+            public msg buildPartial() {
+                if (result == null) {
+                    throw new IllegalStateException("build() has already been called on this Builder.");
+                } else {
+                    msg returnMe = result;
+                    result = null;
+                    return returnMe;
+                }
+            }
+
+            public Builder clear() {
+                if (result == null) {
+                    throw new IllegalStateException("Cannot call clear() after build().");
+                } else {
+                    result = new msg();
                     return this;
-
-                case 10: // '\n'
-                    setName(codedinputstream.readString());
-                    break;
-
-                case 16: // '\020'
-                    setPackagetotal(codedinputstream.readInt32());
-                    break;
-
-                case 24: // '\030'
-                    setPackageId(codedinputstream.readInt32());
-                    break;
                 }
             }
-        }
 
-        public volatile com.google.protobuf.AbstractMessageLite.Builder mergeFrom(CodedInputStream codedinputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
-            return mergeFrom(codedinputstream, extensionregistrylite);
-        }
-
-        public volatile com.google.protobuf.GeneratedMessageLite.Builder mergeFrom(GeneratedMessageLite generatedmessagelite) {
-            return mergeFrom((msg)generatedmessagelite);
-        }
-
-        public volatile com.google.protobuf.MessageLite.Builder mergeFrom(CodedInputStream codedinputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
-            return mergeFrom(codedinputstream, extensionregistrylite);
-        }
-
-        public msg.Builder setName(String s) {
-            if (s == null) {
-                throw new NullPointerException();
-            } else {
-                result.hasName = true;
-                result.name_ = s;
+            public Builder clearName() {
+                result.hasName = false;
+                result.name_ = msg.getDefaultInstance().getName();
                 return this;
             }
-        }
 
-        public msg.Builder setPackageId(int i) {
-            result.hasPackageId = true;
-            result.packageId_ = i;
-            return this;
-        }
+            public Builder clearPackageId() {
+                result.hasPackageId = false;
+                result.packageId_ = 0;
+                return this;
+            }
 
-        public msg.Builder setPackagetotal(int i) {
-            result.hasPackagetotal = true;
-            result.packagetotal_ = i;
-            return this;
-        }
+            public Builder clearPackagetotal() {
+                result.hasPackagetotal = false;
+                result.packagetotal_ = 0;
+                return this;
+            }
 
-        private msg.Builder() {
+            public Builder clone() {
+                return create().mergeFrom(result);
+            }
+
+            public msg getDefaultInstanceForType() {
+                return msg.getDefaultInstance();
+            }
+
+            public String getName() {
+                return result.getName();
+            }
+
+            public int getPackageId() {
+                return result.getPackageId();
+            }
+
+            public int getPackagetotal() {
+                return result.getPackagetotal();
+            }
+
+            public boolean hasName() {
+                return result.hasName();
+            }
+
+            public boolean hasPackageId() {
+                return result.hasPackageId();
+            }
+
+            public boolean hasPackagetotal() {
+                return result.hasPackagetotal();
+            }
+
+            protected msg internalGetResult() {
+                return result;
+            }
+
+            public boolean isInitialized() {
+                return result.isInitialized();
+            }
+
+            public Builder mergeFrom(msg msg1) {
+                if (msg1 != msg.getDefaultInstance()) {
+                    if (msg1.hasName()) {
+                        setName(msg1.getName());
+                    }
+                    if (msg1.hasPackagetotal()) {
+                        setPackagetotal(msg1.getPackagetotal());
+                    }
+                    if (msg1.hasPackageId()) {
+                        setPackageId(msg1.getPackageId());
+                    }
+                }
+                return this;
+            }
+
+            public Builder mergeFrom(CodedInputStream codedinputstream, ExtensionRegistryLite extensionregistrylite) throws IOException {
+
+                while (true) {
+                    int tag = codedinputstream.readTag();
+                    switch (tag) {
+                        default:
+                            if (!parseUnknownField(codedinputstream, extensionregistrylite, tag)) {
+                                return this;
+                            }
+                            break;
+
+                        case 0: // '\0'
+                            return this;
+
+                        case 10: // '\n'
+                            setName(codedinputstream.readString());
+                            break;
+
+                        case 16: // '\020'
+                            setPackagetotal(codedinputstream.readInt32());
+                            break;
+
+                        case 24: // '\030'
+                            setPackageId(codedinputstream.readInt32());
+                            break;
+                    }
+                }
+            }
+
+            public Builder setName(String s) {
+                if (s == null) {
+                    throw new NullPointerException();
+                } else {
+                    result.hasName = true;
+                    result.name_ = s;
+                    return this;
+                }
+            }
+
+            public Builder setPackageId(int i) {
+                result.hasPackageId = true;
+                result.packageId_ = i;
+                return this;
+            }
+
+            public Builder setPackagetotal(int i) {
+                result.hasPackagetotal = true;
+                result.packagetotal_ = i;
+                return this;
+            }
+
+            private Builder() {
+            }
         }
     }
 
