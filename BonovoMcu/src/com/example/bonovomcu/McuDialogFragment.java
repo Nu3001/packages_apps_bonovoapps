@@ -98,19 +98,19 @@ public class McuDialogFragment extends DialogFragment {
 				dialog.show();
 				break;
 			case WHAT_VERSION_SAME:
-				Toast.makeText(context, "MCU版本与文件版本相同...", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "MCU Version is the same as update file...", Toast.LENGTH_SHORT).show();
 				break;
 			case WHAT_UPDATE_FAIL:
-				Toast.makeText(context, "更新失败", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Update Failed", Toast.LENGTH_LONG).show();
 				break;
 			case WHAT_WIPE_FAIL:
-				Toast.makeText(context, "MCU擦除失败", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "MCU Failed to Erase", Toast.LENGTH_LONG).show();
 				break;
 			case WHAT_PROGRESS:
 				progressDialog = new ProgressDialog(context);
 				progressDialog.setMax(callbackMcu.getLoopNum());
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-				progressDialog.setTitle("MCU升级进度条");
+				progressDialog.setTitle("MCU Upgrade Progress Bar");
 				progressDialog.setCanceledOnTouchOutside(false);
 				progressDialog.setCancelable(false);
 				progressDialog.show();
