@@ -432,7 +432,7 @@ public class BonovoMcuActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		mServicer = ((McuServicer.ServiceBinder) service).getServicer();
 		mtextView1 = (TextView) findViewById(R.id.versionView);
-		mtextView1.setText("V" + Integer.toString(mServicer.version()) + "版本");
+		mtextView1.setText("V" + Integer.toString(mServicer.version()) + " version");
 		mtextView2 = (TextView) findViewById(R.id.systemView);
 		mtextView2.setText(SystemProperties.get("ro.rksdk.version",
 				Build.UNKNOWN));
