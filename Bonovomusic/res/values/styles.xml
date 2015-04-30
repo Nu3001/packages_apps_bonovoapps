@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CustomDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/filebrowser_bg</item>
+    </style>
+
+    <style name="AppTheme">
+        <!--<item name="android:windowNoTitle">true</item>-->
+    </style>
+
+    <style name="AppTheme.Activity">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Activity.Player" parent="AppTheme.Activity" />
+
+    <style name="AppTheme.Activity.Explorer" parent="AppTheme.Activity"></style>
+
+    <style name="AppTheme.Text">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AppTheme.Text.DetailText1" parent="AppTheme.Text">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="AppTheme.Text.DetailText2" parent="AppTheme.Text">
+        <item name="android:textSize">23sp</item>
+    </style>
+
+    <style name="AppTheme.Text.MusicItem" parent="AppTheme.Text">
+        <item name="android:ellipsize">marquee</item>
+    </style>
+
+    <style name="AppTheme.Text.ProgressText" parent="AppTheme.Text">
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>

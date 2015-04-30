@@ -19,14 +19,12 @@
         android:id="@+id/seekBar"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="8dp"
-        android:layout_width="280dp"
+        android:layout_width="480dp"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_horizontal"
-        android:layout_width="20dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:text="@string/def_volume" />
 

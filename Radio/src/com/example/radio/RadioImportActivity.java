@@ -73,7 +73,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				if (DEBUG) Log.d(TAG, "<myu>RadioImportActivity button province");
 				mCitySel = -1;
 				showPlayList();
-				mCityButton.setVisibility(View.INVISIBLE); // ÉèÖÃ×é¼þÎªinvisible²»¿É¼û
+				mCityButton.setVisibility(View.INVISIBLE); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªinvisibleï¿½ï¿½ï¿½É¼ï¿½
 				mImportButton.setVisibility(View.INVISIBLE);
 				break;
 			case R.id.import_button_city:
@@ -147,7 +147,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 
 	}
 
-	// ÏÔÊ¾²¥·ÅÁÐ±í
+	// ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private void showPlayList() {
 
 		ArrayList<ListItem> viewList = null;
@@ -177,7 +177,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				viewList.add(item);
 			}
 		}
-		refreshList(viewList); // Ë¢ÐÂÁÐ±í
+		refreshList(viewList); // Ë¢ï¿½ï¿½ï¿½Ð±ï¿½
 
 	}
 
@@ -188,10 +188,10 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 	}
 
 	private BroadcastReceiver myReceiver = new BroadcastReceiver() { /*
-																	 * ÐÂÔö
-																	 * BroadcastReceiverÀàµÄmyReceiver
-																	 * £¬µ±¼àÌý¹ã²¥ÏûÏ¢
-																	 * ³öÏÖµÄÊ±ºò»á±»AndroidÆô¶¯ÔËÐÐ
+																	 * ï¿½ï¿½ï¿½ï¿½
+																	 * BroadcastReceiverï¿½ï¿½ï¿½myReceiver
+																	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½Ï¢
+																	 * ï¿½ï¿½ï¿½Öµï¿½Ê±ï¿½ï¿½á±»Androidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 																	 */
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -204,7 +204,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		}
 	};
 
-	private IntentFilter getIntentFilter() { /* ×¢²á BroadcastReceiver */
+	private IntentFilter getIntentFilter() { /* ×¢ï¿½ï¿½ BroadcastReceiver */
 
 		IntentFilter myIntentFilter = new IntentFilter(RadioService.MSG_CLOSE);
 		return myIntentFilter;
@@ -230,7 +230,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		mService = ((RadioService.ServiceBinder) service).getService();
 		lstart1 = System.currentTimeMillis();
 		if (mService.radioReadXML()) {
-			lstart2 = System.currentTimeMillis(); // Ö¸¶¨ÒªÁ¢¿ÌÏÔÊ¾
+			lstart2 = System.currentTimeMillis(); // Ö¸ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 			showPlayList();
 		} else {
 			if (DEBUG) Log.v(TAG, "radioReadXML  is null");

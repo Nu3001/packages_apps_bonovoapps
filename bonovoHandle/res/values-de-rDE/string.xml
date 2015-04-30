@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">bonovoHandle</string>
+<string name="hello_world">Hallo Welt!</string>
+<string name="menu_settings">Einstellungen</string>
+<string name="title_activity_main">Haupt Aktivitäten</string>
+<string name="set_value">Helligkeit einstellen</string>
+<string name="get_value">Helligkeit</string>
+<string name="get_button">Werte auslesen</string>
+<string name="set_button">Werte einstellen</string>
+<string name="def_volume">10</string>
+<string name="title_activity_power">Power</string>
+<string name="action_settings">Einstellungen</string>
+</resources>

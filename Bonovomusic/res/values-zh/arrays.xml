@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="music_category">
+        <item>播放文件夹</item>
+        <item>自定义列表</item>
+        <item>演唱家</item>
+        <item>流派</item>
+        <item>专辑</item>
+    </array>
+</resources>

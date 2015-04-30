@@ -114,7 +114,10 @@ public class NewsmyCarRadarActivity extends Activity {
         final Bundle bundle = intent.getBundleExtra(Radar.BUNDLE_NAME);
         final Radar radarModel = Radar.bundle2Radar(bundle);
 
-        if (ifSafe(radarModel))
+		if (bundle == null)
+			return;
+
+        if (radarModel == null || ifSafe(radarModel))
             finish();
         else
             mViewController.updateViews(radarModel);

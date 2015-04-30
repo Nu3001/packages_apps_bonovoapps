@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.bonovo.musicplayer.ui.ExplorerItemListView
+        android:id="@+id/explorer_folder_list"
+        android:divider="@null"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarThumbVertical="@drawable/explorer_detail_scrollbar_slider"
+        android:scrollbarTrackVertical="@drawable/explorer_detail_scrollbar_slid"
+        android:scrollbarSize="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/explorer_detail_background2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.bonovo.musicplayer.ui.ExplorerItemListView>
+</FrameLayout>

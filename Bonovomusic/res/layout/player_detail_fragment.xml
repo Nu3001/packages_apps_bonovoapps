@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+           
+    <ImageView
+        android:id="@+id/player_detail_album_image"
+        android:layout_width="@dimen/player_detail_album_image_width"
+        android:layout_height="@dimen/player_detail_album_image_height"
+        android:layout_marginLeft="@dimen/player_detail_album_image_margin_left"
+        android:layout_marginTop="@dimen/player_detail_album_image_margin_top"
+        android:src="@drawable/image" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/player_detail_song_name"
+            style="@style/AppTheme.Text.DetailText1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/player_detail_item_1_margin_horizontal"
+            android:layout_marginRight="@dimen/player_detail_item_1_margin_horizontal"
+            android:layout_marginTop="@dimen/player_detail_text_margin_top" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginRight="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginTop="@dimen/player_detail_text_margin_top"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/player_detail_album_image" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="@dimen/player_detail_title_width"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:text="@string/player_detail_info_album_title" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/str_colon" />
+
+            <TextView
+                android:id="@+id/player_detail_album_text"
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginRight="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginTop="@dimen/player_detail_text_margin_top"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/player_detail_genre_image" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="@dimen/player_detail_title_width"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:text="@string/player_detail_info_genre_title" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/str_colon" />
+
+            <TextView
+                android:id="@+id/player_detail_genre_text"
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginRight="@dimen/player_detail_item_2_margin_horizontal"
+            android:layout_marginTop="@dimen/player_detail_text_margin_top"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/player_detail_artist_image" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="@dimen/player_detail_title_width"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:text="@string/player_detail_info_artist_title" />
+
+            <TextView
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/str_colon" />
+
+            <TextView
+                android:id="@+id/player_detail_artist_text"
+                style="@style/AppTheme.Text.DetailText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_detail_item_2_text_margin_left"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

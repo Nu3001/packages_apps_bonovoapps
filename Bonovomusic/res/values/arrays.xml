@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="music_category">
+        <item>Folder</item>
+        <item>PlayList</item>
+        <item>Artist</item>
+        <item>Genres</item>
+        <item>Album</item>
+    </array>
+</resources>

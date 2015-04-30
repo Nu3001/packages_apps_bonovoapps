@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">bonovoHandle</string>
+<string name="hello_world">Sveika, Pasaule!</string>
+<string name="menu_settings">Iestatījumi</string>
+<string name="title_activity_main">MainActivity</string>
+<string name="set_value">Iestatīt Spilgtuma vērtību</string>
+<string name="get_value">Spilgtuma vērtība</string>
+<string name="get_button">Iegūt vērtību</string>
+<string name="set_button">Iestatīt vērtību</string>
+<string name="def_volume">10</string>
+<string name="title_activity_power">Power</string>
+<string name="action_settings">Iestatījumi</string>
+</resources>

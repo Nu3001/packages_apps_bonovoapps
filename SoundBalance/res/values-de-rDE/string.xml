@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">SoundBalance</string>
+<string name="action_settings">Einstellungen</string>
+<string name="hello_world">Hallo Welt!</string>
+<string name="front_left">vorne links</string>
+<string name="front_right">vorne rechts</string>
+<string name="rear_left">hinten links</string>
+<string name="rear_right">hinten rechts</string>
+<string name="max_volume">100%</string>
+</resources>

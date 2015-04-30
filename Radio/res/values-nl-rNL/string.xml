@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Radio</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="am">AM</string>
+    <string name="fine">Handmatig</string>
+    <string name="step">Stapgewijs</string>
+    <string name="auto">Automatisch</string>
+    <string name="radio_volume">Radio Volume</string>
+    <string name="fmsearch">FM kanalen zoeken?</string>
+    <string name="amsearch">AN kanalen zoeken?</string>
+    <string name="import_title">Importeer voorkeurkanalen</string>
+    <string name="import_preset">Pre-defineer</string>
+    <string name="import_define">Defineer</string>
+    <string name="import_area">Gebied</string>
+    <string name="import_province">Provincie</string>
+    <string name="import_city">Città</string>
+    <string name="edit_dialog_freq">Frequentie</string>
+    <string name="edit_dialog_shortname">Kort</string>
+    <string name="edit_dialog_fullname">Compleet</string>
+    <string name="import_import">Importeren</string>
+    <string name="playing">Speelt af</string>
+    <string name="edit_channel">Pas kanaal aan</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Anuleren</string>
+    <string name="valid_freq_fm">Stel een geldig kanaal in tussen： 87.5-108.0MHz</string>
+    <string name="valid_freq_am">Stel een geldig kanaal in tussen： 520-1710KHz</string>
+    <string name="searchwait">Bezig met zoeken...</string>
+    <string name="china">CHN</string>
+    <string name="japan">JPN</string>
+    <string name="europe">EUR</string>
+    <string name="system">Regio Selectie</string>
+    <string name="volume">Volume</string>
+    <string name="remote">Afstandbediening</string>
+    <string name="lead">Lead</string>
+    <string name="remind">Onthouden</string>
+    <string name="describe">Automatisch zoeken en opslaan?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuleren</string>
+    <string name="searching">Aan het zoeken, niet van kanaal veranderen</string>
+    <string name="clear">Anuleren</string>
+    <string name="unrealized">Functie niet ingesteld</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">NewsmyRadar</string>
+<string name="hello_world">Hallo Welt!</string>
+<string name="action_settings">Einstellungen</string>
+<string name="switch_screen">Sie können die Rückwärtskamera überprüfen indem Sie auf den Bildschirm klicken.</string>
+</resources>

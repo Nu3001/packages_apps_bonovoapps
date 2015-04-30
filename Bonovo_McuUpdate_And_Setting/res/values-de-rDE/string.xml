@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">MCU</string>
+<string name="action_settings">Einstellungen</string>
+<string name="hello_world">Hallo Welt!</string>
+<string name="title">MCU Update gefunden; wollen Sie aktualisieren?</string>
+<string name="agree">Ja</string>
+<string name="cancel">Abbrechen</string>
+<string name="button">Nach Update suchen</string>
+<string name="mcuversion">MCU Version:</string>
+<string name="sysversion">System Version:</string>
+<string name="androidversion">Android Version:</string>
+<string name="loga">SD-Karte konnte nicht gelesen werden/Update File ist nicht spezifiziert</string>
+<string name="asternmute">Audio stumm schalten im Rückwärtsgang</string>
+<string name="lightstate">Automatische Anpassung der Beleuchtungshelligkeit</string>
+<string name="rearview_camera">Rückwärtskamera</string>
+<string name="other">Andere Einstellungen:</string>
+<string name="reminder">Interface Funktionalität nicht hinzugefügt</string>
+<string name="basic">Basis Infromationen:</string>
+<string name="autovolume">Geschwindigkeitsabhängige Lautstärke</string>
+<string name="mcu_diatext">MCU Update gefunden!</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <ListView
+        android:id="@+id/explorer_category_list"
+        android:layout_width="@dimen/explorer_category_list_width"
+        android:layout_height="match_parent"
+        android:background="@drawable/explorer_category_list_background"
+        />
+    <FrameLayout
+        android:padding="@dimen/explorer_category_item_padding"
+        android:background="@drawable/explorer_detail_background1"
+        android:id="@+id/explorer_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+</LinearLayout>

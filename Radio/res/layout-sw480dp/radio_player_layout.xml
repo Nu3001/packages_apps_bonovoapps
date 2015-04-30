@@ -177,6 +177,15 @@
             android:text="@string/auto"
             android:textColor="@color/solid_white"
             android:textSize="24sp" />
+        
+        <Button 
+            android:id="@+id/btnheart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btncollect_heart"
+            android:layout_alignBottom="@+id/btnauto"
+            android:layout_toRightOf="@+id/btnauto"
+            android:layout_marginLeft="6dp"/>
 
         <ImageButton
             android:id="@+id/btnforward"

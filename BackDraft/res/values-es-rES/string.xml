@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">BackDraft</string>
+<string name="action_settings">Ajustes</string>
+<string name="hello_world">Hola mundo!</string>
+<string name="failed_open_serial">Open serial failed! No se puede mostrar el video!</string>
+</resources>

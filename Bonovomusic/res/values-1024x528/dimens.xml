@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lrc_button_width">43px</dimen>
+    <dimen name="lrc_button_height">152px</dimen>
+    <dimen name="slt_width">242px</dimen>
+    <dimen name="player_seek_bar_background_height">47px</dimen>
+    <dimen name="player_sound_indicator_margin_left">40dp</dimen>
+    <dimen name="player_sound_indicator_margin_top">20dp</dimen>
+    <dimen name="player_sound_text_size">15sp</dimen>
+    <dimen name="player_music_image_margin_left">50dp</dimen>
+    <dimen name="player_music_image_margin_top">10dp</dimen>
+    <dimen name="player_seek_bar_width">827px</dimen>
+    <dimen name="player_detail_text_margin_left">70dp</dimen>
+    <dimen name="player_detail_text_size">20sp</dimen>
+
+    <!-- v2 -->
+    <dimen name="player_detail_sound_index_margin_left">40dp</dimen>
+    <dimen name="player_detail_sound_index_margin_top">5dp</dimen>
+    <dimen name="player_detail_sound_text_size">15sp</dimen>
+    <dimen name="player_title_height">56px</dimen>
+    <dimen name="player_progress_height">48px</dimen>
+    <dimen name="player_action_height">98px</dimen>
+    <dimen name="player_detail_album_image_height">244px</dimen>
+    <dimen name="player_detail_album_image_width">244px</dimen>
+    <dimen name="player_detail_title_width">80dp</dimen>
+    <dimen name="player_detail_album_image_margin_left">20dp</dimen>
+    <dimen name="player_detail_album_image_margin_top">20dp</dimen>
+    <dimen name="player_detail_text_margin_top">10dp</dimen>
+    <dimen name="player_detail_item_1_margin_horizontal">40dp</dimen>
+    <dimen name="player_detail_item_2_margin_horizontal">60dp</dimen>
+    <dimen name="player_detail_item_2_text_margin_left">10dp</dimen>
+    <dimen name="player_detail_action_margin_bottom">5dp</dimen>
+    <dimen name="player_detail_action_margin">20dp</dimen>
+    <dimen name="player_detail_action_width">960px</dimen>
+    <dimen name="player_detail_action_height">90px</dimen>
+    <dimen name="player_progress_seek_bar_height">31px</dimen>
+    <dimen name="player_progress_seek_bar_width">760px</dimen>
+
+    <dimen name="explorer_category_item_padding">10dp</dimen>
+    <dimen name="explorer_play_list_item_margin">20dp</dimen>
+    <dimen name="explorer_play_list_add_margin">30dp</dimen>
+    <dimen name="explorer_category_list_width">198px</dimen>
+</resources>

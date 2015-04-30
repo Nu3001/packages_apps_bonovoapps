@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Radio</string>
+<string name="fm1">FM1</string>
+<string name="fm2">FM2</string>
+<string name="action_settings">Iestatījumi</string>
+<string name="am">A M</string>
+<string name="fine">Precīzi</string>
+<string name="step">Solis</string>
+<string name="auto">Auto</string>
+<string name="radio_volume">Radio-Skaļums</string>
+<string name="fmsearch">Start scanning FM bandļ¼</string>
+<string name="amsearch">Start scanning AM bandļ¼</string>
+<string name="import_title">Importēt-Nosaukumu</string>
+<string name="import_preset">Iestatīts</string>
+<string name="import_define">Define</string>
+<string name="import_area">Apgabals</string>
+<string name="import_province">Province</string>
+<string name="import_city">Pilsēta</string>
+<string name="edit_dialog_freq">Frekvence</string>
+<string name="edit_dialog_shortname">Short</string>
+<string name="edit_dialog_fullname">Full</string>
+<string name="import_import">Imports</string>
+<string name="playing">Atskaņo</string>
+<string name="edit_channel">Labot Kanālu</string>
+<string name="alert_dialog_ok">Labi</string>
+<string name="alert_dialog_cancel">Atcelt</string>
+<string name="valid_freq_fm">Lūdzu ievadīt pareizu FM Frekvenciļ¼87.5-108.0MHz</string>
+<string name="valid_freq_am">Lūdzu ievadīt pareizu AM Frekvenciļ¼520-1710KHz</string>
+<string name="searchwait">Meklēju, Lūdzu, uzgaidi ...</string>
+<string name="china">CHN</string>
+<string name="japan">JPN</string>
+<string name="europe">EUR</string>
+<string name="system">Tipa Izvēle</string>
+<string name="volume">Skaļums</string>
+<string name="remote">Tālvadība</string>
+<string name="lead">Lead</string>
+<string name="remind">Atgādināt</string>
+<string name="describe">Automātiski meklēt un saglabāt?</string>
+<string name="ok">Labi</string>
+<string name="cancel">Atcelt</string>
+<string name="searching">Meklēju, Nepārslēgt kanālu!</string>
+<string name="clear">Notīrīt</string>
+<string name="unrealized">Funkcija nav ieviesta!</string>
+</resources>

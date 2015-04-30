@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/bg" >
+    
+	 <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="30dp" >
+
+	     <LinearLayout
+	         android:layout_width="match_parent"
+	         android:layout_height="wrap_content"
+	         android:orientation="vertical" >
+
+	         <TextView
+	             android:id="@+id/text_max"
+	             android:layout_width="wrap_content"
+	             android:layout_height="175dp"
+	             android:text="@string/high_dB"
+	             android:textColor="#ffffd300"
+	             android:textSize="13sp"
+	             android:layout_gravity="right"
+	             android:layout_marginTop="30dp" />
+
+	         <TextView
+	             android:id="@+id/text_min"
+	             android:layout_width="wrap_content"
+	             android:layout_height="30dp"
+	             android:text="@string/low_dB"
+	             android:textColor="#ffffd300"
+	             android:textSize="13sp"
+	             android:layout_gravity="right"  />
+
+	         <TextView
+	             android:id="@+id/text_unit"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="@string/balance_unit"
+	             android:textColor="#ffffd300"
+	             android:textSize="13sp"
+	             android:layout_gravity="right"  />
+
+	     </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+
+	        <TextView
+	            android:id="@+id/text_bass"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/bass"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"/>
+
+	        <com.bonovo.soundbalance.VerticalSeekBar
+	            android:id="@+id/seekBar_bass"
+	            android:layout_width="wrap_content"
+	            android:layout_height="200dp"
+	            android:layout_gravity="center" />
+
+	        <TextView
+	            android:id="@+id/text_bass_value"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/balance_initial_value"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp"
+	            android:layout_gravity="center" />
+	        
+	    </LinearLayout>
+	     
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+
+	        <TextView
+	            android:id="@+id/text_mid"
+	            android:layout_width="70dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/mid"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp"
+	            android:gravity="center" />
+
+	        <com.bonovo.soundbalance.VerticalSeekBar
+	            android:id="@+id/seekBar_mid"
+	            android:layout_width="wrap_content"
+	            android:layout_height="200dp"
+	            android:layout_gravity="center"/>
+
+	        <TextView
+	            android:id="@+id/text_mid_value"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/balance_initial_value"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp"
+	            android:layout_gravity="center" />
+
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+
+	        <TextView
+	            android:id="@+id/text_treble"
+	            android:layout_width="70dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/treble"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp"
+	            android:gravity="center" />
+
+	        <com.bonovo.soundbalance.VerticalSeekBar
+	            android:id="@+id/seekBar_treble"
+	            android:layout_width="wrap_content"
+	            android:layout_height="200dp"
+	            android:layout_gravity="center" />
+
+	        <TextView
+	            android:id="@+id/text_treble_value"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/balance_initial_value"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+	            android:layout_gravity="center" />
+
+	    </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="30dp" 
+        android:layout_marginLeft="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp" >
+	        <TextView
+	            android:id="@+id/textView_value_left"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/sonata_left"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+	        <SeekBar
+	        	android:id="@+id/seekBar_LR"
+	        	android:layout_width="300dp"
+	        	android:layout_height="wrap_content"
+	        	android:progressDrawable="@drawable/seekbar_img_horizontal" />
+	        <TextView
+	            android:id="@+id/textView_value_right"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/sonata_right"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+            
+        </LinearLayout>
+	
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp" >
+	        <TextView
+	            android:id="@+id/textView_value_front"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/sonata_front"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+	        <SeekBar
+	        	android:id="@+id/seekBar_FR"
+	        	android:layout_width="300dp"
+	        	android:layout_height="wrap_content"
+	        	android:progressDrawable="@drawable/seekbar_img_horizontal"/>
+	        <TextView
+	            android:id="@+id/textView_value_rear"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:text="@string/sonata_rear"
+	            android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_buttons"
+            android:text="@string/reset_data"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="180dp" />
+        
+    </LinearLayout>
+    
+</LinearLayout>

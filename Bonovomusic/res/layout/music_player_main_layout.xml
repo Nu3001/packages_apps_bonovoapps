@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/player_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/player_title_height"
+        android:background="@drawable/player_title_background"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/player_scan_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_button_background"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:visibility="gone"
+            android:text="@string/player_scan_text" />
+
+        <ProgressBar
+            android:id="@+id/player_scan_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:indeterminate="true"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/player_title_action_explorer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_title_explorer" />
+
+        <Button
+            android:id="@+id/player_title_action_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_title_close" />
+    </LinearLayout>
+        
+		    <LinearLayout
+		        android:id="@+id/detail_container"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_margin="5dp"
+		        android:background="@drawable/player_detail_background"
+		        android:orientation="vertical">
+		        
+		            <LinearLayout
+					        android:layout_width="fill_parent"
+					        android:layout_height="match_parent"
+					        android:layout_weight="1"
+					        android:orientation="horizontal">
+											
+											<LinearLayout
+								        android:layout_width="fill_parent"
+								        android:layout_height="match_parent"
+								        android:layout_weight="1">
+								        	<fragment android:name="com.bonovo.musicplayer.PlayerDetailFragment"
+													            android:id="@+id/PlayerDetailFragment"
+													            android:layout_width="match_parent"
+													            android:layout_height="match_parent" />
+													<fragment android:name="com.bonovo.musicplayer.PlayerLrcViewFragment"
+													            android:id="@+id/PlayerLrcViewFragment"
+													            android:layout_width="match_parent"
+													            android:layout_height="match_parent" />
+
+											</LinearLayout>
+											
+											<Button
+					            android:id="@+id/player_lrc_action"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_vertical"
+					            android:layout_weight="1"
+					            android:background="@drawable/player_button_lrc_drawable"/>
+							</LinearLayout>
+			        <RelativeLayout
+			            android:layout_width="@dimen/player_detail_action_width"
+			            android:layout_height="@dimen/player_detail_action_height"
+			            android:layout_gravity="center_horizontal"
+			            android:layout_marginBottom="@dimen/player_detail_action_margin_bottom"
+			            android:background="@drawable/player_action_background">
+			
+			            <Button
+			                android:id="@+id/player_action_like_button"
+			                android:layout_width="wrap_content"
+			                android:layout_height="wrap_content"
+			                android:layout_alignParentLeft="true"
+			                android:background="@drawable/player_action_like_drawable" />
+			
+			            <LinearLayout
+			                android:layout_width="wrap_content"
+			                android:layout_height="fill_parent"
+			                android:layout_centerInParent="true"
+			                android:orientation="horizontal">
+			
+			                <Button
+			                    android:id="@+id/player_action_pre_button"
+			                    android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:layout_marginLeft="@dimen/player_detail_action_margin"
+			                    android:background="@drawable/player_action_pre_drawable" />
+			
+			                <Button
+			                    android:id="@+id/player_action_play_pause_button"
+			                    android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:layout_marginLeft="@dimen/player_detail_action_margin"
+			                    android:background="@drawable/player_action_play_drawable" />
+			
+			                <Button
+			                    android:id="@+id/player_action_next_button"
+			                    android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:layout_marginLeft="@dimen/player_detail_action_margin"
+			                    android:layout_marginRight="@dimen/player_detail_action_margin"
+			                    android:background="@drawable/player_action_next_drawable" />
+			
+			            </LinearLayout>
+			
+			            <Button
+			                android:id="@+id/player_action_mode_button"
+			                android:layout_width="wrap_content"
+			                android:layout_height="wrap_content"
+			                android:layout_alignParentRight="true"
+			                android:background="@drawable/player_action_mode_drawable" />
+			        </RelativeLayout>
+								         	
+		    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/progress_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/player_progress_height"
+        android:background="@drawable/player_progress_background"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/player_progress_duration_current_text"
+            style="@style/AppTheme.Text.ProgressText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/player_detail_default_duration" />
+
+        <SeekBar
+            android:id="@+id/player_progress_progressbar"
+            android:layout_width="@dimen/player_progress_seek_bar_width"
+            android:layout_height="@dimen/player_progress_seek_bar_height"
+            android:layout_gravity="center_vertical"
+            android:max="100"
+            android:maxHeight="@dimen/player_progress_seek_bar_height"
+            android:minHeight="@dimen/player_progress_seek_bar_height"
+            android:progressDrawable="@drawable/player_seek_bar_layout"
+            android:thumb="@drawable/player_progress_seek_bar_indicator" />
+
+        <TextView
+            android:id="@+id/player_progress_duration_total_text"
+            style="@style/AppTheme.Text.ProgressText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/player_detail_default_duration" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hello">Hello World, BonovoMusicPlayerActivity!</string>
+    <string name="app_name">Music Player</string>
+    <string name="player_detail_info_album_title">Album</string>
+    <string name="player_detail_info_genre_title">Genre</string>
+    <string name="player_detail_info_artist_title">Artist</string>
+    <string name="player_detail_default_duration">00:00:00</string>
+    <string name="toast_can_not_play">Can not play, please try again later!</string>
+    <string name="explorer_add_list">Create play list</string>
+    <string name="player_scan_text">Scan</string>
+    <string name="player_stop_scanning_text">Stop Scanning</string>
+    <string name="explorer_play_list_add_dialog_title">Create play list</string>
+    <string name="service_alert_cannot_play">Can not play : %s</string>
+    <string name="explorer_delete_play_list_message">Delete play list : %s</string>
+    <string name="explorer_play_list_add_dialog_name">Name :</string>
+    <string name="explorer_play_list_i_like">I like</string>
+    <string name="service_scan_completed">Scanning completed, found : <xliff:g id="count">%1$d</xliff:g></string>
+    <string name="explorer_toast_folder_is_null">Folder is null!</string>
+    <string name="explorer_pick_save">SAVE</string>
+    <string name="explorer_pick_back">BACK</string>
+    <string name="str_confirm">confirm</string>
+    <string name="str_cancel">cancel</string>
+    <string name="str_starttime">00:00:00</string>
+    <string name="str_colon">:</string>
+</resources>

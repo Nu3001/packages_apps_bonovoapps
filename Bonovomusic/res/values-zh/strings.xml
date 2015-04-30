@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">音乐播放器</string>
+    <string name="player_detail_info_album_title">专辑</string>
+    <string name="player_detail_info_genre_title">流派</string>
+    <string name="player_detail_info_artist_title">歌手</string>
+    <string name="explorer_delete_play_list_message">删除播放列表 : %s</string>
+    <string name="explorer_play_list_add_dialog_title">创建播放列表</string>
+    <string name="explorer_play_list_add_dialog_name">名称 :</string>
+    <string name="explorer_add_list">创建播放列表</string>
+    <string name="player_scan_text">扫描</string>
+    <string name="player_stop_scanning_text">停止扫描</string>
+    <string name="explorer_play_list_i_like">我喜欢的</string>
+    <string name="service_scan_completed">扫描完成，发现 : <xliff:g id="count">%1$d</xliff:g></string>
+    <string name="explorer_toast_folder_is_null">目录为空!</string>
+    <string name="explorer_pick_save">保存</string>
+    <string name="explorer_pick_back">后退</string>
+    <string name="str_confirm">确定</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_starttime">00:00:00</string>
+    <string name="str_colon">:</string>
+</resources>

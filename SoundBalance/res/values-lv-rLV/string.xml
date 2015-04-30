@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">SoundBalance</string>
+<string name="action_settings">Iestatījumi</string>
+<string name="hello_world">Sveika, Pasaule!</string>
+<string name="front_left">Priekša Kreisais</string>
+<string name="front_right">Priekša Labais</string>
+<string name="rear_left">Aizmugure Kreisais</string>
+<string name="rear_right">Aizmugure Labais</string>
+<string name="max_volume">100%</string>
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<com.bonovo.musicplayer.ui.ExplorerPlayListMusicView -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/explorer_category_background"
+    android:minHeight="48dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/explorer_play_list_music_number"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/explorer_play_list_music_title"
+        android:gravity="center_vertical"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="8"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:background="@drawable/explorer_play_list_title_background"/>
+
+    <TextView
+        android:gravity="center_vertical"
+        android:id="@+id/explorer_play_list_music_artist"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="4"
+        android:ellipsize="marquee"
+        android:singleLine="true" />
+
+    <TextView
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:id="@+id/explorer_play_list_music_album"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="4"
+        android:ellipsize="marquee"
+        android:singleLine="true" />
+
+    <ImageButton
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:id="@+id/explorer_play_list_music_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/explorer_play_list_delete" />
+    <!--</com.bonovo.musicplayer.ui.ExplorerPlayListMusicView>-->
+</LinearLayout>

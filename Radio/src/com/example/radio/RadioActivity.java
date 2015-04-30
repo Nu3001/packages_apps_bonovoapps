@@ -4,6 +4,7 @@ import com.example.radio.RadioInterface.RadioStatusChangeListener;
 import com.example.radio.RadioService.ChannelItem;
 
 import android.media.AudioManager;
+import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -21,6 +22,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,6 +33,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,6 +54,9 @@ public class RadioActivity extends Activity implements
 	private static final int DISMISS_INPUT_DIALOG = 4;
 	private static final int VOLUME_DELAY_TIME = 3000;
 	private static final int CHANNEL_SIZE = 48;						//Channel娑擃亝鏆�
+	
+	private static int FOCUS_BUTTON_ID = 0;
+	private static int HEART_STATIC_FLAG = 0;
 
 	private static final int DIALOG_SCAN = 0;
 	private static final int DIALOG_CONFIRM = 1;
@@ -65,6 +72,9 @@ public class RadioActivity extends Activity implements
 	private ProgressDialog mSearchDialog;
 	private SeekBar mVolumeSeekBar;
 	private AlertDialog warnDialog;
+	private CheckBox cBox;
+	private AlertDialog di;
+	private View checkbox;
 
 	private static final boolean DEBUG = true;
 	private static int  flag = 0;						//閼奉亜濮╅幖婊冨酱閺嶅洩顔�
@@ -87,7 +97,10 @@ public class RadioActivity extends Activity implements
 	private Button mButtonButtonFm2;
 	private Button mButtonButtonAm;
 	private Button mButtonButtonSetting;
-	//private Button mButtonButtoncollect;
+	private Button mButtonButtoncollect;
+	private Button mButtonButtonHeart;
+	private Button mButtonClear;
+	private Button mButtonAddHeart;
 	private Button[] channelBtn = new Button[CHANNEL_SIZE];
 	Intent serviceIntent = new Intent("com.example.RadioService");
 
@@ -172,6 +185,10 @@ public class RadioActivity extends Activity implements
 				radioService.stopService(new Intent("com.example.RadioService"));
 				finish();
 				break;
+			case R.id.btncollect:
+				add_or_clear_Collect();
+				gone_Empty_ButtonView();
+				break;
 			case R.id.btnimport:
 				if (DEBUG)
 					Log.d(TAG, "btnimport has worked");
@@ -230,7 +247,114 @@ public class RadioActivity extends Activity implements
 										// TODO Auto-generated method stub
 
 									}
-								}).create().show();				
+								}).create().show();
+				break;
+			case R.id.btnsave:
+				int empty ,sameFreq ;
+				String curfreq = null;
+				int OUTSCOPE = 0 ,OUTSCOPE_FLAG = 1 ;
+				int START = 0,END = 0,END_EMPTY = 0; 
+				if(radioService.getRadioType() == RadioService.RADIO_FM1){
+					// make the current freq type int to String
+					curfreq = Double.toString(radioService.getCurrentFreq()/100.0);
+					Log.v(TAG,"heart curfreq = "+curfreq+" CurrentFreq = "+radioService.getCurrentFreq());
+					
+					//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+					if(radioService.getCurrentFreq() < RadioService.FM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.FM_HIGH_FREQ){
+						OUTSCOPE = OUTSCOPE_FLAG;
+					}
+					START = 0; END = RadioService.RADIO_PAGE_COUNT; END_EMPTY = RadioService.RADIO_PAGE_COUNT - 1;
+
+				}else if(radioService.getRadioType() == RadioService.RADIO_AM){
+					// make the current freq type int to String
+					curfreq = Integer.toString(radioService.getCurrentFreq());
+					Log.v(TAG,"heart curfreq = "+curfreq+" CurrentFreq = "+radioService.getCurrentFreq());
+					//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+					if(radioService.getCurrentFreq() < RadioService.AM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.AM_HIGH_FREQ){
+						OUTSCOPE = OUTSCOPE_FLAG;
+					}
+					START = RadioService.RADIO_PAGE_COUNT; END = 96;END_EMPTY = 96 - 1;
+
+				}else if(radioService.getRadioType() == RadioService.RADIO_COLLECT){
+					//when the type is RADIO_COLLECT ,the curfreq can be FM also can be AM too
+					if(radioService.getCurrentFreq() < RadioService.FM_LOW_FREQ  || radioService.getCurrentFreq() > RadioService.FM_HIGH_FREQ){
+						// make the current freq type int to String
+						curfreq = Integer.toString(radioService.getCurrentFreq());
+					}else if(radioService.getCurrentFreq() < RadioService.AM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.AM_HIGH_FREQ){
+						curfreq = Double.toString(radioService.getCurrentFreq()/100.0);
+					}
+
+					START = 96; END = 144;END_EMPTY = 144 - 1;
+				}
+				for (int i = START; i < END; i++) {
+					if(DEBUG)Log.v(TAG,"("+i+")= "+radioService.getChannelItem(i).freq);
+					if(OUTSCOPE == OUTSCOPE_FLAG){
+						//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+						Toast.makeText(getApplicationContext(), R.string.invalid, Toast.LENGTH_SHORT).show();
+						break;
+					}else{
+						if (radioService.getChannelItem(i).freq.equals("")) {
+							//if freq is empty,save the i and assigned to empty
+							empty = i;
+							if(DEBUG)Log.v(TAG,"empty = " + empty);
+							
+							if(empty == END_EMPTY){
+								//if emty in the end ,show a toast to tell user
+								Toast.makeText(getApplicationContext(), R.string.nowhere, Toast.LENGTH_LONG).show();
+							}
+							
+							//add the curfreq into the empty channel and refresh view
+							ChannelItem item  ;
+							item = radioService.getChannelItem(empty);
+							item.freq = curfreq;
+							item.name = curfreq;
+							radioService.setChannelItem(empty,item);
+							updateChannelList();
+							updateFreqView();	
+							
+							break;
+						} else if(radioService.getChannelItem(i).freq.equals(curfreq)){
+							//if curfreq == channel.freq, make a Toast 
+							sameFreq = i;
+							Toast.makeText(getApplicationContext(), R.string.samefreq, Toast.LENGTH_SHORT).show();
+							if(DEBUG)Log.v(TAG,"sameFreq = " + sameFreq);
+							break;
+						}
+					}	
+				}
+				gone_Empty_ButtonView();
+				break;
+			case R.id.btnclear:
+				new AlertDialog.Builder(RadioActivity.this)
+				.setTitle(R.string.remind)
+				.setCancelable(true)
+				.setMessage(R.string.clear_single_channel)
+				.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								Log.v(TAG,"1111111111");
+								clear_Single_Content();
+								Log.v(TAG,"2222222222");
+								gone_Empty_ButtonView();
+								Log.v(TAG,"3333333333");
+								updateChannelList();
+								updateFreqView();
+							}
+						})
+				.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+
+							}
+						}).create().show();
 				break;
 			case R.id.btnfm1:
 				if (DEBUG)
@@ -238,6 +362,7 @@ public class RadioActivity extends Activity implements
 				if(!radioService.mIsSearchThreadRunning){
 					updateFreqView();
 					radioSetSelect(RadioService.RADIO_FM1);
+					gone_Empty_ButtonView();
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
@@ -250,6 +375,8 @@ public class RadioActivity extends Activity implements
 				if(!radioService.mIsSearchThreadRunning){
 					updateFreqView();
 					radioSetSelect(RadioService.RADIO_FM2);
+					mMiddleButtonForward.setVisibility(View.VISIBLE);
+					mMiddleButtonBackward.setVisibility(View.VISIBLE);
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
@@ -260,6 +387,19 @@ public class RadioActivity extends Activity implements
 				if(!radioService.mIsSearchThreadRunning){
 					updateFreqView();
 					radioSetSelect(RadioService.RADIO_AM);
+					gone_Empty_ButtonView();
+					
+				}else {
+					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case R.id.collect:
+				if (DEBUG)
+					Log.d(TAG, "btncollect has worked");
+				if(!radioService.mIsSearchThreadRunning){
+					updateFreqView();
+					radioSetSelect(RadioService.RADIO_COLLECT);
+					gone_Empty_ButtonView();
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
@@ -273,25 +413,17 @@ public class RadioActivity extends Activity implements
 			case R.id.btnsetting:
 				if (DEBUG)
 					Log.d(TAG, "btnsrtting has worked");
-				Intent setting = new Intent(RadioActivity.this, RadioSetting.class);
+//				Intent setting = new Intent(RadioActivity.this, RadioSetting.class);
+//				//setting.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//				RadioActivity.this.startActivity(setting);
+				Intent setting = new Intent("com.example.radio.IntentActivity");
 				//setting.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 				RadioActivity.this.startActivity(setting);
-				/*
-				LayoutInflater setting =LayoutInflater.from(getApplicationContext());
-				View myView = setting.inflate(R.layout.radio_setting_layout, null);
-				Dialog dialog =new AlertDialog.Builder(RadioActivity.this)
-						.setView(myView)
-						.create();
-				dialog.show();
-				//dialog.getWindow().setLayout(729, 503);
-				 */
 				break;
-//			case R.id.collect:
-//				Log.d(TAG, "collect has worked");
-//				break;
 			case R.id.btnforward:
 				if (radioService.getFunctionId() == 0) {
 					radioService.fineRight(radioService.getCurrentFreq());
+					curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 				} else {
 					radioService.stepRight(radioService.getCurrentFreq());
 					radioService.STEP_OR_AUTO = IS_STEP_NOW;
@@ -300,6 +432,7 @@ public class RadioActivity extends Activity implements
 			case R.id.btnbackward:
 				if (radioService.getFunctionId() == 0) {
 					radioService.fineLeft(radioService.getCurrentFreq());
+					curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 				} else {
 					radioService.stepLeft(radioService.getCurrentFreq());
 					radioService.STEP_OR_AUTO = IS_STEP_NOW;
@@ -354,11 +487,8 @@ public class RadioActivity extends Activity implements
 			case R.id.channel46:
 			case R.id.channel47:
 						
-				if (DEBUG)
-					Log.v(TAG, "Click Button has worked");
 				setChannelChecked(what - R.id.channel0);
-				Log.v("ccc","setChannelChecked arg = " + (what - R.id.channel0));
-				Log.v("ccc","CurChannel = " + radioService.getCurChannelId());
+
 				break;
 			case UPDATE_CHANNEL_LIST:
 				updateChannelList();
@@ -436,11 +566,12 @@ public class RadioActivity extends Activity implements
 				editChannelId = viewId - R.id.channel0;
 				if (DEBUG)
 					Log.d(TAG, "onLongClick editChannelId = "+ editChannelId);
-			} else if (radioService.getRadioType() == RadioService.RADIO_FM2) {
+			} else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
 				editChannelId = viewId - R.id.channel0
-						+ RadioService.RADIO_PAGE_COUNT;
+						+ 96;
 				if (DEBUG)
 					Log.d(TAG, "onLongClick editChannelId = "+ editChannelId);
+				break;
 			} else {
 				editChannelId = viewId - R.id.channel0
 						+ RadioService.RADIO_FM_COUNT;
@@ -450,6 +581,27 @@ public class RadioActivity extends Activity implements
 //			radioService.setChannelItem(editChannelId,
 //					radioService.getChannelItem(editChannelId));
 			showDialog(DIALOG_EDIT);
+			break;
+		case R.id.btnclear:
+			/*******init the checkbox layout******/
+			LayoutInflater lauoutInflater = LayoutInflater.from(RadioActivity.this);
+			checkbox = lauoutInflater.inflate(R.layout.checkbox, null);
+			cBox = (CheckBox) checkbox.findViewById(R.id.check);
+			
+			SharedPreferences pre = getSharedPreferences("checkvalue", MODE_PRIVATE);
+			String value = pre.getString("ischeck", "");
+			/*****if check the NO_Remind,the Dialog no show next time******/
+			if (value.endsWith("1")) {
+				createDialog().dismiss();
+				
+				//clear all content and refresh view
+				radioService.clearAllContent();
+				gone_Empty_ButtonView();
+				updateChannelList();
+				updateFreqView();
+			} else {
+				createDialog().show();
+			}
 			break;
 		default:
 			break;
@@ -485,8 +637,15 @@ public class RadioActivity extends Activity implements
 		mMiddleButtonStep.setOnClickListener(this);
 		mMiddleButtonAuto = (Button) findViewById(R.id.btnauto);
 		mMiddleButtonAuto.setOnClickListener(this);		
-//		mButtonButtoncollect = (Button)findViewById(R.id.collect);
-//		mButtonButtoncollect.setOnClickListener(this);
+		mButtonButtoncollect = (Button)findViewById(R.id.collect);
+		mButtonButtoncollect.setOnClickListener(this);
+		mButtonButtonHeart = (Button) findViewById(R.id.btnsave);
+		mButtonButtonHeart.setOnClickListener(this);
+		mButtonClear = (Button) findViewById(R.id.btnclear);
+		mButtonClear.setOnClickListener(this);
+		mButtonClear.setOnLongClickListener(this);
+		mButtonAddHeart = (Button) findViewById(R.id.btncollect);
+		mButtonAddHeart.setOnClickListener(this);
 
 		channelBtn[0] = (Button) findViewById(R.id.channel0);
 		channelBtn[1] = (Button) findViewById(R.id.channel1);
@@ -576,38 +735,189 @@ public class RadioActivity extends Activity implements
 //		return super.onKeyDown(keyCode, event);
 //		
 //	}
+	
+	/*
+	 * Removing a single Button
+	 * */
+	public void clear_Single_Content() {
+		// TODO Auto-generated method stub
+		if (radioService.getRadioType() == radioService.RADIO_FM1 || radioService.getRadioType() == radioService.RADIO_FM2) {
 
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				if(channelBtn[FOCUS_BUTTON_ID].isSelected()){
+					Log.v(TAG, "4444444444");
+					radioService.setChannelItem(FOCUS_BUTTON_ID, item);
+				}
+
+		} else if (radioService.getRadioType() == radioService.RADIO_AM) {
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				if(channelBtn[FOCUS_BUTTON_ID].isSelected()){
+					radioService.setChannelItem(FOCUS_BUTTON_ID + 48, item);
+				}
+		} else if(radioService.getRadioType() == radioService.RADIO_COLLECT){
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				if(channelBtn[FOCUS_BUTTON_ID].isSelected()){
+					radioService.setChannelItem(FOCUS_BUTTON_ID + 96, item);
+				}
+		}
+		//删除当前焦点频道后,把全局变量置为0，说明当前焦点频率(此时频率为空)与收藏栏不存在相同，并且把爱心变为空心
+		HEART_STATIC_FLAG = 0;
+		mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.btncollect_heart));
+		/*******************************************************************************************/
+	}
+	
+	/**
+	 * 末尾Channel信息为空时 隐藏其界面
+	 */
+	private void gone_Empty_ButtonView() {
+		// TODO Auto-generated method stub
+		ChannelItem item;
+		for(int j=0; j<48; j++){
+			channelBtn[j].setVisibility(View.VISIBLE);
+		}
+		updateChannelList();
+		updateFreqView();
+		if(radioService.getRadioType() == radioService.RADIO_FM1){
+			int i = 47;
+			int gone_ID = 0;
+			for(; i>0; i--){
+				item = radioService.getChannelItem(i);
+				if(!item.freq.equals("")){
+					break;
+				}
+			}
+			if((i+1)>=12){
+				gone_ID = i+1;
+			}else {
+				gone_ID = 12;
+			}
+			
+			for(; gone_ID<48; gone_ID++){
+				channelBtn[gone_ID].setVisibility(View.GONE);
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_AM) {
+			int i = 95;
+			int gone_ID = 0;
+			for(; i>48; i--){
+				item = radioService.getChannelItem(i);
+				if(!item.freq.equals("")){
+					break;
+				}
+			}
+			
+			if((i-47)>=12){
+				gone_ID = i-47;
+			}else {
+				gone_ID = 12;
+			}
+			for(; gone_ID<48; gone_ID++){
+				channelBtn[gone_ID].setVisibility(View.GONE);
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_COLLECT) {
+			int i = 143;
+			int gone_ID = 0;
+			for(; i>96; i--){
+				item = radioService.getChannelItem(i);
+				if(!item.freq.equals("")){
+					break;
+				}
+			}
+			if((i-96)>=12){
+				gone_ID = i-96;
+			}else {
+				gone_ID = 12;
+			}
+			for(; gone_ID<48; gone_ID++){
+				channelBtn[gone_ID].setVisibility(View.GONE);
+			}
+		}
+	}
+	
 	public void setChannelChecked(int btnId) {
 		int checkedId = 0;
+		
 		ChannelItem item;
+		
 		if (DEBUG)
-			Log.v(TAG, "setChannelChecked is into here");
+			Log.v(TAG, "setChannelChecked is into here,btnId = "+btnId);
+		//checkedID's scope 0 ~ RADIO_CHANNEL_COUNT
 		if (radioService.getRadioType() == RadioService.RADIO_FM1) {
 			checkedId = btnId;
-		} else if (radioService.getRadioType() == RadioService.RADIO_FM2) {
-			checkedId = btnId + RadioService.RADIO_PAGE_COUNT;
+		} else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+			checkedId = btnId + 96;
 		} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
 			checkedId = btnId + RadioService.RADIO_FM_COUNT;
 		}
 		item = radioService.getChannelItem(checkedId);
 		if (item.freq.equals("")) {
+			if (DEBUG)
+				Log.v(TAG, "item.freq is empty!!!");
 			return;
 		}
-		// comtains閿熸枻鎷稟閿熸枻鎷烽敓鏂ゆ嫹A閿熻鍖℃嫹鏃堕敓鏂ゆ嫹閿熸枻鎷積quals閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鍙瘮杈冪鎷�
-		if (item.freq.contains(".")) {
-			radioService.setCurrentFreq(Integer.parseInt(item.freq.replaceAll(
-					"\\.", "")) * 10);
-		} else {
-			radioService.setCurrentFreq(Integer.parseInt(item.freq.replaceAll(
-					"\\.", "")));
+		
+		if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+			//******** If Typ is RADIO_COLLECT,According to the frequency of judgment //
+			//******** whether FM or AM												  //
+			if (item.freq.contains(".")) {
+				radioService.turnFmAm(0);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")) * 10);
+			} else {
+				radioService.turnFmAm(1);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")));
+			}
+			//************************************************************************//
+			//************************************************************************//
+		} else if (radioService.getRadioType() == RadioService.RADIO_FM1) {
+			if (item.freq.contains(".")) {
+				radioService.turnFmAm(0);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")) * 10);
+			} else {
+				radioService.turnFmAm(1);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")));
+			}
+		} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
+			if (item.freq.contains(".")) {
+				radioService.turnFmAm(0);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")) * 10);
+			} else {
+				radioService.turnFmAm(1);
+				radioService.setCurrentFreq(Integer.parseInt(item.freq
+						.replaceAll("\\.", "")));
+			}
 		}
+		
 
 		for (int i = 0; i < RadioService.RADIO_PAGE_COUNT; i++) {
 			if (channelBtn[i].isSelected()) {
 				channelBtn[i].setSelected(false);
 			}
+			mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.btncollect_heart));
+			HEART_STATIC_FLAG = 0;
+			/*遍历收藏栏所有频率值 若存在与当前频率相同,则爱心变为红实心图标*/
+			for(int start=96; start<144; start++){
+				if(radioService.getChannelItem(start).freq.equals(item.freq)){
+					mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_d));
+					HEART_STATIC_FLAG = 1;
+				}
+			}
+			/***********************************************************/
 		}
 		channelBtn[btnId].setSelected(true);
+		FOCUS_BUTTON_ID = btnId;
 		// check if playtype is the same as before,fm or am
 		/*
 		 * if (radioService.getCurChannelId() < RadioService.RADIO_FM_COUNT &&
@@ -630,6 +940,8 @@ public class RadioActivity extends Activity implements
 			Log.v(TAG, "RadioService is connected");
 		radioService = ((RadioService.ServiceBinder) service).getService();
 		radioService.registStatusListener(mRadioStatusListener);
+		curFreq_Compare_To_Collect(radioService.getCurrentFreq());
+		gone_Empty_ButtonView();
 		if (radioService.getFunctionId() == 0) {
 			mMiddleButtonBackward
 					.setBackgroundResource(R.drawable.btnfinebackward);
@@ -641,6 +953,15 @@ public class RadioActivity extends Activity implements
 			mMiddleButtonForward
 					.setBackgroundResource(R.drawable.btnstepforward);
 		}
+//		//when type is RADIO_COLLECT,INVISIBLE some controls
+//		if(radioService.getRadioType() == RadioService.RADIO_COLLECT){
+//			mMiddleButtonBackward.setVisibility(View.GONE);
+//			mMiddleButtonForward.setVisibility(View.GONE);
+//			mMiddleButtonAuto.setVisibility(View.GONE);
+//			mMiddleButtonStep.setVisibility(View.GONE);
+//			mMiddleButtonFine.setVisibility(View.GONE);
+//			mButtonAddHeart.setVisibility(View.INVISIBLE);
+//		}
 
 //		radioService.setFreq(radioService.getCurrentFreq());
 //		radioService.setVolume(radioService.getVolume());
@@ -655,18 +976,21 @@ public class RadioActivity extends Activity implements
 			mButtonButtonFm1.setSelected(true);
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(false);
-		} else if (RadioService.RADIO_FM2 == radioService.getRadioType()) {
-			((TextView) findViewById(R.id.radiotype)).setText("FM"); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
-			((TextView) findViewById(R.id.radiohz)).setText("MHz");
+			mButtonButtoncollect.setSelected(false);
+		} else if (RadioService.RADIO_COLLECT == radioService.getRadioType()) {
+			((TextView) findViewById(R.id.radiotype)).setText("收藏栏"); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
+			((TextView) findViewById(R.id.radiohz)).setText(" ");
 			mButtonButtonFm1.setSelected(false);
 			//mButtonButtonFm2.setSelected(true);
 			mButtonButtonAm.setSelected(false);
+			mButtonButtoncollect.setSelected(true);
 		} else if (RadioService.RADIO_AM == radioService.getRadioType()) {
 			((TextView) findViewById(R.id.radiotype)).setText("AM"); /* 閿熸枻鎷稟M鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
 			((TextView) findViewById(R.id.radiohz)).setText("KHz");
 			mButtonButtonFm1.setSelected(false);
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(true);
+			mButtonButtoncollect.setSelected(false);
 		}
 		updateChannelList();
 	}
@@ -687,24 +1011,37 @@ public class RadioActivity extends Activity implements
 			mButtonButtonFm1.setSelected(true);
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(false);
-			radioService.turnFmAm(0);
+			mButtonButtoncollect.setSelected(false);
 			
-
-		} else if (RadioService.RADIO_FM2 == type) {
-			((TextView) findViewById(R.id.radiotype)).setText("FM"); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
-			((TextView) findViewById(R.id.radiohz)).setText("MHz");
+			if(radioService.getCurChannelId() >= 96 && radioService.getCurChannelId() < 144){
+				//If focus in the RADIO_COLLECT Type,No need turnFMAM
+			}else {
+				radioService.turnFmAm(0);
+			}
+			
+		} else if (RadioService.RADIO_COLLECT == type) {
+			((TextView) findViewById(R.id.radiotype)).setText("收藏栏"); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
+			((TextView) findViewById(R.id.radiohz)).setText(" ");
 			mButtonButtonFm1.setSelected(false);
-			//mButtonButtonFm2.setSelected(true);
+			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(false);
-			radioService.turnFmAm(0);
+			mButtonButtoncollect.setSelected(true);
+			
 		} else if (RadioService.RADIO_AM == type) {
 			((TextView) findViewById(R.id.radiotype)).setText("AM"); /* 閿熸枻鎷稟M鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
 			((TextView) findViewById(R.id.radiohz)).setText("KHz");
 			mButtonButtonFm1.setSelected(false);
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(true);
-			radioService.turnFmAm(1);
-		}
+			mButtonButtoncollect.setSelected(false);
+
+			if(radioService.getCurChannelId() >= 96 && radioService.getCurChannelId() < 144){
+				//If focus in the RADIO_COLLECT Type,No need turnFMAM
+			}else {
+				radioService.turnFmAm(1);
+			}
+			
+		} 
 		updateChannelList();
 
 	}
@@ -832,6 +1169,8 @@ public class RadioActivity extends Activity implements
 		ChannelItem item;
 
 		channelId = radioService.getCurChannelId();
+		if (DEBUG)
+			Log.d(TAG, "channelId = "+channelId);
 		if (radioService.getRadioType() == RadioService.RADIO_FM1) {
 			offset = 0;
 			if (DEBUG)
@@ -839,23 +1178,27 @@ public class RadioActivity extends Activity implements
 			if (channelId >= 0 && channelId < RadioService.RADIO_PAGE_COUNT) {
 				pressedId = channelId;
 			}
-		} else if (radioService.getRadioType() == RadioService.RADIO_FM2) {
+		} else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
 			if (DEBUG)
-				Log.d(TAG, "<myu>FM2 Mode");
-			offset = RadioService.RADIO_PAGE_COUNT;
-			if (channelId >= RadioService.RADIO_PAGE_COUNT
-					&& channelId < RadioService.RADIO_FM_COUNT) {
-				pressedId = channelId - RadioService.RADIO_PAGE_COUNT;
+				Log.d(TAG, "<myu>COLLECT Mode");
+			/***If Type is RADIO_COLLECT ,presseId = channeID - 96(offset)****/
+			/************channeID 0 ~ RADIO_CHANNEL_COUNT*********************/
+			offset = 96;
+			if (channelId >= 96
+					&& channelId < 144) {
+				pressedId = channelId - 96;
 			}
+			/*****************************************************************/
 		} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
 			if (DEBUG)
 				Log.d(TAG, "<myu>AM Mode");
 			offset = RadioService.RADIO_FM_COUNT;
 			if (channelId >= RadioService.RADIO_FM_COUNT
-					&& channelId < RadioService.RADIO_CHANNEL_COUNT) {
+					&& channelId < 96) {
 				pressedId = channelId - RadioService.RADIO_FM_COUNT;
 			}
 		}
+		/*****setChannelText ,If abridge is not NULL ,set abridge.Otherwise set freq****/
 		for (int i = 0; i < RadioService.RADIO_PAGE_COUNT; i++) { 
 			item = radioService.getChannelItem(i + offset);
 			if (item.abridge != null && !item.abridge.equals("")) {
@@ -864,6 +1207,8 @@ public class RadioActivity extends Activity implements
 				channelBtn[i].setText(item.freq);
 			}
 		}
+		/*******************************************************************************/
+		
 		// view the select mode
 		for (int i = 0; i < RadioService.RADIO_PAGE_COUNT; i++) {
 			if (pressedId == i && pressedId < RadioService.RADIO_PAGE_COUNT) {
@@ -886,8 +1231,7 @@ public class RadioActivity extends Activity implements
 			} else if (channelBtn[i].isSelected()) {
 				channelBtn[i].setSelected(false);
 			}
-		}
-		
+		}	
 		flag = 0 ;
 	}
 
@@ -1179,75 +1523,476 @@ public class RadioActivity extends Activity implements
 		return super.onKeyDown(keyCode, event);
 	}
 	
+	/*************The No_Remind Dialog*******************/
+	private AlertDialog createDialog() {
+		di = new AlertDialog.Builder(this).setTitle("温馨提示")
+				.setMessage(R.string.clear_content).setView(checkbox)
+				.setPositiveButton(R.string.ok ,new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						SharedPreferences pre = getSharedPreferences(
+								"checkvalue", MODE_PRIVATE);
+						Editor editor = pre.edit();
+						if (cBox.isChecked()) {
+							editor.putString("ischeck", "1");
+						} else {
+							editor.putString("ischeck", "0");
+						}
+						//clear all content and refresh view
+						radioService.clearAllContent();
+						gone_Empty_ButtonView();
+						updateChannelList();
+						updateFreqView();
+						
+						editor.commit();
+
+					}
+				}).setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+							}
+						})
+				
+				.create();
+		return di;
+	}
+	
+	/**
+	 * @return 返回48~0个Button中第一个有效信息的Button ID号
+	 */
+	private int last_Effective_ChannelItem() {
+		// TODO Auto-generated method stub
+		ChannelItem item;
+		if(radioService.getRadioType() == radioService.RADIO_FM1){
+			int id = 47;
+			for(; id>0; id--){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_AM) {
+			int id = 95;
+			for(; id>48; id--){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_COLLECT) {
+			int id = 143;
+			for(; id>96; id--){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id;
+				}
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param id 遇见的item.freq为空时的id（可以大于48）
+	 * @return 返回id~各自Type结尾channelID 第一个有效 id(可以大于48，所以注意返回值要小于48，需要做转换)
+	 */
+	private int first_Effective_ChannelItem(int id){
+		ChannelItem item;
+		if(radioService.getRadioType() == radioService.RADIO_FM1){
+			if(id < 0){
+				id = first_Effective_ChannelItem_For_Lastsong();
+			}
+			for(; id<48; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_AM) {
+			if(id < 48){
+				id = first_Effective_ChannelItem_For_Lastsong();
+			}
+			for(; id<96; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id - 48;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_COLLECT) {
+			if(id < 96){
+				id = first_Effective_ChannelItem_For_Lastsong();
+			}
+			for(; id<144; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id - 96;
+				}
+			}
+		}
+		return 0;
+	}
+
 	public void nextSong() {
 		int checkedId = 0;
-		ChannelItem item;
+		ChannelItem item = null;
 		int curChannel = radioService.getCurChannelId();
+		Log.v(TAG, "curChannel =" + curChannel);
 
 		if (radioService.getRadioType() == RadioService.RADIO_FM1) {
 			checkedId = curChannel;
-			if (curChannel + 1 >= 48)
+			if (curChannel + 1 > 48) {
 				curChannel = 46;
+			}
+
 		} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
 			checkedId = curChannel - RadioService.RADIO_FM_COUNT;
-			if (checkedId < 0)
+			if (checkedId < 0 || checkedId >= 48) {
 				checkedId = -1;
-
+			}
+		} else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+			checkedId = curChannel - 96;
+			if (checkedId < 0) {
+				checkedId = -1;
+			}
 		}
-
 		item = radioService.getChannelItem(curChannel + 1);
-		if (item.freq.equals("")) {
-			setChannelChecked(0);
+		int valid_ID = last_Effective_ChannelItem();
+		Log.v(TAG, "valid_ID = "+valid_ID);
+		if (curChannel == valid_ID) {
+			Log.v(TAG, "first_Effective_ChannelItem_For_Lastsong() --> ="+first_Effective_ChannelItem_For_Lastsong());
+			setChannelChecked(first_Effective_ChannelItem_For_Lastsong());
+		} else if (item.freq.equals("")) {
+			Log.v(TAG, "curChannel + 1 ="+(curChannel + 1)+" |first_Efclfective_ChannelItem(curChannel + 1) ="+first_Effective_ChannelItem(curChannel + 1));
+			if(first_Effective_ChannelItem(curChannel + 1) < 0){
+				setChannelChecked(first_Effective_ChannelItem_For_Lastsong());
+			}else {
+				setChannelChecked(first_Effective_ChannelItem(curChannel + 1));
+			}
 		} else {
+			Log.v(TAG, "()()()()checkedId + 1 = "+(checkedId + 1));
 			setChannelChecked(checkedId + 1);
 		}
+	}
+	
+	/**
+	 * @param id 遇见的item.freq为空时的id（可以大于48）
+	 * @return 返回id~各自Type起始channelID内第一个有效 id(可以大于48，所以注意返回值要小于48，需要做转换)
+	 */
+	private int last_Effective_ChannelItem_For_Lastsong(int id){
+		ChannelItem item;
+		int startId = id;
+		if(radioService.getRadioType() == radioService.RADIO_FM1){
+			for( ;startId>0; startId--){
+				item = radioService.getChannelItem(startId);
+				if(!item.freq.equals("")){
+					return startId;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_AM) {
+			for(; startId>48; startId--){
+				item = radioService.getChannelItem(startId);
+				if(!item.freq.equals("")){
+					return startId - 48;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_COLLECT) {
+			for(; startId>96; startId--){
+				item = radioService.getChannelItem(startId);
+				if(!item.freq.equals("")){
+					return startId - 96;
+				}
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * 各自Type：0~48 中第一个有效频道ID
+	 */
+	private int first_Effective_ChannelItem_For_Lastsong() {
+		// TODO Auto-generated method stub
+		ChannelItem item;
+		if(radioService.getRadioType() == radioService.RADIO_FM1){
+			int id = 0 ;
+			for(; id<48; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_AM) {
+			int id = 48;
+			for(; id<96; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id - 48;
+				}
+			}
+		}else if (radioService.getRadioType() == radioService.RADIO_COLLECT) {
+			int id = 96;
+			for(; id<144; id++){
+				item = radioService.getChannelItem(id);
+				if(!item.freq.equals("")){
+					return id - 96;
+				}
+			}
+		}
+		return 0;
 	}
 	
 	public void lastSong() {
 		int checkedId = 0;
 		ChannelItem item;
-		int finachannel = 0;
+		int curId = 0; //curId为根据当前Type:= curChannel或者curChannel-48或者curChannel-96
+		int effective_id = 0;
 		int curChannel = radioService.getCurChannelId();
-
-		if (radioService.getRadioType() == RadioService.RADIO_FM1) {
+		if (radioService.getRadioType() == RadioService.RADIO_FM1){
 			checkedId = curChannel;
-			if (checkedId - 1 < 0) {
-				for (int i = 0; i < 48; i++) {
-					if (radioService.getChannelItem(i).freq.equals("")) {
-						finachannel = i;
-						break;
-					} else {
-						continue;
-					}
-				}
-				checkedId = finachannel;
-				curChannel = finachannel;
+			curId = curChannel;
+			effective_id = last_Effective_ChannelItem();
+			if(curChannel - 1 <0){
+				checkedId = last_Effective_ChannelItem();
+			}else if(curChannel + 1 >48){
+				checkedId = first_Effective_ChannelItem_For_Lastsong();
 			}
-			if (curChannel + 1 >= 48)
-				curChannel = 46;
-		} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
-			checkedId = curChannel - RadioService.RADIO_FM_COUNT;
-			if (checkedId - 1 < 0) {
-				for (int i = 48; i < 96; i++) {
-					if (radioService.getChannelItem(i).freq.equals("")) {
-						finachannel = i;
-						break;
-					} else {
-						continue;
-					}
-				}
-				checkedId = finachannel - RadioService.RADIO_FM_COUNT;
-				curChannel = finachannel;
+			
+			if (checkedId < 0) {
+				checkedId = 0;
 			}
-			// if(checkedId < 0 )checkedId = -1;
+		}else if (radioService.getRadioType() == RadioService.RADIO_AM) {
+			checkedId = curChannel - 48;
+			curId = curChannel - 48;
+			effective_id = last_Effective_ChannelItem() - 48;
+			if(curChannel - 1 <48 && curChannel  >=0){
+				checkedId = last_Effective_ChannelItem() - 48;
+			}else if(curChannel + 1 >96){
+				checkedId = first_Effective_ChannelItem_For_Lastsong();
+			}
+			
+			if (checkedId < 0) {
+				checkedId = 1;
+			}
+		}else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+			checkedId = curChannel - 96;
+			curId = curChannel - 96;
+			effective_id = last_Effective_ChannelItem() - 96;
+			if(curChannel - 1 <96){
+				checkedId = last_Effective_ChannelItem() - 96;
+			}else if(curChannel + 1 >144){
+				checkedId = first_Effective_ChannelItem_For_Lastsong();
+			}
+			
+			if (checkedId < 0) {
+				checkedId = 0;
+			}
 		}
+		if(curChannel - 1 < 0){
+			item = radioService.getChannelItem(curChannel);
+		}else {
+			item = radioService.getChannelItem(curChannel - 1);
+		}
+		
+		Log.v(TAG, "first_Effective_ChannelItem_For_Lastsong = --->" + first_Effective_ChannelItem_For_Lastsong()+" |curChannel = "+curChannel+" |checkedId = "+checkedId);
+		if(curId == first_Effective_ChannelItem_For_Lastsong()){
+			Log.v(TAG, "33333333333effective_id = "+effective_id);
+			setChannelChecked(effective_id);
+		}else if (item.freq.equals("")) {
+			Log.v(TAG, "22222222");
+			if(last_Effective_ChannelItem_For_Lastsong(curChannel - 1) < 0 ||last_Effective_ChannelItem_For_Lastsong(curChannel - 1) > 48){
+				Log.v(TAG, "444444444");
+				setChannelChecked(last_Effective_ChannelItem());
+			}else {
+				Log.v(TAG, "55555555-->last_Effective_ChannelItem_For_Lastsong(curChannel - 1)="+last_Effective_ChannelItem_For_Lastsong(curChannel - 1));
+				setChannelChecked(last_Effective_ChannelItem_For_Lastsong(curChannel - 1));
+			}
+		}else {
+			if((checkedId - 1) < 0){
+				Log.v(TAG, "111111111111 last_Effective_ChannelItem = "+last_Effective_ChannelItem());
+				if(last_Effective_ChannelItem() > 48){
+					setChannelChecked(last_Effective_ChannelItem() - 48);
+				}else {
+					setChannelChecked(last_Effective_ChannelItem());
+				}
+			}else {
+				Log.v(TAG, "66666--->checkedId - 1 = "+(checkedId - 1));
+				setChannelChecked(checkedId - 1);
+			}
+		}
+		
+	}
+	
+	/**
+	 * 爱心Btn功能
+	 */
+	public void add_or_clear_Collect(){
+		int empty ,sameFreq ;
+		String curfreq = null;
+		int OUTSCOPE = 0 ,OUTSCOPE_FLAG = 1 ;
+		int START = 0,END = 0,END_EMPTY = 0;
+		int focus_btn = radioService.getCurChannelId();//当前焦点Button对应的Type的Id：0~144;
+		Log.v(TAG, "&&&&&&radioService.getChannelItem(focus_btn).freq = "+radioService.getChannelItem(focus_btn).freq + " focus_btn="+focus_btn);
+		if(!radioService.getChannelItem(focus_btn).freq.equals("")){
+			if(HEART_STATIC_FLAG == 0){
+				//当全局变量为0时,说明当前焦点频道在收藏栏中不存在,点击爱心按钮为添加到收藏栏,且爱心变红
+				if(radioService.getRadioType() == RadioService.RADIO_FM1){
+					// make the current freq type int to String
+					curfreq = Double.toString(radioService.getCurrentFreq()/100.0);
+					focus_btn = FOCUS_BUTTON_ID;
+					Log.v(TAG,"heart curfreq = "+curfreq+" CurrentFreq = "+radioService.getCurrentFreq());
+					
+					//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+					if(radioService.getCurrentFreq() < RadioService.FM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.FM_HIGH_FREQ){
+						OUTSCOPE = OUTSCOPE_FLAG;
+					}
+					START = 96; END = 144; END_EMPTY = 144 - 1;
 
-		item = radioService.getChannelItem(curChannel - 1);
+				}else if(radioService.getRadioType() == RadioService.RADIO_AM){
+					// make the current freq type int to String
+					curfreq = Integer.toString(radioService.getCurrentFreq());
+					focus_btn = FOCUS_BUTTON_ID + 48;
+					Log.v(TAG,"heart curfreq = "+curfreq+" CurrentFreq = "+radioService.getCurrentFreq());
+					//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+					if(radioService.getCurrentFreq() < RadioService.AM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.AM_HIGH_FREQ){
+						OUTSCOPE = OUTSCOPE_FLAG;
+					}
+					START = 96; END = 144;END_EMPTY = 144 - 1;
 
-		if (item.freq.equals("")) {
-			setChannelChecked(0);
-		} else {
-			setChannelChecked(checkedId - 1);
+				}else if(radioService.getRadioType() == RadioService.RADIO_COLLECT){
+					//when the type is RADIO_COLLECT ,the curfreq can be FM also can be AM too
+					if(radioService.getCurrentFreq() < RadioService.FM_LOW_FREQ  || radioService.getCurrentFreq() > RadioService.FM_HIGH_FREQ){
+						// make the current freq type int to String
+						curfreq = Integer.toString(radioService.getCurrentFreq());
+						focus_btn = FOCUS_BUTTON_ID + 96;
+					}else if(radioService.getCurrentFreq() < RadioService.AM_LOW_FREQ || radioService.getCurrentFreq() > RadioService.AM_HIGH_FREQ){
+						curfreq = Double.toString(radioService.getCurrentFreq()/100.0);
+					}
+
+					START = 96; END = 144;END_EMPTY = 144 - 1;
+				}
+				for (int i = START; i < END; i++) {
+					if(DEBUG)Log.v(TAG,"("+i+")= "+radioService.getChannelItem(i).freq);
+					if(OUTSCOPE == OUTSCOPE_FLAG){
+						//if the freq's value outof the cur_Type. example: curfreq is 10390 ,but cur_Type is AM, 520~1710
+						Toast.makeText(getApplicationContext(), R.string.invalid, Toast.LENGTH_SHORT).show();
+						break;
+					}else{
+						if (radioService.getChannelItem(i).freq.equals("")) {
+							//if freq is empty,save the i and assigned to empty
+							empty = i;
+							if(DEBUG)Log.v(TAG,"empty = " + empty);
+							
+							if(empty == END_EMPTY){
+								//if emty in the end ,show a toast to tell user
+								Toast.makeText(getApplicationContext(), R.string.nowhere, Toast.LENGTH_LONG).show();
+							}
+							
+							//add the curfreq into the empty channel and refresh view
+							ChannelItem item  ;
+							item = radioService.getChannelItem(empty);
+							
+							/**************当前频率与焦点频率相同时,加入收藏栏的频率为焦点中文名
+							 **************若不同时,则收藏栏显示频率值***********************/
+							Log.v(TAG, "*******************CurrentFreq ="+radioService.getCurrentFreq()+" |item.freq="+radioService.getChannelItem(focus_btn).freq);
+							if(!radioService.getChannelItem(focus_btn).freq.equals("")){
+								if(radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*10
+										||radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*1){
+									item.freq = curfreq;
+									item.name = radioService.getChannelItem(focus_btn).name;
+									item.abridge = radioService.getChannelItem(focus_btn).abridge;//收藏栏中的频道,若在FM/AM中存在对应的中文名字,则把名称由频率值替换为中文名
+									radioService.setChannelItem(empty,item);
+								}else{
+									item.freq = curfreq;
+									item.name = "";
+									item.abridge = "";
+									radioService.setChannelItem(empty,item);
+								}
+								updateChannelList();
+								updateFreqView();
+								mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_d));
+								HEART_STATIC_FLAG = 1;
+								Toast.makeText(getApplicationContext(), R.string.is_addHeart_toast, Toast.LENGTH_SHORT).show();
+							}else {
+								Toast.makeText(getApplicationContext(), R.string.not_effective_freq, Toast.LENGTH_SHORT).show();
+							}
+							
+							/************************************************************/
+							
+							
+							break;
+						} else if(radioService.getChannelItem(i).freq.equals(curfreq)){
+							//if curfreq == channel.freq, make a Toast 
+							sameFreq = i;
+							Toast.makeText(getApplicationContext(), R.string.same_addHeart_toast, Toast.LENGTH_SHORT).show();
+							if(DEBUG)Log.v(TAG,"sameFreq = " + sameFreq);
+							break;
+						}
+					}	
+				}
+			}else if (HEART_STATIC_FLAG == 1) {
+				//全局变量为1,说明当前焦点频率在收藏栏中存在,再次点击爱心按钮,则变为取消收藏功能,且爱心变为空心
+				int checkedId = 0;
+				mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_u));
+				Toast.makeText(getApplicationContext(), R.string.clear_addHeart_toast, Toast.LENGTH_SHORT).show();
+				HEART_STATIC_FLAG = 0;
+				if (radioService.getRadioType() == RadioService.RADIO_FM1) {
+					checkedId = FOCUS_BUTTON_ID;
+				} else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+					checkedId = FOCUS_BUTTON_ID + 96;
+				} else if (radioService.getRadioType() == RadioService.RADIO_AM) {
+					checkedId = FOCUS_BUTTON_ID + RadioService.RADIO_FM_COUNT;
+				}
+				ChannelItem item  ;
+				item = radioService.getChannelItem(checkedId);
+				for(int i=96; i<144; i++){
+					if(radioService.getChannelItem(i).freq.equals(item.freq)){
+						item = radioService.getChannelItem(i);
+						item.freq = "";
+						item.name = "";
+						item.abridge = "";
+						radioService.setChannelItem(i,item);
+						updateChannelList();
+						updateFreqView();
+					}
+				}
+			}
+		}else {
+			Toast.makeText(getApplicationContext(), R.string.not_effective_freq, Toast.LENGTH_SHORT).show();
+		}
+		
+	}
+	
+	/**
+	 * @param curFreq
+	 * 当前频率值与收藏栏的频率值作比较,若收藏栏存在当前频率值
+	 * 则爱心Button变为红实心
+	 */
+	private void curFreq_Compare_To_Collect(int curFreq) {
+		Log.v(TAG, "curFreq_Compare_To_Collect");
+		// TODO Auto-generated method stub
+		//int curFreq = radioService.getCurrentFreq();
+		Log.v(TAG, "curFreq_Compare_To_Collect-----curFreq="+curFreq);
+		int collect_Freq = 0;
+		mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_u));
+		HEART_STATIC_FLAG = 0;
+		for(int i=96; i<144; i++){
+			ChannelItem item  ;
+			item = radioService.getChannelItem(i);
+			if(item.freq.contains(".")){
+				collect_Freq =Integer.parseInt(item.freq
+						.replaceAll("\\.", "")) * 10;
+			}else if(!item.freq.equals("")){
+				collect_Freq = Integer.parseInt(item.freq);
+			}
+			
+			if(collect_Freq == curFreq){
+				HEART_STATIC_FLAG = 1;
+				mButtonAddHeart.setBackground(getResources().getDrawable(R.drawable.collect_d));
+				break;
+			}
 		}
 	}
 	
@@ -1257,6 +2002,8 @@ public class RadioActivity extends Activity implements
 		myIntentFilter.addAction("Radio.Media_Broadcast_Last");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SWITCH_FMAM");
 		myIntentFilter.addAction("Radio_Auto_Complete");
+		myIntentFilter.addAction("Step-Search");
+		myIntentFilter.addAction("updateFreqView");
 		return myIntentFilter;
 		
 	};
@@ -1276,11 +2023,11 @@ public class RadioActivity extends Activity implements
 						+ " *********mIdex = " + mIdex);
 				if (radioService.getRadioType() == RadioService.RADIO_FM1
 						|| radioService.getRadioType() == RadioService.RADIO_FM2) {
-					float ccttyy = iCurfreq / 100f;
+					float autoFreq = iCurfreq / 100f;
 					if (mIdex >= CHANNEL_SIZE)
 						mIdex = CHANNEL_SIZE - 1;
 					item = radioService.getChannelItem(mIdex);
-					item.freq = Float.toString(ccttyy);
+					item.freq = Float.toString(autoFreq);
 					item.abridge = "";
 					item.name = "";
 					radioService.setChannelItem(mIdex, item);
@@ -1298,7 +2045,30 @@ public class RadioActivity extends Activity implements
 					radioService.setChannelItem(nIdex, item);
 					mHandler.sendEmptyMessage(UPDATE_CHANNEL_LIST);
 					updateFreqView();
+				}else if (radioService.getRadioType() == RadioService.RADIO_COLLECT) {
+					int nIdex;
+					nIdex = mIdex + CHANNEL_SIZE*2;
+					if (nIdex >= CHANNEL_SIZE * 3)
+						nIdex = CHANNEL_SIZE * 3 - 1;
+					if(radioService.getCurrentFreq() > RadioService.FM_LOW_FREQ && radioService.getCurrentFreq() < RadioService.FM_HIGH_FREQ){
+						float autoFreq = iCurfreq / 100f;
+						item = radioService.getChannelItem(nIdex);
+						item.freq = Float.toString(autoFreq);
+						item.abridge = "";
+						item.name = "";
+						radioService.setChannelItem(nIdex, item);
+					}else if(radioService.getCurrentFreq() > RadioService.AM_LOW_FREQ && radioService.getCurrentFreq() < RadioService.AM_HIGH_FREQ){
+						item = radioService.getChannelItem(nIdex);
+						item.freq = Integer.toString(iCurfreq);
+						item.abridge = "";
+						item.name = "";
+						radioService.setChannelItem(nIdex, item);
+					}
+					
+					mHandler.sendEmptyMessage(UPDATE_CHANNEL_LIST);
+					updateFreqView();
 				}
+				gone_Empty_ButtonView();
 			}else if (intent.getAction().equals("Radio_Auto_Complete")) {
 				//when auto search is complete,set Channal0 with the first freq
 				setChannelChecked(0);
@@ -1327,6 +2097,11 @@ public class RadioActivity extends Activity implements
 								R.string.searching, Toast.LENGTH_SHORT).show();
 					}
 				}
+			}else if(intent.getAction().equals("Step-Search")){
+				int stepCurfreq = intent.getIntExtra("step-curfreq", 0);
+				curFreq_Compare_To_Collect(stepCurfreq);
+			}else if(intent.getAction().equals("updateFreqView")){
+				updateFreqView();
 			}
 		}
 	};

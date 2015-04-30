@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="player_title_text_music">音乐</string>
+    <string name="player_title_text_list">列表</string>
+    <string name="browser_text_title">音乐列表</string>
+    <string name="browser_button_play_list">播放列表</string>
+    <string name="browser_button_play_folder">播放文件夹</string>
+    <string name="browser_button_artist_list">艺术家</string>
+    <string name="browser_button_album_list">专辑</string>
+    <string name="browser_button_school_list">流派</string>
+    <string name="player_detail_text_pre_audio">上一首 ： </string>
+    <string name="player_detail_text_next_audio">下一首 ： </string>
+    <string name="player_detail_text_album">专辑 ： </string>
+    <string name="player_detail_text_school">流派 ： </string>
+    <string name="player_detail_text_artist">歌手 ： </string>
+    <string name="browser_text_default_album">unknown album</string>
+    <string name="player_button_mode_all">全部</string>
+    <string name="player_button_mode_single">单曲</string>
+    <string name="player_button_mode_random">随机</string>
+    <string name="player_lrc_file_not_found">文件没有找到</string>
+    <string name="duration_format_short"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
+    <string name="duration_format_long"><xliff:g id="format">%1$02d:%3$02d:%5$02d</xliff:g></string>
+</resources>

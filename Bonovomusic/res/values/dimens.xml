@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lrc_button_width">43px</dimen>
+    <dimen name="lrc_button_height">152px</dimen>
+    <dimen name="slt_width">242px</dimen>
+    <dimen name="player_seek_bar_background_height">47px</dimen>
+    <dimen name="player_sound_indicator_margin_left">40dp</dimen>
+    <dimen name="player_sound_indicator_margin_top">20dp</dimen>
+    <dimen name="player_sound_text_size">15sp</dimen>
+    <dimen name="player_music_image_margin_left">50dp</dimen>
+    <dimen name="player_music_image_margin_top">10dp</dimen>
+    <dimen name="player_seek_bar_width">827px</dimen>
+    <dimen name="player_detail_text_margin_top">150dp</dimen>
+    <dimen name="player_detail_text_margin_left">70dp</dimen>
+    <dimen name="player_detail_text_size">20sp</dimen>
+</resources>

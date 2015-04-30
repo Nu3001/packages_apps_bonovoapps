@@ -7,6 +7,6 @@
     <!-- keys -->
     <dimen name="row_pitch">10dip</dimen>
     <dimen name="last_option_pitch">0dip</dimen>
-    <dimen name="text_width">100dip</dimen>
-    <dimen name="btn_width">90dip</dimen>
+    <dimen name="text_width">150dip</dimen>
+    <dimen name="btn_width">140dip</dimen>
 </resources>

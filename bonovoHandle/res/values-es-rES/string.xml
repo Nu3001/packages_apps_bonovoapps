@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">bonovoHandle</string>
+<string name="hello_world">Hola mundo!</string>
+<string name="menu_settings">Ajustes</string>
+<string name="title_activity_main">Actividad Principal</string>
+<string name="set_value">Ajustar brillo</string>
+<string name="get_value">Valor de brillo</string>
+<string name="get_button">Obtener valor</string>
+<string name="set_button">Ajustar valor</string>
+<string name="def_volume">10</string>
+<string name="title_activity_power">Eencendido</string>
+<string name="action_settings">Ajustes</string>
+</resources>

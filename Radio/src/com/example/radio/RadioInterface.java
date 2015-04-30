@@ -5,8 +5,8 @@ public interface RadioInterface {
 	public static final int RADIO_FM1 = 0;
 	public static final int RADIO_FM2 = 1;
 	public static final int RADIO_AM = 2;
-	
-	//ÓëJNIÓÐ¹ØµÄº¯Êý
+	public static final int RADIO_COLLECT = 3;
+	//ï¿½ï¿½JNIï¿½Ð¹ØµÄºï¿½ï¿½ï¿½
 	public int fineLeft(int freq);
 	public int fineRight(int freq);
 	public int stepLeft(int freq);
@@ -20,8 +20,9 @@ public interface RadioInterface {
 	int getFunctionId();
 	void setCurrentFreq(int freq);
 	int getCurrentFreq();
+	void clearAllContent();
 	
-	//¼àÌý½Ó¿Ú
+	//ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½
 	interface RadioStatusChangeListener {
 	      public void onStatusChange(int type);
 	}

@@ -41,7 +41,7 @@
 #define debug(format, ...) do{}while(0)
 #endif
 
-#define RADIO_DEV_NODE              "/dev/ttyS3"    // Éè±¸½Úµã
+#define RADIO_DEV_NODE              "/dev/ttyS3"    // ï¿½è±¸ï¿½Úµï¿½
 #define AUDIO_CTRL_NODE             "/dev/bonovo_handle"
 
 ///////////////////////////////////////////////////////
@@ -67,66 +67,66 @@ typedef enum
 ///////////////////////////////////////////////////////
 
 // about codec control
-#define CMD_CODEC_AUDIO_SRC_SELECT  0               // Íâ²¿Ä£ÄâÒôÆµÑ¡Ôñ¿ª¹Ø
-#define CMD_CODEC_MUX_SRC_SELECT    1               // MUXÊäÈëÔ´Ñ¡Ôñ
-#define CMD_CODEC_MIXER_SRC_SELECT  2               // MIXERÊäÈëÔ´Ñ¡Ôñ
-#define CMD_CODEC_MIXER_DAC_VOLUME  3               // MIXER DACÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_MIXER_ANA_VOLUME  4               // MIXERÄ£ÄâÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_LOUT1_VOLUME      5               // LOUT1ÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_ROUT1_VOLUME      6               // ROUT1ÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_LOUT2_VOLUME      7               // LOUT2ÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_ROUT2_VOLUME      8               // ROUT2ÒôÁ¿ÉèÖÃ
-#define CMD_CODEC_OUTPUT_VOLUME     9               // ÉèÖÃËùÓÐÊä³öÒôÁ¿Öµ
-#define CMD_CODEC_MUTE              10              // ¾²ÒôÉèÖÃ
-#define CMD_CODEC_STEREO_STRENGTHEN 11              // 3DÁ¢ÌåÉù¼ÓÇ¿ÉèÖÃ
+#define CMD_CODEC_AUDIO_SRC_SELECT  0               // ï¿½â²¿Ä£ï¿½ï¿½ï¿½ï¿½ÆµÑ¡ï¿½ñ¿ª¹ï¿½
+#define CMD_CODEC_MUX_SRC_SELECT    1               // MUXï¿½ï¿½ï¿½ï¿½Ô´Ñ¡ï¿½ï¿½
+#define CMD_CODEC_MIXER_SRC_SELECT  2               // MIXERï¿½ï¿½ï¿½ï¿½Ô´Ñ¡ï¿½ï¿½
+#define CMD_CODEC_MIXER_DAC_VOLUME  3               // MIXER DACï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_MIXER_ANA_VOLUME  4               // MIXERÄ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_LOUT1_VOLUME      5               // LOUT1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_ROUT1_VOLUME      6               // ROUT1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_LOUT2_VOLUME      7               // LOUT2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_ROUT2_VOLUME      8               // ROUT2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_OUTPUT_VOLUME     9               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+#define CMD_CODEC_MUTE              10              // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_CODEC_STEREO_STRENGTHEN 11              // 3Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½
 
 // about radio control
-#define CMD_RADIO_STANDARD_MODEL    0               // ÖÆÊ½ÉèÖÃ
-#define CMD_RADIO_BAND_SELECT       1               // Æµ¶ÎÑ¡Ôñ
-#define CMD_RADIO_RDS_ON_OFF        2               // RDS¿ª¹Ø¿ØÖÆ
-#define CMD_RADIO_VOLUME            3               // ÒôÁ¿ÉèÖÃ
-#define CMD_RADIO_MUTE              4               // ¾²ÒôÉèÖÃ
-#define CMD_RADIO_FREQ              5               // µçÌ¨ÆµÂÊÉèÖÃ
-#define CMD_RADIO_START_SEARCH      6               // ËÑÌ¨ÃüÁî
-#define CMD_RADIO_STOP_SEARCH       7               // Í£Ö¹ËÑÌ¨
-#define CMD_RADIO_STEREO_STRENGTHEN 8               // 3DÁ¢ÌåÉù¼ÓÇ¿ÉèÖÃ
-#define CMD_RADIO_SHUTDOWN          9               // ¹Ø±ÕÊÕÒô»ú
-#define CMD_RADIO_MIN_FREQ          10              // ÉèÖÃ¿ÉËÑË÷µÄ×îÐ¡ÆµÂÊ
-#define CMD_RADIO_MAX_FREQ          11              // ÉèÖÃ¿ÉËÑË÷µÄ×î´óÆµÂÊ
-#define CMD_RADIO_STEP_LEN          12              // ÉèÖÃËÑË÷µçÌ¨µÄ²½³¤
-#define CMD_RADIO_REMOTE            13              // Ô¶³Ì±¾µØÇÐ»»
+#define CMD_RADIO_STANDARD_MODEL    0               // ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_BAND_SELECT       1               // Æµï¿½ï¿½Ñ¡ï¿½ï¿½
+#define CMD_RADIO_RDS_ON_OFF        2               // RDSï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½
+#define CMD_RADIO_VOLUME            3               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_MUTE              4               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_FREQ              5               // ï¿½ï¿½Ì¨Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_START_SEARCH      6               // ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_STOP_SEARCH       7               // Í£Ö¹ï¿½ï¿½Ì¨
+#define CMD_RADIO_STEREO_STRENGTHEN 8               // 3Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_SHUTDOWN          9               // ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CMD_RADIO_MIN_FREQ          10              // ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½
+#define CMD_RADIO_MAX_FREQ          11              // ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½
+#define CMD_RADIO_STEP_LEN          12              // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½Ä²ï¿½ï¿½ï¿½
+#define CMD_RADIO_REMOTE            13              // Ô¶ï¿½Ì±ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
 
 /* about standard model */
 // FM
-#define CHINA_FM_FREQ_MIN           8700         // ÖÐ¹úÖÆÊ½FMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define CHINA_FM_FREQ_MAX           10800        // ÖÐ¹úÖÆÊ½FMµÄ×î´óÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define CHINA_FM_STEP_LENGTH        10           // ÖÐ¹úÖÆÊ½FMµÄ²½³¤£¨ÒÔ10KHzÎªµ¥Î»£©
-#define JNP_FM_FREQ_MIN             7600         // ÈÕ±¾ÖÆÊ½FMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define JNP_FM_FREQ_MAX             9000         // ÈÕ±¾ÖÆÊ½FMµÄ×î´óÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define JNP_FM_STEP_LENGTH          10           // ÈÕ±¾ÖÆÊ½FMµÄ²½³¤£¨ÒÔ10KHzÎªµ¥Î»£©
-#define EUROPE_FM_FREQ_MIN          8700         // Å·ÖÞÖÆÊ½FMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define EUROPE_FM_FREQ_MAX          10800        // Å·ÖÞÖÆÊ½FMµÄ×î´óÆµÂÊÖµ£¨ÒÔ10KHzÎªµ¥Î»£©
-#define EUROPE_FM_STEP_LENGTH       5            // Å·ÖÞÖÆÊ½FMµÄ²½³¤£¨ÒÔ10KHzÎªµ¥Î»£©
+#define CHINA_FM_FREQ_MIN           8700         // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define CHINA_FM_FREQ_MAX           10800        // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define CHINA_FM_STEP_LENGTH        10           // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½FMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_FM_FREQ_MIN             7600         // ï¿½Õ±ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_FM_FREQ_MAX             9000         // ï¿½Õ±ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_FM_STEP_LENGTH          10           // ï¿½Õ±ï¿½ï¿½ï¿½Ê½FMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_FM_FREQ_MIN          8700         // Å·ï¿½ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_FM_FREQ_MAX          10800        // Å·ï¿½ï¿½ï¿½ï¿½Ê½FMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_FM_STEP_LENGTH       10 //5            // Å·ï¿½ï¿½ï¿½ï¿½Ê½FMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10KHzÎªï¿½ï¿½Î»ï¿½ï¿½
 // AM
-#define CHINA_AM_FREQ_MIN           531          // ÖÐ¹úÖÆÊ½AMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define CHINA_AM_FREQ_MAX           1602         // ÖÐ¹úÖÆÊ½AMµÄ×î´óÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define CHINA_AM_STEP_LENGTH        9            // ÖÐ¹úÖÆÊ½AMµÄ²½³¤£¨ÒÔKHzÎªµ¥Î»£©
-#define JNP_AM_FREQ_MIN             522          // ÈÕ±¾ÖÆÊ½AMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define JNP_AM_FREQ_MAX             1620         // ÈÕ±¾ÖÆÊ½AMµÄ×î´óÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define JNP_AM_STEP_LENGTH          9            // ÈÕ±¾ÖÆÊ½AMµÄ²½³¤£¨ÒÔKHzÎªµ¥Î»£©
-#define EUROPE_AM_FREQ_MIN          522          // Å·ÖÞÖÆÊ½AMµÄ×îÐ¡ÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define EUROPE_AM_FREQ_MAX          1620         // Å·ÖÞÖÆÊ½AMµÄ×î´óÆµÂÊÖµ£¨ÒÔKHzÎªµ¥Î»£©
-#define EUROPE_AM_STEP_LENGTH       9            // Å·ÖÞÖÆÊ½AMµÄ²½³¤£¨ÒÔKHzÎªµ¥Î»£©
+#define CHINA_AM_FREQ_MIN           531          // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define CHINA_AM_FREQ_MAX           1602         // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define CHINA_AM_STEP_LENGTH        9            // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½AMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_AM_FREQ_MIN             522          // ï¿½Õ±ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_AM_FREQ_MAX             1620         // ï¿½Õ±ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define JNP_AM_STEP_LENGTH          9            // ï¿½Õ±ï¿½ï¿½ï¿½Ê½AMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_AM_FREQ_MIN          522          // Å·ï¿½ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_AM_FREQ_MAX          1620         // Å·ï¿½ï¿½ï¿½ï¿½Ê½AMï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
+#define EUROPE_AM_STEP_LENGTH       9            // Å·ï¿½ï¿½ï¿½ï¿½Ê½AMï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½KHzÎªï¿½ï¿½Î»ï¿½ï¿½
 // standard model selectors
-#define MODEL_CHINA                 0            // ÖÐ¹úÖÆÊ½
-#define MODEL_JNP                   1            // ÈÕ±¾ÖÆÊ½
-#define MODEL_EUROPE                2            // Å·ÖÞÖÆÊ½
+#define MODEL_CHINA                 0            // ï¿½Ð¹ï¿½ï¿½ï¿½Ê½
+#define MODEL_JNP                   1            // ï¿½Õ±ï¿½ï¿½ï¿½Ê½
+#define MODEL_EUROPE                2            // Å·ï¿½ï¿½ï¿½ï¿½Ê½
 
 /* band */
-#define BAND_FM                     0            // µ÷Æµ
-#define BAND_AM                     1            // µ÷·ù
-#define BAND_SW                     2            // ¶Ì²¨
-#define BAND_LW                     3            // ³¤²¨
+#define BAND_FM                     0            // ï¿½ï¿½Æµ
+#define BAND_AM                     1            // ï¿½ï¿½ï¿½ï¿½
+#define BAND_SW                     2            // ï¿½Ì²ï¿½
+#define BAND_LW                     3            // ï¿½ï¿½ï¿½ï¿½
 
 struct radio_freq
 {
@@ -134,21 +134,21 @@ struct radio_freq
 	unsigned char is_valid;
 };
 
-static int fd_radio = -1;                           // ´ò¿ª´®¿Ú3µÄÎÄ¼þÃèÊö·û¡£
-static int fd_bonovo= -1;                           // ¶ÁÈ¡ËÑË÷µÄµçÌ¨ÆµÂÊµÄÎÄ¼þÃèÊö·û¡£ 
-static int cur_model= MODEL_CHINA;                  // Ä¬ÈÏµÄÖÆÊ½
-static int cur_band = BAND_FM;                      // Ä¬ÈÏµÄÆµ¶Î
-static int freq_min = CHINA_FM_FREQ_MIN;            // Ä¬ÈÏµÄFM¿ÉËÑË÷µÄ×îÐ¡ÆµÂÊÖµ 
-static int freq_max = CHINA_FM_FREQ_MAX;            // Ä¬ÈÏµÄFM¿ÉËÑË÷µÄ×î´óÆµÂÊÖµ
-static int step_len = CHINA_FM_STEP_LENGTH;         // Ä¬ÈÏµÄFMËÑË÷²½³¤
-static int mtype;                                   // FM AMÇÐ»»±ê¼Ç
+static int fd_radio = -1;                           // ï¿½ò¿ª´ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+static int fd_bonovo= -1;                           // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ì¨Æµï¿½Êµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+static int cur_model= MODEL_CHINA;                  // Ä¬ï¿½Ïµï¿½ï¿½ï¿½Ê½
+static int cur_band = BAND_FM;                      // Ä¬ï¿½Ïµï¿½Æµï¿½ï¿½
+static int freq_min = CHINA_FM_FREQ_MIN;            // Ä¬ï¿½Ïµï¿½FMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Æµï¿½ï¿½Öµ
+static int freq_max = CHINA_FM_FREQ_MAX;            // Ä¬ï¿½Ïµï¿½FMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµ
+static int step_len = CHINA_FM_STEP_LENGTH;         // Ä¬ï¿½Ïµï¿½FMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+static int mtype;                                   // FM AMï¿½Ð»ï¿½ï¿½ï¿½ï¿½
 
 /*!
  *************************************************************************************
  * function: activeAudio
- *     Ä£ÄâÒôÆµÇÐ»»º¯Êý
- * @param[in] CODEC_Level ÒªÇÐ»»µÄÄ£ÄâÒôÆµÊäÈëÔ´
- * @return    int         0:ÉèÖÃ³É¹¦  !0:ÉèÖÃÊ§°Ü
+ *     Ä£ï¿½ï¿½ï¿½ï¿½Æµï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] CODEC_Level Òªï¿½Ð»ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Ô´
+ * @return    int         0:ï¿½ï¿½ï¿½Ã³É¹ï¿½  !0:ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
  *************************************************************************************
  */
 int activeAudio(CODEC_Level codec_mode)
@@ -167,8 +167,8 @@ int activeAudio(CODEC_Level codec_mode)
 /*!
  *************************************************************************************
  * function: recoverAudio
- *     »Ö¸´ÇÐ»»ÒôÆµÇ°µÄÄ£ÄâÊäÈëÔ´
- * @return    int  0:ÉèÖÃ³É¹¦  !0:ÉèÖÃÊ§°Ü
+ *     ï¿½Ö¸ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ÆµÇ°ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
+ * @return    int  0:ï¿½ï¿½ï¿½Ã³É¹ï¿½  !0:ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
  *************************************************************************************
  */
 int recoverAudio(CODEC_Level codec_mode)
@@ -188,10 +188,10 @@ int recoverAudio(CODEC_Level codec_mode)
 /*!
  *************************************************************************************
  * function: checkSum
- *     ¼ÆËãÐ£ÑéºÍº¯Êý
- * @param[in] cmdBuf Òª¼ÆËãÐ£ÑéºÍµÄÊý¾Ý´æ·ÅµÄ»º³åÇøÖ¸Õë
- * @param[in] size   »º³åÇøÖÐÓÐÐ§Êý¾ÝµÄ×Ö½ÚÊý
- * @return           ¼ÆËã³öÀ´µÄÐ£ÑéºÍ
+ *     ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Íºï¿½ï¿½ï¿½
+ * @param[in] cmdBuf Òªï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Íµï¿½ï¿½ï¿½Ý´ï¿½ÅµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+ * @param[in] size   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Ýµï¿½ï¿½Ö½ï¿½ï¿½ï¿½
+ * @return           ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½
  *************************************************************************************
  */
 unsigned int checkSum(unsigned char* cmdBuf, int size)
@@ -208,13 +208,13 @@ unsigned int checkSum(unsigned char* cmdBuf, int size)
 /*@
  *************************************************************************************
  * function: setRangeAndStep
- *    ÉèÖÃËÑË÷ÆµÂÊ·¶Î§ºÍËÑË÷²½³¤
- * @param[in] mode    Ñ¡ÔñµÄÖÆÊ½
- * @param[in] band    Ñ¡ÔñµÄÆµ¶Î
- * @return            ·µ»ØÖ´ÐÐ½á¹û
- *            - 0     Ö´ÐÐ³É¹¦
- *            - -1    ÎÞÐ§µÄ²ÎÊý»òÕß´®¿Ú»¹Î´Õý³£´ò¿ª
- *            - -2    ´®¿Ú·¢ËÍÃüÁîÊ§°Ü
+ *    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½Ê·ï¿½Î§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] mode    Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+ * @param[in] band    Ñ¡ï¿½ï¿½ï¿½Æµï¿½ï¿½
+ * @return            ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð½ï¿½ï¿½
+ *            - 0     Ö´ï¿½Ð³É¹ï¿½
+ *            - -1    ï¿½ï¿½Ð§ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½Ú»ï¿½Î´ï¿½ï¿½ï¿½
+ *            - -2    ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
  *************************************************************************************
  */
 int setRangeAndStep(int mode, int band)
@@ -227,6 +227,7 @@ int setRangeAndStep(int mode, int band)
 		return -1;
 	cur_model = mode;
 	cur_band = band;
+	LOGE("setRangeAndStep cur_model =%d\n",cur_model);
 	switch(cur_band)
 	{
 	case BAND_FM:
@@ -335,15 +336,15 @@ int setRangeAndStep(int mode, int band)
 /*!
  **************************************************************************************************
  * function: android_radio_PowerOnoff
- *     Æô¶¯radioº¯Êý£¬Ö÷Òª¹¤×÷ÊÇ´ò¿ª´®¿Ú²¢ÉèÖÃÊÕÒô»úµÄÆµÂÊfreq¡£
+ *     ï¿½ï¿½ï¿½ï¿½radioï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ç´ò¿ª´ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½freqï¿½ï¿½
  *
- * @param[in] OnOff  ¶ÔÊÕÒô»úÄ£¿éµÄ²Ù×÷
- *            - !1   ¹Ø±ÕÊÕÒô»ú
- *            - 1    ´ò¿ªÊÕÒô»ú
- * @return           Ö´ÐÐ½á¹û
- *            - 0    ²Ù×÷Ö´ÐÐ³É¹¦
- *            - -1   ´ò¿ªÊÕÒô»úÊ±£¬·µ»Ø¸ÃÖµËµÃ÷´ò¿ª´®¿ÚÊ§°Ü£»¹Ø±ÕÊÕÒô»úÊ±£¬·µ»Ø¸ÃÖµËµÃ÷´®¿ÚÖ®Ç°Ã»ÓÐ³É¹¦´ò¿ª
- *            - -2   ·µ»Ø¸ÃÖµËµÃ÷Ð´´®¿ÚÊ§°Ü£»
+ * @param[in] OnOff  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
+ *            - !1   ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *            - 1    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @return           Ö´ï¿½Ð½ï¿½ï¿½
+ *            - 0    ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð³É¹ï¿½
+ *            - -1   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ÖµËµï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ÖµËµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°Ã»ï¿½Ð³É¹ï¿½ï¿½ï¿½
+ *            - -2   ï¿½ï¿½ï¿½Ø¸ï¿½ÖµËµï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½
  **************************************************************************************************
  */
 static int android_radio_PowerOnoff(JNIEnv *env, jobject thiz, jint OnOff)
@@ -417,12 +418,12 @@ static int android_radio_PowerOnoff(JNIEnv *env, jobject thiz, jint OnOff)
 /*!
  *************************************************************************************
  * function: android_radio_SetVolume
- *     ÉèÖÃÊÕÒô»úÒôÁ¿
- * @param[in] volume ÊÕÒô»úµÄÒôÁ¿£¨°Ù·Ö°Ù£¬±ÈÈçÒªÉèÖÃ×ÜÒôÁ¿µÄ10%£¬Ôòvolume=10£©
- * @return           º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0    ÉèÖÃÊÕÒô»úÒôÁ¿ÃüÁî·¢ËÍ³É¹¦¡£
- *            - -1   ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2   ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] volume ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù·Ö°Ù£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10%ï¿½ï¿½ï¿½ï¿½volume=10ï¿½ï¿½
+ * @return           ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½Í³É¹ï¿½ï¿½ï¿½
+ *            - -1   ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_SetVolume(JNIEnv *env, jobject thiz, jint volume)
@@ -457,17 +458,17 @@ static int android_radio_SetVolume(JNIEnv *env, jobject thiz, jint volume)
 /*!
  *************************************************************************************
  * function: android_radio_SetMute
- *     ´ò¿ª»òÕß¹Ø±ÕÊÕÒô»ú¾²Òô¹¦ÄÜ
- * @param[in] muteState ÉèÖÃ¾²ÒôµÄ²Ù×÷
- *            - 0       È¡Ïû¾²Òô
- *            - 1       ×óÉùµÀ¾²Òô£¬ÓÒÉùµÀ·Ç¾²Òô
- *            - 2       ÓÒÉùµÀ¾²Òô£¬×óÉùµÀ·Ç¾²Òô
- *            - 3       ×óÓÒÉùµÀ¾ù¾²Òô
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0       ÉèÖÃÊÕÒô»ú¾²ÒôÃüÁî·¢ËÍ³É¹¦¡£
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»ú¾²ÒôµÄÃüÁî·¢ËÍÊ§°Ü¡£
- *            - -3      ´«ÈëÁËÎÞÐ§µÄ²ÎÊý£¬Çë×¢Òâ²ÎÊýÈ¡Öµ¡£
+ *     ï¿½ò¿ª»ï¿½ï¿½ß¹Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] muteState ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
+ *            - 0       È¡ï¿½ï¿½ï¿½ï¿½
+ *            - 1       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½
+ *            - 2       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½
+ *            - 3       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½Í³É¹ï¿½ï¿½ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
+ *            - -3      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½È¡Öµï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_SetMute(JNIEnv *env, jobject thiz, jint muteState)
@@ -503,14 +504,14 @@ static int android_radio_SetMute(JNIEnv *env, jobject thiz, jint muteState)
 /*!
  *************************************************************************************
  * function: android_radio_GetMute
- *     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>»ñÈ¡ÊÕÒô»ú¾²ÒôµÄ×´Ì¬£¬¸Ãº¯ÊýÎ´ÊµÏÖ£¬ÉÏ²ãÃ»ÓÐÊ¹ÓÃ¡£
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0       ·Ç¾²Òô
- *            - 1       ×óÉùµÀ¾²Òô£¬ÓÒÉùµÀ·Ç¾²Òô
- *            - 2       ÓÒÉùµÀ¾²Òô£¬×óÉùµÀ·Ç¾²Òô
- *            - 3       ×óÓÒÉùµÀ¾ù¾²Òô
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½Î´Êµï¿½Ö£ï¿½ï¿½Ï²ï¿½Ã»ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0       ï¿½Ç¾ï¿½ï¿½ï¿½
+ *            - 1       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½
+ *            - 2       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½
+ *            - 3       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_GetMute(JNIEnv *env, jobject thiz)
@@ -527,12 +528,12 @@ static int android_radio_GetMute(JNIEnv *env, jobject thiz)
 /*!
  *************************************************************************************
  * function: android_radio_SetFreq
- *     ÉèÖÃµçÌ¨ÆµÂÊ
- * @param[in] freq µçÌ¨ÆµÂÊÖµ
- * @return    ·µ»ØÖ´ÐÐ½á¹û
- *            - 0  ³É¹¦ÉèÖÃµçÌ¨ÆµÂÊ
- *            - -1 ´®¿ÚµÄÎÄ¼þÃèÊö·ûÐ¡ÓÚÁã£¬´®¿ÚÃ»ÓÐ³É¹¦´ò¿ª
- *            - >0 Ð´´®¿Ú³ö´í¡£·µ»Ø´®¿ÚÐ´Êý¾ÝµÄ×Ö½ÚÊý
+ *     ï¿½ï¿½ï¿½Ãµï¿½Ì¨Æµï¿½ï¿½
+ * @param[in] freq ï¿½ï¿½Ì¨Æµï¿½ï¿½Öµ
+ * @return    ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð½ï¿½ï¿½
+ *            - 0  ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ì¨Æµï¿½ï¿½
+ *            - -1 ï¿½ï¿½ï¿½Úµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ï¿½
+ *            - >0 Ð´ï¿½ï¿½ï¿½Ú³ï¿½ï¿½?ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ýµï¿½ï¿½Ö½ï¿½ï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
@@ -549,19 +550,55 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 	}
 
 	if (mtype == 0) {
-		if (freq < CHINA_FM_FREQ_MIN)
-			freq = CHINA_FM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_FM_FREQ_MIN)
+				freq = CHINA_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_FM_FREQ_MIN)
+				freq = JNP_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_FM_FREQ_MIN)
+				freq = EUROPE_FM_FREQ_MAX;
+		}
+
 	} else {
-		if (freq < CHINA_AM_FREQ_MIN)
-			freq = CHINA_AM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_AM_FREQ_MIN)
+				freq = CHINA_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_AM_FREQ_MIN)
+				freq = JNP_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_AM_FREQ_MIN)
+				freq = EUROPE_AM_FREQ_MAX;
+		}
+
 	}
 
 	if (mtype == 0) {
-		if (freq > CHINA_FM_FREQ_MAX)
-			freq = CHINA_FM_FREQ_MIN;
+		if (cur_model == MODEL_CHINA) {
+			if (freq > CHINA_FM_FREQ_MAX)
+				freq = CHINA_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq > JNP_FM_FREQ_MAX)
+				freq = JNP_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq > EUROPE_FM_FREQ_MAX)
+				freq = EUROPE_FM_FREQ_MIN;
+		}
+
 	} else {
-		if (freq > CHINA_AM_FREQ_MAX)
-			freq = CHINA_AM_FREQ_MIN;
+		if(cur_model == MODEL_CHINA){
+			if (freq > CHINA_AM_FREQ_MAX)
+				freq = CHINA_AM_FREQ_MIN;
+		}else if(cur_model == MODEL_JNP){
+			if (freq > JNP_AM_FREQ_MAX)
+				freq = JNP_AM_FREQ_MIN;
+		}else if(cur_model == MODEL_EUROPE){
+			if (freq > EUROPE_AM_FREQ_MAX)
+				freq = EUROPE_AM_FREQ_MIN;
+		}
+
 	}
 
 
@@ -571,6 +608,10 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 	cmdBuf[8] = sum & 0xFF;
 	cmdBuf[9] = (sum>>8)& 0xFF;
 	
+//	int i = 0;
+//	for( ; i<10; i++){
+//		debug("setFreq-->cmdBuf[%d]=0x%2x",i,cmdBuf[i]);
+//	}
 	if((writeSize = write(fd_radio, cmdBuf, cmdBuf[2])) < 0)
 	{
 		LOGE("write ttyS3 error(%d, %s)\n", errno, strerror(errno));
@@ -582,13 +623,13 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_FineLeft
- *     Ïò×óÎ¢µ÷º¯Êý½«µçÌ¨ÆµÂÊÉèÖÃÎªµ±Ç°ÆµÂÊ-100KHzµÄÆµÂÊ£¬±ÈÈçµ±Ç°µçÌ¨ÆµÂÊÊÇ88.7MHz, 88700
- * ÔòÏÂÒ»¸öÌ¨¾ÍÊÇ88.6MHz¡£
- * @param[in] freq      µ±Ç°µçÌ¨ÆµÂÊÖµ(µ¥Î»ÊÇ10KHz)
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - >0      ·µ»ØÎ¢µ÷ºóµÄÆµÂÊÖµ
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ç°Æµï¿½ï¿½-100KHzï¿½ï¿½Æµï¿½Ê£ï¿½ï¿½ï¿½ï¿½çµ±Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½ï¿½ï¿½88.7MHz, 88700
+ * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½88.6MHzï¿½ï¿½
+ * @param[in] freq      ï¿½ï¿½Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½Öµ(ï¿½ï¿½Î»ï¿½ï¿½10KHz)
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - >0      ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµ
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
@@ -607,19 +648,53 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 	freq = freq - step_len;
 
 	if (mtype == 0) {
-		if (freq < CHINA_FM_FREQ_MIN)
-			freq = CHINA_FM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_FM_FREQ_MIN)
+				freq = CHINA_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_FM_FREQ_MIN)
+				freq = JNP_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_FM_FREQ_MIN)
+				freq = EUROPE_FM_FREQ_MAX;
+		}
+
 	} else {
-		if (freq < CHINA_AM_FREQ_MIN)
-			freq = CHINA_AM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_AM_FREQ_MIN)
+				freq = CHINA_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_AM_FREQ_MIN)
+				freq = JNP_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_AM_FREQ_MIN)
+				freq = EUROPE_AM_FREQ_MAX;
+		}
 	}
 
 	if (mtype == 0) {
-		if (freq > CHINA_FM_FREQ_MAX)
-			freq = CHINA_FM_FREQ_MIN;
+		if (cur_model == MODEL_CHINA) {
+			if (freq > CHINA_FM_FREQ_MAX)
+				freq = CHINA_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq > JNP_FM_FREQ_MAX)
+				freq = JNP_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq > EUROPE_FM_FREQ_MAX)
+				freq = EUROPE_FM_FREQ_MIN;
+		}
+
 	} else {
-		if (freq > CHINA_AM_FREQ_MAX)
-			freq = CHINA_AM_FREQ_MIN;
+		if (cur_model == MODEL_CHINA) {
+			if (freq > CHINA_AM_FREQ_MAX)
+				freq = CHINA_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq > JNP_AM_FREQ_MAX)
+				freq = JNP_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq > EUROPE_AM_FREQ_MAX)
+				freq = EUROPE_AM_FREQ_MIN;
+		}
 	}
 
 
@@ -641,13 +716,13 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_FineRight
- *     ÏòÓÒÎ¢µ÷º¯Êý½«µçÌ¨ÆµÂÊÉèÖÃÎªµ±Ç°ÆµÂÊ-100KHzµÄÆµÂÊ£¬±ÈÈçµ±Ç°µçÌ¨ÆµÂÊÊÇ88.7MHz,
- * ÔòÏÂÒ»¸öÌ¨¾ÍÊÇ88.8MHz¡£
- * @param[in] freq      µ±Ç°µçÌ¨ÆµÂÊÖµ(µ¥Î»ÊÇ10KHz)
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - >0      ·µ»ØÎ¢µ÷ºóµÄÆµÂÊÖµ
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ç°Æµï¿½ï¿½-100KHzï¿½ï¿½Æµï¿½Ê£ï¿½ï¿½ï¿½ï¿½çµ±Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½ï¿½ï¿½88.7MHz,
+ * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½88.8MHzï¿½ï¿½
+ * @param[in] freq      ï¿½ï¿½Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½Öµ(ï¿½ï¿½Î»ï¿½ï¿½10KHz)
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - >0      ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Öµ
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
@@ -666,19 +741,53 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 	freq = freq + step_len;
 
 	if (mtype == 0) {
-		if (freq > CHINA_FM_FREQ_MAX)
-			freq = CHINA_FM_FREQ_MIN;
+		if (cur_model == MODEL_CHINA) {
+			if (freq > CHINA_FM_FREQ_MAX)
+				freq = CHINA_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq > JNP_FM_FREQ_MAX)
+				freq = JNP_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq > EUROPE_FM_FREQ_MAX)
+				freq = EUROPE_FM_FREQ_MIN;
+		}
 	} else {
-		if (freq > CHINA_AM_FREQ_MAX)
-			freq = CHINA_AM_FREQ_MIN;
+		if (cur_model == MODEL_CHINA) {
+			if (freq > CHINA_AM_FREQ_MAX)
+				freq = CHINA_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq > JNP_AM_FREQ_MAX)
+				freq = JNP_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq > EUROPE_AM_FREQ_MAX)
+				freq = EUROPE_AM_FREQ_MIN;
+		}
+
 	}
 
 	if (mtype == 0) {
-		if (freq < CHINA_FM_FREQ_MIN)
-			freq = CHINA_FM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_FM_FREQ_MIN)
+				freq = CHINA_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_FM_FREQ_MIN)
+				freq = JNP_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_FM_FREQ_MIN)
+				freq = EUROPE_FM_FREQ_MAX;
+		}
 	} else {
-		if (freq < CHINA_AM_FREQ_MIN)
-			freq = CHINA_AM_FREQ_MAX;
+		if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_AM_FREQ_MIN)
+				freq = CHINA_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_AM_FREQ_MIN)
+				freq = JNP_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_AM_FREQ_MIN)
+				freq = EUROPE_AM_FREQ_MAX;
+		}
+
 	}
 
 //	if(freq > freq_max)
@@ -699,12 +808,12 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_StepLeft
- *     ÏòÏÂËÑÌ¨,ËÑË÷µ½²¨¶Î±ß½çºóÌøµ½²¨¶ÎµÄÁíÒ»¸ö±ß½ç¼ÌÐøËÑÌ¨,ËÑµ½Ò»¸öÆµµÀ¾ÍÍ£Ö¹¡£
- * @param[in] freq      µ±Ç°µçÌ¨ÆµÂÊÖµ(µ¥Î»ÊÇ10KHz)
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0       ·¢ËÍËÑÌ¨ÃüÁî³É¹¦
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ß½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨,ï¿½Ñµï¿½Ò»ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½
+ * @param[in] freq      ï¿½ï¿½Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½Öµ(ï¿½ï¿½Î»ï¿½ï¿½10KHz)
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_StepLeft(JNIEnv *env, jobject thiz, jint freq)
@@ -737,12 +846,12 @@ static int android_radio_StepLeft(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_StepRight
- *     ÏòÉÏËÑÌ¨,ËÑË÷µ½²¨¶Î±ß½çºóÌøµ½²¨¶ÎµÄÁíÒ»¸ö±ß½ç¼ÌÐøËÑÌ¨,ËÑµ½Ò»¸öÆµµÀ¾ÍÍ£Ö¹¡£
- * @param[in] freq      µ±Ç°µçÌ¨ÆµÂÊÖµ(µ¥Î»ÊÇ10KHz)
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0       ·¢ËÍËÑÌ¨ÃüÁî³É¹¦
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ß½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨,ï¿½Ñµï¿½Ò»ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½
+ * @param[in] freq      ï¿½ï¿½Ç°ï¿½ï¿½Ì¨Æµï¿½ï¿½Öµ(ï¿½ï¿½Î»ï¿½ï¿½10KHz)
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_StepRight(JNIEnv *env, jobject thiz, jint freq)
@@ -775,12 +884,12 @@ static int android_radio_StepRight(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_AutoSeek
- *     ´ÓµÍÆµÂÊµ½¸ßÆµÂÊ×Ô¶¯ËÑÌ¨,ËÑË÷µ½²¨¶Î±ß½çºóÌøµ½²¨¶ÎµÄÁíÒ»¸ö±ß½ç¼ÌÐøËÑÌ¨¡£
+ *     ï¿½Óµï¿½Æµï¿½Êµï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ì¨,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ß½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½
  * @param[in] freq      freq
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - 0       ·¢ËÍËÑÌ¨ÃüÁî³É¹¦
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÊÕÒô»úÒôÁ¿µÄÃüÁî·¢ËÍÊ§°Ü¡£
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - 0       ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_AutoSeek(JNIEnv *env, jobject thiz, jint freq)
@@ -813,11 +922,11 @@ static int android_radio_AutoSeek(JNIEnv *env, jobject thiz, jint freq)
 /*!
  *************************************************************************************
  * function: android_radio_StopSearch
- *     Í£Ö¹ËÑÌ¨º¯Êý
- * @return    ·µ»ØÖ´ÐÐ½á¹û
- *            - 0  ³É¹¦ÉèÖÃµçÌ¨ÆµÂÊ
- *            - -1 ´®¿ÚµÄÎÄ¼þÃèÊö·ûÐ¡ÓÚÁã£¬´®¿ÚÃ»ÓÐ³É¹¦´ò¿ª
- *            - >0 Ð´´®¿Ú³ö´í¡£·µ»Ø´®¿ÚÐ´Êý¾ÝµÄ×Ö½ÚÊý
+ *     Í£Ö¹ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½
+ * @return    ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð½ï¿½ï¿½
+ *            - 0  ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ì¨Æµï¿½ï¿½
+ *            - -1 ï¿½ï¿½ï¿½Úµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ï¿½
+ *            - >0 Ð´ï¿½ï¿½ï¿½Ú³ï¿½ï¿½?ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ýµï¿½ï¿½Ö½ï¿½ï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_StopSearch(JNIEnv *env, jobject thiz)
@@ -850,17 +959,17 @@ static int android_radio_StopSearch(JNIEnv *env, jobject thiz)
 /*!
  *************************************************************************************
  * function: android_radio_ReadSeek
- *     ¶ÁÈ¡ÕýÔÚËÑË÷µÄµçÌ¨ÆµÂÊÖµ
- * @param[out] freq[]    ´æ´¢µçÌ¨ÆµÂÊµÄ»º³åÇø£¬¸Ã»º³åÇøÊÇÒ»¸öÖÁÉÙ°üº¬Èý¸öintÐÍµÄÊý×é¡£
- *             freq[0]   ËÑË÷×´Ì¬£¨0£ºÃ»ÓÐËÑË÷  1£ºÕýÔÚËÑË÷  2£º×¼±¸¿ªÊ¼ËÑË÷£©
- *             freq[1]   µ±Ç°ÆµÂÊÖµÊÇ·ñÊÇÓÐÐ§µÄµçÌ¨
- *             freq[2]   µ±Ç°ÆµÂÊ
- * @param[in]  count     »º³åÇøÊý×é³¤¶È
- * @return               º¯ÊýÖ´ÐÐµÄ½á¹û
- *             - 1       »º³åÈ¥Îª¿Õ£¬ÎÞ·¨¶ÁÈ¡µ½ÆµÂÊ
- *             - 0       ¶ÁÈ¡µ½Ò»´ÎËÑË÷µçÌ¨ÆµÂÊ
- *             - -1      Éè±¸/dev/bonovo_handle»¹Ã»ÓÐ´ò¿ª¡£
- *             - -2      »º³åÇøÌ«Ð¡£¬²»ÄÜ¶ÁÈ¡µ½ÍêÕûµÄÐÅÏ¢¡£
+ *     ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ì¨Æµï¿½ï¿½Öµ
+ * @param[out] freq[]    ï¿½æ´¢ï¿½ï¿½Ì¨Æµï¿½ÊµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ï¿½ï¿½ï¿½intï¿½Íµï¿½ï¿½ï¿½ï¿½é¡£
+ *             freq[0]   ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½0ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  2ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *             freq[1]   ï¿½ï¿½Ç°Æµï¿½ï¿½Öµï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Äµï¿½Ì¨
+ *             freq[2]   ï¿½ï¿½Ç°Æµï¿½ï¿½
+ * @param[in]  count     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é³¤ï¿½ï¿½
+ * @return               ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *             - 1       ï¿½ï¿½ï¿½ï¿½È¥Îªï¿½Õ£ï¿½ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½ï¿½Æµï¿½ï¿½
+ *             - 0       ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨Æµï¿½ï¿½
+ *             - -1      ï¿½è±¸/dev/bonovo_handleï¿½ï¿½Ã»ï¿½Ð´ò¿ª¡ï¿½
+ *             - -2      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì«Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_ReadSeek(JNIEnv *env, jobject thiz, jintArray freq, int count)
@@ -893,7 +1002,7 @@ static int android_radio_ReadSeek(JNIEnv *env, jobject thiz, jintArray freq, int
 	res = ioctl(fd_bonovo, IOCTL_HANDLE_GET_RADIO_FREQ, &temp);
 	if (res == -1)
 	{
-		debug("The buffer where the frequence in is empty£¡\n");
+		debug("The buffer where the frequence in is emptyï¿½ï¿½\n");
 		temp_freq[1] = 0;
 		temp_freq[2] = 0;
 		env->SetIntArrayRegion(freq, 0, 3, temp_freq);
@@ -908,16 +1017,16 @@ static int android_radio_ReadSeek(JNIEnv *env, jobject thiz, jintArray freq, int
 /*!
  *************************************************************************************
  * function: android_radio_TurnFmAm
- *     ÇÐ»»ÊÕÒô»úÆµ¶ÎµÄº¯Êý
- * @param[in] type Æµ¶Î±àºÅ
+ *     ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ÎµÄºï¿½ï¿½ï¿½
+ * @param[in] type Æµï¿½Î±ï¿½ï¿½
  *            - 0  FM
  *            - 1  AM
- *            - 2  SW,¶Ì²¨
- *            - 3  LW,³¤²¨
- * @return    ·µ»ØÖ´ÐÐ½á¹û
- *            - 0  ³É¹¦ÉèÖÃµçÌ¨ÆµÂÊ
- *            - -1 ´®¿ÚÎ´³É¹¦´ò¿ª»òÕß´«ÈëµÄ²ÎÊýtypeÎÞÐ§
- *            - -2 Ð´´®¿Ú³ö´í¡£·µ»Ø´®¿ÚÐ´Êý¾ÝµÄ×Ö½ÚÊý
+ *            - 2  SW,ï¿½Ì²ï¿½
+ *            - 3  LW,ï¿½ï¿½ï¿½ï¿½
+ * @return    ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð½ï¿½ï¿½
+ *            - 0  ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ì¨Æµï¿½ï¿½
+ *            - -1 ï¿½ï¿½ï¿½ï¿½Î´ï¿½É¹ï¿½ï¿½ò¿ª»ï¿½ï¿½ß´ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½typeï¿½ï¿½Ð§
+ *            - -2 Ð´ï¿½ï¿½ï¿½Ú³ï¿½ï¿½?ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ýµï¿½ï¿½Ö½ï¿½ï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_TurnFmAm(JNIEnv *env, jobject thiz, jint type)
@@ -965,12 +1074,12 @@ static int android_radio_TurnFmAm(JNIEnv *env, jobject thiz, jint type)
 /*!
  *************************************************************************************
  * function: android_radio_Remote
- *     ÇÐ»»ÊÕÒô»úËÑÌ¨ÁéÃô¶È
- * @param[in] remote      ÁéÃô¶È  0£º±¾µØ  1£ºÔ¶³Ì
- * @return              º¯ÊýÖ´ÐÐµÄ½á¹û
- *            - >0      ÉèÖÃ³É¹¦
- *            - -1      ´®¿Ú»¹Ã»ÓÐ³É¹¦´ò¿ª£¬ÐèÒªÖ´ÐÐandroid_radio_PowerOnoffÀ´´ò¿ª´®¿Ú
- *            - -2      ÉèÖÃÇÐ»»ÊÕÒô»úËÑÌ¨ÁéÃô¶ÈµÄÃüÁî·¢ËÍÊ§°Ü¡£
+ *     ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] remote      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  1ï¿½ï¿½Ô¶ï¿½ï¿½
+ * @return              ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ÐµÄ½ï¿½ï¿½
+ *            - >0      ï¿½ï¿½ï¿½Ã³É¹ï¿½
+ *            - -1      ï¿½ï¿½ï¿½Ú»ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ò¿ª£ï¿½ï¿½ï¿½ÒªÖ´ï¿½ï¿½android_radio_PowerOnoffï¿½ï¿½ï¿½ò¿ª´ï¿½ï¿½ï¿½
+ *            - -2      ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
  *************************************************************************************
  */
 static int android_radio_Remote(JNIEnv *env, jobject thiz, jint remote)
@@ -1004,15 +1113,15 @@ static int android_radio_Remote(JNIEnv *env, jobject thiz, jint remote)
 /*!
  *************************************************************************************
  * function: android_radio_SetModel
- *     Ñ¡ÔñÖÆÊ½º¯Êý
- * @param[in] type Æµ¶Î±àºÅ
- *            - 0  ÖÐ¹úÖÆÊ½
- *            - 1  Å·ÖÞÖÆÊ½
- *            - 2  ÈÕ±¾ÖÆÊ½
- * @return    ·µ»ØÖ´ÐÐ½á¹û
- *            - -1 ´®¿ÚÎ´³É¹¦´ò¿ª»òÕß´«ÈëµÄ²ÎÊýtypeÎÞÐ§
- *            - 0  ³É¹¦ÉèÖÃµçÌ¨ÆµÂÊ
- *            - >0 Ð´´®¿Ú³ö´í¡£·µ»Ø´®¿ÚÐ´Êý¾ÝµÄ×Ö½ÚÊý
+ *     Ñ¡ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+ * @param[in] type Æµï¿½Î±ï¿½ï¿½
+ *            - 0  ï¿½Ð¹ï¿½ï¿½ï¿½Ê½
+ *            - 1  Å·ï¿½ï¿½ï¿½ï¿½Ê½
+ *            - 2  ï¿½Õ±ï¿½ï¿½ï¿½Ê½
+ * @return    ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð½ï¿½ï¿½
+ *            - -1 ï¿½ï¿½ï¿½ï¿½Î´ï¿½É¹ï¿½ï¿½ò¿ª»ï¿½ï¿½ß´ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½typeï¿½ï¿½Ð§
+ *            - 0  ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ì¨Æµï¿½ï¿½
+ *            - >0 Ð´ï¿½ï¿½ï¿½Ú³ï¿½ï¿½?ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ýµï¿½ï¿½Ö½ï¿½ï¿½ï¿½
  *************************************************************************************
  */
 static int android_radio_SetModel(JNIEnv *env, jobject thiz, jint type)

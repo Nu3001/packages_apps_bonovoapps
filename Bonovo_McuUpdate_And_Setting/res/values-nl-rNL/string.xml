@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="hello_world">Hallo Wereld!</string>
+    <string name="title">MCU update gevonden. Wilt u deze installeren?</string>
+    <string name="agree">OK</string>
+    <string name="cancel">Anuleren</string>
+    <string name="button">Updates zoeken</string>
+    <string name="mcuversion">MCU Versie:</string>
+    <string name="sysversion">Systeem Versie:</string>
+    <string name="androidversion">Android Versie:</string>
+    <string name="loga">SD-kaart ontbreekt of onbekend bestand</string>
+    <string name="asternmute">Geluid uit bij externe bron/achteruitrijcamera</string>
+    <string name="lightstate">Radio verlichting intensiteit</string>
+    <string name="rearview_camera">Achteruitrijcamera</string>
+    <string name="other">Overige Instellingen</string>
+    <string name="reminder">Functie is niet toegevoegd</string>
+    <string name="basic">Basis Informatie:</string>
+
+</resources>

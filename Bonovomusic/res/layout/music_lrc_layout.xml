@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="5.5"
+     >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_weight="1.0"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="0px"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_weight="1.0"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="0px"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_weight="1.5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="0px"
+        android:textSize="40sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:textColor="@color/blue"
+        />
+    <ImageView 
+        android:id="@+id/hight_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/music_lrc_hight_light"
+        />
+    <TextView
+       android:layout_weight="1.0"
+        android:id="@+id/textView4"
+       android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="0px"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:layout_weight="1.0"
+        android:id="@+id/textView5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="0px"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</LinearLayout>

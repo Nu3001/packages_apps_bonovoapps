@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bonovo.musicplayer"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name">
+        <activity
+            android:name=".BonovoCarMusicPlayerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Activity.Player">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="audio/*" />
+                <!--  
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:mimeType="audio/*"/>
+            </intent-filter>
+            -->
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".BonovoMusicExplorerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Activity.Explorer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BonovoCarMusicPlayerActivity" />
+        </activity>
+
+        <activity
+            android:name=".MusicListActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BonovoCarMusicPlayerActivity" />
+        </activity>
+        <activity
+            android:name=".FileBrowserActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.CustomDialog" />
+        <!--<activity-->
+        <!--android:name=".APEMusicListActivity"-->
+        <!--android:screenOrientation="landscape" />-->
+
+        <service android:name=".BonovoAudioPlayerService" />
+
+        <receiver android:name="com.bonovo.musicplayer.ui.MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+
+        <!--<receiver android:name=".AlarmReceiver" android:process=":remote" />-->
+        <receiver android:name=".AlarmReceiver" />
+    </application>
+</manifest>
+

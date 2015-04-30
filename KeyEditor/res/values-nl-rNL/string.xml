@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Stuurwielbediening</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="hello_world">Hallo wereld!</string>
+
+    <string name="description_image_panel">paneel input</string>
+    <string name="description_image_ir">ir input</string>
+    <string name="description_image_ext">externe input</string>
+    <string name="description_panel">Paneel</string>
+    <string name="description_ir">IR</string>
+    <string name="description_ext">Extern</string>
+    
+    <!-- keys -->
+    <string name="mode_custom">Aangepaste Mode</string>
+    <string name="mode_normal">Normale Mode</string>
+    <string name="get_data">Verkrijg waarde ID</string>
+    <string name="set_key">Stel waarde ID in</string>
+    <string name="addr_code">Adres Code:</string>
+    <string name="scan_code">Scan Code:</string>
+    <string name="key_code">Waarde Code:</string>
+    <string name="test">Testen</string>
+    <string name="press_btn">Selecteer</string>
+    <string name="undef">Deselecteer</string>
+    <string name="import_config">Importeren</string>
+    <string name="export_config">Exporteren</string>
+    <string name="read_config">Lezen</string>
+    <string name="save_config">Opslaan</string>
+    <string name="new_config">Nieuw</string>
+    <string name="clean_config">Schonen</string>
+    <string name="delet_config">Verwijderen</string>
+    <string name="next_page">Volgende Pagina</string>
+    <string name="prev_page">Vorige Pagina</string>
+    <string name="title_panel">Paneel</string>
+    <string name="title_ir">IR</string>
+    <string name="title_external">Extern</string>
+    <string name="menu_set_accuracy">Stel nauwkeurigheid in</string>
+    <string name="read_accuracy">Lees nauwkeurigheid</string>
+    
+    <string name="home">Home</string>
+    <string name="back">Terug</string>
+    <string name="key0">0</string>
+    <string name="key1">1</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="key_star">*</string>
+    <string name="key_pound">#</string>
+    <string name="key_up">↑(Omhoog)</string>
+    <string name="key_down">↓(Naar beneden)</string>
+    <string name="key_left">←(Links)</string>
+    <string name="key_right">→(Rechts)</string>
+    <string name="key_ok">OK</string>
+    <string name="volume_up">Volume+</string>
+    <string name="volume_down">Volume-</string>
+    <string name="power">Stroom</string>
+    <string name="explorer">Verkenner</string>
+    <string name="envelope">Enveloppe</string>
+    <string name="menu">Menu</string>
+    <string name="search">Zoeken</string>
+    <string name="media_play_pause">Play/Pause</string>
+    <string name="media_stop">Stop Media</string>
+    <string name="media_next">Volgende Media</string>
+    <string name="media_prev">Vorige Media</string>
+    <string name="media_rewind">Spoel Media Terug</string>
+    <string name="media_fast_forward">Spoel Media vooruit</string>
+    <string name="page_up">Pagina Omhoog</string>
+    <string name="page_down">Pagina Omlaag</string>
+    <string name="mute">Mute</string>
+    <string name="calendar">Kalender</string>
+    <string name="music">Muziek</string>
+    <string name="calculator">Rekenmachine</string>
+    <string name="radio">Radio</string>
+    <string name="navi">Navigatie</string>
+    <string name="dvd">DVD</string>
+    <string name="ThirdG">3G</string>
+    <string name="camera">Camera</string>
+    <string name="bt_phone">Bt Telefoon</string>
+    <string name="bt_answer">Bt Opnemen</string>
+    <string name="bt_hang_up">Bt Ophangen</string>
+    <string name="bt_answer_hang">Bt Opnemen/Ophangen</string>
+    <string name="bt_switch_audio">Verander Bt Audio</string>
+    <string name="radio_turn_up">Volume Radio Omhoog</string>
+    <string name="radio_turn_down">Volume Radio Omlaag</string>
+    <string name="radio_switch_fmam">FM/AM</string>
+    
+    
+    <string name="save_successfully">Succesvol Opgeslagen</string>
+    <string name="import_which_files">Selecteer aub een bestand om te laden</string>
+    <string name="import_successfully">Bestand succesvol geladen</string>
+    <string name="new_files_name">Selecteer aub een nieuwe bestand naam</string>
+    <string name="save_failed">Geen bestand naam. Opslaan mislukt</string>
+    <string name="saved_successfully">Nieuw configuratie bestand succesvol opgeslagen</string>
+    <string name="empty_conf">Huidige configuratie geschoond</string>
+    <string name="allow_delete1">Het is niet toegestaan om de standaard configuratie te verwijderen</string>
+    <string name="allow_delete2">Het is niet toegestaan om de huidige configuratie te verwijderen</string>
+    <string name="delete_conf">Succesvol verwijderd</string>
+    <string name="save_repeat_failes">Bestand bestaat al</string>
+    <string name="delete_select">Selecteer een bestand om te verwijderen</string>
+    
+    <string name="info_serv_start_and_exit_addr">U gebruikt een nieuwe apparaat die nog niet is gevonden in het systeem! Wilt u de IR configuratie starten om het nieuwe apparaat te configureren?</string>
+    <string name="info_main_start_and_exit_addr">U gebruikt een nieuwe apparaat die is gevonden in het systeem! Wilt u het configuratie bestand importeren?</string>
+    <string name="info_main_start_and_not_exit_addr">U gebruikt een nieuwe apparaat die nog niet is gevonden in het systeem! Wilt u een nieuw configuratie bestand creeeren?</string>
+    <string name="info_errno_intent">Error gevonden!</string>
+    <string name="new_dialog_title">Nieuw IR afstandbediening</string>
+    <string name="new_dialog_ok">OK</string>
+    <string name="new_dialog_cancel">Anuleren</string>
+    <string name="select_conf">Selecteer Configuratie Bestand</string>
+    <string name="delete_conf_info">Verwijder Besstanden</string>
+    <string name="clear_btns_title">Deselecteer waarde</string>
+    <string name="clear_btns_info">Wilt u alle waardes verwijderen van het apparaat die in gebruik zijn?</string>
+    
+    <string name="def_accuracy">0</string>
+    <string name="accuracy_info">De nauwkeurigheid is</string>
+    <string name="error_set_ir_accuracy">Kan de nauwkeurigheid van de IR afstandbediening niet instellen. De nauwkeurigheid moet moet een waarde van 0 hebben.</string>
+</resources>

@@ -140,6 +140,24 @@
             android:textSize="28sp"/>
         
         <Button 
+            android:id="@+id/btnheart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btncollect_heart"
+            android:layout_alignBottom="@+id/btnauto"
+            android:layout_alignLeft="@+id/btnauto"
+            android:layout_marginLeft="175dp"/>
+        
+        <Button 
+            android:id="@+id/btnclear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btnclear"
+            android:layout_alignBottom="@+id/btnheart"
+            android:layout_alignLeft="@+id/btnheart"
+            android:layout_marginLeft="91dp"/>
+        
+        <Button 
             android:id="@+id/btnfm1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -123,13 +123,48 @@ static int android_bonovo_bluetooth_power(JNIEnv* env, jobject thiz, jint status
 
 static void android_bonovo_bluetooth_set_phone(JNIEnv* env, jobject thiz,
 		jstring s) {
+	int i=0;
+	int j=0;
 	const char *str = env->GetStringUTFChars(s, NULL);
 	if(str == NULL){
 		ALOGE("android_bonovo_bluetooth_set_phone GetStringUTFChars() failed.");
 		return;
 	}
-	strcpy(myIncoingCallNumber, str);
-	myIncomingCallLen = strlen(str);
+
+	//---------------------------------------------------------------
+	// below code will remove the space from phone number sting
+	//strcpy(myIncoingCallNumber, str);
+	//myIncomingCallLen = strlen(str);
+	while (str[i] != 0x00)
+	{
+		/*
+		// only copy the char from '0' to '9'
+		// but '*' maybe valid char for dialing app
+		if (str[i]>='0' && str[i]<='9')
+		{
+			myIncoingCallNumber[j] = str[i];
+			i++;
+			j++;
+		}
+		else
+		{
+			i++;
+		}
+		*/
+		if (str[i] == ' ')
+		{
+			i++;
+		}
+		else
+		{
+			myIncoingCallNumber[j] = str[i];
+			i++;
+			j++;
+		}
+	}
+	myIncoingCallNumber[j] = 0x00;
+	myIncomingCallLen = strlen(myIncoingCallNumber);
+	//---------------------------------------------------------------
 	env->ReleaseStringUTFChars(s, str);
 }
 

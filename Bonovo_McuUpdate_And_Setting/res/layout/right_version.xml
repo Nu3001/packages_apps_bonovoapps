@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="25dp" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/version"
+        android:textColor="#00ced1"
+        android:textSize="20sp"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="7dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp" >
+
+        <TextView
+            android:id="@+id/android_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/androidversion"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/is_android_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/android_version"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        
+        <TextView 
+            android:id="@+id/mcu_version"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/mcuversion"
+            android:textSize="18sp"/>
+        
+        <TextView 
+            android:id="@+id/is_mcu_version"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/mcu_version"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        
+        <TextView 
+            android:id="@+id/system_version"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/sysversion"
+            android:textSize="18sp"/>
+        
+        <TextView 
+            android:id="@+id/is_system_version"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/system_version"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

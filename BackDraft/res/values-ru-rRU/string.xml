@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">BackDraft</string>
+<string name="action_settings">Настройки</string>
+<string name="hello_world">Hello world!</string>
+<string name="failed_open_serial">Сбой открытия последовательного порта! Не могу переключить видеосигнал!</string>
+</resources>

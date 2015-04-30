@@ -5,5 +5,7 @@
            android:drawable="@drawable/collect_button_d" /> <!-- pressed -->
      <item android:state_focused="true"
            android:drawable="@drawable/collect_button_d" /> <!-- focused -->
+     <item android:state_selected="true"
+     			 android:drawable="@drawable/collect_button_d" /> <!-- selected -->
      <item android:drawable="@drawable/collect_button_u" /> <!-- default -->
  </selector>

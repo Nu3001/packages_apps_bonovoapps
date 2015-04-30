@@ -43,5 +43,23 @@
     <string name="searching">正在搜台 禁止切换...</string>
     <string name="clear">清除</string>
     <string name="unrealized">此功能暂未实现</string>
+    <string name="clear_content">是否要删除当前列表所有内容？</string>
+    <string name="invalid">当前频率超过有效频率范围，请切换到有效频率</string>
+    <string name="nowhere">没有地方添加频道,请清除不常用的频道</string>
+    <string name="samefreq">当前频道已被保存,无需再次保存</string>
+    <string name="no_reminds">不再提示</string>
+    <string name="addHeart">添加收藏栏</string>
+    <string name="is_addHeart_toast">已添加至收藏栏</string>
+    <string name="same_addHeart_toast">收藏栏已存在当前频道</string>
+    <string name="clear_single_channel">是否清空当前选择的频道信息</string>
+    <string name="clear_addHeart_toast">已从收藏栏去除</string>
+    <string name="not_effective_freq">当前点击的频道为空</string>
+    <string name="volume_change">音量调节</string>
+    <string name="volume_change_info">点击拖动滑动条</string>
+    <string name="remote_info">是否开启远程模式</string>
+    <string name="remote_checked">勾选打开远程模式</string>
+    <string name="lead_info">导入频道列表</string>
+    <string name="system_choose">选择您所在地区</string>
+    <string name="system_choose_title">请选择一个地区</string>
     
 </resources>
