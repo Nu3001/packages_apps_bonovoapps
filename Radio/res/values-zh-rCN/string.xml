@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">收音机</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">Settings</string>
+    <string name="am">A M</string>
+    <string name="fine">微调</string>
+    <string name="step">单步</string>
+    <string name="auto">自动</string>
+    <string name="radio_volume">收音机音量</string>
+    <string name="fmsearch">是否开始搜索FM波段的频率？</string>
+    <string name="amsearch">是否开始搜索AM波段的频率？</string>
+    <string name="import_title">导入-预置</string>
+    <string name="import_preset">预置</string>
+    <string name="import_define">自定义</string>
+    <string name="import_area">地区</string>
+    <string name="import_province">直辖市</string>
+    <string name="import_city">城市</string>
+    <string name="edit_dialog_freq">频率</string>
+    <string name="edit_dialog_shortname">简称</string>
+    <string name="edit_dialog_fullname">全称</string>
+    <string name="import_import">导入</string>
+    <string name="playing">正在播放</string>
+    <string name="edit_channel">编辑频道</string>
+    <string name="alert_dialog_ok">确定</string>
+    <string name="alert_dialog_cancel">取消</string>
+    <string name="valid_freq_fm">请输入有效的FM频率：87.5-108.0MHz</string>
+    <string name="valid_freq_am">请输入有效的AM频率：520-1710KHz</string>
+    <string name="searchwait">正在搜索,请稍后...</string>
+    <string name="china">中国</string>
+    <string name="japan">日本</string>
+    <string name="europe">欧洲</string>
+    <string name="system">制式选择</string>
+    <string name="volume">音量大小</string>
+    <string name="remote">远程控制</string>
+    <string name="lead">导入</string>
+    <string name="remind">提醒</string>
+    <string name="describe">是否自动搜台并保存?</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="searching">正在搜台 禁止切换...</string>
+    <string name="clear">清除</string>
+    <string name="unrealized">此功能暂未实现</string>
+    
+</resources>

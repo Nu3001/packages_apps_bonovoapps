@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Radio</string>
     <string name="fm1">FM1</string>
     <string name="fm2">FM2</string>
     <string name="action_settings">Settings</string>
-    <string name="am">AM</string>
+    <string name="am">A M</string>
     <string name="fine">Fine</string>
     <string name="step">Step</string>
     <string name="auto">Auto</string>
     <string name="radio_volume">Radio-Volume</string>
-    <string name="fmsearch">Start searching the FM band frequency?</string>
-    <string name="amsearch">Start searching the AM band frequency?</string>
+    <string name="fmsearch">是否开始搜索FM波段的频率？</string>
+    <string name="amsearch">是否开始搜索AM波段的频率？</string>
     <string name="import_title">Import-Preset</string>
     <string name="import_preset">Preset</string>
     <string name="import_define">Define</string>
@@ -42,22 +43,4 @@
     <string name="searching">Searching Now,Do Not Switching Channel</string>
     <string name="clear">Clear</string>
     <string name="unrealized">Function to achieve</string>
-    <string name="clear_content">Whether to remove the current list?</string>
-    <string name="invalid">Please Switch to the channel effectively</string>
-    <string name="nowhere">No available slots remaining</string>
-    <string name="samefreq">have a same freq,do not save again</string>
-    <string name="no_reminds">Next time no longer prompt</string>
-    <string name="addHeart">addHeart</string>
-    <string name="is_addHeart_toast">Has been added to the collection</string>
-    <string name="same_addHeart_toast">Collection already has this freq</string>
-    <string name="clear_single_channel">Clear the currently selected channel info?</string>
-    <string name="clear_addHeart_toast">Frequency has been dropped from the collection</string>
-    <string name="not_effective_freq">Not effective frequency</string>
-    <string name="volume_change">Volume</string>
-    <string name="volume_change_info">Click here</string>
-    <string name="remote_info">Choose remote model</string>
-    <string name="remote_checked">Check the open</string>
-    <string name="lead_info">Import channel list</string>
-    <string name="system_choose">Choose your area</string>
-    <string name="system_choose_title">Please select your region</string>
 </resources>

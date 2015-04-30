@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Radio</string>
+    <string name="fm1">FM1</string>
+    <string name="fm2">FM2</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="am">A M</string>
+    <string name="fine">Fine</string>
+    <string name="step">Paso</string>
+    <string name="auto">Auto</string>
+    <string name="radio_volume">Radio-Volumen</string>
+    <string name="fmsearch">¿Iniciar búsqueda de frecuencia FM?</string>
+    <string name="amsearch">¿Iniciar búsqueda de frecuencia AM?？</string>
+    <string name="import_title">Importar-Preset</string>
+    <string name="import_preset">Preset</string>
+    <string name="import_define">Definir</string>
+    <string name="import_area">Area</string>
+    <string name="import_province">Provincia</string>
+    <string name="import_city">Ciudad</string>
+    <string name="edit_dialog_freq">Frecuencia</string>
+    <string name="edit_dialog_shortname">Abreviado</string>
+    <string name="edit_dialog_fullname">Completo</string>
+    <string name="import_import">Importar</string>
+    <string name="playing">Sonando</string>
+    <string name="edit_channel">Editar Canal</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Cancelar</string>
+    <string name="valid_freq_fm">Por favor, introduzca una frecuencia FM válida：87.5-108.0MHz</string>
+    <string name="valid_freq_am">Por favor, introduzca una frecuencia AM válida：520-1710KHz</string>
+    <string name="searchwait">Buscando, espere un momento...</string>
+    <string name="china">CHN</string>
+    <string name="japan">JPN</string>
+    <string name="europe">EUR</string>
+    <string name="system">Escriba selección</string>
+    <string name="volume">Volumen</string>
+    <string name="remote">Control Remoto</string>
+    <string name="lead">Lead</string>
+    <string name="remind">Recordar</string>
+    <string name="describe">¿Iniciar búsqueda automática y guardar?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="searching">Buscando, no cambie de emisora</string>
+    <string name="clear">Borrar</string>
+    <string name="unrealized">Función pendiente</string>
+</resources>

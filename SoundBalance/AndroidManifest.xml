@@ -22,14 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:label="@string/title_activity_sound_balance" android:name="com.bonovo.soundbalance.GeneralActivity"/>
-        <activity android:label="@string/title_activity_sonata" android:name="com.bonovo.soundbalance.SonataActivity"/>
-        <receiver android:name="com.bonovo.soundbalance.SonataActivity$S8VolumeBalanceRecevier">
-            <intent-filter>
-                <action android:name="request_s8_info"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

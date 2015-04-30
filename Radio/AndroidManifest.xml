@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.radio"
     android:versionCode="1"
@@ -29,7 +29,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.APP_MUSIC" />
             </intent-filter>
         </activity>
         
@@ -50,18 +49,6 @@
             android:name="com.example.radio.RadioSetting"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
-        </activity>
-
-
-        <activity android:theme="@*android:style/Theme.Holo.Dialog.NoActionBar" android:name="com.example.radio.IntentActivity">
-
-            <intent-filter>
-
-                <action android:name="com.example.radio.IntentActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
         </activity>
 
         <service android:name="RadioService" >

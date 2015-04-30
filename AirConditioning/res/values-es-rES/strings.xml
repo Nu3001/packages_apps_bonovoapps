@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">NewsmyAirConditionerActivity</string>
-    <string name="temp_unit">°C</string>
-    <string name="air_containing_off_string">OFF</string>
-    <string name="air_containing_temp_min">MIN</string>
-    <string name="air_containing_temp_max">MAX</string>
-</resources>
