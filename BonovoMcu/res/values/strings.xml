@@ -8,9 +8,9 @@
     <string name="agree">agree</string>
     <string name="cancel">cancel</string>
     <string name="button">Check Update</string>
-    <string name="mcuversion">MCU Verison: </string>
-    <string name="sysversion">System Verison: </string>
-    <string name="androidversion">Android Verison: </string>
+    <string name="mcuversion">MCU Version: </string>
+    <string name="sysversion">System Version: </string>
+    <string name="androidversion">Android Version: </string>
     <string name="loga">Did not load the SD card or upgrade file is not specified</string>
     <string name="asternmute">Whether astern mute</string>
     <string name="lightstate">Car light backlight adjust</string>
@@ -19,6 +19,6 @@
     <string name="reminder">Did not add the interface function</string>
     <string name="basic">Basic Information:</string>
     <string name="autovolume">Car Auto Volume:</string>
-    <string name="mcu_diatext">发现MCU升级文件</string>
+    <string name="mcu_diatext">MCU upgrade files found</string>
 
 </resources>
