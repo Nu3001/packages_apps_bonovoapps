@@ -6,11 +6,11 @@
     <string name="lightstate">Car Light Backlight :</string>
     <string name="rearview_camera">AV-IN</string>
     <string name="auto_volume">Car Auto Volume :</string>
-    <string name="sysversion">System Verison: </string>
-    <string name="mcuversion">MCU Verison: </string>
-    <string name="androidversion">Android Verison: </string>
+    <string name="sysversion">System Version: </string>
+    <string name="mcuversion">MCU Version: </string>
+    <string name="androidversion">Android Version: </string>
     <string name="check_update">Check Now</string>
-    <string name="mcu_diatext">发现MCU升级文件</string>
+    <string name="mcu_diatext">MCU upgrade files found</string>
     <string name="notice">Tip: Do not perform other operations in the process of upgrading, Lest cause an accident</string>
     <string name="version">Version Information</string>
     <string name="update">MCU Update</string>
@@ -47,7 +47,7 @@
     <string name="list_otg">OTG Model</string>
     <string name="otg_of_host">Connected devices</string>
     <string name="otg_of_slave">Connected PC</string>
-    <string name="list_standby">Set The Standby</string>
+    <string name="list_standby">Standby Time</string>
     <string name="standby_half_hour">Half Hour</string>
     <string name="standby_one_hour">One Hour</string>
     <string name="standby_two_hour">Two Hour</string>
