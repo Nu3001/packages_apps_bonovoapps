@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Entrada Video</string>
+<string name="action_settings">Ajustes</string>
+<string name="hello_world">Hola Mundo!</string>
+<string name="failed_open_serial">Open serial failed! Cannot open video!</string>
+</resources>
