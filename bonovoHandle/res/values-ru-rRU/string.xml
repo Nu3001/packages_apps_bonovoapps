@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">bonovoHandle</string>
+<string name="hello_world">Hello world!</string>
+<string name="menu_settings">Настройки</string>
+<string name="title_activity_main">MainActivity</string>
+<string name="set_value">Установить яркость</string>
+<string name="get_value">Яркость</string>
+<string name="get_button">Получить значение</string>
+<string name="set_button">Установить значение</string>
+<string name="def_volume">10</string>
+<string name="title_activity_power">Включение</string>
+<string name="action_settings">Настройки</string>
+</resources>
