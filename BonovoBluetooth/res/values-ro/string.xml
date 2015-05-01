@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CarKit</string>
+    <string name="action_settings">Setari</string>
+    <string name="hello_world">Buna ziua!</string>
+    <string name="description_phone_button">Telefon</string>
+    <string name="description_music_button">Muzica</string>
+    <string name="description_settings_button">Setari</string>
+    <string name="description_sync_button">Sinc. Contacte</string>
+    <string name="description_bottom_bg">Fundal de jos</string>
+    <string name="description_add_volume">Buton volum +</string>
+    <string name="description_sub_volume">Buton volum -</string>
+    <string name="description_background_bg">Vedere fundal</string>
+    <string name="setting_button_bluetooth_status_open">Pornire</string>
+    <string name="setting_button_bluetooth_status_closed">Oprire</string>
+    
+    <string name="bluetooth_name">NUME:</string>
+    <string name="bluetooth_default_name">EDO-DROID</string>
+    <string name="bluetooth_pincode">PIN:</string>
+    <string name="bluetooth_default_pincode">8888</string>
+    <string name="call_default_number">13261899155</string>
+    <string name="bluetooth_status_opened">carkit pornit</string>
+    <string name="bluetooth_status_closed">carkit oprit</string>
+    <!-- string name="phone_link_status_opened">Telefon conect.</string>
+    <string name="phone_link_status_closed">Telefon necon.</string -->
+    <string name="phone_link_status_opened">Conectat</string>
+    <string name="phone_link_status_closed">Neconectat</string>
+    
+    <!-- button name -->
+    <string name="setting_button_bluetooth_setting">Setari</string>
+    <string name="setting_button_bluetooth_music">Muzica</string>
+    <string name="simcontacts">Contacts</string>
+    <string name="downloadcontacts">Sinc. Contacte</string>
+    <string name="title">Sin. contacte</string>
+    <string name="tn_dial">Apelare</string>
+    <string name="title_activity_bonovo_dial">ApelareBonovo</string>
+    <string name="title_activity_bonovo_bluetooth_dial">CarkitApelareBonovo</string>
+    <string name="title_section1">Sectiune 1</string>
+    <string name="title_section2">Sectiune 2</string>
+    <string name="title_section3">Sectiune 3</string>
+    <string name="description_delete_button">stergere</string>
+    <string name="description_image_button_one">unu</string>
+    <string name="description_image_button_two">doi</string>
+    <string name="description_image_button_three">trei</string>
+    <string name="description_image_button_four">patru</string>
+    <string name="description_image_button_five">cinci</string>
+    <string name="description_image_button_six">sase</string>
+    <string name="description_image_button_seven">sapte</string>
+    <string name="description_image_button_eight">opt</string>
+    <string name="description_image_button_nine">noua</string>
+    <string name="description_image_button_zero">zero</string>
+    <string name="description_image_button_star">steluta</string>
+    <string name="description_image_button_pound">kg</string>
+    <string name="description_dial_button">Apelare</string>
+    <string name="description_search_button">Cautare</string>
+    <string name="action_menu_overflow_description">Mai multe optiuni</string>
+    <string name="dialerIconLabel">Telefon</string>
+    <string name="recentCallsIconLabel">Istoric apeluri</string>
+    <string name="dialerAllContactsLabel">Favorite si contacte</string>
+    <string name="title_activity_bonovo_bluetooth_handfree">Carkit</string>
+    <string name="title_activity_bonovo_bluetooth_in_call_screen">BonovoBluetoothInCallScreen</string>
+    <string name="onscreenAudioText">Audio</string>
+    <string name="onscreenHoldText">Suspenda</string>
+    <string name="onscreenSwapCallsText">Schimba</string>
+    <string name="onscreenShowDialpadText">Taste</string>
+	<string name="onscreenAddCallText">Adauga apel</string>
+	<string name="onscreenMergeCallsText">Uneste apeluri</string>
+	<string name="onscreenEndCallText">Sfarsit</string>
+	<string name="onscreenMuteText">Mut</string>
+	<string name="description_target_answer">Raspunde</string>
+    <string name="description_target_send_sms">Trimite SMS</string>
+    <string name="description_target_decline">Respinge</string>
+    <string name="description_phone_incoming">Apel in astept.</string>
+    <string name="description_phone_dialing">Formeaza</string>
+    <string name="description_phone_in_call">In apel</string>
+    <string name="description_phone_hang_up">Inchide</string>
+    <string name="description_phone_call_time">Timp vorbit</string>
+    <string name="description_sync_select">Selectie sincronizare</string>
+    <string name="description_sync_sim">Sim: sinc. contacte in sim</string>
+    <string name="description_sync_phone">Telefon: sinc contacte in telefon</string>
+    <string name="description_title_setting">Setari Carkit</string>
+    <string name="description_title_music">Muzica Carkit</string>
+    <string name="description_dial_info">Modul HFP este deconectat</string>
+    <string name="description_bt_info">Inlocuire nume carkit si pin:</string>
+    <string name="description_bt_name_hint">Max. 32 caractere</string>
+    <string name="description_bt_pin_hint">Max. 16 numere</string>
+    <string name="description_updata_name_fail">Actualizare nume esuata!</string>
+    <string name="description_updata_pin_fail">Actualizare pin esuata!</string>
+    
+    <string name="description_music_disable">Muzica este dezactivata deoarece carkitul este oprit.</string>
+    <string name="description_phone_disable">Carkit-ul este dezactivat deoarece este oprit.</string>
+    <string name="description_sync_contacts_disable">Sincronizare de contacte esuata deoarece carkitul este oprit sau deconectat de la server.</string>
+    <string name="description_volume_disable">Schimbare de volum esuata deoarece carkitul este oprit sau deconectat de la server.</string>
+    <string name="description_switch_bt_music">Muzica Carkit</string>
+
+</resources>

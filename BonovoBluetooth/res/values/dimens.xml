@@ -32,8 +32,8 @@
     <dimen name="volume_button_width">105px</dimen>
     <dimen name="volume_button_hight">66px</dimen>
     
-    <dimen name="title_margin_left">38dp</dimen>
-    <dimen name="title_margin_top">4dp</dimen>
+    <dimen name="title_margin_left">150px</dimen>
+    <dimen name="title_margin_top">4px</dimen>
     <dimen name="title_text_size">18sp</dimen>
     <dimen name="music_bg_margin_top">70dp</dimen>
     <dimen name="button_bt_status_margin_left">40dp</dimen>

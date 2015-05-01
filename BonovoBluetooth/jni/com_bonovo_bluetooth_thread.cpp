@@ -118,6 +118,7 @@ int recoverAudio(CODEC_Level codec_mode)
 	return ret;
 }
 
+#if (0)
 /*!
  *********************************************
  * 解析后的姓名中不含空格字符的
@@ -200,6 +201,86 @@ int explainContactsWithoutSapce(char *data, int dataLen)
     }
 	return 0;
 }
+#else
+
+/*!
+ *********************************************
+ * 解析后的姓名中不含空格字符的
+ *********************************************
+ */
+int explainContactsWithoutSapce(char *data, int dataLen)
+{
+	char name[BT_BUFF_SIZE] = {'\0'};
+	char telephone[BT_BUFF_SIZE] = {'\0'};
+	int i;
+	int idxName = 0;
+	int idxTel = 0;
+	int status = 0;
+
+    if(dataLen > BT_BUFF_SIZE){
+		dataLen = BT_BUFF_SIZE;
+		data[BT_BUFF_SIZE-2] = 0x0D;
+		data[BT_BUFF_SIZE-1] = 0x0A;
+        ALOGE("ERROR. The data length is too large!");
+    }
+	LOGD("dataLen = %d", dataLen);
+
+	for (i = 0; i < dataLen; i++) {
+		// skip the space char 
+		// 1.ahead of name and telephone number
+		// 2.in the telephone number
+		// 3.but do not skip the space char in the name
+		if (((0 == status) || (2 == status))&&(' ' == data[i])) {
+			continue;
+		}
+		else if (0xFF == data[i]) {
+			status = 2;
+		} 
+		else {
+			// check ending flag
+			if ((0x0D == data[i]) && (i + 1 < dataLen) && (0x0A == data[i + 1]))
+				break;
+			// check beginning flag
+			if (('P' == data[i]) && (i + 1 < dataLen) && ('B' == data[i + 1])){
+				i++;	// do not use 'i+=2', because in the for loop, 'i' will be increased auto
+				continue;
+			}
+
+			if (0 == status) {
+				status = 1;
+				name[idxName] = data[i];
+				idxName++;
+			} else if (1 == status) {
+				name[idxName] = data[i];
+				idxName++;
+			} else if (2 == status) {
+				telephone[idxTel] = data[i];
+				idxTel++;
+			}
+		}
+	}
+	
+
+    if((idxName > 0) && (idxTel > 0)){
+		memset(&name[idxName], 0, BT_BUFF_SIZE-idxName);
+		memset(&telephone[idxTel], 0, BT_BUFF_SIZE-idxTel);
+        // remove the space in the end of name
+        for(i = idxName-1; i>=0; i--){
+            if(name[i] == ' '){
+                name[i] = '\0';
+                idxName--;
+            }else{
+                break;
+            }
+        }
+		LOGD("idxName:%d\tName: %s", idxName, name);
+		LOGD("idxTele:%d\tTele: %s", idxTel, telephone);
+        android_synchPhoneBook(name,telephone);
+    }
+	return 0;
+}
+#endif
+
 
 void *thread_func_bluetooth_read(void *argv) {
 	char myCmdBuffer[BT_MAX_BUFF_SIZE+1];
@@ -234,7 +315,7 @@ void *thread_func_bluetooth_read(void *argv) {
 			myCmdBufferLen += tmpLen;
 			myCmdBuffer[myCmdBufferLen]=0;
 		}
-		LOGD("=============== myCmdBuffer =%s myCmdBufferLen =%d tmpLen=%d",myCmdBuffer,myCmdBufferLen, tmpLen);
+		//LOGD("=============== myCmdBuffer =%s myCmdBufferLen =%d tmpLen=%d",myCmdBuffer,myCmdBufferLen, tmpLen);
 		
 		while(myCmdBufferLen > 0){
 			frameEnd = findFrameEnd(myCmdBuffer, myCmdBufferLen);

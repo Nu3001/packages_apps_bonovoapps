@@ -501,7 +501,8 @@ public class BonovoBlueToothService extends Service {
             case MSG_STOP_MUSIC:{
                 if((mMusicStopTimes < MAX_PAUSE_MUSIC_TIMES) 
                     && !getMusicServiceEnable() && getMusicStatus()){
-                    BlueToothMusicPause();
+                    //BlueToothMusicPause();
+                    BlueToothMusicStop();
                     mMusicStopTimes++;
                     this.sendEmptyMessageDelayed(MSG_STOP_MUSIC, DELAY_TIME_STOP_MUSIC);
                 }
@@ -1107,8 +1108,9 @@ public class BonovoBlueToothService extends Service {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IR:{
 				if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IR param:" + param);
                 activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
-				setPhoneState(PhoneState.DIALING);
-				if(getPhoneState() == PhoneState.IDLE){
+                if((getPhoneState() != PhoneState.ACTIVE)&&(getPhoneState() != PhoneState.DIALING)){
+				    setPhoneState(PhoneState.DIALING);
+				}else if(getPhoneState() == PhoneState.IDLE){
 					setPhoneState(PhoneState.ACTIVE);
 					Message msg = mHandler.obtainMessage(MSG_START_HANDFREE, param);
 					mHandler.sendMessage(msg);
