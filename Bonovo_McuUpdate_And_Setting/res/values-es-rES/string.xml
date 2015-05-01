@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">MCU</string>
+<string name="action_settings">Ajustes</string>
+<string name="hello_world">Hello world!</string>
+<string name="title">Se ha encontrado una nueva version del MCU, quieres instalarla?</string>
+<string name="agree">Si</string>
+<string name="cancel">Cancelar</string>
+<string name="button">Comprobar actualizaciones</string>
+<string name="mcuversion">Versión MCU: </string>
+<string name="sysversion">Versión Sistema: </string>
+<string name="androidversion">Versión Android: </string>
+<string name="loga">No se ha cargado la tarjeta SD ó no se ha especificado archivo de actualización</string>
+<string name="asternmute">Silenciar en marcha atrás</string>
+<string name="lightstate">Ajustar brillo automaticamente</string>
+<string name="rearview_camera">AV-IN Camara Trasera</string>
+<string name="other">Otros ajustes: </string>
+<string name="reminder">No se ha añadido la función de interfaz</string>
+<string name="basic">Información basica:</string>
+<string name="autovolume">GALA - Ajustar volumen según velocidad:</string>
+<string name="mcu_diatext">Se ha encontrado una actualización del MCU</string>
+</resources>

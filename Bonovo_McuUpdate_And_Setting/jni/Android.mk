@@ -28,7 +28,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
 # All of the source files that we will compile.
 LOCAL_SRC_FILES:= \
-    com_bonovo_mcu.cpp 
+    com_bonovo_tool.cpp 
 
 # All of the shared libraries we link against.
 LOCAL_SHARED_LIBRARIES := \

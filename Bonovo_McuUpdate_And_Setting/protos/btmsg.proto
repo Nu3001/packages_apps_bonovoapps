@@ -1,0 +1,8 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+package btmsg;
+message msg {  
+  required string name = 1;    
+  required int32 packagetotal = 2;  
+  required int32 packageId = 3; 
+} 

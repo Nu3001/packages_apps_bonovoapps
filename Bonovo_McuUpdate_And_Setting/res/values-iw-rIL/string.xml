@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="hello_world">שלום עולם!</string>
+    <string name="title">נמצא עדכון MCU, אם שדרוג קושחה מאושר?</string>
+    <string name="agree">מאושר</string>
+    <string name="cancel">בטל</string>
+    <string name="button">בדוק עדכון</string>
+    <string name="mcuversion">גרסת MCU: </string>
+    <string name="sysversion">גרסת מערכת: </string>
+    <string name="androidversion">גירסת אנדרואיד: </string>
+    <string name="loga">כרטיס SD לא נקלט או לא צויין קובץ לשדרוג </string>
+    <string name="asternmute">השתקה בזמן נסיעה לאחור</string>
+    <string name="lightstate">התאמת תאורה מסך</string>
+    <string name="rearview_camera">AV-IN</string>
+    <string name="other">הגדרות רכב נוספות: </string>
+    <string name="reminder">לא הוספו פונקציות ממשק</string>
+    <string name="basic">מידע כללי:</string>
+    <string name="autovolume">Car Auto Volume:</string>
+
+</resources>

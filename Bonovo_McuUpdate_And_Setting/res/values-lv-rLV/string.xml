@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">MCU</string>
+<string name="action_settings">Iestatījumi</string>
+<string name="hello_world">Sveika, Pasaule!</string>
+<string name="title">Atradu MCU atjauninājumus, vai vēlaties tos instalēt?</string>
+<string name="agree">Jā</string>
+<string name="cancel">Atcelt</string>
+<string name="button">Meklēt Atjauninājumus</string>
+<string name="mcuversion">MCU Versija: </string>
+<string name="sysversion">Sistēmas Versija: </string>
+<string name="androidversion">Android Versija: </string>
+<string name="loga">Nenolasa SD karti vai atjauninājuma fails nav pieejams</string>
+<string name="asternmute">Klusums atpakaļgaitā</string>
+<string name="lightstate">Auto-aptumšojuma līmenis</string>
+<string name="rearview_camera">Atpakaļskata kamera</string>
+<string name="other">Citi Iestatījumi: </string>
+<string name="reminder">Nepievienoja Interfeisa Funkciju</string>
+<string name="basic">Pamatinformācija:</string>
+<string name="autovolume">No ātruma atkarīgs skaļums:</string>
+<string name="mcu_diatext">MCU atjauninājums atrasts</string>
+</resources>
