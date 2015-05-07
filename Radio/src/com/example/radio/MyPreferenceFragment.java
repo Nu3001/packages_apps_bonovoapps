@@ -1,86 +1,121 @@
 package com.example.radio;
 
-import android.preference.PreferenceFragment;
-import android.preference.Preference;
-import android.preference.CheckBoxPreference;
-import android.app.Activity;
-import android.preference.ListPreference;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.View;
-import android.content.SharedPreferences;
-import android.content.Intent;
-import android.preference.PreferenceScreen;
+import com.example.radio.VolumeSeekBarPreferences.seekBarCallBack;
 
-public class MyPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
-	private MyPreferenceFragment.CallbackSetting callbackSetting;
-	private CheckBoxPreference checkBoxRemote;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class MyPreferenceFragment extends PreferenceFragment implements
+		OnPreferenceClickListener, OnPreferenceChangeListener {
 	private Activity context;
-	private ListPreference countryListPre;
+	private CallbackSetting callbackSetting;
+	
 	private VolumeSeekBarPreferences seekBarPreferences;
-	
-	public MyPreferenceFragment() {
-	}
-	
+	private CheckBoxPreference checkBoxRemote;
+	private ListPreference countryListPre;
+
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.layout.preference_setting);
-		seekBarPreferences = (VolumeSeekBarPreferences)findPreference("seekBarPreference");
-		seekBarPreferences.setSeekbarListener(new VolumeSeekBarPreferences.seekBarCallBack() {
-			
+		seekBarPreferences = (VolumeSeekBarPreferences) findPreference("seekBarPreference");
+		seekBarPreferences.setSeekbarListener(new seekBarCallBack() {
+
+			@Override
 			public void setSeekBarVolume(int volume) {
+				// TODO Auto-generated method stub
 				callbackSetting.setVolume(volume);
 			}
-			
+
+			@Override
 			public int getSeekBarVolume() {
+				// TODO Auto-generated method stub
 				return callbackSetting.getVolume();
 			}
 		});
-		checkBoxRemote = (CheckBoxPreference)findPreference("checkbox_remote_preference");
+
+		checkBoxRemote = (CheckBoxPreference) findPreference("checkbox_remote_preference");
 		checkBoxRemote.setOnPreferenceChangeListener(this);
 		checkBoxRemote.setOnPreferenceClickListener(this);
-		countryListPre = (ListPreference)findPreference("countries_list_preference");
+		
+		countryListPre = (ListPreference) findPreference("countries_list_preference");
 		countryListPre.setOnPreferenceChangeListener(this);
 		countryListPre.setOnPreferenceClickListener(this);
+
 	}
-	
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
-	
+
+	@Override
 	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
 		super.onAttach(activity);
 		context = activity;
 		try {
-			callbackSetting = (MyPreferenceFragment.CallbackSetting)context;
-		} catch(Exception e) {
+			callbackSetting = (CallbackSetting) context;
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+
 	}
-	
+
+	/*
+	 * 利用回调函数,让IntentActivity调用Service的方法来实现Fragment间接调用Service的方法
+	 */
+	public interface CallbackSetting {
+		public int getVolume();
+
+		public void setVolume(int volume);
+		
+		public void setRemoteModel(boolean flag);
+		
+		public void readModelInfo();
+	}
+
+	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		SharedPreferences modelpre = context.getSharedPreferences("CHECKED", 0x0);
-		if(preference == checkBoxRemote) {
-			if(((CheckBoxPreference)newValue).isChecked()) {
+		// TODO Auto-generated method stub
+		SharedPreferences modelpre = context.getSharedPreferences("CHECKED", 0);
+		if(preference == checkBoxRemote){
+			if((Boolean)newValue){
 				callbackSetting.setRemoteModel(true);
-			} else {
+			}else {
 				callbackSetting.setRemoteModel(false);
 			}
-		} else if (preference == countryListPre) {
-			if(newValue.equals("1")) {
-				modelpre.edit().putInt("radioModel", 0x1).commit();
+			
+		}else if(preference == countryListPre){
+			if(newValue.equals("1")){
+				modelpre.edit().putInt("radioModel", RadioService.JAPAN_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
-			} else if (newValue.equals("2")) {
-				modelpre.edit().putInt("radioModel", 0x0).commit();
+			}else if(newValue.equals("2")){
+				modelpre.edit().putInt("radioModel", RadioService.CHINA_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
-			} else if(newValue.equals("3")) {
-				modelpre.edit().putInt("radioModel", 0x2).commit();
+			}else if(newValue.equals("3")){
+				modelpre.edit().putInt("radioModel", RadioService.EUR_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
@@ -89,30 +124,21 @@ public class MyPreferenceFragment extends PreferenceFragment implements Preferen
 		}
 		return true;
 	}
-	
+
+	@Override
 	public boolean onPreferenceClick(Preference preference) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	
-	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-		if(preference == seekBarPreferences) {
-			return true;
+	@Override
+	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
+			Preference preference) {
+		// TODO Auto-generated method stub
+		if(preference == seekBarPreferences){
+			
 		}
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
-
-    /*
-	 * Use the callback function, so that the method IntentActivity Service calls to implementation Fragment of an indirect call Service
-	 */
-    public interface CallbackSetting {
-        public int getVolume();
-
-        public void setVolume(int volume);
-
-        public void setRemoteModel(boolean flag);
-
-        public void readModelInfo();
-
-    }
 
 }

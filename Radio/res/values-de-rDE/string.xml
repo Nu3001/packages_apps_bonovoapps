@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Radio</string>
+<string name="fm1">FM1</string>
+<string name="fm2">FM2</string>
+<string name="action_settings">Einstellungen</string>
+<string name="am">A M</string>
+<string name="fine">Feinsuche</string>
+<string name="step">Schrittsuche</string>
+<string name="auto">Auto</string>
+<string name="radio_volume">Radio Lautstärke</string>
+<string name="fmsearch">FM Auto-Installation?</string>
+<string name="amsearch">AM Auto-Installation?</string>
+<string name="import_title">Import-Konfiguration</string>
+<string name="import_preset">Konfiguration</string>
+<string name="import_define">Definieren</string>
+<string name="import_area">Areal</string>
+<string name="import_province">Provinz</string>
+<string name="import_city">Stadt</string>
+<string name="edit_dialog_freq">Freq</string>
+<string name="edit_dialog_shortname">Kurz-Name</string>
+<string name="edit_dialog_fullname">Lang-Name</string>
+<string name="import_import">Import</string>
+<string name="playing">wir abgespielt</string>
+<string name="edit_channel">Sender editieren</string>
+<string name="alert_dialog_ok">OK</string>
+<string name="alert_dialog_cancel">Abbrechen</string>
+<string name="valid_freq_fm">Bitte geben Sie eine valide FM Frequenz ein: 87.5-108.0MHz</string>
+<string name="valid_freq_am">Bitte geben Sie eine valide AM Frequenz ein: 520-1710KHz</string>
+<string name="searchwait">Es wird gesucht, bitte warten ...</string>
+<string name="china">CHN</string>
+<string name="japan">JPN</string>
+<string name="europe">EUR</string>
+<string name="system">Typ Selektion</string>
+<string name="volume">Lautstärke</string>
+<string name="remote">Fernbedienung</string>
+<string name="lead">Leitung</string>
+<string name="remind">erinnern</string>
+<string name="describe">Automatische Suche und Speicherung?</string>
+<string name="ok">OK</string>
+<string name="cancel">Abbrechen</string>
+<string name="searching">Es wird gesucht, bitte nicht das Frequenz-Band wechseln!</string>
+<string name="clear">löschen</string>
+<string name="unrealized">Funktion ist nicht implementiert!</string>
+</resources>

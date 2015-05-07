@@ -3,13 +3,12 @@ package com.example.radio;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.Notification.Builder;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -17,14 +16,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Xml;
 import android.view.KeyEvent;
@@ -32,22 +32,16 @@ import android.widget.Toast;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import com.android.internal.car.can.CanRadio;
-import android.preference.PreferenceManager;
 
 public class RadioService extends Service implements RadioInterface,
-		AudioManager.OnAudioFocusChangeListener {
+        AudioManager.OnAudioFocusChangeListener {
 
 	public static final String MSG_CLOSE = "com.example.radioplayer.close";
 	private static final String TAG = "RadioService";
 	private static final String APPLICATIONS = "applications";
 	private static final String BONOVO_RADIO = "com.example.radio";
 
-	private static final boolean DEBUG = true;
-	
-	public static final int CHINA_MODEL = 0;
-	public static final int JAPAN_MODEL = 1;
-	public static final int EUROPE_MODEL = 2;
-	
+	private static final boolean DEBUG = false;
 
 	private static final int RADIO_OPEN_7415 = 1;
 	private static final int RADIO_CLOSE_7415 = 0;
@@ -58,19 +52,27 @@ public class RadioService extends Service implements RadioInterface,
 	private static final int RADIO_TURN_CHANNEL = 1;
 	private static final int RADIO_DATA_READ = 1;
 	private static final int RADIO_DATA_SAVE = 0;
+	private static final int RADIO_TYPE_FM = 0;
 
+	public static final int RADIO_PAGE_COUNT = 48;
+	public static final int RADIO_FM_COUNT = 48;
+	public static final int RADIO_AM_COUNT = 48;
+	public static final int RADIO_CHANNEL_COUNT = 144;
 	public static int FLAG_AUTO = 0;		//自动搜台标记
 	public static int STEP_OR_AUTO;			//step or auto flag
 	public static int IS_AUTO_NOW = 1;
 	public static int SEARCH_OVER = 0;
+	
+	public static final int CHINA_MODEL = 0;
+	public static final int JAPAN_MODEL = 1;
+	public static final int EUR_MODEL = 2;
 	public static int RADIO_MODEL = 0;
 	
-	public static int FM_LOW_FREQ = 8700;
-	public static int FM_HIGH_FREQ = 10800;
-	public static int AM_LOW_FREQ = 520;
-	public static int AM_HIGH_FREQ = 1710;
+	public static  int FM_LOW_FREQ = 8700;
+	public static  int FM_HIGH_FREQ = 10800;
+	public static  int AM_LOW_FREQ = 520;
+	public static  int AM_HIGH_FREQ = 1710;
 
-	private static final int RADIO_TYPE_FM = 0;
 	private static final int UPDATE_CHANNEL_LIST = 0;
 	private static final int UPDATE_DETAIL_FREQ = 1;
 	private static final int AUTOSEARCH_COMPLETE = 2;
@@ -79,26 +81,26 @@ public class RadioService extends Service implements RadioInterface,
 	private static final int RADIO_NO_ACTION = 0;
 	private static final int RADIO_SEARCHING = 1;
 	private static final int RADIO_START_SEARCH = 2;
-	
 
 	// show the FM back play notification on the title bar
 	private static final int NOTIFICATION_ID = 1;
 	PendingIntent contentIntent;
+	Notification notification;
 
 	// ������ SharedPreferences
 	private int functionId = 0; // 0:΢�� 1������ 2���Զ�
 	public int curChannelId = -1; // play id 0-47
 	private int curFreq;
 	private int radioType = RADIO_FM1;
-	private int radioVolume;
-    private int radioDuckVolume;
 	private int radioMute;
-	AudioManager mAudioManager;
+	private AudioManager mAudioManager;
 	private static int mVolume = 100;
 	private Context mContext;
 	private static boolean mRemote;					//远程切换标记
 
-	private List<ChannelItem> mChannelList;
+    private int radioDuckVolume; // store radio volume for ducking purposes
+
+	private List<ChannelItem> mChannelList ;
 	private ArrayList<String> m_province_list = null;
 	private ArrayList<List<String>> m_city_list = null;
 	private ArrayList<List<List<ChannelItem>>> m_channel_list = null;
@@ -190,34 +192,64 @@ public class RadioService extends Service implements RadioInterface,
         mCanRadio = new CanRadio(this);
 		synchronized (this) {
 			settings = getSharedPreferences("RadioPreferences", MODE_PRIVATE);
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            mRemote = prefs.getBoolean("checkbox_remote_preference", true);
-            readAndSetModelInfo();
+//			SharedPreferences preferences = getSharedPreferences("CHECKED", 0);
+//			mRemote = preferences.getBoolean("onoff", true);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
+			mRemote = prefs.getBoolean("checkbox_remote_preference", true);
+			readAndSetModelInfo();
 			updatePreferences(RADIO_DATA_READ);
 		}
 		
 		if(DEBUG) Log.d(TAG, "------onCreate()");
-		PowerOnOff(true);
-		if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
-			 jniTurnFmAm(0); // open fm
-		} else if (RADIO_AM == radioType) {
-			 jniTurnFmAm(1); // open am
-		}
-		if (DEBUG)
-            Log.v(TAG, "getCurrentFreq()===curfreq ===" + getCurrentFreq());
+		PowerOnOff(true); // open radio
+//		new Thread(new Runnable() {
+//			public void run() {
+				if (DEBUG)
+					Log.v(TAG, "new Thread is up");
+				// jniSetVolume(mVolume);
+				// radioMute = jniGetMute(); //check if mute,avoid bring noisy
+				// // when open power
+				// if(radioMute == RADIO_SET_NOTMUTE){
+				// jniSetMute(RADIO_SET_MUTE);
+				// }
+				// // jniPowerOnoff(RADIO_POWER_ON,RADIO_TURN_CHANNEL);
+				if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
+					jniTurnFmAm(0); // open fm
+				} else if (RADIO_AM == radioType) {
+					jniTurnFmAm(1); // open am
+				}
+				if (DEBUG)
+					Log.v(TAG, "getCurrentFreq()===curfreq ==="
+							+ getCurrentFreq());
+				// if(radioMute == RADIO_SET_NOTMUTE){
+				// jniSetMute(RADIO_SET_NOTMUTE);
+				// }
+				updatePlaybackTitle();
+				/*try{
+					Thread.sleep(20);
+				} catch (Exception e){
+					e.printStackTrace();
+				}*/
+				setFreq(curFreq);
+				setVolume(mVolume);
+				if(mRemote){
+					setRemote(1);
+				}else {
+					setRemote(0);
+				}
+				
+//				String language = settings.getString("local_language", "zh");
+//				if(!Locale.getDefault().getLanguage().equals(language)){
+//					radioReadXML();
+//				}
+//			}
+			
+//		}).start();
 
-		updatePlaybackTitle();
+		// handle event with audio
+		// remove by bonovo zbiao
+		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-		setFreq(curFreq);
-		setVolume(mVolume);
-		if(mRemote){
-		    setRemote(1);
-		}else {
-			setRemote(0);
-		}
-
-		// handle event with audio focus
-		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE); /* �������� */
 		mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
 				AudioManager.AUDIOFOCUS_GAIN);
 		this.registerReceiver(myReceiver, getIntentFilter());
@@ -225,15 +257,11 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
-        //******** remove by bonovo zbiao
 		mAudioManager.abandonAudioFocus(this);
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
 		updatePreferences(RADIO_DATA_SAVE);
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.cancel(NOTIFICATION_ID);
 		if (DEBUG)
 			Log.d(TAG, "onDestroy()  end curfreq is " + curFreq);
 		// this.unregisterReceiver(myReceiver);
@@ -293,6 +321,7 @@ public class RadioService extends Service implements RadioInterface,
 //					 " freq[0]:"+freq[0] + " freq[1]:" + freq[1] + " freq[2]:"
 //					 + freq[2]);
 					if (FLAG_AUTO == 1) {
+						/***************auto model************/
 						curFreq = freq[2];
 						if(getRadioType() == RADIO_FM1){
 							mCanRadio.sendRadioInfo(CanRadio.BAND_FM, curFreq);
@@ -326,6 +355,7 @@ public class RadioService extends Service implements RadioInterface,
 							idex++;
 						}
 					} else {
+						/***************step model************/
 						curFreq = freq[2];
 						if(getRadioType() == RADIO_FM1){
 							mCanRadio.sendRadioInfo(CanRadio.BAND_FM, curFreq);
@@ -338,12 +368,15 @@ public class RadioService extends Service implements RadioInterface,
 							mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 						}
 						
+						/****单步时候发送curFreq给Activity广播,调用curFreq_Compare_To_Collect(int curFreq)
+						 ****函数与收藏栏列表的频率作比较,变化爱心图标*************************************/
 						Intent it = new Intent();
-                        Bundle mbundle = new Bundle();
-                        mbundle.putInt("step-curfreq", curFreq);
-                        it.setAction("Step-Search");
-                        it.putExtras(mbundle);
-                        sendBroadcast(it);
+						Bundle mbundle = new Bundle();
+						mbundle.putInt("step-curfreq", curFreq);
+						it.setAction("Step-Search");
+						it.putExtras(mbundle);
+						sendBroadcast(it);
+						/*******************************************************************************/
 					}
 //					curFreq = freq[2];
 ////					Log.d(TAG, "curFreq(Auto) ="+curFreq);
@@ -370,18 +403,6 @@ public class RadioService extends Service implements RadioInterface,
 		}
 	};
 
-	/* �������� */
-	public void popupVolumeWindows() {
-		// radioVolume =
-		// mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-		if (DEBUG)
-			Log.v(TAG, "---------myu popupVolumeWindows radioVolume"
-					+ radioVolume);
-		// mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, radioVolume,
-		// AudioManager.FLAG_SHOW_UI);
-
-	}
-
 	public void updatePlaybackTitle() {
 		if (DEBUG)
 			Log.v(TAG, "---Notification curFreq = " + curFreq);
@@ -391,44 +412,43 @@ public class RadioService extends Service implements RadioInterface,
 		contentIntent = PendingIntent.getActivity(getApplicationContext(), 0,
 		new Intent(getApplicationContext(),
 		RadioActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        final Notification.Builder builder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(contentTitle)
-                .setContentText(contentText)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher))
-                .setOngoing(true)
-                .setContentIntent(contentIntent);
-        nm.notify(NOTIFICATION_ID,builder.build());
-    }
-
-	@Override
-	public void onAudioFocusChange(int focusChange) {
-		// TODO Auto-generated method stub
-		if (DEBUG)
-			Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
-		switch (focusChange) {
-		case AudioManager.AUDIOFOCUS_GAIN:
-            // Restore volume
-            setVolume(radioDuckVolume);
-			break;
-		case AudioManager.AUDIOFOCUS_LOSS:
-			stopService(new Intent("com.example.RadioService"));
-			this.stopSelf();
-			break;
-		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-            // Reduce volume to Zero - save current volume;
-            radioDuckVolume = getVolume();
-            setVolume(0);
-			break;
-		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-            // reduce volume by 50%
-            radioDuckVolume = getVolume();
-            setVolume(getVolume() / 2);
-			break;
-		}
+		notification = new Notification(R.drawable.import_channel,
+				contentTitle, 0);
+		notification.flags |= Notification.FLAG_ONGOING_EVENT; // ��flag����Ϊ���������ô֪ͨ�ͻ���QQһ��һֱ��״̬����ʾ
+		// ָ��״̬��Ҫ��ʾ����Ϣ���������
+		notification.setLatestEventInfo(getApplicationContext(), contentTitle,
+				contentText, contentIntent);
+		startForeground(NOTIFICATION_ID, notification); // ����״̬����Ϣ
 
 	}
+
+    @Override
+    public void onAudioFocusChange(int focusChange) {
+        // TODO Auto-generated method stub
+        if (DEBUG)
+            Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
+        switch (focusChange) {
+            case AudioManager.AUDIOFOCUS_GAIN:
+                // Restore volume
+                setVolume(radioDuckVolume);
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS:
+                stopService(new Intent("com.example.RadioService"));
+                this.stopSelf();
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                // Reduce volume to Zero - save current volume;
+                radioDuckVolume = getVolume();
+                setVolume(0);
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                // reduce volume by 50%
+                radioDuckVolume = getVolume();
+                setVolume(getVolume() / 2);
+                break;
+        }
+
+    }
 
 	public CharSequence changeCurFreqToCS(int freq) { /* �˺���δʹ�� */
 		StringBuffer sb = new StringBuffer();
@@ -484,6 +504,8 @@ public class RadioService extends Service implements RadioInterface,
 	}
 
 	public ChannelItem getChannelItem(int id) {
+//		if (DEBUG)
+//			Log.e(TAG, "id = " + id);
 		if (mChannelList == null) {
 			if (DEBUG)
 				Log.e(TAG, "============ mChannelList is NULL!");
@@ -491,7 +513,7 @@ public class RadioService extends Service implements RadioInterface,
 		}
 		if (id < 0 || id >= mChannelList.size()) {
 			if (DEBUG)
-				Log.v(TAG, "<myu>id is" + id + " mChannelList.size= " + mChannelList.size());
+				Log.v(TAG, "<myu>id is" + id + " mChannelList.size= "+mChannelList.size());
 			return null;
 		}
 		return mChannelList.get(id);
@@ -500,7 +522,7 @@ public class RadioService extends Service implements RadioInterface,
 	public boolean setChannelItem(int id, ChannelItem item) {
 		if (DEBUG)
 			Log.e(TAG, "============ setChannelItem!");
-		if (id < 0 || id > RADIO_CHANNEL_COUNT || item == null) {
+		if (id < 0 || id > 144 || item == null) {
 			return false;
 		}
 		mChannelList.set(id, item);
@@ -620,7 +642,15 @@ public class RadioService extends Service implements RadioInterface,
 	public void setCurChannelId(int id) {
 		// TODO Auto-generated method stub
 		curChannelId = id;
-        updatePlaybackTitle();
+
+		Context context = getApplicationContext();
+		CharSequence contentTitle = getResources().getString(R.string.app_name);
+		CharSequence contentText = getResources().getString(R.string.playing)
+				+ ": " + changeCurFreqToCS(curFreq);
+		notification.when = System.currentTimeMillis();
+		notification.setLatestEventInfo(context, contentTitle, contentText,
+				contentIntent);
+		startForeground(NOTIFICATION_ID, notification);
 	}
 
 	@Override
@@ -650,41 +680,40 @@ public class RadioService extends Service implements RadioInterface,
 					R.string.searchwait, Toast.LENGTH_SHORT);
 			return;
 		}
-		if(getRadioType() == RADIO_FM1){
-			
+		if (getRadioType() == RADIO_FM1 || getRadioType() == RADIO_FM2) {
 			turnFmAm(0);
-			for (int i = 0; i < RADIO_PAGE_COUNT; i++) {
+			for (int i = 0; i < RADIO_FM_COUNT; i++) {
 				ChannelItem item = new ChannelItem();
 				item.freq = "";
 				item.name = "";
 				item.abridge = "";
 				setChannelItem(i, item);
 			}
-			
-		}else if(getRadioType() == RADIO_AM){
+
+		} else if (getRadioType() == RADIO_AM) {
 			turnFmAm(1);
-			for (int i = RADIO_AM_START; i < RADIO_AM_START + RADIO_PAGE_COUNT; i++) {
-                ChannelItem item = new ChannelItem();
-                item.freq = "";
-                item.name = "";
-                item.abridge = "";
-                setChannelItem(i, item);
-            }
-		} else if(getRadioType() == RADIO_COLLECT){
-			for (int i = RADIO_COLLECT_START; i < RADIO_COLLECT_START + RADIO_PAGE_COUNT; i++) {
+			for (int i = 48; i < 96; i++) {
 				ChannelItem item = new ChannelItem();
 				item.freq = "";
 				item.name = "";
 				item.abridge = "";
 				setChannelItem(i, item);
-		}
-		
+			}
+		} else if (getRadioType() == RADIO_COLLECT) {
+			for (int i = 96; i < RADIO_CHANNEL_COUNT; i++) {
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				setChannelItem(i, item);
+			}
+
 		}
 		FLAG_AUTO = 1;
 		jniSetFreq(curFreq);
 		jniAutoSeek(curFreq);
 		new Thread(runnable).start();
-		
+
 	}
 
 	@Override
@@ -719,21 +748,41 @@ public class RadioService extends Service implements RadioInterface,
 		return viewList;
 	}
 
-	/* ����XML */
+	/**
+	 * 获取当前系统语言
+	 */
+	private String getLocalLanguage() {
+		// TODO Auto-generated method stub
+		String language = Locale.getDefault().getLanguage();
+//		SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
+//		editor.putString("local_language", language);
+//		editor.commit();
+//		Log.v(TAG, "-->" + language);
+		return language;
+	}
+	
+	/* 解析XML */
 	public boolean radioReadXML() {
+		InputStream inputStream;
+		String language = settings.getString("local_language", "zh");
+		if(DEBUG)Log.v(TAG, "-->" + language + "|getLocalLanguage()== "+getLocalLanguage().equals(language));
 		if (m_province_list != null && m_city_list != null
-				&& m_channel_list != null) {
+				&& m_channel_list != null ) {
 			return true;
 		}
 		if (DEBUG)
 			Log.v(TAG, "radioReadXML is into");
 		XmlPullParser parser = Xml.newPullParser();
+		/*
+		 * Parse XML
+		 */
 		try {
-			InputStream inputStream = getAssets().open("RadioDefChannel.xml"); /*
-																				 * ��ȡRadioDefChannel
-																				 * .
-																				 * xml�ļ�
-																				 */
+			if(getLocalLanguage().equals("zh")){
+				inputStream = getAssets().open("RadioDefChannel.xml"); 
+			}else {
+				inputStream = getAssets().open("RadioDefChannel_otherLanguage.xml"); 
+			}
+
 			parser.setInput(inputStream, "UTF-8");
 			int eventType = parser.getEventType();
 
@@ -800,6 +849,11 @@ public class RadioService extends Service implements RadioInterface,
 	}
 
 	void updatePreferences(int type) {
+		// .StringBuilder�࣬ʹ������������Ķ���Ĭ�ϻ���16���ַ�ĳ��ȣ�
+		// ��Ҳ��������ָ����ʼ���ȡ����ӵ��ַ�������ɵĳ��ȣ�
+		// ��StringBuilder������Զ����ӳ��������ɱ����ӵ��ַ�
+		// �����Ƶ�����ַ��ӵ�����ʹ��StringBuilder���ó����Ч�ʴ����ߡ�
+		// ��StringЧ�ʸߣ�һ��String����ĳ����ǹ̶��ģ����ܸı��������
 		StringBuilder sbabridge = new StringBuilder(RADIO_CHANNEL_COUNT);
 		StringBuilder sbfreq = new StringBuilder(RADIO_CHANNEL_COUNT);
 		StringBuilder sbname = new StringBuilder(RADIO_CHANNEL_COUNT);
@@ -836,9 +890,9 @@ public class RadioService extends Service implements RadioInterface,
 				mVolume = settings.getInt("mvolume", 0);
 				curFreq = settings.getInt("mfreq", 0);
 
-				String[] freqArray = new String[0];
-				String[] nameArray = new String[0];
-				String[] abridgeArray = new String[0];
+				String[] freqArray = null;
+				String[] nameArray = null;
+				String[] abridgeArray = null;
 				String freqStr = settings.getString("freq", null); /* ��ȡ��� */
 				String nameStr = settings.getString("name", null);
 				String abridgeStr = settings.getString("abridge", null);
@@ -854,7 +908,16 @@ public class RadioService extends Service implements RadioInterface,
 					Log.d(TAG, "----freqArray-----" + freqArray.length
 							+ "--nameArray--" + nameArray.length
 							+ "--abridgeArray--" + abridgeArray.length);
-
+				/*
+				 * if(freqArray != null){ for(int i=0; i<freqArray.length; i++){
+				 * ChannelItem item = new ChannelItem(); item.freq =
+				 * freqArray[i]; item.name = nameArray[i]; item.abridge =
+				 * abridgeArray[i]; mChannelList.add(item); if(D)
+				 * Log.d(TAG,"---dmlwei item.freq------"+item.freq); } for(int
+				 * i=freqArray.length; i<RADIO_CHANNEL_COUNT; i++){ ChannelItem
+				 * item = new ChannelItem(); item.freq = ""; item.name = "";
+				 * item.abridge = ""; mChannelList.add(item); } }
+				 */
 				for (int i = 0; i < RADIO_CHANNEL_COUNT; i++) {
 					ChannelItem item = new ChannelItem();
 					if (i < freqArray.length) {
@@ -886,33 +949,88 @@ public class RadioService extends Service implements RadioInterface,
 				}
 				if (RADIO_FM1 == radioType) {
 					if (curChannelId < RADIO_PAGE_COUNT) {
+						// Integer.parseInt()���ַ��͵�����ת��Ϊ���͵�����
+						// replaceAll()Դ�ַ��е�ĳһ�ַ���ַ�ȫ������ָ�����ַ���ַ�
 						curFreq = Integer.parseInt(mChannelList
 								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
-					}else if (curChannelId >= RADIO_AM_START && curChannelId < RADIO_COLLECT_START) {
+					} else if (curChannelId >= RADIO_PAGE_COUNT
+							&& curChannelId < RADIO_FM_COUNT) {
+						radioType = RADIO_FM2;
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+					} else if (curChannelId >= RADIO_FM_COUNT && curChannelId < 96) {
 						radioType = RADIO_AM;
 						curFreq = Integer.parseInt(mChannelList
 								.get(curChannelId).freq);
-					} else if (curChannelId >= RADIO_COLLECT_START && curChannelId < RADIO_CHANNEL_COUNT) {
-                        radioType = RADIO_COLLECT;
-                        if (mChannelList.get(curChannelId).freq.contains(".")) {
-                            curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
-                        } else {
-							curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq);
+					} else if(curChannelId >= 96 && curChannelId < 144){
+						radioType = RADIO_COLLECT;
+						if(mChannelList.get(curChannelId).freq.contains(".")){
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+						}else{
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq);
+						}
+					}
+				} else if (RADIO_COLLECT == radioType) {
+					if (curChannelId < RADIO_PAGE_COUNT) {
+						radioType = RADIO_FM1;
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+					} else if (curChannelId >= RADIO_PAGE_COUNT
+							&& curChannelId < RADIO_FM_COUNT) {
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+					} else if (curChannelId >= RADIO_FM_COUNT && curChannelId < 96) {
+						radioType = RADIO_AM;
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq);
+					} else if(curChannelId >= 96 && curChannelId < 144){
+						if(mChannelList.get(curChannelId).freq.contains(".")){
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+						}else{
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq);
+						}
+						
+					}
+				} else if (RADIO_AM == radioType) {
+					if (curChannelId < RADIO_PAGE_COUNT) {
+						radioType = RADIO_FM1;
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+					} else if (curChannelId >= RADIO_PAGE_COUNT
+							&& curChannelId < RADIO_FM_COUNT) {
+						radioType = RADIO_FM2;
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+					} else if (curChannelId >= RADIO_FM_COUNT && curChannelId < 96) {
+						curFreq = Integer.parseInt(mChannelList
+								.get(curChannelId).freq);
+					} else if (curChannelId >= 96 && curChannelId < 144){
+						radioType = RADIO_COLLECT;
+						if(mChannelList.get(curChannelId).freq.contains(".")){
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq.replaceAll("\\.", "")) * 10;
+						}else{
+							curFreq = Integer.parseInt(mChannelList
+									.get(curChannelId).freq);
 						}
 					}
 				}
-				}
 			} else { // read default data
-                radioReadXML();
-                importChannelList(0, 0, false);
-            }
-	}
+				radioReadXML();
+				importChannelList(0, 0, false);
+			}
+		}
 
+	}
 
 	public boolean importChannelList(int provinceId, int cityId, boolean refresh) {
 		int fmNum = 0;
 		int amNum = 0;
-		int collectNum = 0x60;
+		int collectNum = 96;
 		radioType = 0;
 		functionId = 0;
 		curChannelId = 0;
@@ -927,59 +1045,62 @@ public class RadioService extends Service implements RadioInterface,
 		mChannelList.clear();
 		for (ChannelItem item : m_channel_list.get(provinceId).get(cityId)) {
 			if (item.freq.contains(".")) {
-                if(getRadioType() == 0) {
-                    mChannelList.add(fmNum ++, item);
-                    Log.v("RadioService", "111111mChannelList.size() = " + mChannelList.size());
-                }
-                if(getRadioType() == RADIO_COLLECT) {
-                    mChannelList.add(collectNum ++, item);
-                    Log.v("RadioService", "222222mChannelList.size() = " + mChannelList.size());
-                }
+				if(getRadioType() == RADIO_FM1){
+					mChannelList.add(fmNum++, item);
+					if(DEBUG)Log.v(TAG,"111111mChannelList.size() = "+mChannelList.size());
+				}else if(getRadioType() == RADIO_COLLECT){
+					mChannelList.add(collectNum++, item);
+					if(DEBUG)Log.v(TAG,"222222mChannelList.size() = "+mChannelList.size());
+				}
 			} else {
 				amNum++;
 				mChannelList.add(item);
-				Log.v("RadioService", "3333333mChannelList.size() = " + mChannelList.size());
+				if(DEBUG)Log.v(TAG,"3333333mChannelList.size() = "+mChannelList.size());
 			}
 		}
-		for (int i = fmNum; i < RadioService.RADIO_PAGE_COUNT; i++) {
+		for (int i = fmNum; i < RadioService.RADIO_FM_COUNT; i++) {
 			ChannelItem item = new ChannelItem();
 			item.freq = "";
 			item.name = "";
 			item.abridge = "";
 			mChannelList.add(fmNum++, item);
-			Log.v("RadioService", "4444444mChannelList.size() = " + mChannelList.size());
+			if(DEBUG)Log.v(TAG,"4444444mChannelList.size() = "+mChannelList.size());
 		}
-		for (int i = amNum; i < RadioService.RADIO_PAGE_COUNT; i++) {
+		for (int i = amNum; i < RadioService.RADIO_AM_COUNT; i++) {
 			ChannelItem item = new ChannelItem();
 			item.freq = "";
 			item.name = "";
 			item.abridge = "";
 			mChannelList.add(item);
-			Log.v("RadioService", "5555555mChannelList.size() = " + mChannelList.size());
+			if(DEBUG)Log.v(TAG,"5555555mChannelList.size() = "+mChannelList.size());
 		}
-		for(int i = collectNum; i < RADIO_PAGE_COUNT; i++) {
-            ChannelItem item = new ChannelItem();
-            item.freq = "";
-            item.name = "";
-            item.abridge = "";
-            mChannelList.add(item);
-            Log.v("RadioService", "66666666mChannelList.size() = " + mChannelList.size());
-            mChannelList.size();
-        }
-		if (RADIO_FM1 == radioType) {
-			turnFmAm(0);
+		//add mChannelList.size() -> RADIO_CHANNEL_COUNT(144)
+		for (int i = collectNum; i < RadioService.RADIO_CHANNEL_COUNT; i++) {
+			ChannelItem item = new ChannelItem();
+			item.freq = "";
+			item.name = "";
+			item.abridge = "";
+			mChannelList.add(item);
+			if(DEBUG)Log.v(TAG,"66666666mChannelList.size() = "+mChannelList.size());
+			mChannelList.size();
+		}
+		if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
+			turnFmAm(RADIO_TYPE_FM);
 			curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq
 					.replaceAll("\\.", "")) * 10;
 		} else if (RADIO_AM == radioType) {
 			curFreq = Integer
 					.parseInt(mChannelList.get(fmNum + curChannelId).freq);
-		} else if (RADIO_COLLECT == radioType) {
-            if(mChannelList.get(curChannelId).freq.contains(".")) {
-                curFreq = (Integer.parseInt(mChannelList.get(curChannelId).freq.replaceAll("\\.", "")) * 10);
-            } else {
-                curFreq = Integer.parseInt(mChannelList.get(curChannelId + fmNum).freq);
-            }
-        }
+		} else if(RADIO_COLLECT == radioType){
+			if(mChannelList.get(curChannelId).freq.contains(".")){
+				curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq
+						.replaceAll("\\.", "")) * 10;
+			}else{
+				curFreq = Integer
+						.parseInt(mChannelList.get(fmNum + curChannelId).freq);
+			}
+			
+		}
 		updatePreferences(RADIO_DATA_SAVE);
 		if (refresh) {
 			mRadioplayerHandler.sendEmptyMessage(UPDATE_CHANNEL_LIST);
@@ -995,9 +1116,14 @@ public class RadioService extends Service implements RadioInterface,
 
 			if (intent.getAction().equals(
 					"android.intent.action.BONOVO_SLEEP_KEY")) {
+				PowerOnOff(false);
+				Log.v("myu", "BonovoRadio is sleep PowerOnOff");
 				//stopService(new Intent("com.example.RadioService")); 
             }else if (intent.getAction().equals("android.intent.action.BONOVO_WAKEUP_KEY")){
+                PowerOnOff(true);
+                Log.v("myu", "BonovoRadio is wakeup");
                 setFreq(curFreq);
+                Log.v("myu", "BonovoRadio is wakeup-->setFreq");
         		if(getRadioType() == RADIO_FM1){
         			mCanRadio.sendRadioInfo(CanRadio.BAND_FM, curFreq);
         		}else if (getRadioType() == RADIO_AM) {
@@ -1018,59 +1144,65 @@ public class RadioService extends Service implements RadioInterface,
         myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_TURNDOWN");
         myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_TURNUP");
 		return myIntentFilter;
-	};
+	}
 
+	@Override
 	public void clearAllContent() {
-        if (getRadioType() == RADIO_FM1 || getRadioType() == RADIO_FM2) {
-            for (int i = 0; i < 48; i++) {
-                ChannelItem channelitem = new ChannelItem();
-                channelitem.freq = "";
-                channelitem.name = "";
-                channelitem.abridge = "";
-                setChannelItem(i, channelitem);
-            }
+		// TODO Auto-generated method stub
+		if (getRadioType() == RADIO_FM1 || getRadioType() == RADIO_FM2) {
 
-        } else if (getRadioType() == RADIO_AM) {
-            for (int i = 48; i < 96; i++) {
-                ChannelItem channelitem2 = new ChannelItem();
-                channelitem2.freq = "";
-                channelitem2.name = "";
-                channelitem2.abridge = "";
-                setChannelItem(i, channelitem2);
-            }
-        } else if (getRadioType() == RADIO_COLLECT) {
-            for (int i = 96; i < RADIO_CHANNEL_COUNT; i++) {
-                ChannelItem channelitem1 = new ChannelItem();
-                channelitem1.freq = "";
-                channelitem1.name = "";
-                channelitem1.abridge = "";
-                setChannelItem(i, channelitem1);
-            }
+			for (int i = 0; i < RADIO_FM_COUNT; i++) {
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				setChannelItem(i, item);
+			}
 
-        }
-    }
+		} else if (getRadioType() == RADIO_AM) {
+			for (int i = 48; i < 96; i++) {
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				setChannelItem(i, item);
+			}
+		} else if(getRadioType() == RADIO_COLLECT){
+			for (int i = 96; i < RADIO_CHANNEL_COUNT; i++) {
+				ChannelItem item = new ChannelItem();
+				item.freq = "";
+				item.name = "";
+				item.abridge = "";
+				setChannelItem(i, item);
+			}
+		}
+	}
 	
-	public void readAndSetModelInfo() {
-        SharedPreferences modelpre = getSharedPreferences("CHECKED", 0x0);
-        RADIO_MODEL = modelpre.getInt("radioModel", 0x0);
-        if(RADIO_MODEL == JAPAN_MODEL) {
-            jniSetModel(JAPAN_MODEL);
-            FM_HIGH_FREQ = 9000;
-            FM_LOW_FREQ = 7600;
-            AM_HIGH_FREQ = 1620;
-            AM_LOW_FREQ = 522;
-        } else if(RADIO_MODEL == EUROPE_MODEL) {
-            jniSetModel(EUROPE_MODEL);
-            FM_HIGH_FREQ = 10800;
-            FM_LOW_FREQ = 8700;
-            AM_HIGH_FREQ = 1620;
-            AM_LOW_FREQ = 522;
-        } else {
+	/*
+	 * Read And Set Radio Model -->china japan europe
+	 */
+	public void readAndSetModelInfo(){
+		SharedPreferences modelpre = getSharedPreferences(
+				"CHECKED", 0);
+		RADIO_MODEL = modelpre.getInt("radioModel", 0);
+		if(RADIO_MODEL == JAPAN_MODEL){
+			jniSetModel(JAPAN_MODEL);
+			FM_HIGH_FREQ = 9000;
+			FM_LOW_FREQ = 7600;
+			AM_HIGH_FREQ = 1620;
+			AM_LOW_FREQ = 522;
+		}else if (RADIO_MODEL == EUR_MODEL) {
+			jniSetModel(EUR_MODEL);
+			FM_HIGH_FREQ = 10800;
+			FM_LOW_FREQ = 8700;
+			AM_HIGH_FREQ = 1620;
+			AM_LOW_FREQ = 522;
+		}else {
 			jniSetModel(CHINA_MODEL);
 			FM_HIGH_FREQ = 10800;
 			FM_LOW_FREQ = 8700;
 			AM_HIGH_FREQ = 1602;
 			AM_LOW_FREQ = 531;
 		}
-    }
+	}
 }

@@ -73,7 +73,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				if (DEBUG) Log.d(TAG, "<myu>RadioImportActivity button province");
 				mCitySel = -1;
 				showPlayList();
-				mCityButton.setVisibility(View.INVISIBLE);
+				mCityButton.setVisibility(View.INVISIBLE); // �������Ϊinvisible���ɼ�
 				mImportButton.setVisibility(View.INVISIBLE);
 				break;
 			case R.id.import_button_city:
@@ -187,7 +187,12 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		mListView.invalidate();
 	}
 
-	private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+	private BroadcastReceiver myReceiver = new BroadcastReceiver() { /*
+																	 * ����
+																	 * BroadcastReceiver���myReceiver
+																	 * ��������㲥��Ϣ
+																	 * ���ֵ�ʱ��ᱻAndroid��������
+																	 */
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
@@ -199,7 +204,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		}
 	};
 
-	private IntentFilter getIntentFilter() {
+	private IntentFilter getIntentFilter() { /* ע�� BroadcastReceiver */
 
 		IntentFilter myIntentFilter = new IntentFilter(RadioService.MSG_CLOSE);
 		return myIntentFilter;
@@ -225,7 +230,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		mService = ((RadioService.ServiceBinder) service).getService();
 		lstart1 = System.currentTimeMillis();
 		if (mService.radioReadXML()) {
-			lstart2 = System.currentTimeMillis();
+			lstart2 = System.currentTimeMillis(); // ָ��Ҫ������ʾ
 			showPlayList();
 		} else {
 			if (DEBUG) Log.v(TAG, "radioReadXML  is null");

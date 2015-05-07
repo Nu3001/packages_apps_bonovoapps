@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
 
     <supports-screens
@@ -25,21 +25,24 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="com.example.radio.setup"/>
+                <action android:name="com.example.radio.setup" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.APP_MUSIC" />
             </intent-filter>
         </activity>
-        
-        <receiver android:name="com.example.radio.MediaButtonIntentReceiver">  
-  			<intent-filter >  
-        		<action android:name="android.intent.action.MEDIA_BUTTON"></action>
-        		<action android:name="android.intent.action.BONOVO_RADIO_KEY"></action>    
-  		</intent-filter>  
-		</receiver> 
-        
+
+        <receiver android:name="com.example.radio.MediaButtonIntentReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" >
+                </action>
+                <action android:name="android.intent.action.BONOVO_RADIO_KEY" >
+                </action>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="com.example.radio.RadioImportActivity"
             android:screenOrientation="landscape" >
@@ -51,17 +54,14 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
         </activity>
-
-
-        <activity android:theme="@*android:style/Theme.Holo.Dialog.NoActionBar" android:name="com.example.radio.IntentActivity">
-
+        <activity
+            android:name="com.example.radio.IntentActivity"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
             <intent-filter>
-
                 <action android:name="com.example.radio.IntentActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
         <service android:name="RadioService" >

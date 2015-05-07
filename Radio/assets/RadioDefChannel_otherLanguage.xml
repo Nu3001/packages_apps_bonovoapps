@@ -1,0 +1,4620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--RADIO-CHANNEL-LIST-FILE-ID_52414449-4F43-4841-4E4E-454C4C495354-->
+<!--PLEASE NOT DELETE THE SECOND LINE ABOVE, OTHERWISE, THE FILE WILL NOT BE IMPORTED!!!-->
+<!--请不要删除第2行,否则收音机频道文件的导入就会有问题-->
+<RadioChannelList>
+	<!--KEEP THE FOLLOWING 2 LINES.请保留下面2行-->
+	<FileID id="RADIO-CHANNEL-LIST-FILE-ID_52414449-4F43-4841-4E4E-454C4C495354"/>
+	<FileVersion value="1.0.0.0000"/>
+	<Province value="Alba">
+		<City value="Abrud">
+			<Channel>
+				<Abbr value="Ardeleanul"/>
+				<Name value="Ardeleanul"/>
+				<Freq value="94.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="88.3"/>
+			</Channel>
+		</City>
+		<City value="Aiud">
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="103.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Eveniment"/>
+				<Name value="Eveniment"/>
+				<Freq value="88.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="88.4"/>
+			</Channel>
+		</City>
+		<City value="Alba-Iulia">
+			<Channel>
+				<Abbr value="Atlas FM"/>
+				<Name value="Atlas FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="97.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="97.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Ardeleanul FM"/>
+				<Name value="Ardeleanul FM"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Reintregirea"/>
+				<Name value="Reintregirea"/>
+				<Freq value="89.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="88.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Cluj"/>
+				<Name value="Radio Cluj"/>
+				<Freq value="95.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Unirea FM"/>
+				<Name value="Unirea FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+		</City>
+		<City value="Blaj">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="99.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Blaj"/>
+				<Name value="Radio Blaj"/>
+				<Freq value="96.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Maria"/>
+				<Name value="Radio Maria"/>
+				<Freq value="94.4"/>
+			</Channel>	
+		</City>
+		<City value="Campeni">
+			<Channel>
+				<Abbr value="Atlas"/>
+				<Name value="Atlas"/>
+				<Freq value="96.2"/>
+			</Channel>
+		</City>
+		<City value="Cugir">
+			<Channel>
+				<Abbr value="Energy"/>
+				<Name value="Energy"/>
+				<Freq value="87.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Atlas FM"/>
+				<Name value="Atlas FM"/>
+				<Freq value="92.9"/>
+			</Channel>
+		</City>
+		<City value="Ocna-Mures">
+			<Channel>
+				<Abbr value="Radio Delta"/>
+				<Name value="Radio Delta"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Atlas FM"/>
+				<Name value="Atlas FM"/>
+				<Freq value="95.2"/>
+			</Channel>
+		</City>
+		<City value="Sebes">
+			<Channel>
+				<Abbr value="Radio Star"/>
+				<Name value="Radio Star"/>
+				<Freq value="90.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Orion"/>
+				<Name value="Orion"/>
+				<Freq value="88.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="99.4"/>
+			</Channel>
+			</City>
+		</Province>
+		<Province value="Arad">
+		<City value="Arad">
+			<Channel>
+				<Abbr value="Info Pro"/>
+				<Name value="Info Pro"/>
+				<Freq value="105.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="99.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Arad"/>
+				<Name value="Radio Arad"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="97.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.5"/>
+			</Channel>
+		</City>
+		<City value="保定市">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="89.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Alt FM"/>
+				<Name value="Alt FM"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="103.8"/>
+			</Channel>
+		</City>
+		<City value="Sebis">
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Flacara Rusaliilor"/>
+				<Name value="Flacara Rusaliilor"/>
+				<Freq value="89.7"/>
+			</Channel>
+			</City>
+	</Province>
+	<Province value="Arges">
+		<City value="Campulung">
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Orion"/>
+				<Name value="Orion"/>
+				<Freq value="96.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Guerrilla"/>
+				<Name value="Guerrilla"/>
+				<Freq value="94.1"/>
+			</Channel>
+		</City>
+		<City value="Costesti">
+			<Channel>
+				<Abbr value="Guerrilla"/>
+				<Name value="Guerrilla"/>
+				<Freq value="94.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFM"/>
+				<Name value="RFM"/>
+				<Freq value="94.9"/>
+			</Channel>
+		</City>
+		<City value="Curtea de Arges">
+			<Channel>
+				<Abbr value="Phoenix"/>
+				<Name value="Phoenix"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Guerrilla"/>
+				<Name value="Guerrilla"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Arges Express FM"/>
+				<Name value="Arges Express FM"/>
+				<Freq value="96.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFM"/>
+				<Name value="RMF"/>
+				<Freq value="90.9"/>
+			</Channel>
+		</City>
+		<City value="Fagaras">
+			<Channel>
+				<Abbr value="Nova FM"/>
+				<Name value="Nova FM"/>
+				<Freq value="107.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RTT FM"/>
+				<Name value="RTT FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Star FM"/>
+				<Name value="Star FM"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Tampa"/>
+				<Name value="Tampa"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="107.6"/>
+			</Channel>
+		</City>
+		<City value="Pitesti">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Muntenia FM"/>
+				<Name value="Muntenia FM"/>
+				<Freq value="105.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Guerrilla"/>
+				<Name value="Guerrilla"/>
+				<Freq value="90.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Pitesti"/>
+				<Name value="Radio Pitesti"/>
+				<Freq value="90.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="88.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="91.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="88.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFM"/>
+				<Name value="RFM"/>
+				<Freq value="90.7"/>
+			</Channel>
+		</City>
+		</Province>
+		<Province value="Bacau">
+		<City value="Bacau">
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="107.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="AS Bacau"/>
+				<Name value="AS Bacau"/>
+				<Freq value="105.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="104.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Trinitas"/>
+				<Name value="Trinitas"/>
+				<Freq value="96.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="96.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="95.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radical FM"/>
+				<Name value="Radical FM"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="91.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="90.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Alfa"/>
+				<Name value="Radio Alfa"/>
+				<Freq value="89.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Itsy Bitsy"/>
+				<Name value="Itsy Bitsy"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="96.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="95.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="105.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="98.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="101.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="90.6"/>
+			</Channel>
+		</City>
+		<City value="Comanesti">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="106.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="104.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="101.4"/>
+			</Channel>
+		</City>
+		<City value="Moinesti">
+			<Channel>
+				<Abbr value="Trinitas"/>
+				<Name value="Trinitas"/>
+				<Freq value="99.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="97.4"/>
+			</Channel>
+		</City>
+		<City value="Onesti">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="91.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="89.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Trinitas"/>
+				<Name value="Trinitas"/>
+				<Freq value="88.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Conect FM"/>
+				<Name value="Conect FM"/>
+				<Freq value="97.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Kit"/>
+				<Name value="Radio Kit"/>
+				<Freq value="87.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="91.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Bihor">
+		<City value="Alesd">
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="95.8"/>
+			</Channel>
+		</City>
+		<City Value="Beius">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="99.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Favorit FM"/>
+				<Name value="Favorit FM"/>
+				<Freq value="95.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="87.9"/>
+			</Channel>
+		</City>
+		<City Value="Marghita">
+			<Channel>
+				<Abbr value="Radio Partium"/>
+				<Name value="Radio Partium"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.8"/>
+			</Channel>
+		</City>
+		<City value="Oradea">
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="107.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="national FM"/>
+				<Freq value="107.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Maria"/>
+				<Name value="Radio Maria"/>
+				<Freq value="102.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="98.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="97.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="93.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Favorit FM"/>
+				<Name value="Favorit FM"/>
+				<Freq value="92.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Partium"/>
+				<Name value="Radio Partium"/>
+				<Freq value="89.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="98.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="107.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="104.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="96.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Bistrita-Nasaud">
+		<City value="Beclean">
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="91.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio S.O.S."/>
+				<Name value="Radio S.O.S."/>
+				<Freq value="87.7"/>
+			</Channel>
+		</City>
+		<City value="Bistrita">
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="107.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Bistrita"/>
+				<Name value="Radio Bistrita"/>
+				<Freq value="106.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="103.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Renasterea"/>
+				<Name value="Radio Renasterea"/>
+				<Freq value="102.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="99.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="94.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="93.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Mix FM"/>
+				<Name value="Radio Mix FM"/>
+				<Freq value="92.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="90.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="88.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="107.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Balada"/>
+				<Name value="Radio Balada"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Samus Somes"/>
+				<Name value="Radio Samus Somes"/>
+				<Freq value="96.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Rock FM"/>
+				<Name value="Rock FM"/>
+				<Freq value="88.2"/>
+			</Channel>
+		</City>
+		<City value="Nasaud">
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="95.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Balada"/>
+				<Name value="Radio Balada"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio For You FM"/>
+				<Name value="Radio For You FM"/>
+				<Freq value="94.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Botosani">
+		<City value="Botosani">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="106.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="AS Botosani"/>
+				<Name value="AS Botosani"/>
+				<Freq value="104.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Fix"/>
+				<Name value="Radio Fix"/>
+				<Freq value="99.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Mix FM"/>
+				<Name value="Radio Mix FM"/>
+				<Freq value="98.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="96.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Meridian"/>
+				<Name value="Radio Meridian"/>
+				<Freq value="93.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="89.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="88.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Better"/>
+				<Name value="Radio Better"/>
+				<Freq value="106.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="96.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="93.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="106.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania CUltural"/>
+				<Freq value="100.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sport Total FM"/>
+				<Name value="Sport Total FM"/>
+				<Freq value="91.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="106.3"/>
+			</Channel>
+		</City>
+		<City value="Darabani">
+			<Channel>
+				<Abbr value="Radio Global"/>
+				<Name value="Radio Global"/>
+				<Freq value="97.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="95.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="97.7"/>
+			</Channel>
+		</City>
+		<City value="Dorohoi">
+			<Channel>
+				<Abbr value="Cristal FM"/>
+				<Name value="Cristal FM"/>
+				<Freq value="93.9"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Brasov">
+		<City value="Brasov">
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impuls"/>
+				<Name value="Radio Impuls"/>
+				<Freq value="101.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="100.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Brasov FM"/>
+				<Name value="Brasov FM"/>
+				<Freq value="98.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Brasov Special"/>
+				<Name value="Brasov Special"/>
+				<Freq value="89.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RTT Brasov"/>
+				<Name value="RTT Brasov"/>
+				<Freq value="96.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="94.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Ortodoxia"/>
+				<Name value="Radio Ortodoxia"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Special"/>
+				<Name value="Radio Special"/>
+				<Freq value="93.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Mix FM"/>
+				<Name value="Radio Mix FM"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="89.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="89.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Brasov"/>
+				<Name value="Radio Brasov"/>
+				<Freq value="87.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Doctor FM"/>
+				<Name value="Doctor FM"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Nova"/>
+				<Name value="Radio Nova"/>
+				<Freq value="98.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="98.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Super FM"/>
+				<Name value="Super FM"/>
+				<Freq value="93.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="TEX FM"/>
+				<Name value="TEX FM"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="97.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="96.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="102.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="105.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Muzical"/>
+				<Name value="Radio Muzical"/>
+				<Freq value="97.6"/>
+			</Channel>
+		</City>
+		<City value="Predeal">
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="103.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Star FM"/>
+				<Name value="Star FM"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="90.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Astra"/>
+				<Name value="Radio Astra"/>
+				<Freq value="89.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="92.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Braila">
+		<City value="Braila">
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="104.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Alfa"/>
+				<Name value="Radio Alfa"/>
+				<Freq value="98.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="89.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Focus FM"/>
+				<Name value="Focus FM"/>
+				<Freq value="97.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="89.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Dens FM"/>
+				<Name value="Dens FM"/>
+				<Freq value="104.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="94.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Rock FM"/>
+				<Name value="Rock FM"/>
+				<Freq value="104.8"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Bucuresti">
+		<City value="Bucuresti">
+			<Channel>
+				<Abbr value="Activ FM"/>
+				<Name value="Activ FM"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="City FM"/>
+				<Name value="City FM"/>
+				<Freq value="106.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="106.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="HFM Radio"/>
+				<Name value="HFM Radio"/>
+				<Freq value="103.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Itsy Bitsy"/>
+				<Name value="Itsy Bitsy"/>
+				<Freq value="99.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="96.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="90.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="91.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM Dance"/>
+				<Name value="Pro FM Dance"/>
+				<Freq value="89.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="102.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Bucuresti FM"/>
+				<Name value="Bucuresti FM"/>
+				<Freq value="98.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio France International"/>
+				<Name value="Radio France International"/>
+				<Freq value="93.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Gold FM"/>
+				<Name value="Gold FM"/>
+				<Freq value="96.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="94.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="94.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="95.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="94.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="94.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="89.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="100.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Rock FM"/>
+				<Name value="Rock FM"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="105.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="101.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Muzical"/>
+				<Name value="Romania Muzical"/>
+				<Freq value="104.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic Fm"/>
+				<Freq value="101.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Smart FM"/>
+				<Name value="Smart FM"/>
+				<Freq value="107.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sport Total FM"/>
+				<Name value="Sport Total FM"/>
+				<Freq value="105.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Student FM"/>
+				<Name value="Student FM"/>
+				<Freq value="103.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="WYL FM"/>
+				<Name value="WYL FM"/>
+				<Freq value="103.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Buzau">
+		<City value="Buzau">
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="106.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Media"/>
+				<Name value="Radio Media"/>
+				<Freq value="105.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="102.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="98.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Campus"/>
+				<Name value="Radio Campus"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Focus FM"/>
+				<Name value="Focus Fm"/>
+				<Freq value="93.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Muzical"/>
+				<Name value="Radio Muzical"/>
+				<Freq value="97.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="102.7"/>
+			</Channel>
+		</City>
+		<City value="Intorsura Buzaului">
+			<Channel>
+				<Abbr value="Radio Regio"/>
+				<Name value="Radio Regio"/>
+				<Freq value="91.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Friss FM"/>
+				<Name value="Friss FM"/>
+				<Freq value="92.0"/>
+			</Channel>
+		</City>
+		<City value="Ramnicu-Sarat">
+			<Channel>
+				<Abbr value="Focus FM"/>
+				<Name value="Focus FM"/>
+				<Freq value="104.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Expres FM"/>
+				<Name value="Expres FM"/>
+				<Freq value="96.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Boom FM"/>
+				<Name value="Boom FM"/>
+				<Freq value="96.8"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Caras-Severin">
+		<City value="Baile-Herculane">
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="90.4"/>
+			</Channel>
+		</City>
+		<City value="Bocsa">
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="93.8"/>
+			</Channel>
+		</City>
+		<City value="Caransebes">
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="99.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="93.8"/>
+			</Channel>
+		</City>
+		<City value="Moldova-Noua">
+			<Channel>
+				<Abbr value="Radio Studio B"/>
+				<Name value="Radio Studio B"/>
+				<Freq value="107.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="106.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="104.3"/>
+			</Channel>
+		</City>
+		<City value="Resita">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="107.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Banat FM"/>
+				<Name value="Banat FM"/>
+				<Freq value="101.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Star"/>
+				<Name value="Radio Star"/>
+				<Freq value="101.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="97.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="97.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="94.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Calarasi">
+		<City value="Calarasi">
+			<Channel>
+				<Abbr value="Stil FM"/>
+				<Name value="Stil FM"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="101.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Voces Campi"/>
+				<Name value="Voces Campi"/>
+				<Freq value="101.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Baragan"/>
+				<Name value="Radio Baragan"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="99.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="95.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Arena FM"/>
+				<Name value="Arena FM"/>
+				<Freq value="100.0"/>
+			</Channel>
+		</City>
+		<City value="Oltenita">
+			<Channel>
+				<Abbr value="Radio Oltenita"/>
+				<Name value="Radio Oltenita"/>
+				<Freq value="99.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="97.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Voces Campi"/>
+				<Name value="Voces Campi"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Stil FM"/>
+				<Name value="Stil FM"/>
+				<Freq value="88.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="99.4"/>
+			</Channel>	
+		</City>
+	</Province>
+	<Province value="Cluj">
+		<City value="Campia-Turzii">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="98.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="97.8"/>
+			</Channel>
+		</City>
+		<City value="Cluj-Napoca">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="106.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="104.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Campus"/>
+				<Name value="Radio Campus"/>
+				<Freq value="103.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impuls"/>
+				<Name value="Radio Impuls"/>
+				<Freq value="101.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="99.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Eureka FM"/>
+				<Name value="Eureka FM"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="94.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Realitatea FM"/>
+				<Name value="Realitatea FM"/>
+				<Freq value="93.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="92.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="92.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFI FM"/>
+				<Name value="RFI FM"/>
+				<Freq value="91.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Renasterea"/>
+				<Name value="Radio Renasterea"/>
+				<Freq value="91.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="89.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="89.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="88.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="88.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="87.8"/>
+			</Channel>
+		</City>
+		<City value="Dej">
+			<Channel>
+				<Abbr value="Stil FM"/>
+				<Name value="Stil FM"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="97.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Fir"/>
+				<Name value="Radio Fir"/>
+				<Freq value="96.2"/>
+			</Channel>
+		</City>
+		<City value="Turda">
+			<Channel>
+				<Abbr value="Radio Turda"/>
+				<Name value="Radio Turda"/>
+				<Freq value="107.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="93.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="89.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="107.7"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Constanta">
+		<City value="Cernavoda">
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="95.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Doina"/>
+				<Name value="Radio Doina"/>
+				<Freq value="97.1"/>
+			</Channel>
+		</City>
+		<City value="Constanta">
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="107.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="104.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="104.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="103.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sky FM"/>
+				<Name value="Sky FM"/>
+				<Freq value="101.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="97.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="96.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Doina FM"/>
+				<Name value="Doina FM"/>
+				<Freq value="94.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="94.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="90.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="89.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="89.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="CFM Club"/>
+				<Name value="CFM Club"/>
+				<Freq value="92.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Constanta FM"/>
+				<Name value="Constanta FM"/>
+				<Freq value="100.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mamaia FM"/>
+				<Name value="Mamaia FM"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Neptun"/>
+				<Name value="Radio Neptun"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Vacanta"/>
+				<Name value="Radio Vacanta"/>
+				<Freq value="100.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="107.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Rock FM"/>
+				<Name value="Rock FM"/>
+				<Freq value="103.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="102.7"/>
+			</Channel>
+		</City>
+		<City value="Costinesti">
+			<Channel>
+				<Abbr value="Vox Radio Vacanta"/>
+				<Name value="Vox Radio Vacanta"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="87.8"/>
+			</Channel>
+		</City>
+		<City value="Eforie-Nord">
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="100.7"/>
+			</Channel>
+		</City>
+		<City value="Mangalia">
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="107.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="104.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="98.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="89.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="89.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="92.7"/>
+			</Channel>
+		</City>
+		<City value="Medgidia">
+			<Channel>
+				<Abbr value="Orizont FM"/>
+				<Name value="Orizont FM"/>
+				<Freq value="97.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="95.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="89.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="95.2"/>
+			</Channel>
+		</City>
+		<City value="Neptun">
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="97.5"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Covasna">
+		<City value="Baraolt">
+			<Channel>
+				<Abbr value="Regio FM"/>
+				<Name value="Regio FM"/>
+				<Freq value="90.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="90.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Friss FM"/>
+				<Name value="Friss FM"/>
+				<Freq value="90.6"/>
+			</Channel>
+		</City>
+		<City value="Covasna">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Friss FM"/>
+				<Name value="Friss FM"/>
+				<Freq value="107.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Muzical"/>
+				<Name value="Radio Muzical"/>
+				<Freq value="97.6"/>
+			</Channel>
+		</City>
+		<City value="Sfantu-Gheorghe">
+			<Channel>
+				<Abbr value="Radio Slagar"/>
+				<Name value="Radio Slagar"/>
+				<Freq value="105.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Astra"/>
+				<Name value="Radio Astra"/>
+				<Freq value="103.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impuls"/>
+				<Name value="Radio Impuls"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="90.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Media 3 FM"/>
+				<Name value="Media 3 FM"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Regio FM"/>
+				<Name value="Regio FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Friss FM"/>
+				<Name value="Friss FM"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sepsi FM"/>
+				<Name value="Sepsi FM"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="WE Radio"/>
+				<Name value="WE Radio"/>
+				<Freq value="91.0"/>
+			</Channel>
+		</City>
+		<City value="Targu-Secuiesc">
+			<Channel>
+				<Abbr value="Siculus FM"/>
+				<Name value="Siculus FM"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Profi Radio"/>
+				<Name value="Profi Radio"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Friss FM"/>
+				<Name value="Friss FM"/>
+				<Freq value="88.0"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Dambovita">
+		<City value="Gaesti">
+			<Channel>
+				<Abbr value="Minisat FM"/>
+				<Name value="Minisat FM"/>
+				<Freq value="100.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="96.3"/>
+			</Channel>
+		</City>
+		<City value="Targoviste">
+			<Channel>
+				<Abbr value="Minisat FM"/>
+				<Name value="Minisat FM"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Plus FM"/>
+				<Name value="Plus FM"/>
+				<Freq value="94.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="92.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="91.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Dambovita FM"/>
+				<Name value="Dambovita FM"/>
+				<Freq value="89.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="89.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="WYL FM"/>
+				<Name value="WYL FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio D"/>
+				<Name value="Radio D"/>
+				<Freq value="88.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="MDI Radio"/>
+				<Name value="MDI Radio"/>
+				<Freq value="88.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="96.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="White FM"/>
+				<Name value="White FM"/>
+				<Freq value="89.8"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Dolj">
+		<City value="Bailesti">
+			<Channel>
+				<Abbr value="Radio Logos"/>
+				<Name value="Radio Logos"/>
+				<Freq value="98.2"/>
+			</Channel>
+		</City>
+		<City value="Basarabi">
+			<Channel>
+				<Abbr value="Neptun FM"/>
+				<Name value="Neptun FM"/>
+				<Freq value="95.9"/>
+			</Channel>
+		</City>
+		<City value="Bechet">
+			<Channel>
+				<Abbr value="Radio Logos"/>
+				<Name value="Radio Logos"/>
+				<Freq value="103.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Favorit FM"/>
+				<Name value="Favorit FM"/>
+				<Freq value="96.8"/>
+			</Channel>
+		</City>
+		<City value="Craiova">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="104.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Horion FM"/>
+				<Name value="Horion FM"/>
+				<Freq value="103.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Logos"/>
+				<Name value="Radio Logos"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Sud"/>
+				<Name value="Radio Sud"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="95.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFI Radio"/>
+				<Name value="RFI Radio"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio GUerrilla"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Oltenia"/>
+				<Name value="Radio Oltenia"/>
+				<Freq value="102.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="88.7"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Galati">
+		<City value="Galati">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="104.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="103.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="100.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Alfa"/>
+				<Name value="Radio Alfa"/>
+				<Freq value="99.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="S FM"/>
+				<Name value="S FM"/>
+				<Freq value="94.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="92.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Lider FM"/>
+				<Name value="Lider FM"/>
+				<Freq value="92.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="92.0"/>
+			</Channel>
+		</City>
+		<City value="Targu-Bujor">
+			<Channel>
+				<Abbr value="Radio Energy"/>
+				<Name value="Radio Energy"/>
+				<Freq value="106.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="99.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Lider FM"/>
+				<Name value="Lider FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="90.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="99.7"/>
+			</Channel>
+		</City>
+		<City value="Tecuci">
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Style FM"/>
+				<Name value="Style FM"/>
+				<Freq value="99.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Tecuci FM"/>
+				<Name value="Tecuci FM"/>
+				<Freq value="106.9"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Giurgiu">
+		<City value="Giurgiu">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="96.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="89.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="104.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="102.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Muzical"/>
+				<Name value="Romania Muzical"/>
+				<Freq value="97.6"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Gorj">
+		<City value="Novaci">
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="100.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Logos"/>
+				<Name value="Radio Logos"/>
+				<Freq value="96.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Infinit FM"/>
+				<Name value="Infinit FM"/>
+				<Freq value="87.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="100.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Accent FM"/>
+				<Name value="Accent FM"/>
+				<Freq value="96.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="92.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="89.5"/>
+			</Channel>
+		</City>
+		<City value="Targu-Jiu">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="107.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Star FM"/>
+				<Name value="Star FM"/>
+				<Freq value="102.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="102.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Targu Jiu"/>
+				<Name value="Radio Targu Jiu"/>
+				<Freq value="97.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="97.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Logos"/>
+				<Name value="Radio Logos"/>
+				<Freq value="93.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Omega FM"/>
+				<Name value="Omega FM"/>
+				<Freq value="91.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Infinit FM"/>
+				<Name value="Infinit FM"/>
+				<Freq value="87.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="97.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="92.9"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Harghita">
+		<City value="Borsec">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="91.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="89.0"/>
+			</Channel>
+		</City>
+		<City value="Gheorgheni">
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="104.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="93.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="91.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Extra"/>
+				<Name value="Radio Extra"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="90.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Maria"/>
+				<Name value="Radio Maria"/>
+				<Freq value="89.7"/>
+			</Channel>
+		</City>
+		<City value="Miercurea-Ciuc">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="89.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Energy"/>
+				<Name value="Radio Energy"/>
+				<Freq value="88.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Fun FM"/>
+				<Name value="Fun FM"/>
+				<Freq value="87.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="89.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Retro FM"/>
+				<Name value="Retro FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+		</City>
+		<City value="Odorheiu-Secuiesc">
+			<Channel>
+				<Abbr value="Star FM"/>
+				<Name value="Star FM"/>
+				<Freq value="100.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Prima"/>
+				<Name value="Radio Prima"/>
+				<Freq value="87.9"/>
+			</Channel>
+		</City>
+		<City value="Toplita">
+			<Channel>
+				<Abbr value="Radio Energy"/>
+				<Name value="Radio Energy"/>
+				<Freq value="105.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Son FM"/>
+				<Name value="Son FM"/>
+				<Freq value="104.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="102.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="90.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Ardealul"/>
+				<Name value="Radio Ardealul"/>
+				<Freq value="89.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="102.3"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Hunedoara">
+		<City value="Brad">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="national FM"/>
+				<Freq value="101.2"/>
+			</Channel>
+		</City>
+		<City value="Deva">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="107.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="102.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="96.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="94.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="89.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Big FM"/>
+				<Name value="Big FM"/>
+				<Freq value="92.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="94.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Color"/>
+				<Name value="Radio Color"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="103.4"/>
+			</Channel>
+		</City>
+		<City value="Hateg">
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="100.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="T5 ABC"/>
+				<Name value="T5 ABC"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="88.0"/>
+			</Channel>
+		</City>
+		<City value="Hunedoara">
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="91.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="93.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Color"/>
+				<Name value="Radio Color"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Gogo"/>
+				<Name value="Radio Gogo"/>
+				<Freq value="96.9"/>
+			</Channel>
+		</City>
+		<City value="Petrosani">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="105.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="104.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Cristal FM"/>
+				<Name value="Cristal FM"/>
+				<Freq value="101.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="96.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="R.C.N. Petrosani"/>
+				<Name value="R.C.N. Petrosani"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="90.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="89.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kapital FM"/>
+				<Name value="Kapital FM"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mondo FM"/>
+				<Name value="Mondo FM"/>
+				<Freq value="101.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="88.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Ialomita">
+		<City value="Slobozia">
+			<Channel>
+				<Abbr value="Fresh FM"/>
+				<Name value="Fresh FM"/>
+				<Freq value="105.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="100.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="WYL FM"/>
+				<Name value="WYL FM"/>
+				<Freq value="92.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="89.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Sud-Est"/>
+				<Name value="Radio Sud-Est"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Campus"/>
+				<Name value="Radio Campus"/>
+				<Freq value="87.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="96.3"/>
+			</Channel>
+		</City>
+		<City value="Urziceni">
+			<Channel>
+				<Abbr value="Radio Campus"/>
+				<Name value="Radio Campus"/>
+				<Freq value="99.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Sud-Est"/>
+				<Name value="Radio Sud-Est"/>
+				<Freq value="91.8"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Iasi">
+		<City value="Harlau">
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="107.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Itsy Bitsy FM"/>
+				<Name value="Itsy Bitsy FM"/>
+				<Freq value="105.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="92.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vox T Radio"/>
+				<Name value="Vox T Radio"/>
+				<Freq value="87.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="87.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="94.0"/>
+			</Channel>
+		</City>
+		<City value="Iasi">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="106.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="105.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="VOX-T Radio"/>
+				<Name value="VOX-T Radio"/>
+				<Freq value="104.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="101.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Nord-Est"/>
+				<Name value="Radio Nord-Est"/>
+				<Freq value="100.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="99.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="RFI Radio"/>
+				<Name value="RFI Radio"/>
+				<Freq value="97.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Hit FM"/>
+				<Name value="Hit FM"/>
+				<Freq value="94.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Terra Iasi FM"/>
+				<Name value="Terra Iasi FM"/>
+				<Freq value="91.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="88.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="南安人民广播电台"/>
+				<Name value="南安人民广播电台"/>
+				<Freq value="88.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="87.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="104.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="101.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="101.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="103.1"/>
+			</Channel>
+		</City>
+		<City value="Pascani">
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="103.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Favorit FM"/>
+				<Name value="Favorit FM"/>
+				<Freq value="102.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vox T Radio"/>
+				<Name value="Vox T Radio"/>
+				<Freq value="102.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="91.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Maramures">
+		<City value="Baia-Mare">
+			<Channel>
+				<Abbr value="Alpha Total FM"/>
+				<Name value="Alpha Total FM"/>
+				<Freq value="103.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="105.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="104.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impact"/>
+				<Name value="Radio Impact"/>
+				<Freq value="96.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="94.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxia"/>
+				<Name value="Radio Galaxia"/>
+				<Freq value="92.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Club FM"/>
+				<Name value="Club FM"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="90.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Cluj"/>
+				<Name value="Radio Cluj"/>
+				<Freq value="87.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="105.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="E-Maramures FM"/>
+				<Name value="E-Maramures FM"/>
+				<Freq value="91.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Maria"/>
+				<Name value="Radio Maria"/>
+				<Freq value="95.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="98.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="102.5"/>
+			</Channel>
+		</City>
+		<City value="Borsa">
+			<Channel>
+				<Abbr value="Club FM"/>
+				<Name value="Club FM"/>
+				<Freq value="101.4"/>
+			</Channel>
+		</City>
+		<City value="Sighetu-Marmatiei">
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="For You FM"/>
+				<Name value="For You FM"/>
+				<Freq value="92.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Club FM"/>
+				<Name value="Club FM"/>
+				<Freq value="89.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="87.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="E-Maramures FM"/>
+				<Name value="E-Maramures FM"/>
+				<Freq value="93.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="106.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Sighet"/>
+				<Name value="Radio Sighet"/>
+				<Freq value="89.3"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Mehedinti">
+		<City value="Drobeta Turnu Severin">
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="107.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="101.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Severin"/>
+				<Name value="Radio Severin"/>
+				<Freq value="97.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Lumina"/>
+				<Name value="Radio Lumina"/>
+				<Freq value="90.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="107.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Acutalitati"/>
+				<Freq value="91.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Mures">
+		<City value="Ludus">
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="100.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio SON"/>
+				<Name value="Radio SON"/>
+				<Freq value="94.2"/>
+			</Channel>
+		</City>
+		<City value="Sighisoara">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="107.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio SON"/>
+				<Name value="Radio SON"/>
+				<Freq value="89.5"/>
+			</Channel>
+		</City>
+		<City value="Sovata">
+			<Channel>
+				<Abbr value="Radio Gaga"/>
+				<Name value="Radio Gaga"/>
+				<Freq value="102.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio SON"/>
+				<Name value="Radio SON"/>
+				<Freq value="89.2"/>
+			</Channel>
+		</City>
+		<City value="Targu-Mures">
+			<Channel>
+				<Abbr value="Radio SON"/>
+				<Name value="Radio SON"/>
+				<Freq value="105.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="101.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="101.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM Campus"/>
+				<Name value="Pro FM Campus"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="96.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="92.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="90.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="89.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="88.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Gaga"/>
+				<Name value="Radio Gaga"/>
+				<Freq value="88.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Targu-Mures"/>
+				<Name value="Radio Targu-Mures"/>
+				<Freq value="102.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="93.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania CUltural"/>
+				<Freq value="104.9"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Neamt">
+		<City value="Bicaz">
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="96.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="91.2"/>
+			</Channel>
+		</City>
+		<City value="Piatra-Neamt">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="AS FM"/>
+				<Name value="AS FM"/>
+				<Freq value="105.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="105.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="102.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio M Plus"/>
+				<Name value="Radio M Plus"/>
+				<Freq value="100.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="92.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Terra"/>
+				<Name value="Radio Terra"/>
+				<Freq value="89.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="94.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="88.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="102.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="103.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+		</City>
+		<City value="Targu-Neamt">
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="106.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio M Plus"/>
+				<Name value="Radio M Plus"/>
+				<Freq value="95.7"/>
+			</Channel>
+		</City>
+		<City value="Varatec">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="98.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="88.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Olt">
+		<City value="Draganesti">
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="106.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="93.8"/>
+			</Channel>
+		</City>
+		<City value="Slatina">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="107.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="98.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Minisat FM"/>
+				<Name value="Minisat FM"/>
+				<Freq value="96.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="94.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="90.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Oltenia"/>
+				<Name value="Radio Oltenia"/>
+				<Freq value="102.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sport Total FM"/>
+				<Name value="Sport Total FM"/>
+				<Freq value="92.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Prahova">
+		<City value="Busteni">
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="90.5"/>
+			</Channel>
+		</City>
+		<City value="Campina">
+			<Channel>
+				<Abbr value="WYL FM"/>
+				<Name value="WYL FM"/>
+				<Freq value="103.2"/>
+			</Channel>
+		</City>
+		<City value="Ploiesti">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="107.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="105.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="S.O.S. FM"/>
+				<Name value="S.O.S. FM"/>
+				<Freq value="101.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="100.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="99.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Prahova"/>
+				<Name value="Radio Prahova"/>
+				<Freq value="99.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="96.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="WYL FM"/>
+				<Name value="WYL FM"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="95.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="92.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="105.7"/>
+			</Channel>
+		</City>
+		<City value="Sinaia">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="104.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="93.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="92.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="104.7"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Satu-Mare">
+		<City value="Carei">
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="95.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="City Radio"/>
+				<Name value="City Radio"/>
+				<Freq value="93.8"/>
+			</Channel>
+		</City>
+		<City value="Negresti-Oas">
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="107.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="104.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="98.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="For You FM"/>
+				<Name value="For You FM"/>
+				<Freq value="96.0"/>
+			</Channel>
+		</City>
+		<City value="Satu-Mare">
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="107.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="City Radio"/>
+				<Name value="City Radio"/>
+				<Freq value="106.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="104.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="99.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="96.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="94.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="94.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="92.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Itsy Bitsy FM"/>
+				<Name value="Itsy Bitsy FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Salaj">
+		<City value="Zalau">
+			<Channel>
+				<Abbr value="Itsy Bitsy FM"/>
+				<Name value="Itsy Bitsy FM"/>
+				<Freq value="106.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="102.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="101.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Impact FM"/>
+				<Name value="Impact FM"/>
+				<Freq value="97.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="96.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Transilvania"/>
+				<Name value="Radio Transilvania"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Unison"/>
+				<Name value="Radio Unison"/>
+				<Freq value="94.0"/>
+			</Channel>
+            		<Channel>
+                		<Abbr value="Radio Trinitas" />
+                		<Name value="Radio Trinitas" />
+                		<Freq value="93.1" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Maria" />
+                		<Name value="Radio Maria" />
+                		<Freq value="92.5" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Kiss FM" />
+                		<Name value="Kiss FM" />
+                		<Freq value="91.5" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Favorit FM" />
+                		<Name value="Favorit FM" />
+                		<Freq value="90.3" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Pro FM" />
+                		<Name value="Pro FM" />
+                		<Freq value="101.6" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romania Actualitati" />
+                		<Name value="Romania Actualitati" />
+                		<Freq value="88.1" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romania Cultural" />
+                		<Name value="Romania Cultural" />
+                		<Freq value="105.0" />
+            		</Channel>
+        	</City>
+	</Province>
+	<Province value="Sibiu">
+        	<City value="Agnita">
+            		<Channel>
+                		<Abbr value="Mix FM" />
+                		<Name value="Mix FM" />
+                		<Freq value="88.5" />
+            		</Channel>
+        	</City>
+        	<City value="Medias">
+            		<Channel>
+                		<Abbr value="Ring FM" />
+                		<Name value="Ring FM" />
+                		<Freq value="90.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Medias" />
+                		<Name value="Radio Medias" />
+                		<Freq value="88.1" />
+            		</Channel>
+        	</City>
+        	<City value="Sibiu">
+            		<Channel>
+                		<Abbr value="Europa FM" />
+                		<Name value="Europa FM" />
+                		<Freq value="106.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio 21" />
+                		<Name value="Radio 21" />
+                		<Freq value="105.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Eveniment" />
+                		<Name value="Radio Eveniment" />
+                		<Freq value="103.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romantic FM" />
+                		<Name value="Romantic FM" />
+                		<Freq value="96.6" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Pro FM" />
+                		<Name value="Pro FM" />
+                		<Freq value="94.9" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Magic FM" />
+                		<Name value="Magic FM" />
+                		<Freq value="93.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Trinitas" />
+                		<Name value="Radio Trinitas" />
+                		<Freq value="93.3" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Info PRO" />
+                		<Name value="Info PRO" />
+                		<Freq value="92.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Kiss FM" />
+                		<Name value="Kiss FM" />
+                		<Freq value="91.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Sibiu" />
+                		<Name value="Radio Sibiu" />
+                		<Freq value="91.1" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Guerrilla" />
+                		<Name value="Radio Guerrilla" />
+                		<Freq value="90.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Mix FM" />
+                		<Name value="Mix FM" />
+                		<Freq value="89.9" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Vocea Evangheliei" />
+                		<Name value="Vocea Evangheliei" />
+                		<Freq value="89.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Alpha Total FM" />
+                		<Name value="Alpha Total FM" />
+                		<Freq value="88.9" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="National FM" />
+                		<Name value="National FM" />
+                		<Freq value="87.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Cluj" />
+                		<Name value="Radio Cluj" />
+                		<Freq value="95.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Antena Sibiului" />
+                		<Name value="Antena Sibiului" />
+                		<Freq value="95.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Galaxy" />
+                		<Name value="Radio Galaxy" />
+                		<Freq value="96.3" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio ZU" />
+                		<Name value="Radio ZU" />
+                		<Freq value="96.6" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Rock FM" />
+                		<Name value="Rock FM" />
+                		<Freq value="89.9" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romania Actualitati" />
+                		<Name value="Romania Actualitati" />
+                		<Freq value="101.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romania Cultural" />
+                		<Name value="Romania Cultural" />
+                		<Freq value="103.7" />
+                </Channel>
+        	</City>
+	</Province>
+	<Province value="Suceava">
+        	<City value="Campulung-Moldovenesc">
+            		<Channel>
+                		<Abbr value="Radio Impact" />
+                		<Name value="Radio Impact" />
+                		<Freq value="107.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Info PRO" />
+                		<Name value="Info PRO" />
+                		<Freq value="104.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Europa FM" />
+                		<Name value="Europa FM" />
+                		<Freq value="102.7" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Micul Samaritean" />
+                		<Name value="Micul Samaritean" />
+                		<Freq value="100.7" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romania Acutalitati" />
+                		<Name value="Romania Actualitati" />
+                		<Freq value="96.0" />
+            		</Channel>
+        	</City>
+        	<City value="Gura-Humorului">
+            		<Channel>
+                		<Abbr value="Radio Impact" />
+                		<Name value="Radio Impact" />
+                		<Freq value="93.4" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Trinitas" />
+                		<Name value="Radio Trinitas" />
+                		<Freq value="92.8" />
+            		</Channel>
+        	</City>
+        	<City value="Putna">
+            		<Channel>
+                		<Abbr value="Radio Impact" />
+                		<Name value="Radio Impact" />
+                		<Freq value="105.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Romantic FM" />
+                		<Name value="Romantic FM" />
+                		<Freq value="101.0" />
+            		</Channel>
+        	</City>
+        	<City value="Radauti">
+            		<Channel>
+                		<Abbr value="Radio Gold" />
+                		<Name value="Radio Gold" />
+                		<Freq value="99.2" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Trinitas" />
+                		<Name value="Radio Trinitas" />
+                		<Freq value="97.8" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Impact" />
+                		<Name value="Radio Impact" />
+                		<Freq value="105.2" />
+            		</Channel>
+        	</City>
+        	<City value="Roman">
+            		<Channel>
+                		<Abbr value="Radio Nord-Est" />
+                		<Name value="Radio Nord-Est" />
+                		<Freq value="106.6" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Star" />
+                		<Name value="Radio Star" />
+                		<Freq value="92.9" />
+            		</Channel>
+            		<Channel>
+                		<Abbr value="Radio Terra" />
+                		<Name value="Radio Terra" />
+                		<Freq value="88.3" />
+            		</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="92.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="93.7"/>
+			</Channel>
+		</City>
+		<City value="Suceava">
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="107.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="106.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="105.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio TOP 91"/>
+				<Name value="Radio TOP 91"/>
+				<Freq value="104.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="103.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="102.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="102.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="102.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impact"/>
+				<Name value="Radio Impact"/>
+				<Freq value="100.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Star"/>
+				<Name value="Radio Srar"/>
+				<Freq value="99.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Magic FM"/>
+				<Name value="Magic FM"/>
+				<Freq value="99.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio AS"/>
+				<Name value="Radio AS"/>
+				<Freq value="93.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="88.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="100.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Rock FM"/>
+				<Name value="Rock FM"/>
+				<Freq value="107.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Acutalitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="99.6"/>
+			</Channel>
+		</City>
+		<City value="Vatra-Dornei">
+			<Channel>
+				<Abbr value="Radio Dorna"/>
+				<Name value="Radio Dorna"/>
+				<Freq value="92.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impact"/>
+				<Name value="Radio Impact"/>
+				<Freq value="91.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Orion"/>
+				<Name value="Radio Orion"/>
+				<Freq value="90.3"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Teleorman">
+		<City value="Alexandria">
+			<Channel>
+				<Abbr value="Radio Semnal"/>
+				<Name value="Radio Semnal"/>
+				<Freq value="103.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impact"/>
+				<Name value="Radio Impact"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="93.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Mix FM"/>
+				<Name value="Mix FM"/>
+				<Freq value="91.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 1"/>
+				<Name value="Radio 1"/>
+				<Freq value="90.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="88.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="90.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="91.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="89.7"/>
+			</Channel>
+		</City>
+		<City value="Turnu-Magurele">
+			<Channel>
+				<Abbr value="Radio Sud"/>
+				<Name value="Radio Sud"/>
+				<Freq value="100.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="97.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="90.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="105.1"/>
+			</Channel>
+		</City>
+		<City value="Zimnicea">
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="107.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="104.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="96.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="92.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="90.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="96.1"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Timis">
+		<City value="Lugoj">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="95.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="91.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Nova"/>
+				<Name value="Radio Nova"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="89.8"/>
+			</Channel>
+		</City>
+		<City value="Timisoara">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="104.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Campus"/>
+				<Name value="Radio Campus"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="99.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="96.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="96.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio BBC"/>
+				<Name value="Radio BBC"/>
+				<Freq value="93.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="91.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="90.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa Nova FM"/>
+				<Name value="Europa Nova FM"/>
+				<Freq value="89.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="89.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Evangheliei"/>
+				<Name value="Vocea Evangheliei"/>
+				<Freq value="88.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="97.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Timisoara"/>
+				<Name value="Radio Timisoara"/>
+				<Freq value="105.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="95.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="106.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Tulcea">
+		<City value="Mahmudia">
+			<Channel>
+				<Abbr value="National FM"/>
+				<Name value="National FM"/>
+				<Freq value="90.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romantic FM"/>
+				<Name value="Romantic FM"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio ZU"/>
+				<Name value="Radio ZU"/>
+				<Freq value="89.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="100.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="102.0"/>
+			</Channel>
+		</City>
+		<City value="Rosiori-de-Vede">
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="107.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="95.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Impact"/>
+				<Name value="Radio Impact"/>
+				<Freq value="94.4"/>
+			</Channel>
+		</City>
+		<City value="Sulina">
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="107.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Lider"/>
+				<Name value="Radio Lider"/>
+				<Freq value="96.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="96.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="100.9"/>
+			</Channel>
+		</City>
+		<City value="Tulcea">
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="107.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="107.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="104.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Delta"/>
+				<Name value="Radio Delta"/>
+				<Freq value="95.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="93.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio GUerrilla"/>
+				<Freq value="93.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="90.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="99.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="105.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vibe FM"/>
+				<Name value="Vibe FM"/>
+				<Freq value="90.2"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Vaslui">
+		<City value="Barlad">
+			<Channel>
+				<Abbr value="Radio Vipp"/>
+				<Name value="Radio Vipp"/>
+				<Freq value="104.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Unison"/>
+				<Name value="Radio Unison"/>
+				<Freq value="103.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="100.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="95.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="93.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="88.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="95.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Vocea Sperantei"/>
+				<Name value="Vocea Sperantei"/>
+				<Freq value="103.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="103.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="102.8"/>
+			</Channel>
+		</City>
+		<City value="Husi">
+			<Channel>
+				<Abbr value="VOX T FM"/>
+				<Name value="VOX T FM"/>
+				<Freq value="94.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Plus FM"/>
+				<Name value="Plus FM"/>
+				<Freq value="94.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="101.7"/>
+			</Channel>
+		</City>
+		<City value="Vaslui">
+			<Channel>
+				<Abbr value="Radio Unison"/>
+				<Name value="Radio Unison"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Trinitas"/>
+				<Name value="Radio Trinitas"/>
+				<Freq value="106.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="100.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="VOX T Radio"/>
+				<Name value="VOX T Radio"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Plus FM"/>
+				<Name value="Plus FM"/>
+				<Freq value="84.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="106.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Cultural"/>
+				<Name value="Romania Cultural"/>
+				<Freq value="102.4"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Valcea">
+		<City value="Dragasani">
+			<Channel>
+				<Abbr value="Radio Valcea 3"/>
+				<Name value="Radio Valcea 3"/>
+				<Freq value="98.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Micul Samaritean"/>
+				<Name value="Micul Samaritean"/>
+				<Freq value="88.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="96.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Oltenia"/>
+				<Name value="Radio Oltenia"/>
+				<Freq value="102.9"/>
+			</Channel>
+		</City>
+		<City value="Ramnicu-Valcea">
+			<Channel>
+				<Abbr value="攀枝花人民广播电台"/>
+				<Name value="攀枝花人民广播电台"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="音乐生活频道"/>
+				<Name value="音乐生活频道"/>
+				<Freq value="91.0"/>
+			</Channel>
+		</City>
+		<City value="泸州市">
+			<Channel>
+				<Abbr value="Radio Etalon"/>
+				<Name value="Radio Etalon"/>
+				<Freq value="101.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="99.9"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="99.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="98.1"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Galaxy"/>
+				<Name value="Radio Galaxy"/>
+				<Freq value="96.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="94.3"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="91.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="90.4"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Metronom FM"/>
+				<Name value="Metronom FM"/>
+				<Freq value="89.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Valcea 1"/>
+				<Name value="Radio Valcea 1"/>
+				<Freq value="88.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="103.4"/>
+			</Channel>
+		</City>
+		<City value="Voineasa">
+			<Channel>
+				<Abbr value="Radio Minisat"/>
+				<Name value="Radio Minisat"/>
+				<Freq value="107.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="104.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio 21"/>
+				<Name value="Radio 21"/>
+				<Freq value="97.9"/>
+			</Channel>
+		</City>
+	</Province>
+	<Province value="Vrancea">
+		<City value="Adjud">
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="107.2"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Deea"/>
+				<Name value="Radio Deea"/>
+				<Freq value="94.4"/>
+			</Channel>
+		</City>
+		<City value="Focsani">
+			<Channel>
+				<Abbr value="Radio DaDa"/>
+				<Name value="Radio DaDa"/>
+				<Freq value="106.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Direct FM"/>
+				<Name value="Direct FM"/>
+				<Freq value="102.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Pro FM"/>
+				<Name value="Pro FM"/>
+				<Freq value="100.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Radio Guerrilla"/>
+				<Name value="Radio Guerrilla"/>
+				<Freq value="97.6"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Info PRO"/>
+				<Name value="Info PRO"/>
+				<Freq value="90.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Kiss FM"/>
+				<Name value="Kiss FM"/>
+				<Freq value="88.7"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="105.8"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Focus FM"/>
+				<Name value="Focus FM"/>
+				<Freq value="97.0"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Romania Actualitati"/>
+				<Name value="Romania Actualitati"/>
+				<Freq value="102.5"/>
+			</Channel>
+			<Channel>
+				<Abbr value="Sport Total FM"/>
+				<Name value="Sport Total FM"/>
+				<Freq value="102.0"/>
+			</Channel>
+		</City>
+		<City value="Odobesti">
+			<Channel>
+				<Abbr value="Europa FM"/>
+				<Name value="Europa FM"/>
+				<Freq value="105.8"/>
+			</Channel>
+		</City>		
+	</Province>
+</RadioChannelList>

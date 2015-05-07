@@ -5204,399 +5204,474 @@
 		</City>
 	</Province>
 	<Province value="广东省">
-		<City value="广州市">
-			<Channel>
-				<Abbr value="飞扬88.0"/>
-				<Name value="飞扬88.0"/>
-				<Freq value="88.0"/>
-			</Channel>
-			<Channel>
-				<Abbr value="佛山电台"/>
-				<Name value="佛山电台"/>
-				<Freq value="88.3"/>
-			</Channel>
-			<Channel>
-				<Abbr value="快乐888"/>
-				<Name value="快乐888"/>
-				<Freq value="88.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东卫星广播"/>
-				<Name value="广东卫星广播"/>
-				<Freq value="91.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="南海广播电台"/>
-				<Name value="南海广播电台"/>
-				<Freq value="92.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东电台健康之声"/>
-				<Name value="广东电台健康之声"/>
-				<Freq value="93.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东电台音乐台"/>
-				<Name value="广东电台音乐台"/>
-				<Freq value="93.9"/>
-			</Channel>
-			<Channel>
-				<Abbr value="风云962"/>
-				<Name value="风云962"/>
-				<Freq value="96.2"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠江经济广播电台"/>
-				<Name value="珠江经济广播电台"/>
-				<Freq value="97.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东电台音乐之声"/>
-				<Name value="广东电台音乐之声"/>
-				<Freq value="99.3"/>
-			</Channel>
-			<Channel>
-				<Abbr value="新城电台新城"/>
-				<Name value="新城电台新城"/>
-				<Freq value="100.0"/>
-			</Channel>
-			<Channel>
-				<Abbr value="花都电台"/>
-				<Name value="花都电台"/>
-				<Freq value="100.5"/>
-			</Channel>
-			<Channel>
-				<Abbr value="番禺人民广播电台"/>
-				<Name value="番禺人民广播电台"/>
-				<Freq value="101.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="金曲1027"/>
-				<Name value="金曲1027"/>
-				<Freq value="102.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东电台城市之声"/>
-				<Name value="广东电台城市之声"/>
-				<Freq value="103.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东卫星广播"/>
-				<Name value="广东卫星广播"/>
-				<Freq value="104.2"/>
-			</Channel>
-			<Channel>
-				<Abbr value="热力广播"/>
-				<Name value="热力广播"/>
-				<Freq value="104.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="羊城交通广播电台"/>
-				<Name value="羊城交通广播电台"/>
-				<Freq value="105.2"/>
-			</Channel>
-			<Channel>
-				<Abbr value="交通1061"/>
-				<Name value="交通1061"/>
-				<Freq value="106.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="经济之声"/>
-				<Name value="经济之声"/>
-				<Freq value="106.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广东电台教育台.英语台"/>
-				<Name value="广东电台教育台.英语台"/>
-				<Freq value="107.6"/>
-			</Channel>
-		</City>
-		<City value="深圳市">
-			<Channel>
-				<Abbr value="深圳电台.新闻频道"/>
-				<Name value="深圳电台.新闻频道"/>
-				<Freq value="89.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="深圳电台.音乐频道"/>
-				<Name value="深圳电台.音乐频道"/>
-				<Freq value="97.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠江经济广播电台流行1057"/>
-				<Name value="珠江经济广播电台流行1057"/>
-				<Freq value="105.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="深圳电台.交通频率"/>
-				<Name value="深圳电台.交通频率"/>
-				<Freq value="106.2"/>
-			</Channel>
-			<Channel>
-				<Abbr value="宝安人民广播电台"/>
-				<Name value="宝安人民广播电台"/>
-				<Freq value="104.3"/>
-			</Channel>
-		</City>
-		<City value="珠海市">
-			<Channel>
-				<Abbr value="珠海人民广播电台第二台"/>
-				<Name value="珠海人民广播电台第二台"/>
-				<Freq value="87.5"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠海广播电台交通音乐频道"/>
-				<Name value="珠海广播电台交通音乐频道"/>
-				<Freq value="87.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠海广播电台城市之声"/>
-				<Name value="珠海广播电台城市之声"/>
-				<Freq value="95.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠江经济广播电台"/>
-				<Name value="珠江经济广播电台"/>
-				<Freq value="97.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="珠江经济广播电台"/>
-				<Name value="珠江经济广播电台"/>
-				<Freq value="103.0"/>
-			</Channel>
-		</City>
-		<City value="汕头市">
-			<Channel>
-				<Abbr value="汕头人民广播电台新闻频道"/>
-				<Name value="汕头人民广播电台新闻频道"/>
-				<Freq value="99.3"/>
-			</Channel>
-			<Channel>
-				<Abbr value="汕头人民广播电台经济频道"/>
-				<Name value="汕头人民广播电台经济频道"/>
-				<Freq value="102.5"/>
-			</Channel>
-			<Channel>
-				<Abbr value="汕头人民广播电台音乐频道"/>
-				<Name value="汕头人民广播电台音乐频道"/>
-				<Freq value="107.1"/>
-			</Channel>
-		</City>
-		<City value="佛山市">
-			<Channel>
-				<Abbr value="佛山人民广播电台三水分台缤纷"/>
-				<Name value="佛山人民广播电台三水分台缤纷"/>
-				<Freq value="90.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="佛山真爱频道"/>
-				<Name value="佛山真爱频道"/>
-				<Freq value="94.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="佛山千色频道"/>
-				<Name value="佛山千色频道"/>
-				<Freq value="98.5"/>
-			</Channel>
-		</City>
-		<City value="韶关市">
-			<Channel>
-				<Abbr value="韶关电台普通话频道"/>
-				<Name value="韶关电台普通话频道"/>
-				<Freq value="105.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="韶关电台广东话频道"/>
-				<Name value="韶关电台广东话频道"/>
-				<Freq value="107.8"/>
-			</Channel>
-		</City>
-		<City value="河源市">
-			<Channel>
-				<Abbr value="河源人民广播电台"/>
-				<Name value="河源人民广播电台"/>
-				<Freq value="92.2"/>
-			</Channel>
-			<Channel>
-				<Abbr value="河源人民广播电台"/>
-				<Name value="河源人民广播电台"/>
-				<Freq value="97.8"/>
-			</Channel>
-		</City>
-		<City value="梅州市">
-			<Channel>
-				<Abbr value="梅州人民广播电台"/>
-				<Name value="梅州人民广播电台"/>
-				<Freq value="94.8"/>
-			</Channel>
-		</City>
-		<City value="惠州市">
-			<Channel>
-				<Abbr value="惠东电台"/>
-				<Name value="惠东电台"/>
-				<Freq value="96.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="惠州市交通广播电台"/>
-				<Name value="惠州市交通广播电台"/>
-				<Freq value="97.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="惠阳人民广播电台"/>
-				<Name value="惠阳人民广播电台"/>
-				<Freq value="99.5"/>
-			</Channel>
-			<Channel>
-				<Abbr value="惠州人民广播电台"/>
-				<Name value="惠州人民广播电台"/>
-				<Freq value="103.4"/>
-			</Channel>
-		</City>
-		<City value="汕尾市">
-			<Channel>
-				<Abbr value="广东电台卫星广播"/>
-				<Name value="广东电台卫星广播"/>
-				<Freq value="100.4"/>
-			</Channel>
-		</City>
-		<City value="东莞市">
-			<Channel>
-				<Abbr value="东莞市交通广播电台"/>
-				<Name value="东莞市交通广播电台"/>
-				<Freq value="97.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="东莞人民广播电台"/>
-				<Name value="东莞人民广播电台"/>
-				<Freq value="100.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="东莞音乐广播电台"/>
-				<Name value="东莞音乐广播电台"/>
-				<Freq value="106.9"/>
-			</Channel>
-		</City>
-		<City value="中山市">
-			<Channel>
-				<Abbr value="环保旅游之声"/>
-				<Name value="环保旅游之声"/>
-				<Freq value="88.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="广播频率"/>
-				<Name value="广播频率"/>
-				<Freq value="96.7"/>
-			</Channel>
-			<Channel>
-				<Abbr value="东莞人民广播电台"/>
-				<Name value="东莞人民广播电台"/>
-				<Freq value="100.8"/>
-			</Channel>
-			<Channel>
-				<Abbr value="中山台"/>
-				<Name value="中山台"/>
-				<Freq value="104.9"/>
-			</Channel>
-		</City>
-		<City value="江门市">
-			<Channel>
-				<Abbr value="江门人民广播电台"/>
-				<Name value="江门人民广播电台"/>
-				<Freq value="100.2"/>
-			</Channel>
-		</City>
-		<City value="阳江市">
-			<Channel>
-				<Abbr value="阳江人民广播电台"/>
-				<Name value="阳江人民广播电台"/>
-				<Freq value="96.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="阳江电台"/>
-				<Name value="阳江电台"/>
-				<Freq value="97.2"/>
-			</Channel>
-		</City>
-		<City value="湛江市">
-			<Channel>
-				<Abbr value="湛江人民广播电台"/>
-				<Name value="湛江人民广播电台"/>
-				<Freq value="89.3"/>
-			</Channel>
-			<Channel>
-				<Abbr value="湛江电台一台"/>
-				<Name value="湛江电台一台"/>
-				<Freq value="95.1"/>
-			</Channel>
-		</City>
-		<City value="茂名市">
-			<Channel>
-				<Abbr value="茂名人民广播电台"/>
-				<Name value="茂名人民广播电台"/>
-				<Freq value="97.6"/>
-			</Channel>
-			<Channel>
-				<Abbr value="茂名人民广播电台"/>
-				<Name value="茂名人民广播电台"/>
-				<Freq value="106.1"/>
-			</Channel>
-		</City>
-		<City value="肇庆市">
-			<Channel>
-				<Abbr value="肇庆电台金曲频道"/>
-				<Name value="肇庆电台金曲频道"/>
-				<Freq value="90.9"/>
-			</Channel>
-			<Channel>
-				<Abbr value="肇庆电台资讯频道"/>
-				<Name value="肇庆电台资讯频道"/>
-				<Freq value="92.9"/>
-			</Channel>
-		</City>
-		<City value="清远市">
-			<Channel>
-				<Abbr value="清远人民广播电台"/>
-				<Name value="清远人民广播电台"/>
-				<Freq value="88.7"/>
-			</Channel>
-		</City>
-		<City value="潮州市">
-			<Channel>
-				<Abbr value="潮州人民广播电台"/>
-				<Name value="潮州人民广播电台"/>
-				<Freq value="93.9"/>
-			</Channel>
-			<Channel>
-				<Abbr value="潮安人民广播电台"/>
-				<Name value="潮安人民广播电台"/>
-				<Freq value="98.4"/>
-			</Channel>
-			<Channel>
-				<Abbr value="潮阳人民广播电台"/>
-				<Name value="潮阳人民广播电台"/>
-				<Freq value="105.0"/>
-			</Channel>
-		</City>
-		<City value="揭阳市">
-			<Channel>
-				<Abbr value="揭阳人民广播电台"/>
-				<Name value="揭阳人民广播电台"/>
-				<Freq value="103.9"/>
-			</Channel>
-		</City>
-		<City value="云浮市">
-			<Channel>
-				<Abbr value="云浮人民广播电台二台"/>
-				<Name value="云浮人民广播电台二台"/>
-				<Freq value="100.1"/>
-			</Channel>
-			<Channel>
-				<Abbr value="云浮人民广播电台"/>
-				<Name value="云浮人民广播电台"/>
-				<Freq value="100.6"/>
-			</Channel>
-		</City>
-	</Province>
+        <City value="广州市">
+            <Channel>
+                <Abbr value="飞扬88.0" />
+                <Name value="飞扬88.0" />
+                <Freq value="88.0" />
+            </Channel>
+            <Channel>
+                <Abbr value="佛山电台" />
+                <Name value="佛山电台" />
+                <Freq value="88.3" />
+            </Channel>
+            <Channel>
+                <Abbr value="快乐888" />
+                <Name value="快乐888" />
+                <Freq value="88.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东卫星广播" />
+                <Name value="广东卫星广播" />
+                <Freq value="91.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="南海广播电台" />
+                <Name value="南海广播电台" />
+                <Freq value="92.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东电台健康之声" />
+                <Name value="广东电台健康之声" />
+                <Freq value="93.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东电台音乐台" />
+                <Name value="广东电台音乐台" />
+                <Freq value="93.9" />
+            </Channel>
+            <Channel>
+                <Abbr value="风云962" />
+                <Name value="风云962" />
+                <Freq value="96.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="珠江经济广播电台" />
+                <Name value="珠江经济广播电台" />
+                <Freq value="97.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东电台音乐之声" />
+                <Name value="广东电台音乐之声" />
+                <Freq value="99.3" />
+            </Channel>
+            <Channel>
+                <Abbr value="新城电台新城" />
+                <Name value="新城电台新城" />
+                <Freq value="100.0" />
+            </Channel>
+            <Channel>
+                <Abbr value="花都电台" />
+                <Name value="花都电台" />
+                <Freq value="100.5" />
+            </Channel>
+            <Channel>
+                <Abbr value="番禺人民广播电台" />
+                <Name value="番禺人民广播电台" />
+                <Freq value="101.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="金曲1027" />
+                <Name value="金曲1027" />
+                <Freq value="102.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东电台城市之声" />
+                <Name value="广东电台城市之声" />
+                <Freq value="103.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东卫星广播" />
+                <Name value="广东卫星广播" />
+                <Freq value="104.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="热力广播" />
+                <Name value="热力广播" />
+                <Freq value="104.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="羊城交通广播电台" />
+                <Name value="羊城交通广播电台" />
+                <Freq value="105.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="交通1061" />
+                <Name value="交通1061" />
+                <Freq value="106.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="经济之声" />
+                <Name value="经济之声" />
+                <Freq value="106.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东电台教育台.英语台" />
+                <Name value="广东电台教育台.英语台" />
+                <Freq value="107.6" />
+            </Channel>
+        </City>
+        <City value="深圳市">
+            <Channel>
+                <Abbr value="深圳电台.新闻频道" />
+                <Name value="深圳电台.新闻频道" />
+                <Freq value="89.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="深圳电台.音乐频道" />
+                <Name value="深圳电台.音乐频道" />
+                <Freq value="97.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="珠江经济广播电台流行1057" />
+                <Name value="珠江经济广播电台流行1057" />
+                <Freq value="105.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="深圳电台.交通频率" />
+                <Name value="深圳电台.交通频率" />
+                <Freq value="106.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="宝安人民广播电台" />
+                <Name value="宝安人民广播电台" />
+                <Freq value="104.3" />
+            </Channel>
+        </City>
+        <City value="珠海市">
+            <Channel>
+                <Abbr value="珠海交通875" />
+                <Name value="珠海电台交通875" />
+                <Freq value="87.5" />
+            </Channel>
+            <Channel>
+                <Abbr value="珠海城市之声" />
+                <Name value="珠海电台城市之声" />
+                <Freq value="95.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="斗门电台" />
+                <Name value="斗门广播电台" />
+                <Freq value="92.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="快乐888" />
+                <Name value="快乐888" />
+                <Freq value="88.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="深圳新闻频道" />
+                <Name value="深圳电台新闻频道" />
+                <Freq value="89.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="深圳私家车广播" />
+                <Name value="深圳私家车广播" />
+                <Freq value="94.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="深圳音乐频道" />
+                <Name value="深圳电台音乐频道" />
+                <Freq value="97.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="中山电台" />
+                <Name value="中山电台新锐967" />
+                <Freq value="96.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="新会电台" />
+                <Name value="新会电台" />
+                <Freq value="98.3" />
+            </Channel>
+            <Channel>
+                <Abbr value="江门电台" />
+                <Name value="江门人民广播电台" />
+                <Freq value="100.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="南方生活广播" />
+                <Name value="广州电台南方生活广播" />
+                <Freq value="93.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="广东音乐之声" />
+                <Name value="广东电台音乐之声" />
+                <Freq value="93.9" />
+            </Channel>
+            <Channel>
+                <Abbr value="珠江经济台" />
+                <Name value="珠江经济台" />
+                <Freq value="103.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="羊城交通台" />
+                <Name value="羊城交通台" />
+                <Freq value="105.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="中央中国之声" />
+                <Name value="中央电台中国之声" />
+                <Freq value="95.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="中央中国之声" />
+                <Name value="中央电台中国之声" />
+                <Freq value="99.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="中央音乐之声" />
+                <Name value="中央电台音乐之声" />
+                <Freq value="101.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="澳门电台" />
+                <Name value="澳门电台" />
+                <Freq value="100.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="香港电台" />
+                <Name value="香港电台" />
+                <Freq value="96.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="香港新城电台" />
+                <Name value="香港新城电台" />
+                <Freq value="101.8" />
+            </Channel>
+        </City>
+        <City value="汕头市">
+            <Channel>
+                <Abbr value="汕头人民广播电台新闻频道" />
+                <Name value="汕头人民广播电台新闻频道" />
+                <Freq value="99.3" />
+            </Channel>
+            <Channel>
+                <Abbr value="汕头人民广播电台经济频道" />
+                <Name value="汕头人民广播电台经济频道" />
+                <Freq value="102.5" />
+            </Channel>
+            <Channel>
+                <Abbr value="汕头人民广播电台音乐频道" />
+                <Name value="汕头人民广播电台音乐频道" />
+                <Freq value="107.1" />
+            </Channel>
+        </City>
+        <City value="佛山市">
+            <Channel>
+                <Abbr value="佛山人民广播电台三水分台缤纷" />
+                <Name value="佛山人民广播电台三水分台缤纷" />
+                <Freq value="90.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="佛山真爱频道" />
+                <Name value="佛山真爱频道" />
+                <Freq value="94.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="佛山千色频道" />
+                <Name value="佛山千色频道" />
+                <Freq value="98.5" />
+            </Channel>
+        </City>
+        <City value="韶关市">
+            <Channel>
+                <Abbr value="韶关电台普通话频道" />
+                <Name value="韶关电台普通话频道" />
+                <Freq value="105.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="韶关电台广东话频道" />
+                <Name value="韶关电台广东话频道" />
+                <Freq value="107.8" />
+            </Channel>
+        </City>
+        <City value="河源市">
+            <Channel>
+                <Abbr value="河源人民广播电台" />
+                <Name value="河源人民广播电台" />
+                <Freq value="92.2" />
+            </Channel>
+            <Channel>
+                <Abbr value="河源人民广播电台" />
+                <Name value="河源人民广播电台" />
+                <Freq value="97.8" />
+            </Channel>
+        </City>
+        <City value="梅州市">
+            <Channel>
+                <Abbr value="梅州人民广播电台" />
+                <Name value="梅州人民广播电台" />
+                <Freq value="94.8" />
+            </Channel>
+        </City>
+        <City value="惠州市">
+            <Channel>
+                <Abbr value="惠东电台" />
+                <Name value="惠东电台" />
+                <Freq value="96.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="惠州市交通广播电台" />
+                <Name value="惠州市交通广播电台" />
+                <Freq value="97.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="惠阳人民广播电台" />
+                <Name value="惠阳人民广播电台" />
+                <Freq value="99.5" />
+            </Channel>
+            <Channel>
+                <Abbr value="惠州人民广播电台" />
+                <Name value="惠州人民广播电台" />
+                <Freq value="103.4" />
+            </Channel>
+        </City>
+        <City value="汕尾市">
+            <Channel>
+                <Abbr value="广东电台卫星广播" />
+                <Name value="广东电台卫星广播" />
+                <Freq value="100.4" />
+            </Channel>
+        </City>
+        <City value="东莞市">
+            <Channel>
+                <Abbr value="东莞市交通广播电台" />
+                <Name value="东莞市交通广播电台" />
+                <Freq value="97.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="东莞人民广播电台" />
+                <Name value="东莞人民广播电台" />
+                <Freq value="100.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="东莞音乐广播电台" />
+                <Name value="东莞音乐广播电台" />
+                <Freq value="106.9" />
+            </Channel>
+        </City>
+        <City value="中山市">
+            <Channel>
+                <Abbr value="环保旅游之声" />
+                <Name value="环保旅游之声" />
+                <Freq value="88.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="广播频率" />
+                <Name value="广播频率" />
+                <Freq value="96.7" />
+            </Channel>
+            <Channel>
+                <Abbr value="东莞人民广播电台" />
+                <Name value="东莞人民广播电台" />
+                <Freq value="100.8" />
+            </Channel>
+            <Channel>
+                <Abbr value="中山台" />
+                <Name value="中山台" />
+                <Freq value="104.9" />
+            </Channel>
+        </City>
+        <City value="江门市">
+            <Channel>
+                <Abbr value="江门人民广播电台" />
+                <Name value="江门人民广播电台" />
+                <Freq value="100.2" />
+            </Channel>
+        </City>
+        <City value="阳江市">
+            <Channel>
+                <Abbr value="阳江人民广播电台" />
+                <Name value="阳江人民广播电台" />
+                <Freq value="96.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="阳江电台" />
+                <Name value="阳江电台" />
+                <Freq value="97.2" />
+            </Channel>
+        </City>
+        <City value="湛江市 ">
+            <Channel>
+                <Abbr value="湛江人民广播电台" />
+                <Name value="湛江人民广播电台" />
+                <Freq value="89.3" />
+            </Channel>
+            <Channel>
+                <Abbr value="湛江电台一台" />
+                <Name value="湛江电台一台" />
+                <Freq value="95.1" />
+            </Channel>
+        </City>
+        <City value="茂名市">
+            <Channel>
+                <Abbr value="茂名人民广播电台" />
+                <Name value="茂名人民广播电台" />
+                <Freq value="97.6" />
+            </Channel>
+            <Channel>
+                <Abbr value="茂名人民广播电台" />
+                <Name value="茂名人民广播电台" />
+                <Freq value="106.1" />
+            </Channel>
+        </City>
+        <City value="肇庆市">
+            <Channel>
+                <Abbr value="肇庆电台金曲频道" />
+                <Name value="肇庆电台金曲频道" />
+                <Freq value="90.9" />
+            </Channel>
+            <Channel>
+                <Abbr value="肇庆电台资讯频道" />
+                <Name value="肇庆电台资讯频道" />
+                <Freq value="92.9" />
+            </Channel>
+        </City>
+        <City value="清远市">
+            <Channel>
+                <Abbr value="清远人民广播电台" />
+                <Name value="清远人民广播电台" />
+                <Freq value="88.7" />
+            </Channel>
+        </City>
+        <City value="潮州市">
+            <Channel>
+                <Abbr value="潮州人民广播电台" />
+                <Name value="潮州人民广播电台" />
+                <Freq value="93.9" />
+            </Channel>
+            <Channel>
+                <Abbr value="潮安人民广播电台" />
+                <Name value="潮安人民广播电台" />
+                <Freq value="98.4" />
+            </Channel>
+            <Channel>
+                <Abbr value="潮阳人民广播电台" />
+                <Name value="潮阳人民广播电台" />
+                <Freq value="105.0" />
+            </Channel>
+        </City>
+        <City value="揭阳市">
+            <Channel>
+                <Abbr value="揭阳人民广播电台" />
+                <Name value="揭阳人民广播电台" />
+                <Freq value="103.9" />
+            </Channel>
+        </City>
+        <City value="云浮市">
+            <Channel>
+                <Abbr value="云浮人民广播电台二台" />
+                <Name value="云浮人民广播电台二台" />
+                <Freq value="100.1" />
+            </Channel>
+            <Channel>
+                <Abbr value="云浮人民广播电台" />
+                <Name value="云浮人民广播电台" />
+                <Freq value="100.6" />
+            </Channel>
+        </City>
+    </Province>
 	<Province value="海南省">
 		<City value="海口市">
 			<Channel>
