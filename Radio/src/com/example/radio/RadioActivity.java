@@ -978,7 +978,7 @@ public class RadioActivity extends Activity implements
 			mButtonButtonAm.setSelected(false);
 			mButtonButtoncollect.setSelected(false);
 		} else if (RadioService.RADIO_COLLECT == radioService.getRadioType()) {
-			((TextView) findViewById(R.id.radiotype)).setText("FAV); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
+			((TextView) findViewById(R.id.radiotype)).setText("FAV"); /* 閿熸枻鎷稦M2鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
 			((TextView) findViewById(R.id.radiohz)).setText(" ");
 			mButtonButtonFm1.setSelected(false);
 			//mButtonButtonFm2.setSelected(true);
