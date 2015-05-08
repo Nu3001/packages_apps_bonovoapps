@@ -9,5 +9,13 @@
     <string name="rear_left">后左</string>
     <string name="rear_right">后右</string>
     
-    <string name="max_volume">100%</string>
+    <string name="sonata_front">前</string>
+    <string name="sonata_rear">后</string>
+    <string name="sonata_left">左</string>
+    <string name="sonata_right">右</string>
+    
+    <string name="balance_unit">均衡:dB</string>
+    
+    <string name="reset_data">复位</string>
+    
 </resources>

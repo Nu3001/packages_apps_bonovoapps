@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Balance de Sonido</string>
+<string name="action_settings">Ajustes</string>
+<string name="hello_world">Hola mundo!</string>
+<string name="front_left">Frontal Izquierdo</string>
+<string name="front_right">Frontal Derecho</string>
+<string name="rear_left">Trasero Izquierdo</string>
+<string name="rear_right">Trasero Derecho</string>
+<string name="max_volume">100%</string>
+</resources>
