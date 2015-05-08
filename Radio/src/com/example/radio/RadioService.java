@@ -890,9 +890,9 @@ public class RadioService extends Service implements RadioInterface,
 				mVolume = settings.getInt("mvolume", 0);
 				curFreq = settings.getInt("mfreq", 0);
 
-				String[] freqArray = null;
-				String[] nameArray = null;
-				String[] abridgeArray = null;
+				String[] freqArray = new String[0];
+				String[] nameArray = new String[0];
+				String[] abridgeArray = new String[0];
 				String freqStr = settings.getString("freq", null); /* ��ȡ��� */
 				String nameStr = settings.getString("name", null);
 				String abridgeStr = settings.getString("abridge", null);
