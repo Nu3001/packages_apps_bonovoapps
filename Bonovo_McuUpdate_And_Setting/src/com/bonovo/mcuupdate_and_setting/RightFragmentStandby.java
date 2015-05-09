@@ -23,14 +23,6 @@ public class RightFragmentStandby extends Fragment {
 	
 	private int checkFlag;
 	private Boolean switchCheckFlag;
-	private int NO_STANDBY = 0;
-	private int HALF_HOUR = 1;
-	private int ONE_HOUR = 2;
-	private int TWO_HOUR = 3;
-	private int HALF_DAY = 4;
-	private int ONE_DAY = 5;
-	private int TWO_DAY = 6;
-	private int INFINITE_STANDBY = 7;
 	
 	private final int HALF_HOUR_TIME= 30;
 	private final int ONE_HOUR_TIME= 60;
@@ -39,7 +31,7 @@ public class RightFragmentStandby extends Fragment {
 	private final int ONE_DAY_TIME= 1440;
 	private final int TWO_DAY_TIME= 2880;
 	private final int NO_STANDBY_TIME= 0;
-	private final int OPEN_STANDBY= 65535;
+	private final int INFINITE_STANDBY= 65535;
 	
 	private RadioGroup radioGroup;
 	private RadioButton halfHourBtn;
@@ -86,63 +78,50 @@ public class RightFragmentStandby extends Fragment {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
+				preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
 				if(checkedId == halfHourBtn.getId()){
-					checkFlag = HALF_HOUR;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = HALF_HOUR_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(HALF_HOUR_TIME);
 				}else if(checkedId == oneHourBtn.getId()){
-					checkFlag = ONE_HOUR;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = ONE_HOUR_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(ONE_HOUR_TIME);
 				}else if (checkedId == twoHourBtn.getId()) {
-					checkFlag = TWO_HOUR;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = TWO_HOUR_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(TWO_HOUR_TIME);
 				}else if (checkedId == halfDayBtn.getId()) {
-					checkFlag = HALF_DAY;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = HALF_DAY_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(HALF_DAY_TIME);
 				}else if (checkedId == oneDayBtn.getId()) {
-					checkFlag = ONE_DAY;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = ONE_DAY_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(ONE_DAY_TIME);
 				}else if (checkedId == noStandbyBtn.getId()) {
-					checkFlag = NO_STANDBY;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = NO_STANDBY_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(NO_STANDBY_TIME);
 				}else if (checkedId == twoDayBtn.getId()) {
-					checkFlag = TWO_DAY;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					checkFlag = TWO_DAY_TIME;
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(TWO_DAY_TIME);
 				}else if (checkedId == infiniteStandbyBtn.getId()) {
 					checkFlag = INFINITE_STANDBY;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
 					preferences.edit()
 							   .putInt("standby checked", checkFlag)
 							   .commit();
-					backStandby.setStandby(OPEN_STANDBY);
 				}
+				backStandby.setStandby(checkFlag);
+
 			}
 		});
 		return view;
@@ -166,7 +145,7 @@ public class RightFragmentStandby extends Fragment {
 	private void readSharePreConfig() {
 		// TODO Auto-generated method stub
 		preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
-		checkFlag = preferences.getInt("standby checked", NO_STANDBY);	//默认全局变量为PRESSHOST
+		checkFlag = preferences.getInt("standby checked", TWO_HOUR_TIME);	//默认全局变量为PRESSHOST
 		switchCheckFlag = preferences.getBoolean("switch_checked", false);
 	}
 	
@@ -175,20 +154,22 @@ public class RightFragmentStandby extends Fragment {
 	 */
 	private void checkRadioButton() {
 		// TODO Auto-generated method stub
-		if(checkFlag == NO_STANDBY){
+		if(checkFlag == NO_STANDBY_TIME){
 			noStandbyBtn.setChecked(true);
-		}else if (checkFlag == HALF_HOUR) {
+		}else if (checkFlag == HALF_HOUR_TIME) {
 			halfHourBtn.setChecked(true);
-		}else if (checkFlag == ONE_HOUR) {
+		}else if (checkFlag == ONE_HOUR_TIME) {
 			oneHourBtn.setChecked(true);
-		}else if (checkFlag == TWO_HOUR){
+		}else if (checkFlag == TWO_HOUR_TIME){
 			twoHourBtn.setChecked(true);
-		}else if (checkFlag == HALF_DAY){
+		}else if (checkFlag == HALF_DAY_TIME){
 			halfDayBtn.setChecked(true);
-		}else if(checkFlag == ONE_DAY){
+		}else if(checkFlag == ONE_DAY_TIME){
 			oneDayBtn.setChecked(true);
-		}else if (checkFlag == TWO_DAY) {
+		}else if (checkFlag == TWO_DAY_TIME) {
 			twoDayBtn.setChecked(true);
+		}else if (checkFlag == INFINITE_STANDBY) {
+			infiniteStandbyBtn.setChecked(true);
 		}
 		
 	}

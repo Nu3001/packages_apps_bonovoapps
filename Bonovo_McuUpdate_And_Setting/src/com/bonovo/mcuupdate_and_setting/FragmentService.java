@@ -51,6 +51,7 @@ public class FragmentService extends Service {
 	public boolean mCheckCamera;								//倒车后视BOX选择标志
 	public boolean mCheckVolume;								//自动音量BOX选择标志
 	public int mCheckOTG;									//OTG选择标志
+	public int mCheckStandby;								// Standby time
 
 	private native final byte[] jniCheckMcuVersion()
 			throws IllegalStateException;
@@ -121,6 +122,8 @@ public class FragmentService extends Service {
 		
 		SharedPreferences preferencesOTG = getSharedPreferences("otg model", 0);
 		mCheckOTG = preferencesOTG.getInt("otg checked", PRESSHOST);
+		SharedPreferences preferencesStandby = getSharedPreferences("standby model", MODE_WORLD_READABLE);
+		mCheckStandby = preferencesStandby.getInt("standby checked", 120);	// Default standby is 120 minutes (2 hours)
 		if (mCheckMute) {
 			jniAsternMute(MUTE);
 		} else {
@@ -151,6 +154,7 @@ public class FragmentService extends Service {
 		}else {
 			switchOTG(PRESSSLAVE);
 		}
+		jniSetStandby(mCheckStandby);
 	}
 	
 	@Override
