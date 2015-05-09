@@ -53,8 +53,9 @@
     <string name="standby_two_hour">Two Hour</string>
     <string name="standby_half_day">Half Day</string>
     <string name="standby_one_day">One Day</string>
-    <string name="standby_no_standby">No Standby</string>
+    <string name="standby_no_standby">Instant Off</string>
     <string name="standby_two_day">Two Days</string>
+    <string name="standby_infinite">Always On</string>
     <string name="standby_switch_on">ON</string>
     <string name="standby_switch_off">OFF</string>
 </resources>

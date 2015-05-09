@@ -30,6 +30,7 @@ public class RightFragmentStandby extends Fragment {
 	private int HALF_DAY = 4;
 	private int ONE_DAY = 5;
 	private int TWO_DAY = 6;
+	private int INFINITE_STANDBY = 7;
 	
 	private final int HALF_HOUR_TIME= 30;
 	private final int ONE_HOUR_TIME= 60;
@@ -48,7 +49,7 @@ public class RightFragmentStandby extends Fragment {
 	private RadioButton oneDayBtn;
 	private RadioButton twoDayBtn;
 	private RadioButton noStandbyBtn;
-	private Switch switchBtn;
+	private RadioButton infiniteStandbyBtn;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -75,29 +76,7 @@ public class RightFragmentStandby extends Fragment {
 		oneDayBtn = (RadioButton)view.findViewById(R.id.one_day);
 		twoDayBtn = (RadioButton)view.findViewById(R.id.two_day);
 		noStandbyBtn = (RadioButton)view.findViewById(R.id.no_hour);
-		switchBtn = (Switch)view.findViewById(R.id.switchBtn);
-		switchBtn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				if(isChecked){
-					switchCheckFlag = true;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
-					preferences.edit()
-							   .putBoolean("switch_checked", switchCheckFlag)
-							   .commit();
-					backStandby.setStandby(OPEN_STANDBY);
-				}else {
-					switchCheckFlag = false;
-					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
-					preferences.edit()
-							   .putBoolean("switch_checked", switchCheckFlag)
-							   .commit();
-					backStandby.setStandby(NO_STANDBY_TIME);
-				}
-			}
-		});
+		infiniteStandbyBtn = (RadioButton)view.findViewById(R.id.infinite);
 		
 		readSharePreConfig();
 		checkRadioButton();
@@ -156,6 +135,13 @@ public class RightFragmentStandby extends Fragment {
 							   .putInt("standby checked", checkFlag)
 							   .commit();
 					backStandby.setStandby(TWO_DAY_TIME);
+				}else if (checkedId == infiniteStandbyBtn.getId()) {
+					checkFlag = INFINITE_STANDBY;
+					preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+					preferences.edit()
+							   .putInt("standby checked", checkFlag)
+							   .commit();
+					backStandby.setStandby(OPEN_STANDBY);
 				}
 			}
 		});
@@ -205,11 +191,6 @@ public class RightFragmentStandby extends Fragment {
 			twoDayBtn.setChecked(true);
 		}
 		
-		if(switchCheckFlag){
-			switchBtn.setChecked(true);
-		}else {
-			switchBtn.setChecked(false);
-		}
 	}
 	
 	public interface CallBackStandby{

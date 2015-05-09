@@ -828,7 +828,7 @@ static int android_mcu_setStandby(JNIEnv *env, jobject thiz, jint times)
 	int writeSize,fd,conversionTimes;
 		unsigned int sum = 0;
 		unsigned char cmdBuf[10] = {0xFA, 0xFA, 0x0A, 0x00, 0x83, 0x0C};
-		LOGE("setStandby() into!!!");
+		LOGI("setStandby(%d) into!!!", times);
 
 		if(times == 65535){
 			conversionTimes = times;		//当开启待机的时候不做转换
