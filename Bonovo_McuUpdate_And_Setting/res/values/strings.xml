@@ -34,7 +34,7 @@
     <string name="list_serial_config">Serial Config</string>
     <string name="list_car_config">Car Type</string>
     <string name="list_btupdate">BT Update</string>
-    <string name="list_keysbacklight"Backlight Keys</string>
+    <string name="list_keysbacklight">Backlight Keys</string>
     <string name="serial_label_OBD">OBD</string>
     <string name="serial_label_CAN">CAN Decoding Box</string>
     <string name="serial_label_Non">Non</string>
