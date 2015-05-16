@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MCU</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="hello_world">Hallo wereld!</string>
+    <string name="title">Found the MCU Update,whether firmware upgrades were allowed?</string>
+    <string name="agree">accoord</string>
+    <string name="cancel">annuleer</string>
+    <string name="button">Check Update</string>
+    <string name="mcuversion">MCU Versie: </string>
+    <string name="sysversion">System Versie: </string>
+    <string name="androidversion">Android Versie: </string>
+    <string name="loga">Kan de SD-Card niet laden of het upgrade bestand is niet bekend</string>
+    <string name="asternmute">Mute achtergrond</string>
+    <string name="lightstate">Car light backlight instellen</string>
+    <string name="rearview_camera">AV-IN</string>
+    <string name="other">Andere auto instellingen: </string>
+    <string name="reminder">De interface functie is niet toegevoegd</string>
+    <string name="basic">Basis Informatie:</string>
+    <string name="autovolume">Auto Auto Volume:</string>
+    <string name="mcu_diatext">MCU upgrade bestand gevonden</string>
+
+</resources>
