@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VideoIn2</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="hello_world">Hallo wereld!</string>
+
+    <string name="failed_open_serial">Openen serial mislukt! Kan geen beeld vinden!</string>
+</resources>
