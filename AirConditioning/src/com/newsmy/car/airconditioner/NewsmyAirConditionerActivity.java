@@ -36,12 +36,12 @@ public class NewsmyAirConditionerActivity extends Activity {
 
         AirConditioning initAirConditioning;
         if (savedInstanceState != null) {
-		    if (D)
+        	if (D)
                 Log.d(TAG, "onCreate!-->savedInstanceState");
             final Bundle bundle = savedInstanceState.getBundle(AirConditioning.BUNDLE_NAME);
             initAirConditioning = AirConditioning.bundle2AirCondition(bundle);
         } else {
-			if (D)
+        	if (D)
                 Log.d(TAG, "onCreate!-->no!!! savedInstanceState");
             mSp = getSharedPreferences(AIR_CONDITION_SP_NAME, MODE_PRIVATE);
             initAirConditioning = AirConditioning.restoreAirCondition(mSp);
@@ -87,13 +87,13 @@ public class NewsmyAirConditionerActivity extends Activity {
     }
 
     private void updateByIntent(final Intent airConditionIntent) {
+    	Boolean isDisplay;
         if (airConditionIntent == null)
             return;
         final Bundle bundle = airConditionIntent.getBundleExtra(AirConditioning.BUNDLE_NAME);
-		
-        Boolean isDisplay = Boolean.valueOf(bundle.getBoolean("display"));
-        if(!isDisplay.booleanValue()) {
-            finish();
+        isDisplay = bundle.getBoolean(AirConditioning.EXTRA_DISPLAY);
+        if(!isDisplay){
+        	finish();
         }
 
         final AirConditioning airConditioning = AirConditioning.bundle2AirCondition(bundle);

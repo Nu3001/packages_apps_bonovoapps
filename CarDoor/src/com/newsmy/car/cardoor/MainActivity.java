@@ -6,26 +6,15 @@ import com.android.internal.car.can.CarDoor;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class MainActivity extends Activity {
     private CarDoorController mController;
-    private BroadcastReceiver receiver;
-    
-    public MainActivity() {
-        receiver = new BroadcastReceiver() {
-			@Override
-            public void onReceive(Context context, Intent intent) {
-                if(intent.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")) {
-                    finish();
-                }
-            }
-        };
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +26,7 @@ public class MainActivity extends Activity {
         mController = new CarDoorController();
         mController.init(findViewById(R.id.view_container));
         updateByBundle(getIntent().getBundleExtra(CarDoor.BUNDLE_NAME));
-		registerReceiver(receiver, getIntentFilter());
+        registerReceiver(receiver, getIntentFilter());
     }
 
     //@Override
@@ -51,11 +40,12 @@ public class MainActivity extends Activity {
         super.onNewIntent(intent);
         updateByBundle(intent.getBundleExtra(CarDoor.BUNDLE_NAME));
     }
-		
-	@Override
+    
+    @Override
     protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(receiver);
+    	// TODO Auto-generated method stub
+    	super.onDestroy();
+    	unregisterReceiver(receiver);
     }
 
     private void updateByBundle(final Bundle bundle) {
@@ -70,9 +60,23 @@ public class MainActivity extends Activity {
         else
             mController.updateViews();
     }
+    
+    private IntentFilter getIntentFilter(){	
+		IntentFilter myIntentFilter = new IntentFilter("android.intent.action.BONOVO_SLEEP_KEY");
+		return myIntentFilter;
+	};
+    
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
 
-    private IntentFilter getIntentFilter() {
-        IntentFilter myIntentFilter = new IntentFilter("android.intent.action.BONOVO_SLEEP_KEY");
-        return myIntentFilter;
-    }
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			if (intent.getAction().equals(
+					"android.intent.action.BONOVO_SLEEP_KEY")) {
+				finish();
+			}
+
+		}
+	};
+
 }

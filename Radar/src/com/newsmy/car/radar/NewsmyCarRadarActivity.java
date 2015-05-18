@@ -114,13 +114,13 @@ public class NewsmyCarRadarActivity extends Activity {
         final Bundle bundle = intent.getBundleExtra(Radar.BUNDLE_NAME);
         final Radar radarModel = Radar.bundle2Radar(bundle);
 
-        if(bundle != null) {
-            if((radarModel == null) || (ifSafe(radarModel))) {
-                finish();
-                return;
-            }
+		if (bundle == null)
+			return;
+
+        if (radarModel == null || ifSafe(radarModel))
+            finish();
+        else
             mViewController.updateViews(radarModel);
-        }
     }
 
     private void switchScreen(boolean showAndroid){
