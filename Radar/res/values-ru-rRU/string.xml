@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">NewsmyRadar</string>
+<string name="hello_world">Hello world!</string>
+<string name="action_settings">Настройки</string>
+<string name="switch_screen">Вы можете проверить заднюю камеру или датчики коснувшись экрана.</string>
+</resources>

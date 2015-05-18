@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Radar NewsMy</string>
+<string name="hello_world">Hola mundo!</string>
+<string name="action_settings">Ajustes</string>
+<string name="switch_screen">Puedes darle la vuelta al video o radar haciendo click en la pantalla.</string>
+</resources>
