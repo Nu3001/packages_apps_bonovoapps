@@ -27,44 +27,44 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical" >
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="38dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="25dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="159dp"
+            android:layout_width="106dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -73,78 +73,78 @@
 
                 <com.bonovo.colortools.MyViewRect
                     android:id="@+id/min6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp" />
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="20dp" />
 
                 <com.bonovo.colortools.MyViewRect
                     android:id="@+id/min7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp" />
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="20dp" />
             </LinearLayout>
 
             <com.bonovo.colortools.MyViewRectMID
                 android:id="@+id/mid"
-                android:layout_width="129dp"
-                android:layout_height="209dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="86dp"
+                android:layout_height="139dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp" >
+                android:layout_marginTop="10dp" >
 
                 <com.bonovo.colortools.MyViewRect
                     android:id="@+id/min8"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp" />
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="20dp" />
 
                 <com.bonovo.colortools.MyViewRect
                     android:id="@+id/min9"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp" />
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="20dp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical" >
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min10"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="38dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="25dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min11"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min12"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min13"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
 
             <com.bonovo.colortools.MyViewRect
                 android:id="@+id/min14"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp" />
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,14 +155,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp" >
+                android:layout_marginTop="20dp" >
 
                 <TextView
                     android:id="@+id/textValueR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="75dp"
+                    android:layout_marginLeft="50dp"
                     android:textColor="#ff0000"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -176,16 +176,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/seekbar_value_min"
                     android:textColor="#00ced1"
                     android:textSize="20sp" />
 
                 <SeekBar
                     android:id="@+id/seekBarR"
-                    android:layout_width="300dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/textViewRmax"
@@ -200,14 +200,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp" >
+                android:layout_marginTop="10dp" >
 
                 <TextView
                     android:id="@+id/textValueG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="75dp"
+                    android:layout_marginLeft="50dp"
                     android:textColor="#00ff00"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -221,14 +221,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/seekbar_value_min"
                     android:textColor="#00ced1"
                     android:textSize="20sp" />
 
                 <SeekBar
                     android:id="@+id/seekBarG"
-                    android:layout_width="300dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -245,14 +245,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp" >
+                android:layout_marginTop="10dp" >
 
                 <TextView
                     android:id="@+id/textValueB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="75dp"
+                    android:layout_marginLeft="50dp"
                     android:textColor="#0000ff"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -266,16 +266,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/seekbar_value_min"
                     android:textColor="#00ced1"
                     android:textSize="20sp" />
 
                 <SeekBar
                     android:id="@+id/seekBarB"
-                    android:layout_width="300dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/textViewBmax"
@@ -291,7 +291,7 @@
                 android:id="@+id/ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="225dp"
+                android:layout_marginLeft="150dp"
                 android:text="@string/button_ok" />
         </LinearLayout>
     </LinearLayout>
