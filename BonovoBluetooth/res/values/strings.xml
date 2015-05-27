@@ -9,7 +9,7 @@
     <string name="description_settings_button">Settings</string>
     <string name="description_sync_button">Sync Contacts</string>
     <string name="description_bottom_bg">Bottom background</string>
-    <string name="description_add_volume">BLuetooth volume up</string>
+    <string name="description_add_volume">Bluetooth volume up</string>
     <string name="description_sub_volume">Bluetooth volume down</string>
     <string name="description_background_bg">Background View</string>
     <string name="setting_button_bluetooth_status_open">Power On</string>
@@ -78,20 +78,20 @@
     <string name="description_phone_call_time">Talk time</string>
     <string name="description_sync_select">Synchronization Select</string>
     <string name="description_sync_sim">Sim: Sync contacts from your phones SIM card.</string>
-    <string name="description_sync_phone">Phone: Sync contacts from your phones internal memoryk</string>
+    <string name="description_sync_phone">Phone: Sync contacts from your phones internal memory</string>
     <string name="description_title_setting">BlueToothSetting</string>
     <string name="description_title_music">BlueToothMusic</string>
-    <string name="description_dial_info">The headunit Bluetooth adapter is not avilable.</string>
+    <string name="description_dial_info">The headunit Bluetooth adapter is not available.</string>
     <string name="description_bt_info">You can change Bluetooth name and pin code:</string>
     <string name="description_bt_name_hint">Up to 32 characters</string>
     <string name="description_bt_pin_hint">Up to 16 numbers</string>
     <string name="description_updata_name_fail">Update bluetooth name failed!</string>
     <string name="description_updata_pin_fail">Update bluetooth pin failed!</string>
     
-    <string name="description_music_disable">Music function is disabled because the headunit Bluetooth adapter is not avilable.</string>
-    <string name="description_phone_disable">Phone function is disable because the headunit Bluetooth adapter is not avilable.</string>
-    <string name="description_sync_contacts_disable">You can not sync contacts because the headunit Bluetooth adapter is not avilable.</string>
-    <string name="description_volume_disable">You can not change the volume because the headunit Bluetooth adapter is not avilable.</string>
+    <string name="description_music_disable">Music function is disabled because the headunit Bluetooth adapter is not available.</string>
+    <string name="description_phone_disable">Phone function is disable because the headunit Bluetooth adapter is not available.</string>
+    <string name="description_sync_contacts_disable">You can not sync contacts because the headunit Bluetooth adapter is not available.</string>
+    <string name="description_volume_disable">You can not change the volume because the headunit Bluetooth adapter is not available.</string>
     <string name="description_switch_bt_music">Bt music</string>
     <string name="description_switch_bt_status">Bt status</string>
     <string name="description_sync_contacts_wait_info">Please confirm the contact synchronization on your phone.</string>
