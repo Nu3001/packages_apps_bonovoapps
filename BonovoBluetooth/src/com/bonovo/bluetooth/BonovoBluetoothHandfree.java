@@ -57,9 +57,9 @@ public class BonovoBluetoothHandfree extends Activity
 //	private View mDialMargin;
 	private ImageButton mAnswerButton;
 	private View mDigitsContainer;
-	private View mAnswerMargin;
+	//private View mAnswerMargin;
 	private ImageButton mEndCallButton;
-	private View mEndCallMargin;
+	//private View mEndCallMargin;
 	private int mDialpadPressCount;
 	private ViewStub mDialStub;
 	private ViewStub mIncomingStub;
@@ -588,35 +588,26 @@ public class BonovoBluetoothHandfree extends Activity
 
 		if(visibility){
 			mIncomingStub.setVisibility(View.VISIBLE);
-			mDigitsContainer.setVisibility(View.GONE);
 			mDialStub.setVisibility(View.GONE);
+			mDigitsContainer.setVisibility(View.GONE);
 			if(isAnswerShow){
 				if(mAnswerButton.getVisibility() != View.VISIBLE){
 					mAnswerButton.setVisibility(View.VISIBLE);
-				}
-				if(mAnswerMargin.getVisibility() != View.VISIBLE) {
-					mAnswerMargin.setVisibility(View.VISIBLE);
 				}
 			}else{
 				if(mAnswerButton.getVisibility() != View.GONE){
 					mAnswerButton.setVisibility(View.GONE);
 				}
-				if(mAnswerMargin.getVisibility() != View.GONE) {
-					mAnswerMargin.setVisibility(View.GONE);
-				}
 			}
 			if(mEndCallButton.getVisibility() != View.VISIBLE) {
 				mEndCallButton.setVisibility(View.VISIBLE);
-			}
-			if(mEndCallMargin.getVisibility() != View.VISIBLE) {
-				mEndCallMargin.setVisibility(View.VISIBLE);
 			}
 			if(mCallNumber.getVisibility() != View.VISIBLE){
 				mCallNumber.setVisibility(View.VISIBLE);
 			}
 		}else{
-			mIncomingStub.setVisibility(View.GONE);
 			mDigitsContainer.setVisibility(View.VISIBLE);
+			mIncomingStub.setVisibility(View.GONE);
 			mDialStub.setVisibility(View.VISIBLE);
 			mCallTime.setText("");
 			mCallNumber.setText("");
