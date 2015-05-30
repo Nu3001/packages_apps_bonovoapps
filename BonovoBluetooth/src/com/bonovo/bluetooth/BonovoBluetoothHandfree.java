@@ -54,17 +54,12 @@ public class BonovoBluetoothHandfree extends Activity
 	private EditText mDigits;
 	private View mDelete;
 	private ImageButton mDialButton;
-//	private View mDialMargin;
 	private ImageButton mAnswerButton;
-	private View mDigitsContainer;
-	//private View mAnswerMargin;
+	private View mLeftPanel;
 	private ImageButton mEndCallButton;
-	//private View mEndCallMargin;
 	private int mDialpadPressCount;
 	private ViewStub mDialStub;
 	private ViewStub mIncomingStub;
-//	private View mDialView;
-//	private View mIncomingView;
 	private TextView mCallTime;
 	private TextView mCallNumber;
 	private Chronometer mTimer;
@@ -180,47 +175,57 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			BonovoBlueToothService.PhoneState phoneState = myBlueToothService.getPhoneState();
 			if(DEBUG) Log.d(TAG, "=========== ServiceConnection phoneState:" + phoneState);
+			
 			if(BonovoBlueToothService.PhoneState.IDLE == phoneState 
 					|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
 				mCallTime.setText(R.string.description_phone_hang_up);
 				setIncomingView(false, false);
 				stopCallTimer();
 				abandonAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
 				setIncomingView(true, true);
 				mCallTime.setText(R.string.description_phone_incoming);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
 				requestAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
 				setIncomingView(true, false);
 				mCallTime.setText(R.string.description_phone_dialing);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
 				requestAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
 				setIncomingView(true, false);
 				startCallTimer(myBlueToothService.getAnswerTime());
 				mCallTime.setText(R.string.description_phone_in_call);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
@@ -243,6 +248,7 @@ public class BonovoBluetoothHandfree extends Activity
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			int what = msg.what;
+			
 			switch (what) {
 			case MSG_DIAL_HANG_UP:{
 				if(mCallTime != null){
@@ -255,6 +261,7 @@ public class BonovoBluetoothHandfree extends Activity
 				mHandler.sendEmptyMessageDelayed(MSG_DIAL_FINISH_ACTIVITY, DELAY_TIME_FINISH);
 			}
 				break;
+			
 			case MSG_DIAL_FINISH_ACTIVITY:
 				if(!mIsUserStarted){
 					mHandler.removeMessages(MSG_DIAL_HANG_UP);
@@ -278,25 +285,26 @@ public class BonovoBluetoothHandfree extends Activity
 		
 		mContext = this;
 		
-		mDigitsContainer = findViewById(R.id.digits_container);
+		mLeftPanel = (View)findViewById(R.id.left_panel);
 		mDigits = (EditText)findViewById(R.id.digits);
 		mDelete = findViewById(R.id.deleteButton);
+
 		if(mDelete != null){
 			mDelete.setOnClickListener(this);
 			mDelete.setOnLongClickListener(this);
 		}
 		
 		mDialStub = (ViewStub)findViewById(R.id.dialViewStub);
-//		mDialView = (View)findViewById(R.id.dialButtonContainer);
 		mDialStub.inflate();
 		mIncomingStub = (ViewStub)findViewById(R.id.incomingViewStub);
-//		mIncomingView = (View)findViewById(R.id.incomingButtonContainer);
 		mIncomingStub.inflate();
+
 		setupKeypad();
 		
 		if(DEBUG) Log.d(TAG, "============ onCreate()");
 		Bundle extras = getIntent().getExtras();
 		String number = null;
+		
 		if(extras != null) {
 			if(DEBUG) Log.d(TAG, "============ onCreate() extras is not null");
 			number = extras.getString(BonovoBlueToothService.BonovoBlueToothData.PHONE_NUMBER);
@@ -369,41 +377,50 @@ public class BonovoBluetoothHandfree extends Activity
 				setIncomingView(false, false);
 				stopCallTimer();
 				abandonAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
 				setIncomingView(true, true);
 				mCallTime.setText(R.string.description_phone_incoming);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
 				requestAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
 				setIncomingView(true, false);
 				mCallTime.setText(R.string.description_phone_dialing);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
 				requestAudioFocus();
+				
 			}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
 				setIncomingView(true, false);
 				startCallTimer(myBlueToothService.getAnswerTime());
 				mCallTime.setText(R.string.description_phone_in_call);
                 String number = myBlueToothService.getCurrentNumber();
                 String disp = getNameByNumber(mContext, number);
+                
                 if(disp == null){
                     disp = number;
                 }
+                
 				mCallNumber.setText(disp);
 //				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
@@ -421,14 +438,17 @@ public class BonovoBluetoothHandfree extends Activity
 		case R.id.deleteButton:
 			keyPressed(KeyEvent.KEYCODE_DEL);
 			break;
+			
 		case R.id.digits:
 			if(!isDigitsEmpty()){
 				mDigits.setCursorVisible(true);
 			}
 			break;
+			
 		case R.id.dialButton:
 			dialButtonPressed();
 			break;
+			
 		case R.id.endCallButton:
 //			setIncomingView(false, false);
 			if(myBlueToothService != null){
@@ -439,6 +459,7 @@ public class BonovoBluetoothHandfree extends Activity
 				}
 			}
 			break;
+			
 		case R.id.answerButton:
 //			mAnswerButton.setVisibility(View.GONE);
 //			mAnswerMargin.setVisibility(View.GONE);
@@ -463,17 +484,21 @@ public class BonovoBluetoothHandfree extends Activity
 		case R.id.deleteButton:
 			digits.clear();
 			return true;
+			
 		case R.id.one:
 			return false;
+			
 		case R.id.zero:
 			removePreviousDigitIfPossible();
 			keyPressed(KeyEvent.KEYCODE_PLUS);
 			stopTone();
 			if(mDialpadPressCount > 0) mDialpadPressCount--;
 			return true;
+			
 		case R.id.digits:
 			mDigits.setCursorVisible(true);
 			return false;
+			
 		case R.id.dialButton:
 			if(isDigitsEmpty()){
 				handleDialButtonClickWithEmptyDigits();
@@ -494,36 +519,47 @@ public class BonovoBluetoothHandfree extends Activity
 			case R.id.one:
 				keyPressed(KeyEvent.KEYCODE_1);
 				break;
+				
 			case R.id.two:
 				keyPressed(KeyEvent.KEYCODE_2);
 				break;
+				
 			case R.id.three:
 				keyPressed(KeyEvent.KEYCODE_3);
 				break;
+				
 			case R.id.four:
 				keyPressed(KeyEvent.KEYCODE_4);
 				break;
+				
 			case R.id.five:
 				keyPressed(KeyEvent.KEYCODE_5);
 				break;
+				
 			case R.id.six:
 				keyPressed(KeyEvent.KEYCODE_6);
 				break;
+				
 			case R.id.seven:
 				keyPressed(KeyEvent.KEYCODE_7);
 				break;
+				
 			case R.id.eight:
 				keyPressed(KeyEvent.KEYCODE_8);
 				break;
+				
 			case R.id.nine:
 				keyPressed(KeyEvent.KEYCODE_9);
 				break;
+				
 			case R.id.zero:
 				keyPressed(KeyEvent.KEYCODE_0);
 				break;
+				
 			case R.id.star:
 				keyPressed(KeyEvent.KEYCODE_STAR);
 				break;
+				
 			case R.id.pound:
 				keyPressed(KeyEvent.KEYCODE_POUND);
 				break;
@@ -536,10 +572,12 @@ public class BonovoBluetoothHandfree extends Activity
 		} else {
 			view.jumpDrawablesToCurrentState();
 			mDialpadPressCount--;
+			
 			if(mDialpadPressCount < 0){
 				if(DEBUG) Log.d(TAG, "mKeyPressCount became negative.");
 				stopTone();
 				mDialpadPressCount = 0;
+				
 			} else if(mDialpadPressCount == 0){
 				stopTone();
 			}
@@ -554,6 +592,7 @@ public class BonovoBluetoothHandfree extends Activity
 				mIsUseringAudio = true;
 			}
 		}
+		
 		if(DEBUG) Log.d(TAG, "========== requestAudioFocus()  mIsUseringAudio:" + mIsUseringAudio);
 		
 		return mIsUseringAudio;
@@ -564,6 +603,7 @@ public class BonovoBluetoothHandfree extends Activity
 			mAudioManger.abandonAudioFocus(null);
 			mIsUseringAudio = false;
 		}
+		
 		if(DEBUG) Log.d(TAG, "========== abandonAudioFocus()  mIsUseringAudio:" + mIsUseringAudio);
 		return !mIsUseringAudio;
 	}
@@ -587,26 +627,32 @@ public class BonovoBluetoothHandfree extends Activity
 	private void setIncomingView(boolean visibility, boolean isAnswerShow){
 
 		if(visibility){
+			mLeftPanel.setVisibility(View.GONE);
+			
 			mIncomingStub.setVisibility(View.VISIBLE);
 			mDialStub.setVisibility(View.GONE);
-			mDigitsContainer.setVisibility(View.GONE);
+			
 			if(isAnswerShow){
 				if(mAnswerButton.getVisibility() != View.VISIBLE){
 					mAnswerButton.setVisibility(View.VISIBLE);
 				}
+				
 			}else{
 				if(mAnswerButton.getVisibility() != View.GONE){
 					mAnswerButton.setVisibility(View.GONE);
 				}
 			}
+			
 			if(mEndCallButton.getVisibility() != View.VISIBLE) {
 				mEndCallButton.setVisibility(View.VISIBLE);
 			}
 			if(mCallNumber.getVisibility() != View.VISIBLE){
 				mCallNumber.setVisibility(View.VISIBLE);
 			}
+			
 		}else{
-			mDigitsContainer.setVisibility(View.VISIBLE);
+			mLeftPanel.setVisibility(View.VISIBLE);
+			
 			mIncomingStub.setVisibility(View.GONE);
 			mDialStub.setVisibility(View.VISIBLE);
 			mCallTime.setText("");
@@ -618,6 +664,7 @@ public class BonovoBluetoothHandfree extends Activity
 	private void removePreviousDigitIfPossible(){
 //		final Editable editable = mDigits.getText();
 		final int currentPosition = mDigits.getSelectionStart();
+		
 		if(currentPosition > 0){
 			mDigits.setSelection(currentPosition);
 			mDigits.getText().delete(currentPosition - 1, currentPosition);
