@@ -56,6 +56,7 @@ public class BonovoBluetoothHandfree extends Activity
 	private ImageButton mDialButton;
 //	private View mDialMargin;
 	private ImageButton mAnswerButton;
+	private View mDigitsContainer;
 	private View mAnswerMargin;
 	private ImageButton mEndCallButton;
 	private View mEndCallMargin;
@@ -277,6 +278,7 @@ public class BonovoBluetoothHandfree extends Activity
 		
 		mContext = this;
 		
+		mDigitsContainer = findViewById(R.id.digits_container);
 		mDigits = (EditText)findViewById(R.id.digits);
 		mDelete = findViewById(R.id.deleteButton);
 		if(mDelete != null){
@@ -586,6 +588,7 @@ public class BonovoBluetoothHandfree extends Activity
 
 		if(visibility){
 			mIncomingStub.setVisibility(View.VISIBLE);
+			mDigitsContainer.setVisibility(View.GONE);
 			mDialStub.setVisibility(View.GONE);
 			if(isAnswerShow){
 				if(mAnswerButton.getVisibility() != View.VISIBLE){
@@ -613,6 +616,7 @@ public class BonovoBluetoothHandfree extends Activity
 			}
 		}else{
 			mIncomingStub.setVisibility(View.GONE);
+			mDigitsContainer.setVisibility(View.VISIBLE);
 			mDialStub.setVisibility(View.VISIBLE);
 			mCallTime.setText("");
 			mCallNumber.setText("");
@@ -699,7 +703,7 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, " mAnswerButton is null");
 		}
-		mAnswerMargin = (View)findViewById(R.id.answerViewMargin);
+		//mAnswerMargin = (View)findViewById(R.id.answerViewMargin);
 		
 		mEndCallButton = (ImageButton)findViewById(R.id.endCallButton);
 		if(mEndCallButton != null){
@@ -708,7 +712,7 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, " mEndCallButton is null");
 		}
-		mEndCallMargin = (View)findViewById(R.id.endCallViewMargin);
+		//mEndCallMargin = (View)findViewById(R.id.endCallViewMargin);
 		mCallTime = (TextView)findViewById(R.id.tvTelephoneInfo);
 		mCallTime.setText("");
 		
