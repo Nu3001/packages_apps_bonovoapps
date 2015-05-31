@@ -48,6 +48,16 @@
         android:gravity="center" >
 
         <ImageButton
+            android:id="@+id/DialpadViewButton"
+            android:layout_width="80dp"
+            android:layout_height="@dimen/call_button_height"
+            android:layout_margin="2dp"
+            android:background="@drawable/btn_compound_background"
+            android:src="@drawable/ic_dial_dialpad"
+            android:visibility="gone"
+            android:state_enabled="false" />
+        
+        <ImageButton
             android:id="@+id/endCallButton"
             android:layout_width="200dp"
             android:layout_height="@dimen/call_button_height"

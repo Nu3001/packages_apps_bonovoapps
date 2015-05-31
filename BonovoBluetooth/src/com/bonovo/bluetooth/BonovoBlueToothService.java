@@ -1444,8 +1444,8 @@ public class BonovoBlueToothService extends Service {
 	}
 
 	class BonovoBlueToothRequestCmd {
-		public static final int CMD_SOLICATED_CA = 0;
-		public static final int CMD_SOLICATED_CB = 1;
+		public static final int CMD_SOLICATED_CA = 0;	
+		public static final int CMD_SOLICATED_CB = 1;	
 		public static final int CMD_SOLICATED_CC = 2;
 		public static final int CMD_SOLICATED_CD = 3;
 		public static final int CMD_SOLICATED_CE = 4;

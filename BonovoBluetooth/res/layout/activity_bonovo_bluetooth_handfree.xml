@@ -20,6 +20,18 @@
             android:layout_marginTop="@dimen/dialpad_vertical_margin"
             android:background="@drawable/dialpad_background"
             android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/backToCallButton"
+                android:layout_width="56dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:src="@drawable/ic_dial_backtocall"
+                android:state_enabled="false"
+                android:visibility="gone" />
+
 		    <com.bonovo.bluetooth.dialpad.DigitsEditText
                 android:id="@+id/digits"
                 android:layout_width="0dip"

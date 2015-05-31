@@ -57,6 +57,8 @@ public class BonovoBluetoothHandfree extends Activity
 	private ImageButton mAnswerButton;
 	private View mLeftPanel;
 	private ImageButton mEndCallButton;
+	private ImageButton mBackToCallButton;
+	private ImageButton mDialpadViewButton;
 	private int mDialpadPressCount;
 	private ViewStub mDialStub;
 	private ViewStub mIncomingStub;
@@ -120,14 +122,18 @@ public class BonovoBluetoothHandfree extends Activity
 					if(BonovoBlueToothService.PhoneState.IDLE == phoneState 
 							|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
 						abandonAudioFocus();
+						
 						mCallTime.setText(R.string.description_phone_call_time);
 						stopCallTimer();
+						
 						Message msg = mHandler.obtainMessage(MSG_DIAL_HANG_UP);
 						mHandler.sendMessageDelayed(msg, DELAY_TIME_HANG_UP);
 //						setIncomingView(false, false);
+						
 					}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
 						requestAudioFocus();
 						setView(phoneLayouts.PHONE_RINGING_IN);
+						
 						if(number != null) {
 //							mDigits.setText(number);
                             String disp = getNameByNumber(mContext, number);
@@ -138,11 +144,13 @@ public class BonovoBluetoothHandfree extends Activity
 							final Editable digits = mDigits.getText();
 							digits.clear();
 						}
+						
 						mCallTime.setText(R.string.description_phone_incoming);
 
 					}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
 						requestAudioFocus();
 						setView(phoneLayouts.PHONE_RINGING_OUT);
+						
 						if(number != null) {
 //							mDigits.setText(number);
                             String disp = getNameByNumber(mContext, number);
@@ -153,7 +161,9 @@ public class BonovoBluetoothHandfree extends Activity
 							final Editable digits = mDigits.getText();
 							digits.clear();
 						}
+						
 						mCallTime.setText(R.string.description_phone_dialing);
+						
 					}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
 						requestAudioFocus();
 						setView(phoneLayouts.PHONE_INCALL);
@@ -295,14 +305,15 @@ public class BonovoBluetoothHandfree extends Activity
 		mLeftPanel = (View)findViewById(R.id.left_panel);
 		mDigits = (EditText)findViewById(R.id.digits);
 		mDelete = findViewById(R.id.deleteButton);
-
+		
 		if(mDelete != null){
 			mDelete.setOnClickListener(this);
 			mDelete.setOnLongClickListener(this);
 		}
-		
+						
 		mDialStub = (ViewStub)findViewById(R.id.dialViewStub);
 		mDialStub.inflate();
+		
 		mIncomingStub = (ViewStub)findViewById(R.id.incomingViewStub);
 		mIncomingStub.inflate();
 
@@ -376,6 +387,7 @@ public class BonovoBluetoothHandfree extends Activity
 			}
 		}
 		mDialpadPressCount = 0;
+		
         if(myBlueToothService != null){
             BonovoBlueToothService.PhoneState phoneState = myBlueToothService.getPhoneState();
 			if(BonovoBlueToothService.PhoneState.IDLE == phoneState 
@@ -457,7 +469,6 @@ public class BonovoBluetoothHandfree extends Activity
 			break;
 			
 		case R.id.endCallButton:
-//			setIncomingView(false, false);
 			if(myBlueToothService != null){
 				if(BonovoBlueToothService.PhoneState.RINGING == myBlueToothService.getPhoneState()){
 					myBlueToothService.BlueToothPhoneRejectCall();
@@ -468,14 +479,23 @@ public class BonovoBluetoothHandfree extends Activity
 			break;
 			
 		case R.id.answerButton:
-//			mAnswerButton.setVisibility(View.GONE);
-//			mAnswerMargin.setVisibility(View.GONE);
 			if(myBlueToothService != null) {
 				myBlueToothService.BlueToothPhoneAnswer();
 				setView(phoneLayouts.PHONE_INCALL);
 			}
 			break;
 
+		case R.id.backToCallButton:
+			// Switch back from dial pad to active call
+			setView(phoneLayouts.PHONE_INCALL);
+			break;
+			
+		case R.id.DialpadViewButton:
+			// Force switch view from incall to dialpad, normally because the caller
+			//   needs to send DTMF codes (press 1 for x, press 2 for y...)
+			setView(phoneLayouts.PHONE_DIALPAD);
+			break;
+			
 		default:
 			Log.wtf(TAG, "Unexpected onClick() event from:" + v);
 			break;
@@ -637,15 +657,26 @@ public class BonovoBluetoothHandfree extends Activity
 		case PHONE_DIALPAD:
 			mLeftPanel.setVisibility(View.VISIBLE);
 			mIncomingStub.setVisibility(View.GONE);
-			mDialStub.setVisibility(View.VISIBLE);
-			
-			mCallTime.setText("");
-			mCallNumber.setText("");
-			mTimer.setVisibility(View.GONE);
-					
+											
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.GONE);
 			mCallNumber.setVisibility(View.GONE);
+			
+			// Dial pad can show to both dial a number and to send DTMF codes during an active call. 
+			//  Therefore it has two different states to handle
+			BonovoBlueToothService.PhoneState phoneState = myBlueToothService.getPhoneState();
+			if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState ) {
+				mBackToCallButton.setVisibility(View.VISIBLE);
+				mDialStub.setVisibility(View.GONE);
+			}else{
+				mBackToCallButton.setVisibility(View.GONE);
+				mDialStub.setVisibility(View.VISIBLE);
+				
+				mCallTime.setText("");
+				mCallNumber.setText("");
+				mTimer.setVisibility(View.GONE);
+			}
+			
 			break;
 			
 		case PHONE_INCALL:
@@ -656,6 +687,7 @@ public class BonovoBluetoothHandfree extends Activity
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.VISIBLE);
 			mCallNumber.setVisibility(View.VISIBLE);
+			mDialpadViewButton.setVisibility(View.VISIBLE);
 			
 			mTimer.setVisibility(View.VISIBLE);
 			break;
@@ -668,6 +700,7 @@ public class BonovoBluetoothHandfree extends Activity
 			mAnswerButton.setVisibility(View.VISIBLE);
 			mEndCallButton.setVisibility(View.VISIBLE);
 			mCallNumber.setVisibility(View.VISIBLE);
+			mDialpadViewButton.setVisibility(View.GONE);
 			
 			mTimer.setVisibility(View.GONE);
 			break;
@@ -680,6 +713,7 @@ public class BonovoBluetoothHandfree extends Activity
 			mAnswerButton.setVisibility(View.VISIBLE);
 			mEndCallButton.setVisibility(View.VISIBLE);
 			mCallNumber.setVisibility(View.VISIBLE);
+			mDialpadViewButton.setVisibility(View.GONE);
 			
 			mTimer.setVisibility(View.GONE);
 			break;
@@ -758,7 +792,6 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, "mDialButton is null");
 		}
-//		mDialMargin = (View)findViewById(R.id.dialViewMargin);
 		
 		mAnswerButton = (ImageButton)findViewById(R.id.answerButton);
 		if(mAnswerButton != null){
@@ -767,7 +800,6 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, " mAnswerButton is null");
 		}
-		//mAnswerMargin = (View)findViewById(R.id.answerViewMargin);
 		
 		mEndCallButton = (ImageButton)findViewById(R.id.endCallButton);
 		if(mEndCallButton != null){
@@ -776,7 +808,24 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, " mEndCallButton is null");
 		}
-		//mEndCallMargin = (View)findViewById(R.id.endCallViewMargin);
+		
+		mDialpadViewButton = (ImageButton)findViewById(R.id.DialpadViewButton);
+		if(mDialpadViewButton != null){
+			mDialpadViewButton.setOnClickListener(this);
+			mDialpadViewButton.setOnLongClickListener(this);
+		}else{
+			Log.e(TAG, " mDialpadViewButton is null");
+		}
+
+		
+		mBackToCallButton = (ImageButton)findViewById(R.id.backToCallButton);
+		if(mBackToCallButton != null){
+			mBackToCallButton.setOnClickListener(this);
+			mBackToCallButton.setOnLongClickListener(this);
+		}else{
+			Log.e(TAG, " mBackToCallButton is null");
+		}
+		
 		mCallTime = (TextView)findViewById(R.id.tvTelephoneInfo);
 		mCallTime.setText("");
 		
