@@ -664,14 +664,22 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			// Dial pad can show to both dial a number and to send DTMF codes during an active call. 
 			//  Therefore it has two different states to handle
-			BonovoBlueToothService.PhoneState phoneState = myBlueToothService.getPhoneState();
-			if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState ) {
-				mBackToCallButton.setVisibility(View.VISIBLE);
-				mDialStub.setVisibility(View.GONE);
+			if(myBlueToothService != null){
+				if(BonovoBlueToothService.PhoneState.ACTIVE == myBlueToothService.getPhoneState()){
+					mBackToCallButton.setVisibility(View.VISIBLE);
+					mDialStub.setVisibility(View.GONE);
+				}else{
+					mBackToCallButton.setVisibility(View.GONE);
+					mDialStub.setVisibility(View.VISIBLE);
+				
+					mCallTime.setText("");
+					mCallNumber.setText("");
+					mTimer.setVisibility(View.GONE);
+				}
 			}else{
 				mBackToCallButton.setVisibility(View.GONE);
 				mDialStub.setVisibility(View.VISIBLE);
-				
+			
 				mCallTime.setText("");
 				mCallNumber.setText("");
 				mTimer.setVisibility(View.GONE);
