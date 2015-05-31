@@ -8,9 +8,9 @@
     <TextView
         android:id="@+id/tvTelephoneNumber"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dialpad_center_margin"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:gravity="center_vertical|center"
         android:textColor="@color/white"
         android:textSize="@dimen/call_number_text_size"
