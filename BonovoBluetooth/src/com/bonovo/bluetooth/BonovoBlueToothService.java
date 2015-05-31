@@ -46,6 +46,7 @@ public class BonovoBlueToothService extends Service {
     private boolean mReadPinCode = false;
 	private boolean mIsBindered = false;
     private boolean mIsSyncingContacts = false;
+    private boolean mMicMuted = false;
     private int mSetNameTime = 0;
     private int mSetPinCodeTime = 0;
     private final static int MAX_SET_TIME = 5; 
@@ -97,6 +98,7 @@ public class BonovoBlueToothService extends Service {
     private static final int MSG_ACTIVE_AUDIO = 20;
     private static final int MSG_RECOVERY_AUDIO = 21;
     private static final int MSG_STOP_MUSIC = 22;
+    private static final int MSG_BT_MIC_STATE_CHANGE = 23;
     private static final int MSG_SEND_COMMANDER_ERROR = 30;
 	private static final int DELAY_TIME_CHECKPINCODE = 2000;
 	private static final int DELAY_TIME_DISCONNECT = 1000;
@@ -751,6 +753,11 @@ public class BonovoBlueToothService extends Service {
 		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CM);
 	}
 	
+	// Returns the current mute state of the BT Mic
+	public boolean BlueToothMicrophoneState() {
+		return mMicMuted;
+	}
+	
 	/**
 	 * DTMF Dial
 	 */
@@ -963,7 +970,7 @@ public class BonovoBlueToothService extends Service {
 		if(DEB) Log.d(TAG, "BlueToothCallback cmd=" + Cmd);
 
 		switch (Cmd) {
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IA:{// HFP disconnect
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IA:{ // HFP disconnect
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IA   myBtHFPStatus:" + myBtHFPStatus);
             if(getPhoneState() != PhoneState.IDLE){
 				setPhoneState(PhoneState.IDLE);
@@ -1177,9 +1184,11 @@ public class BonovoBlueToothService extends Service {
 		}
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IO0:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IO0");
-			break;
+			mMicMuted = false;
+			break;	
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IO1:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IO1");
+			mMicMuted = true;		
 			break;
 		default:
 			break;

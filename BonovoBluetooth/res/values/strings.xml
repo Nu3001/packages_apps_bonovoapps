@@ -36,6 +36,7 @@
     <string name="tn_dial">Dial</string>
     <string name="title_activity_bonovo_dial">BonovoDial</string>
     <string name="title_activity_bonovo_bluetooth_dial">BonovoBluetoothDial</string>
+    <string name="title_call_waiting">Call Waiting:</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
@@ -68,12 +69,14 @@
 	<string name="onscreenMergeCallsText">Merge calls</string>
 	<string name="onscreenEndCallText">End Call</string>
 	<string name="onscreenMuteText">Mute</string>
+	<string name="call_waiting_answer">Switch to call</string>
+	<string name="call_waiting_reject">Reject call</string>
 	<string name="description_target_answer">Answer</string>
     <string name="description_target_send_sms">Send SMS</string>
     <string name="description_target_decline">Decline</string>
-    <string name="description_phone_incoming">Call waiting</string>
+    <string name="description_phone_incoming">Incoming Call</string>
     <string name="description_phone_dialing">Dialing</string>
-    <string name="description_phone_in_call">In call</string>
+    <string name="description_phone_in_call">Call active</string>
     <string name="description_phone_hang_up">Hang up</string>
     <string name="description_phone_call_time">Talk time</string>
     <string name="description_sync_select">Synchronization Select</string>
