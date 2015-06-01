@@ -644,6 +644,8 @@ public class BonovoBluetoothHandfree extends Activity
 		Uri contactPhotoUri = getContactPhotoUriByNumber(context, number);
 		if (contactPhotoUri != null) {
 			mContactPhoto.setImageURI(contactPhotoUri);
+		}else{
+			mContactPhoto.setImageResource(R.drawable.ic_contact_picture_holo_light);
 		}
 	}
 	

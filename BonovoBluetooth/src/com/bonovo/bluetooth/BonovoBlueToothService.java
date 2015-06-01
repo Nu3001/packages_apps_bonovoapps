@@ -47,6 +47,9 @@ public class BonovoBlueToothService extends Service {
 	private boolean mIsBindered = false;
     private boolean mIsSyncingContacts = false;
     private boolean mMicMuted = false;
+    private int mPhoneSignalLevel = 0;
+    private int mPhoneBatteryLevel = 0;
+    private String mPhoneOperatorName = "";
     private int mSetNameTime = 0;
     private int mSetPinCodeTime = 0;
     private final static int MAX_SET_TIME = 5; 
@@ -695,7 +698,7 @@ public class BonovoBlueToothService extends Service {
 	public void BlueToothMusicNext() {
 		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_MD);
 	}
-
+	
 	/**
 	 * switch audio channel
 	 */
@@ -765,6 +768,34 @@ public class BonovoBlueToothService extends Service {
 		BonovoBlueToothSetWithParam(BonovoBlueToothRequestCmd.CMD_SOLICATED_CX, number);
 	}
 	
+	/**
+	 * HFP Reject call waiting
+	 */
+	public void BlueToothPhoneRejectWaitingCall() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CQ);
+	}
+
+	/**
+	 * HFP End current call and switch to call waiting
+	 */
+	public void BlueToothPhoneEndAndSwitchToWaitingCall() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CR);
+	}
+	
+	/**
+	 * HFP Hold current call and switch to call waiting
+	 */
+	public void BlueToothPhoneHoldAndSwitchToWaitingCall() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CS);
+	}
+	
+	/**
+	 * HFP Merge active and waiting calls into conference
+	 */
+	public void BlueToothPhoneConferenceCalls() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CT);
+	}
+		
 	/**
 	 * Set or check bt's name
 	 * @param name  if name is null,check bt's name. Otherwise set name.
@@ -1127,11 +1158,16 @@ public class BonovoBlueToothService extends Service {
 				}
 			}
 			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IX:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IX param:" + param);
+			mPhoneBatteryLevel = Integer.parseInt(param);
+			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IV:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IV");
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IU:
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IU");
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IU param:" + param);
+			mPhoneSignalLevel = Integer.parseInt(param);
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MC:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MC");
@@ -1189,6 +1225,39 @@ public class BonovoBlueToothService extends Service {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IO1:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IO1");
 			mMicMuted = true;		
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IK:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IK param:" + param);
+			// call waiting - number attached
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IL:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IL");
+			// Held active call and switched to call waiting
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IM:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IM");
+			// Conference call created
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IN:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IN");
+			// Release held call and reject call waiting
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IQ:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IQ param:" + param);
+			// Incoming call with name indication
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PT:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PT");
+			// current call holding
+			break;			
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PV:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PV param:" + param);
+			// Current phone network operator name
+			mPhoneOperatorName = param;
+			break;			
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PZ:
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PZ");
+			// Last number redial failed
 			break;
 		default:
 			break;
@@ -1342,61 +1411,73 @@ public class BonovoBlueToothService extends Service {
     }
 
 	class BonovoBlueToothUnsolicatedCmd {
-		// Unsolicated Cmd
-		public static final int CMD_UNSOLICATED_IS = 0;
-		public static final int CMD_UNSOLICATED_IA = 1;
-		public static final int CMD_UNSOLICATED_IB = 2;
-		public static final int CMD_UNSOLICATED_IC = 3;
-		public static final int CMD_UNSOLICATED_ID = 4;
-		public static final int CMD_UNSOLICATED_IF = 5;
-		public static final int CMD_UNSOLICATED_IG = 6;
-		public static final int CMD_UNSOLICATED_II = 7;
-		public static final int CMD_UNSOLICATED_IJ = 8;
-		public static final int CMD_UNSOLICATED_IR = 9;
-		public static final int CMD_UNSOLICATED_IV = 10;
-		public static final int CMD_UNSOLICATED_IU = 11;
-		public static final int CMD_UNSOLICATED_MA = 12;
-		public static final int CMD_UNSOLICATED_MB = 13;
-		public static final int CMD_UNSOLICATED_MC = 14;
-		public static final int CMD_UNSOLICATED_MD = 15;
-		public static final int CMD_UNSOLICATED_MF = 16;
-		public static final int CMD_UNSOLICATED_MG = 17;
-		public static final int CMD_UNSOLICATED_ML = 18;
-		public static final int CMD_UNSOLICATED_MM = 19;
-		public static final int CMD_UNSOLICATED_MN = 20;
-		public static final int CMD_UNSOLICATED_MU = 21;
-		public static final int CMD_UNSOLICATED_MW = 22;
-		public static final int CMD_UNSOLICATED_MX = 23;
-		public static final int CMD_UNSOLICATED_MY = 24;
-		public static final int CMD_UNSOLICATED_PA = 25;
-		public static final int CMD_UNSOLICATED_PN = 26;
-		public static final int CMD_UNSOLICATED_PC = 27;
-		public static final int CMD_UNSOLICATED_PB = 28;
-		public static final int CMD_UNSOLICATED_PK = 29;
-		public static final int CMD_UNSOLICATED_PL = 30;
-		public static final int CMD_UNSOLICATED_PE = 31;
-		public static final int CMD_UNSOLICATED_PF = 32;
-		public static final int CMD_UNSOLICATED_WA = 33;
-		public static final int CMD_UNSOLICATED_WB = 34;
-		public static final int CMD_UNSOLICATED_WC = 35;
-		public static final int CMD_UNSOLICATED_WD = 36;
-		public static final int CMD_UNSOLICATED_WN = 37;
-		public static final int CMD_UNSOLICATED_QB = 38;
-		public static final int CMD_UNSOLICATED_QA = 39;
+		// Unsolicated Cmd	--  Sent by the HFP device to indicate status
+		public static final int CMD_UNSOLICATED_IS = 0;		// Initialization complete
+		public static final int CMD_UNSOLICATED_IA = 1;		// HFP disconnect
+		public static final int CMD_UNSOLICATED_IB = 2;		// HFP connect
+		public static final int CMD_UNSOLICATED_IC = 3;		// Outgoing call
+		public static final int CMD_UNSOLICATED_ID = 4;		// Incoming call
+		public static final int CMD_UNSOLICATED_IF = 5;		// Hang up 
+		public static final int CMD_UNSOLICATED_IG = 6;		// Pick up
+		public static final int CMD_UNSOLICATED_II = 7;		// Entered pairing mode
+		public static final int CMD_UNSOLICATED_IJ = 8;		// Exited pairing mode
+		public static final int CMD_UNSOLICATED_IR = 9;		// Current call info
+		public static final int CMD_UNSOLICATED_IV = 10;	// HFP connecting
+		public static final int CMD_UNSOLICATED_IU = 11;	// AG (phone) signal level changed
+		public static final int CMD_UNSOLICATED_MA = 12;	// AV suspend / stop
+		public static final int CMD_UNSOLICATED_MB = 13;	// AV playing
+		public static final int CMD_UNSOLICATED_MC = 14;	// HFP audio connected
+		public static final int CMD_UNSOLICATED_MD = 15;	// HFP audio disconnected
+		public static final int CMD_UNSOLICATED_MF = 16;	// Report Auto Answer and Power On Auto Connection status
+		public static final int CMD_UNSOLICATED_MG = 17;	// Report current HFP status
+		public static final int CMD_UNSOLICATED_ML = 18;	// Report current AVRCP status
+		public static final int CMD_UNSOLICATED_MM = 19;	// Report current local device name
+		public static final int CMD_UNSOLICATED_MN = 20;	// Report current local device PIN	
+		public static final int CMD_UNSOLICATED_MU = 21;	// Report current A2DP status
+		public static final int CMD_UNSOLICATED_MW = 22;	// Report HFP module software version
+		public static final int CMD_UNSOLICATED_MX = 23;	// Report paired list
+		public static final int CMD_UNSOLICATED_MY = 24;	// A2DP disconnected
+		public static final int CMD_UNSOLICATED_PA = 25;	// Phonebook storage supported
+		public static final int CMD_UNSOLICATED_PN = 26;	// SPP disconnected
+		public static final int CMD_UNSOLICATED_PC = 27;	// Phonebook sync ended
+		public static final int CMD_UNSOLICATED_PB = 28;	// One phonebook entry indication (via AT command)
+		public static final int CMD_UNSOLICATED_PK = 29;	// One phonebook entry indication
+		public static final int CMD_UNSOLICATED_PL = 30;	// OPP disconnect
+		public static final int CMD_UNSOLICATED_PE = 31;	// Voice dial started (siri / google now session)
+		public static final int CMD_UNSOLICATED_PF = 32;	// Voice dial stopped
+		public static final int CMD_UNSOLICATED_WA = 33;	// PBAP profile connected
+		public static final int CMD_UNSOLICATED_WB = 34;	// PBAP started downloading
+		public static final int CMD_UNSOLICATED_WC = 35;	// PBAP disconnected
+		public static final int CMD_UNSOLICATED_WD = 36;	// PBAP download complete
+		public static final int CMD_UNSOLICATED_WN = 37;	// AG (phone) has no PBAP support
+		public static final int CMD_UNSOLICATED_QB = 38;	// Pairing successful
+		public static final int CMD_UNSOLICATED_QA = 39;	// Pairing request
 
 		//
-		public static final int CMD_UNSOLICATED_IX = 40;
-		public static final int CMD_UNSOLICATED_MK = 41;
-		public static final int CMD_UNSOLICATED_QH = 42; //HFP_PROFILE_VERSION
-		public static final int CMD_UNSOLICATED_ERROR = 43;
-		public static final int CMD_UNSOLICATED_OK = 44;
-		public static final int CMD_UNSOLICATED_CZ = 45;
-		public static final int CMD_UNSOLICATED_CV = 46;
+		public static final int CMD_UNSOLICATED_IX = 40;	// AG (phone) battery level changed
+		public static final int CMD_UNSOLICATED_MK = 41;	// A2DP profile connected
+		public static final int CMD_UNSOLICATED_QH = 42; 	// HFP_PROFILE_VERSION
+		public static final int CMD_UNSOLICATED_ERROR = 43;	
+		public static final int CMD_UNSOLICATED_OK = 44;	
+		public static final int CMD_UNSOLICATED_CZ = 45;	// ?
+		public static final int CMD_UNSOLICATED_CV = 46;	// ?
 		// add by bonovo zbiao
-		public static final int CMD_UNSOLICATED_IO0 = 47;
-		public static final int CMD_UNSOLICATED_IO1 = 48;
+		public static final int CMD_UNSOLICATED_IO0 = 47;	// Mic muted
+		public static final int CMD_UNSOLICATED_IO1 = 48;	// Mic unmuted
 
-//		public static final int CMD_UNSOLICATED_MAX = ;
+		public static final int CMD_UNSOLICATED_IK = 49;	// Call Waiting
+		public static final int CMD_UNSOLICATED_IL = 50;	// Held active call and switched to call waiting
+		public static final int CMD_UNSOLICATED_IM = 51;	// Conference call
+		public static final int CMD_UNSOLICATED_IN = 52;	// Release held call and reject call waiting
+		
+		public static final int CMD_UNSOLICATED_IQ = 53;	// Incoming call with name indication
+		public static final int CMD_UNSOLICATED_PT = 54;	// Current call holding
+		public static final int CMD_UNSOLICATED_PV = 55;	// Current phone network operator name
+		public static final int CMD_UNSOLICATED_PZ = 56;	// Last number redial failed
+		public static final int CMD_UNSOLICATED_PM = 57;	// SPP Connect or SPP Data Indication
+		public static final int CMD_UNSOLICATED_MH = 58;	// AVRCP current element attributes
+		
+		public static final int CMD_UNSOLICATED_MAX = 59;
 		
 //		public static final int CMD_UNSOLICATED_IS = 0;
 //		public static final int CMD_UNSOLICATED_IA = 1;
@@ -1453,59 +1534,71 @@ public class BonovoBlueToothService extends Service {
 	}
 
 	class BonovoBlueToothRequestCmd {
-		public static final int CMD_SOLICATED_CA = 0;	
-		public static final int CMD_SOLICATED_CB = 1;	
-		public static final int CMD_SOLICATED_CC = 2;
-		public static final int CMD_SOLICATED_CD = 3;
-		public static final int CMD_SOLICATED_CE = 4;
-		public static final int CMD_SOLICATED_CF = 5;
-		public static final int CMD_SOLICATED_CG = 6;
-		public static final int CMD_SOLICATED_CH = 7;
-		public static final int CMD_SOLICATED_CI = 8;
-		public static final int CMD_SOLICATED_CJ = 9;
-		public static final int CMD_SOLICATED_CK = 10;
-		public static final int CMD_SOLICATED_CL = 11;
-		public static final int CMD_SOLICATED_CM = 12;
-		public static final int CMD_SOLICATED_CO = 13;
-		public static final int CMD_SOLICATED_CW = 14;
-		public static final int CMD_SOLICATED_CX = 15;
-		public static final int CMD_SOLICATED_CY = 16;
-		public static final int CMD_SOLICATED_CN = 17;
-		public static final int CMD_SOLICATED_CP = 18;
+		public static final int CMD_SOLICATED_CA = 0;	// Enter pairing mode
+		public static final int CMD_SOLICATED_CB = 1;	// Cancel pairing mode
+		public static final int CMD_SOLICATED_CC = 2;	// Connect to handset
+		public static final int CMD_SOLICATED_CD = 3;	// Disconnect from handset
+		public static final int CMD_SOLICATED_CE = 4;	// Answer call
+		public static final int CMD_SOLICATED_CF = 5;	// Reject call
+		public static final int CMD_SOLICATED_CG = 6;	// End call
+		public static final int CMD_SOLICATED_CH = 7;	// Redial
+		public static final int CMD_SOLICATED_CI = 8;	// Voice dial (Siri / Google Now activation)
+		public static final int CMD_SOLICATED_CJ = 9;	// Cancel voice dial
+		public static final int CMD_SOLICATED_CK = 10;	// Volume up
+		public static final int CMD_SOLICATED_CL = 11;	// Volume down
+		public static final int CMD_SOLICATED_CM = 12;	// Mute / Unmute mic
+		public static final int CMD_SOLICATED_CO = 13;	// Transfer audio to/from handset
+		public static final int CMD_SOLICATED_CW = 14;	// Dial one call
+		public static final int CMD_SOLICATED_CX = 15;	// Send DTMF 
+		public static final int CMD_SOLICATED_CY = 16;	// Query HFP status
+		public static final int CMD_SOLICATED_CN = 17;	// Start inquiry AG
+		public static final int CMD_SOLICATED_CP = 18;	// Stop inquiry AG
 
-		public static final int CMD_SOLICATED_WI = 19;
-		public static final int CMD_SOLICATED_MA = 20;
-		public static final int CMD_SOLICATED_MC = 21;
-		public static final int CMD_SOLICATED_MD = 22;
-		public static final int CMD_SOLICATED_ME = 23;
-		public static final int CMD_SOLICATED_MV = 24;
-		public static final int CMD_SOLICATED_MO = 25;
+		public static final int CMD_SOLICATED_WI = 19;	// ?
+		public static final int CMD_SOLICATED_MA = 20;	// Play / pause music
+		public static final int CMD_SOLICATED_MC = 21;	// Stop music
+		public static final int CMD_SOLICATED_MD = 22;	// Forward
+		public static final int CMD_SOLICATED_ME = 23;	// Backward
+		public static final int CMD_SOLICATED_MV = 24;	// Query A2DP status
+		public static final int CMD_SOLICATED_MO = 25;	// Query AVRCP status
 
-		public static final int CMD_SOLICATED_PA = 26;
-		public static final int CMD_SOLICATED_PB = 27;
-		public static final int CMD_SOLICATED_PH = 28;
-		public static final int CMD_SOLICATED_PI = 29;
-		public static final int CMD_SOLICATED_PJ = 30;
-		public static final int CMD_SOLICATED_PF = 31;
-		public static final int CMD_SOLICATED_PE = 32;
-		public static final int CMD_SOLICATED_PG = 33;
-		public static final int CMD_SOLICATED_QA = 34;
-		public static final int CMD_SOLICATED_QB = 35;
-		public static final int CMD_SOLICATED_QC = 36;
+		public static final int CMD_SOLICATED_PA = 26;	// Select SIM phonebook storage
+		public static final int CMD_SOLICATED_PB = 27;	// Select phone memory storage
+		public static final int CMD_SOLICATED_PH = 28;	// Select dialed call list storage
+		public static final int CMD_SOLICATED_PI = 29;	// Select received call list storage 
+		public static final int CMD_SOLICATED_PJ = 30;	// Select missed call list storage
+		public static final int CMD_SOLICATED_PF = 31;	// Download all phonebook / call list from selected storage
+		public static final int CMD_SOLICATED_PE = 32;	// Accept OPP connection
+		public static final int CMD_SOLICATED_PG = 33;	// Reject or abort OPP connection
+		public static final int CMD_SOLICATED_QA = 34;	// Start PBAP connection
+		public static final int CMD_SOLICATED_QB = 35;	// Download phonebook item (via PBAP)
+		public static final int CMD_SOLICATED_QC = 36;	// Close PBAP connection
 
-		public static final int CMD_SOLICATED_CZ = 37;
-		public static final int CMD_SOLICATED_CV = 38;
-		public static final int CMD_SOLICATED_MY = 39;
-		public static final int CMD_SOLICATED_MG = 40;
-		public static final int CMD_SOLICATED_MH = 41;
-		public static final int CMD_SOLICATED_MP = 42;
-		public static final int CMD_SOLICATED_MQ = 43;
-		public static final int CMD_SOLICATED_MF = 44;
-		public static final int CMD_SOLICATED_MM = 45;
-		public static final int CMD_SOLICATED_MN = 46;
-		public static final int CMD_SOLICATED_MX = 47;
-		public static final int CMD_SOLICATED_DA = 48;
-		public static final int CMD_SOLICATED_MAX = 49;
+		public static final int CMD_SOLICATED_CZ = 37;	// Reset Bluetooth moduke
+		public static final int CMD_SOLICATED_CV = 38;	// Delete Paired Information and Enter Pairing Mode
+		public static final int CMD_SOLICATED_MY = 39;	// Query HFP module software version
+		public static final int CMD_SOLICATED_MG = 40;	// Enable auto connection
+		public static final int CMD_SOLICATED_MH = 41;	// Disable auto connection
+		public static final int CMD_SOLICATED_MP = 42;	// Enable auto answer
+		public static final int CMD_SOLICATED_MQ = 43;  // Disable auto answer
+		public static final int CMD_SOLICATED_MF = 44;	// Query Auto Answer and Power On Auto Connection Configuration
+		public static final int CMD_SOLICATED_MM = 45;	// Change local device name
+		public static final int CMD_SOLICATED_MN = 46;	// Change local device PIN
+		public static final int CMD_SOLICATED_MX = 47;	// Query paired list
+		public static final int CMD_SOLICATED_DA = 48;	// ?
+		
+		public static final int CMD_SOLICATED_CQ = 49;	// Release held or reject waiting call
+		public static final int CMD_SOLICATED_CR = 50;  // Release active, accept waiting call
+		public static final int CMD_SOLICATED_CS = 51;	// Hold active, accept waiting call
+		public static final int CMD_SOLICATED_CT = 52;	// Conference all calls
+		
+		public static final int CMD_SOLICATED_MZ = 53;	// Query HFP module local address
+		public static final int CMD_SOLICATED_QD = 54;	// Get play status (a2dp / avrcp)
+		public static final int CMD_SOLICATED_QE = 55;	// Get element attributes (a2dp / avrcp)
+		
+		public static final int CMD_SOLICATED_PP = 56;	// Send data via SPP
+		
+		public static final int CMD_SOLICATED_MAX = 56;
 	}
 
 	class BonovoBlueToothData {
