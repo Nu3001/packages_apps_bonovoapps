@@ -430,9 +430,9 @@ void *thread_func_bluetooth_read(void *argv) {
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='V'){    // connecting
 				android_callback(CMD_UNSOLICATED_IV, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='U'){    // signal strength
-				android_callback(CMD_UNSOLICATED_IU, &myLineBuf[k+2], frameEnd-2);
+				android_callback(CMD_UNSOLICATED_IU, &myLineBuf[k+2], 1); // returns int between 0 and 5
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='X'){    // battery level
-				android_callback(CMD_UNSOLICATED_IX, &myLineBuf[k+2], frameEnd-2);
+				android_callback(CMD_UNSOLICATED_IX, &myLineBuf[k+2], 1); // returns int between 0 and 5
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='C'){    // audio connect
 				android_callback(CMD_UNSOLICATED_MC, NULL, 0);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='D'){    // audio disconnect
