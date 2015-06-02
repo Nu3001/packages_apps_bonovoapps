@@ -726,7 +726,7 @@ public class BonovoBluetoothHandfree extends Activity
 	private boolean requestAudioFocus(){
 		int result;
 		if((!mIsUseringAudio)&& (mAudioManger != null)){
-			result = mAudioManger.requestAudioFocus(this, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
+			result = mAudioManger.requestAudioFocus(this, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 			if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
 				mIsUseringAudio = true;
 			}
