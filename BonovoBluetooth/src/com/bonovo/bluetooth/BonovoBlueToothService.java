@@ -1160,14 +1160,18 @@ public class BonovoBlueToothService extends Service {
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IX:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IX param:" + param);
-			mPhoneBatteryLevel = Integer.parseInt(param);
+			if(param.length() > 0){
+				mPhoneBatteryLevel = Integer.parseInt(param.substring(0,1));	
+			}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IV:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IV");
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IU:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IU param:" + param);
-			mPhoneSignalLevel = Integer.parseInt(param);
+			if(param.length() > 0){
+				mPhoneSignalLevel = Integer.parseInt(param.substring(0,1));	
+			}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MC:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MC");
@@ -1598,7 +1602,7 @@ public class BonovoBlueToothService extends Service {
 		
 		public static final int CMD_SOLICATED_PP = 56;	// Send data via SPP
 		
-		public static final int CMD_SOLICATED_MAX = 56;
+		public static final int CMD_SOLICATED_MAX = 57;
 	}
 
 	class BonovoBlueToothData {

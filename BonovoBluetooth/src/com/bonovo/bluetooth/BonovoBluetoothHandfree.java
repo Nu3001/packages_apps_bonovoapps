@@ -15,6 +15,8 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -302,22 +304,23 @@ public class BonovoBluetoothHandfree extends Activity
 		
 		mContext = this;
 		
-		mLeftPanel = (View)findViewById(R.id.left_panel);
-		mDigits = (EditText)findViewById(R.id.digits);
-		mDelete = findViewById(R.id.deleteButton);
-		mContactPhoto = (ImageView)findViewById(R.id.contactPhoto);
-		
-		if(mDelete != null){
-			mDelete.setOnClickListener(this);
-			mDelete.setOnLongClickListener(this);
-		}	
-								
 		mDialStub = (ViewStub)findViewById(R.id.dialViewStub);
 		mDialStub.inflate();
 		
 		mIncomingStub = (ViewStub)findViewById(R.id.incomingViewStub);
 		mIncomingStub.inflate();
 
+		mLeftPanel = (View)findViewById(R.id.left_panel);
+		mDigits = (EditText)findViewById(R.id.digits);
+		mDelete = findViewById(R.id.deleteButton);
+		
+		if(mDelete != null){
+			mDelete.setOnClickListener(this);
+			mDelete.setOnLongClickListener(this);
+		}	
+								
+		mContactPhoto = (ImageView)findViewById(R.id.contactPhoto);
+		
 		setupKeypad();
 		
 		if(DEBUG) Log.d(TAG, "============ onCreate()");
@@ -636,16 +639,32 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	private void setContactPhoto(Context context, String number){
         if(context == null)
-            return;
-        
-		if (number == "")
-			return;
-		
+	        return;
+               
+        if(mContactPhoto == null) {
+        	Log.d(TAG, "setContactPhoto: mContactPhoto is null.");
+        	return;
+        }
+
 		Uri contactPhotoUri = getContactPhotoUriByNumber(context, number);
-		if (contactPhotoUri != null) {
-			mContactPhoto.setImageURI(contactPhotoUri);
+
+		if (contactPhotoUri == null) {
+			Log.d(TAG, "setContactPhoto: number: " + number + " no photo set.");
+
+			// Show the default image
+			mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
 		}else{
-			mContactPhoto.setImageResource(R.drawable.ic_contact_picture_holo_light);
+			Log.d(TAG, "setContactPhoto: number: " + number + " got photo uri: " + contactPhotoUri.toString());
+
+			// Show the contact image
+			ContentResolver resolver = context.getContentResolver();
+			try {
+				Bitmap contactBitmap = BitmapFactory.decodeStream(resolver.openInputStream(contactPhotoUri));
+				mContactPhoto.setImageBitmap(contactBitmap);		
+			}catch(java.io.IOException ioe){
+				// show the default image
+				mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
+			}
 		}
 	}
 	
