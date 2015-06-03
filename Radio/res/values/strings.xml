@@ -28,9 +28,9 @@
     <string name="valid_freq_fm">Please Enter Valid FM Freq：87.5-108.0MHz</string>
     <string name="valid_freq_am">Please Enter Valid AM Freq：520-1710KHz</string>
     <string name="searchwait">Searching Now, Please Wait For A While...</string>
-    <string name="china">CHN</string>
-    <string name="japan">JPN</string>
-    <string name="europe">EUR</string>
+    <string name="china">China</string>
+    <string name="japan">Japan</string>
+    <string name="europe">Europe</string>
     <string name="system">Type Selection</string>
     <string name="volume">Volume</string>
     <string name="remote">Remote Control</string>
@@ -39,7 +39,7 @@
     <string name="describe">Whether Automatic Searching And Save?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="searching">Searching Now,Do Not Switching Channel</string>
+    <string name="searching">Searching Now, Do Not Switch The Channel</string>
     <string name="clear">Clear</string>
     <string name="unrealized">Function to achieve</string>
     <string name="clear_content">Whether to remove the current list?</string>
