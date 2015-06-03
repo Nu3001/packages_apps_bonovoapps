@@ -17,6 +17,12 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +30,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -68,11 +75,17 @@ public class BonovoBluetoothHandfree extends Activity
 	private ImageButton mBackToCallButton;
 	private ImageButton mDialpadViewButton;
 	private ImageButton mMicMuteButton;
+	private ImageButton mConferenceButton;
 	private int mDialpadPressCount;
 	private ViewStub mDialStub;
 	private ViewStub mIncomingStub;
 	private TextView mCallTime;
 	private TextView mCallNumber;
+	private View mCallWaitingContainer;
+	private Button mRejectCallWaiting;
+	private Button mHoldAndSwitchToCallWaiting;
+	private Button mEndAndSwitchToCallWaiting;
+	private TextView mCallWaitingNumber;
 	private Chronometer mTimer;
 	
 	private boolean mTimerIsCounting = false;
@@ -117,6 +130,7 @@ public class BonovoBluetoothHandfree extends Activity
 					if(BonovoBlueToothService.PhoneState.IDLE == phoneState 
 							|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
 						abandonAudioFocus();
+						mCallWaitingContainer.setVisibility(View.GONE);
 						
 						mCallTime.setText(R.string.description_phone_call_time);
 						stopCallTimer();
@@ -170,6 +184,67 @@ public class BonovoBluetoothHandfree extends Activity
 						mCallTime.setText(R.string.description_phone_in_call);
 					}
 				}
+			}else if(BonovoBlueToothData.ACTION_PHONE_NEW_CALL_WAITING.equals(action)){
+				// A new inactive call is ringing
+				String number = intent.getStringExtra(BonovoBlueToothService.BonovoBlueToothData.PHONE_NUMBER);
+				if(number != null){
+					byte[] temp = number.getBytes();
+					int i = 0;
+					for(i=0; i<number.length(); i++){
+						if((temp[i] == '\0') || (temp[i] == '\r') || (temp[i] == '\n')){
+							break;
+						}
+					}
+					number = number.substring(0, i);
+				}
+				// Show the call waiting panel
+				setView(phoneLayouts.PHONE_INCALL);
+				mCallWaitingContainer.setVisibility(View.VISIBLE);
+				mCallWaitingNumber.setText(number);
+				
+				mRejectCallWaiting.setText(R.string.call_waiting_reject);
+				mRejectCallWaiting.setVisibility(View.VISIBLE);
+				
+				mHoldAndSwitchToCallWaiting.setText(R.string.call_waiting_holdAndAccept);
+				mHoldAndSwitchToCallWaiting.setVisibility(View.VISIBLE);
+				
+				mEndAndSwitchToCallWaiting.setVisibility(View.GONE);
+				mConferenceButton.setVisibility(View.VISIBLE);
+				
+			}else if(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_INACTIVE.equals(action)){
+				// Inactive call is gone
+				mCallWaitingContainer.setVisibility(View.GONE);
+				mConferenceButton.setVisibility(View.GONE);
+				
+			}else if(BonovoBlueToothData.ACTION_PHONE_CONFERENCE_CALL.equals(action)){
+				// Our calls have merged and we now have two people on one call
+				mCallNumber.setText(mCallNumber.getText() + "\n" + mCallWaitingNumber.getText());
+				mCallWaitingContainer.setVisibility(View.GONE);
+				mConferenceButton.setVisibility(View.GONE);
+				
+			}else if(BonovoBlueToothData.ACTION_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING.equals(action)){
+				// Our inactive call is now active and our original call is the inactive one
+				mCallWaitingContainer.setVisibility(View.VISIBLE);
+				
+				String inActiveCall = (String) mCallWaitingNumber.getText();
+				String activeCall = (String) mCallNumber.getText();
+				mCallNumber.setText(inActiveCall);
+				mCallWaitingNumber.setText(activeCall);
+				
+				mRejectCallWaiting.setText(R.string.call_waiting_end_held);
+				mRejectCallWaiting.setVisibility(View.VISIBLE);
+				
+				mHoldAndSwitchToCallWaiting.setText(R.string.call_waiting_swap_to_held);
+				mHoldAndSwitchToCallWaiting.setVisibility(View.VISIBLE);
+				
+				mEndAndSwitchToCallWaiting.setVisibility(View.GONE);
+				mConferenceButton.setVisibility(View.VISIBLE);
+				
+			}else if(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING.equals(action)){
+				// Our inactive call is now active and our original call is gone
+				mCallNumber.setText(mCallWaitingNumber.getText());
+				mCallWaitingContainer.setVisibility(View.GONE);
+				mConferenceButton.setVisibility(View.GONE);
 			}
 		}
 	};
@@ -177,6 +252,14 @@ public class BonovoBluetoothHandfree extends Activity
 	private IntentFilter getIntentFilter() {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_STATE_CHANGED);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_NEW_CALL_WAITING);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_CONFERENCE_CALL);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_INACTIVE);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_BATTERY_LEVEL_CHANGED);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_NETWORK_NAME_CHANGED);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_SIGNAL_LEVEL_CHANGED);
 		return myIntentFilter;
 	};
 	
@@ -320,6 +403,21 @@ public class BonovoBluetoothHandfree extends Activity
 		}	
 								
 		mContactPhoto = (ImageView)findViewById(R.id.contactPhoto);
+		
+		mCallWaitingContainer = findViewById(R.id.callWaitingContainer);
+		mRejectCallWaiting = (Button)findViewById(R.id.CWRejectButton);
+		if(mRejectCallWaiting != null){
+			mRejectCallWaiting.setOnClickListener(this);
+		}	
+		mEndAndSwitchToCallWaiting = (Button)findViewById(R.id.CWEndAndSwitch);
+		if(mEndAndSwitchToCallWaiting != null){
+			mEndAndSwitchToCallWaiting.setOnClickListener(this);
+		}
+		mHoldAndSwitchToCallWaiting = (Button)findViewById(R.id.CWHoldAndSwitch);
+		if(mHoldAndSwitchToCallWaiting != null){
+			mHoldAndSwitchToCallWaiting.setOnClickListener(this);
+		}	
+		mCallWaitingNumber = (TextView)findViewById(R.id.CallWaitingNumber); 
 		
 		setupKeypad();
 		
@@ -521,7 +619,30 @@ public class BonovoBluetoothHandfree extends Activity
 			}
 					
 			break;
-			
+		case R.id.ConferenceButton:
+			// merge calls into a conference call
+			if(myBlueToothService != null){
+				myBlueToothService.BlueToothPhoneConferenceCalls();
+			}
+			break;
+		case R.id.CWRejectButton:
+			// Reject Call Waiting
+			if(myBlueToothService != null){
+				myBlueToothService.BlueToothPhoneRejectWaitingCall();
+			}
+			break;
+		case R.id.CWEndAndSwitch:
+			// Switch to call waiting and end current call
+			if(myBlueToothService != null){
+				myBlueToothService.BlueToothPhoneEndAndSwitchToWaitingCall();
+			}
+
+		case R.id.CWHoldAndSwitch:
+			// Switch to call waiting and put current call on hold
+			if(myBlueToothService != null){
+				myBlueToothService.BlueToothPhoneHoldAndSwitchToWaitingCall();
+			}
+
 		default:
 			Log.wtf(TAG, "Unexpected onClick() event from:" + v);
 			break;
@@ -660,7 +781,7 @@ public class BonovoBluetoothHandfree extends Activity
 			ContentResolver resolver = context.getContentResolver();
 			try {
 				Bitmap contactBitmap = BitmapFactory.decodeStream(resolver.openInputStream(contactPhotoUri));
-				mContactPhoto.setImageBitmap(contactBitmap);		
+				mContactPhoto.setImageBitmap(getCircleBitmap(contactBitmap));		
 			}catch(java.io.IOException ioe){
 				// show the default image
 				mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
@@ -956,6 +1077,13 @@ public class BonovoBluetoothHandfree extends Activity
 		}else{
 			Log.e(TAG, " mMicMuteButton is null");
 		}
+
+		mConferenceButton = (ImageButton)findViewById(R.id.ConferenceButton);
+		if(mConferenceButton != null){
+			mConferenceButton.setOnClickListener(this);
+		}else{
+			Log.e(TAG, " mConferenceButton is null");
+		}
 		
 		mCallTime = (TextView)findViewById(R.id.tvTelephoneInfo);
 		mCallTime.setText("");
@@ -1105,6 +1233,28 @@ public class BonovoBluetoothHandfree extends Activity
             mToneGenerator.stopTone();
         }
     }
+    
+    private Bitmap getCircleBitmap(Bitmap bitmap) {
+    	 final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    	 final Canvas canvas = new Canvas(output);
+
+    	 final int color = Color.RED;
+    	 final Paint paint = new Paint();
+    	 final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+    	 final RectF rectF = new RectF(rect);
+
+    	 paint.setAntiAlias(true);
+    	 canvas.drawARGB(0, 0, 0, 0);
+    	 paint.setColor(color);
+    	 canvas.drawOval(rectF, paint);
+
+    	 paint.setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.SRC_IN));
+    	 canvas.drawBitmap(bitmap, rect, rect, paint);
+
+    	 bitmap.recycle();
+
+    	 return output;
+    	}
 
 	@Override
 	public void onAudioFocusChange(int focusChange) {

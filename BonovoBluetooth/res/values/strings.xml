@@ -69,8 +69,11 @@
 	<string name="onscreenMergeCallsText">Merge calls</string>
 	<string name="onscreenEndCallText">End Call</string>
 	<string name="onscreenMuteText">Mute</string>
-	<string name="call_waiting_answer">Switch to call</string>
-	<string name="call_waiting_reject">Reject call</string>
+	<string name="call_waiting_endAndAccept">End and Accept</string>
+	<string name="call_waiting_holdAndAccept">Hold and Accept</string>
+	<string name="call_waiting_reject">Reject</string>
+	<string name="call_waiting_end_held">End held call</string>
+	<string name="call_waiting_swap_to_held">Swap to held</string>
 	<string name="description_target_answer">Answer</string>
     <string name="description_target_send_sms">Send SMS</string>
     <string name="description_target_decline">Decline</string>

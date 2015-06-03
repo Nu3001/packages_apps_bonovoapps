@@ -427,6 +427,8 @@ void *thread_func_bluetooth_read(void *argv) {
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='R'){    // current call number
 				android_callback(CMD_UNSOLICATED_IR, &myLineBuf[k+2], frameEnd-2);
 				// activeAudio(CODEC_LEVEL_BT_TEL);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='T'){    // released active and switched to call waiting
+				android_callback(CMD_UNSOLICATED_IT, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='V'){    // connecting
 				android_callback(CMD_UNSOLICATED_IV, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='U'){    // signal strength

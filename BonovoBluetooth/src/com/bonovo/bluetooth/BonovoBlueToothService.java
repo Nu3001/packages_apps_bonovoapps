@@ -12,16 +12,13 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 import android.net.Uri;
 import android.os.Binder;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.IBinder;
-import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.Contacts.People;
 import android.content.ContentProviderOperation;
 import android.content.OperationApplicationException;
 import android.content.ContentUris;
@@ -70,7 +67,7 @@ public class BonovoBlueToothService extends Service {
 	public enum PhoneState{
 		IDLE, RINGING, DIALING, ACTIVE, OFFHOOK;
 	}
-
+	
     class AudioLevel {
         public static final int CODEC_LEVEL_NO_ANALOG = 0;
         public static final int CODEC_LEVEL_BT_MUSIC = 1;
@@ -103,6 +100,14 @@ public class BonovoBlueToothService extends Service {
     private static final int MSG_STOP_MUSIC = 22;
     private static final int MSG_BT_MIC_STATE_CHANGE = 23;
     private static final int MSG_SEND_COMMANDER_ERROR = 30;
+    private static final int MSG_PHONE_NETWORKNAME = 32;
+    private static final int MSG_PHONE_BATTERYLEVEL = 33;
+    private static final int MSG_PHONE_SIGNALLEVEL = 34;
+    private static final int MSG_PHONE_NEW_CALL_WAITING = 35;
+    private static final int MSG_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING = 36;
+    private static final int MSG_PHONE_CONFERENCE_CALL = 37;
+    private static final int MSG_PHONE_HUNG_UP_INACTIVE = 38;
+    private static final int MSG_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING = 39;
 	private static final int DELAY_TIME_CHECKPINCODE = 2000;
 	private static final int DELAY_TIME_DISCONNECT = 1000;
 	private static final int DELAY_TIME_SHUTDOWN = 5000;
@@ -125,6 +130,10 @@ public class BonovoBlueToothService extends Service {
 	private final static String ACTION_CALL_SWITCHAUDIO = "android.intent.action.BONOVO_CALL_SWITCHAUDIO";
 	private final static String ACTION_CALL_VOLUMEUP = "android.intent.action.BONOVO_CALL_VOLUMEUP";
 	private final static String ACTION_CALL_VOLUMEDOWN = "android.intent.action.BONOVO_CALL_VOLUMEDOWN";
+	private final static String ACTION_CALL_REJECTCALLWAITING = "android.intent.action.BONOVO_REJECTCALLWAITING";
+	private final static String ACTION_CALL_ENDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_ENDANDACCEPTCALLWAITING";
+	private final static String ACTION_CALL_HOLDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_HOLDANDACCEPTCALLWAITING";
+	private final static String ACTION_CALL_MAKECONFERENCECALL = "android.intent.action.BONOVO_MAKECONFERENCECALL";
 
     // onKeyEvent
     private final static String ACTION_KEY_BT = "android.intent.action.BONOVO_BT";
@@ -190,6 +199,10 @@ public class BonovoBlueToothService extends Service {
 		myIntentFilter.addAction(ACTION_KEY_BT_HANG_UP);
 		myIntentFilter.addAction(ACTION_KEY_BT_ANSWER_HANG);
 		myIntentFilter.addAction(ACTION_KEY_BT_SWITCH_AUDIO);
+		myIntentFilter.addAction(ACTION_CALL_REJECTCALLWAITING);
+		myIntentFilter.addAction(ACTION_CALL_ENDANDACCEPTCALLWAITING);
+		myIntentFilter.addAction(ACTION_CALL_HOLDANDACCEPTCALLWAITING);
+		myIntentFilter.addAction(ACTION_CALL_MAKECONFERENCECALL);
 		return myIntentFilter;
 	};
 	
@@ -302,6 +315,22 @@ public class BonovoBlueToothService extends Service {
                     || (getPhoneState() == PhoneState.ACTIVE)){
                     BlueToothPhoneHangup();
 			    }
+			}else if(action.equals(ACTION_CALL_MAKECONFERENCECALL)){
+			    if(getPhoneState() == PhoneState.ACTIVE){
+				    BlueToothPhoneConferenceCalls();
+			    }
+			}else if(action.equals(ACTION_CALL_HOLDANDACCEPTCALLWAITING)){
+			    if(getPhoneState() == PhoneState.ACTIVE){
+				    BlueToothPhoneHoldAndSwitchToWaitingCall();
+			    }
+			}else if(action.equals(ACTION_CALL_ENDANDACCEPTCALLWAITING)){
+			    if(getPhoneState() == PhoneState.ACTIVE){
+				    BlueToothPhoneEndAndSwitchToWaitingCall();
+			    }
+			}else if(action.equals(ACTION_CALL_REJECTCALLWAITING)){
+			    if(getPhoneState() == PhoneState.ACTIVE){
+				    BlueToothPhoneRejectWaitingCall();
+			    }
 			}
         }
 		
@@ -359,7 +388,62 @@ public class BonovoBlueToothService extends Service {
 				mContext.sendOrderedBroadcast(i, null);
 			}
 			break;
-				
+			case MSG_PHONE_NEW_CALL_WAITING:{
+				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_NEW_CALL_WAITING);
+				mContext.sendBroadcast(icw);
+			}
+			break;
+			case MSG_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING:{
+				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING);
+				mContext.sendBroadcast(icw);
+			}
+			break;
+			case MSG_PHONE_CONFERENCE_CALL:{
+				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_CONFERENCE_CALL);
+				mContext.sendBroadcast(icw);
+			}
+			break;
+			case MSG_PHONE_HUNG_UP_INACTIVE:{
+				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_INACTIVE);
+				mContext.sendBroadcast(icw);
+			}
+			break;
+			case MSG_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING:{
+				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING);
+				mContext.sendBroadcast(icw);
+			}
+			break;
+	
+			case MSG_PHONE_SIGNALLEVEL:{
+				Integer newLevel = (Integer)msg.obj;
+				if(newLevel != mPhoneSignalLevel) {
+					mPhoneSignalLevel = newLevel;
+					Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_SIGNAL_LEVEL_CHANGED);
+					icw.putExtra(BonovoBlueToothData.LEVEL, newLevel);
+					mContext.sendBroadcast(icw);
+				}
+			}
+			break;
+			case MSG_PHONE_BATTERYLEVEL:{
+				Integer newLevel = (Integer)msg.obj;
+				if(newLevel != mPhoneBatteryLevel) {
+					mPhoneBatteryLevel = newLevel;
+					Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_BATTERY_LEVEL_CHANGED);
+					icw.putExtra(BonovoBlueToothData.LEVEL, newLevel);
+					mContext.sendBroadcast(icw);
+				}
+			}
+			break;
+			case MSG_PHONE_NETWORKNAME:{
+				String newName = (String)msg.obj;
+				if(newName != mPhoneOperatorName) {
+					mPhoneOperatorName = newName;
+					Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_NETWORK_NAME_CHANGED);
+					icw.putExtra(BonovoBlueToothData.NAME, newName);
+					mContext.sendBroadcast(icw);
+				}
+			}
+			break;
 			case MSG_HFP_STATE_CHANGE:{
 //				Bundle bundle = new Bundle();
 				Intent intent1 = new Intent(BonovoBlueToothData.ACTION_DATA_IAIB_CHANGED);
@@ -385,7 +469,8 @@ public class BonovoBlueToothService extends Service {
 						if(msg.obj != null){
 							i.putExtra(BonovoBlueToothData.ACTION_INFO_BT_NAME, cleanInfo((String)msg.obj));
 						}
-						mContext.sendBroadcast(i);
+						mContext.sendBroadcast(i);
+
 					}else{
 						if(!getBtName().equals(cleanInfo((String)msg.obj))){
                             mSetNameTime = mSetNameTime + 1;
@@ -1160,8 +1245,9 @@ public class BonovoBlueToothService extends Service {
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IX:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IX param:" + param);
-			if(param.length() > 0){
-				mPhoneBatteryLevel = Integer.parseInt(param.substring(0,1));	
+			if(param.length() > 0){	
+				Message msg = mHandler.obtainMessage(MSG_PHONE_BATTERYLEVEL, Integer.parseInt(param.substring(0,1)));
+				mHandler.sendMessage(msg);
 			}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IV:
@@ -1170,7 +1256,8 @@ public class BonovoBlueToothService extends Service {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IU:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IU param:" + param);
 			if(param.length() > 0){
-				mPhoneSignalLevel = Integer.parseInt(param.substring(0,1));	
+				Message msg = mHandler.obtainMessage(MSG_PHONE_SIGNALLEVEL, Integer.parseInt(param.substring(0,1)));
+				mHandler.sendMessage(msg);
 			}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MC:
@@ -1216,7 +1303,7 @@ public class BonovoBlueToothService extends Service {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_OK:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_OK");
 			break;
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_ERROR:{
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_ERROR: {
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_ERROR");
             Message msg = mHandler.obtainMessage(MSG_SEND_COMMANDER_ERROR);
 			mHandler.sendMessage(msg);
@@ -1230,22 +1317,41 @@ public class BonovoBlueToothService extends Service {
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IO1");
 			mMicMuted = true;		
 			break;
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IK:
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IK:{
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IK param:" + param);
 			// call waiting - number attached
+			Message msg = mHandler.obtainMessage(MSG_PHONE_NEW_CALL_WAITING, param);
+			mHandler.sendMessage(msg);
 			break;
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IL:
+		}
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IL:{
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IL");
 			// Held active call and switched to call waiting
+			Message msg = mHandler.obtainMessage(MSG_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING);
+			mHandler.sendMessage(msg);
 			break;
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IM:
+		}
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IM:{
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IM");
 			// Conference call created
+			Message msg = mHandler.obtainMessage(MSG_PHONE_CONFERENCE_CALL);
+			mHandler.sendMessage(msg);
 			break;
-		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IN:
+		}
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IN:{
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IN");
-			// Release held call and reject call waiting
+			// Release held or reject waiting call (hang up the inactive call)
+			Message msg = mHandler.obtainMessage(MSG_PHONE_HUNG_UP_INACTIVE);
+			mHandler.sendMessage(msg);
 			break;
+		}
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IT:{
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IT");
+			// Release active and switch to call waiting
+			Message msg = mHandler.obtainMessage(MSG_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING);
+			mHandler.sendMessage(msg);
+			break;
+		}
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IQ:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IQ param:" + param);
 			// Incoming call with name indication
@@ -1257,7 +1363,8 @@ public class BonovoBlueToothService extends Service {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PV:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PV param:" + param);
 			// Current phone network operator name
-			mPhoneOperatorName = param;
+			Message msg1 = mHandler.obtainMessage(MSG_PHONE_NETWORKNAME, param);
+			mHandler.sendMessage(msg1);
 			break;			
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PZ:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PZ");
@@ -1480,8 +1587,9 @@ public class BonovoBlueToothService extends Service {
 		public static final int CMD_UNSOLICATED_PZ = 56;	// Last number redial failed
 		public static final int CMD_UNSOLICATED_PM = 57;	// SPP Connect or SPP Data Indication
 		public static final int CMD_UNSOLICATED_MH = 58;	// AVRCP current element attributes
+		public static final int CMD_UNSOLICATED_IT = 59;	// Release active call and switched to call waiting
 		
-		public static final int CMD_UNSOLICATED_MAX = 59;
+		public static final int CMD_UNSOLICATED_MAX = 60;
 		
 //		public static final int CMD_UNSOLICATED_IS = 0;
 //		public static final int CMD_UNSOLICATED_IA = 1;
@@ -1604,7 +1712,7 @@ public class BonovoBlueToothService extends Service {
 		
 		public static final int CMD_SOLICATED_MAX = 57;
 	}
-
+	
 	class BonovoBlueToothData {
 		public final static String ACTION_DATA_IAIB_CHANGED = "android.intent.action.DATA_IAIB_CHANGED";
 		public final static String ACTION_DATA_MAMB_CHANGED = "android.intent.action.DATA_MAMB_CHANGED";
@@ -1615,7 +1723,17 @@ public class BonovoBlueToothService extends Service {
         public final static String ACTION_SYNC_CONTACTS_TIMEOUT = "android.intent.action.SYNC_CONTACTS_TIMEOUT";
         public final static String ACTION_SYNC_CONTACTS_NOT_SUPPORT = "android.intent.action.SYNC_CONTACTS_NOT_SUPPORT";
         public final static String ACTION_SEND_COMMANDER_ERROR = "android.intent.action.SEND_COMMANDER_ERROR";
-        
+        public final static String ACTION_PHONE_NEW_CALL_WAITING = "android.intent.action.PHONE_NEW_CALL_WAITING";
+        public final static String ACTION_PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING = "android.intent.action.PHONE_HELD_ACTIVE_SWITCHED_TO_CALL_WAITING";
+        public final static String ACTION_PHONE_CONFERENCE_CALL = "android.intent.action.PHONE_CONFERENCE_CALL";
+        public final static String ACTION_PHONE_HUNG_UP_INACTIVE = "android.intent.action.PHONE_HUNG_UP_INACTIVE";
+        public final static String ACTION_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING = "android.intent.action.PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING";
+        public final static String ACTION_PHONE_NETWORK_NAME_CHANGED = "android.intent.action.PHONE_NETWORK_NAME_CHANGED";
+        public final static String ACTION_PHONE_SIGNAL_LEVEL_CHANGED = "android.intent.action.PHONE_SIGNAL_LEVEL_CHANGED";
+        public final static String ACTION_PHONE_BATTERY_LEVEL_CHANGED = "android.intent.action.PHONE_BATTERY_LEVEL_CHANGED";
+
+		public final static String NAME = "name";
+		public final static String LEVEL = "level";
 		public final static String PHONE_NUMBER = "phone_number";
 		public final static String PHONE_STATE = "phone_status";
 		public final static String ACTION_BT_NAME = "android.intent.action.BLUETOOTH_NAME";
@@ -1626,5 +1744,4 @@ public class BonovoBlueToothService extends Service {
 		public final static String A2DP_STATUS = "a2dp_status";
         public final static String KEY_SYNC_CONTACTS_COUNT = "contacts_count";
 	}
-
 }
