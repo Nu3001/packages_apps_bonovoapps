@@ -131,6 +131,7 @@ public class BonovoBluetoothHandfree extends Activity
 							|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
 						abandonAudioFocus();
 						mCallWaitingContainer.setVisibility(View.GONE);
+						mCallNumber.setTextSize(R.dimen.call_number_text_size);
 						
 						mCallTime.setText(R.string.description_phone_call_time);
 						stopCallTimer();
@@ -219,6 +220,8 @@ public class BonovoBluetoothHandfree extends Activity
 			}else if(BonovoBlueToothData.ACTION_PHONE_CONFERENCE_CALL.equals(action)){
 				// Our calls have merged and we now have two people on one call
 				mCallNumber.setText(mCallNumber.getText() + "\n" + mCallWaitingNumber.getText());
+				mCallNumber.setTextSize(R.dimen.call_number_conference_text_size);
+				
 				mCallWaitingContainer.setVisibility(View.GONE);
 				mConferenceButton.setVisibility(View.GONE);
 				
@@ -277,10 +280,10 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			if(BonovoBlueToothService.PhoneState.IDLE == phoneState 
 					|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
+				abandonAudioFocus();
+				stopCallTimer();
 				mCallTime.setText(R.string.description_phone_hang_up);
 				setView(phoneLayouts.PHONE_DIALPAD);
-				stopCallTimer();
-				abandonAudioFocus();
 				
 			}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
 				setView(phoneLayouts.PHONE_RINGING_IN);
@@ -359,6 +362,7 @@ public class BonovoBluetoothHandfree extends Activity
 					mDigits.setText(mCallNumber.getText());
 					mDigits.setSelection(mDigits.getText().length());
 				}
+				abandonAudioFocus();
 				setView(phoneLayouts.PHONE_DIALPAD);
 				mHandler.sendEmptyMessageDelayed(MSG_DIAL_FINISH_ACTIVITY, DELAY_TIME_FINISH);
 			}
@@ -860,7 +864,7 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	private boolean abandonAudioFocus(){
 		if(mIsUseringAudio && (mAudioManger != null)){
-			mAudioManger.abandonAudioFocus(null);
+			mAudioManger.abandonAudioFocus(this);
 			mIsUseringAudio = false;
 		}
 		
