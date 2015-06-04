@@ -42,7 +42,7 @@ import android.os.UserHandle;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
-public class HandleService extends Service{
+public class HandleService extends Service implements AudioManager.OnAudioFocusChangeListener{
 
 	private static final String TAG = "HandleService";
 	private final int REMOVE_DIALOG = 0;
@@ -108,26 +108,7 @@ public class HandleService extends Service{
 
 	private AudioManager amAudioManager;
 	private int currentVol, maxVol;
-	private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
-		public void onAudioFocusChange(int focusChange) {
 
-			switch (focusChange) {
-				case AudioManager.AUDIOFOCUS_GAIN:
-					break;
-
-				case AudioManager.AUDIOFOCUS_LOSS:
-					break;
-
-				case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-					break;
-
-				case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-					break;
-				default:break;
-			}
-		}
-	};
-	
 	private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 
 		@Override
@@ -220,13 +201,9 @@ public class HandleService extends Service{
                 if(!mIsAirplaneOn){
                     setAirplaneModeOn(false);
                 }
-                AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                amAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
                 Intent wakeup_intent = new Intent("android.intent.action.BONOVO_WAKEUP_KEY");
                 mContext.sendBroadcast(wakeup_intent);
             }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
-            	AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            	int result = amAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
                 mIsAirplaneOn = isAirplaneOn();
                 setWakeupStatus(false);
                 setAirplaneFlag(mIsAirplaneOn);
@@ -234,7 +211,6 @@ public class HandleService extends Service{
                     setAirplaneModeOn(true);
                 }
                 notifyMcuSleep();
-                
                 Intent sleep_intent = new Intent("android.intent.action.BONOVO_SLEEP_KEY");
                 mContext.sendBroadcast(sleep_intent);
             }else if(intent.getAction().equals("android.intent.action.BONOVO_SET_SOUND_BALANCE")){
@@ -611,6 +587,29 @@ public class HandleService extends Service{
 	public int getBrightness(){
 		Log.d(TAG, "getBrightness");
 		return (jnigetbrightness());
+	}
+
+	public void onAudioFocusChange(int focusChange) {
+		switch (focusChange) {
+		case AudioManager.AUDIOFOCUS_GAIN:
+			break;
+
+		case AudioManager.AUDIOFOCUS_LOSS:
+			break;
+
+		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+			// Lost focus for a short time, but we have to stop
+			// playback. We don't release the media player because playback
+			// is likely to resume
+			//if (mMediaPlayer.isPlaying()) mMediaPlayer.pause();
+			break;
+
+		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+			// Lost focus for a short time, but it's ok to keep playing
+			// at an attenuated level
+			//if (mMediaPlayer.isPlaying()) mMediaPlayer.setVolume(0.1f, 0.1f);
+			break;
+		}
 	}
 	
 	private final int MAX_VOLUME = 32;
