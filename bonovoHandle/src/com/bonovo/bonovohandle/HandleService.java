@@ -439,7 +439,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 
 				Intent intent = new Intent(Intent.ACTION_MAIN);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-				intent.addCategory(Intent.CATEGcORY_LAUNCHER);
+				intent.addCategory(Intent.CATEGORY_LAUNCHER);
 				ComponentName cn = new ComponentName(pkName, clName);
 				intent.setComponent(cn);
 				startActivity(intent);
