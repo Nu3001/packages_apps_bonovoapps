@@ -31,6 +31,9 @@
     <string name="china">China</string>
     <string name="japan">Japan</string>
     <string name="europe">Europe</string>
+    <string name="ITURegion1">ITU Region 1</string>
+    <string name="ITURegion2">ITU Region 2</string>
+    <string name="ITURegion3">ITU Region 3</string>
     <string name="system">Type Selection</string>
     <string name="volume">Volume</string>
     <string name="remote">Remote Control</string>
