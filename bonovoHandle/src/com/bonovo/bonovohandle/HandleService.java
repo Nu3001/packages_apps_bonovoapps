@@ -201,9 +201,11 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                 if(!mIsAirplaneOn){
                     setAirplaneModeOn(false);
                 }
+                amAudioManager.abandonAudioFocus(this);
                 Intent wakeup_intent = new Intent("android.intent.action.BONOVO_WAKEUP_KEY");
                 mContext.sendBroadcast(wakeup_intent);
             }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+            	result = amAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
                 mIsAirplaneOn = isAirplaneOn();
                 setWakeupStatus(false);
                 setAirplaneFlag(mIsAirplaneOn);
@@ -211,6 +213,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                     setAirplaneModeOn(true);
                 }
                 notifyMcuSleep();
+                
                 Intent sleep_intent = new Intent("android.intent.action.BONOVO_SLEEP_KEY");
                 mContext.sendBroadcast(sleep_intent);
             }else if(intent.getAction().equals("android.intent.action.BONOVO_SET_SOUND_BALANCE")){
@@ -436,7 +439,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 
 				Intent intent = new Intent(Intent.ACTION_MAIN);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-				intent.addCategory(Intent.CATEGORY_LAUNCHER);
+				intent.addCategory(Intent.CATEGcORY_LAUNCHER);
 				ComponentName cn = new ComponentName(pkName, clName);
 				intent.setComponent(cn);
 				startActivity(intent);
@@ -510,6 +513,9 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
             setAirplaneModeOn(mIsAirplaneOn);
             setWakeupStatus(true);
         }
+        
+        AudioManager amAudioManager =
+                (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         
         readSharePreForS8();
         
