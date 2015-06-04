@@ -205,7 +205,7 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                 Intent wakeup_intent = new Intent("android.intent.action.BONOVO_WAKEUP_KEY");
                 mContext.sendBroadcast(wakeup_intent);
             }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
-            	result = amAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
+            	int result = amAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
                 mIsAirplaneOn = isAirplaneOn();
                 setWakeupStatus(false);
                 setAirplaneFlag(mIsAirplaneOn);
