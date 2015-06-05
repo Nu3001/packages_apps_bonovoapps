@@ -12,10 +12,10 @@ public interface RadioInterface {
 	public int stepLeft(int freq);
 	public int stepRight(int freq);
 	public void setFreq(int freq);
-    public void onAutoSearch();
+        public void onAutoSearch();
     
 	int getCurChannelId();
-    void setCurChannelId(int id);
+        void setCurChannelId(int id);
 	void setFunctionId(int id);
 	int getFunctionId();
 	void setCurrentFreq(int freq);
