@@ -54,7 +54,7 @@
 // codec status
 typedef enum
 {
-	CODEC_LEVEL_NO_ANALOG = 0,
+    CODEC_LEVEL_NO_ANALOG = 0,
     CODEC_LEVEL_BT_MUSIC = 1,
     CODEC_LEVEL_AV_IN = 2,
     CODEC_LEVEL_DVB = 3,
@@ -104,16 +104,16 @@ typedef enum
 #define JNP_FM_FREQ_MIN             7600         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define JNP_FM_FREQ_MAX             9000         // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define JNP_FM_STEP_LENGTH          10           // �ձ���ʽFM�Ĳ�������10KHzΪ��λ��
-#define EUROPE_FM_FREQ_MIN          8700         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
-#define EUROPE_FM_FREQ_MAX          10800        // ŷ����ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
-#define EUROPE_FM_STEP_LENGTH       10 //5            // ŷ����ʽFM�Ĳ�������10KHzΪ��λ��
-#define ITUREGION1_FM_FREQ_MIN      8700         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define EUROPE_FM_FREQ_MIN          6580         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define EUROPE_FM_FREQ_MAX          7400         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define EUROPE_FM_STEP_LENGTH       10           // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define ITUREGION1_FM_FREQ_MIN      8750         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define ITUREGION1_FM_FREQ_MAX      10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define ITUREGION1_FM_STEP_LENGTH   10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
-#define ITUREGION2_FM_FREQ_MIN      7600         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
-#define ITUREGION2_FM_FREQ_MAX      9000         // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_FM_FREQ_MIN      8790         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_FM_FREQ_MAX      10790        // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define ITUREGION2_FM_STEP_LENGTH   10           // �ձ���ʽFM�Ĳ�������10KHzΪ��λ��
-#define ITUREGION3_FM_FREQ_MIN      8700         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION3_FM_FREQ_MIN      8750         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define ITUREGION3_FM_FREQ_MAX      10800        // ŷ����ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define ITUREGION3_FM_STEP_LENGTH   10            // ŷ����ʽFM�Ĳ�������10KHzΪ��λ��
 
@@ -127,14 +127,14 @@ typedef enum
 #define EUROPE_AM_FREQ_MIN          522          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
 #define EUROPE_AM_FREQ_MAX          1620         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
 #define EUROPE_AM_STEP_LENGTH       9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
-#define ITUREGION1_AM_FREQ_MIN      531          // �й���ʽAM����СƵ��ֵ����KHzΪ��λ��
-#define ITUREGION1_AM_FREQ_MAX      1602         // �й���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION1_AM_FREQ_MIN      153          // �й���ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION1_AM_FREQ_MAX      279         // �й���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
 #define ITUREGION1_AM_STEP_LENGTH   9            // �й���ʽAM�Ĳ�������KHzΪ��λ��
-#define ITUREGION2_AM_FREQ_MIN      522          // �ձ���ʽAM����СƵ��ֵ����KHzΪ��λ��
-#define ITUREGION2_AM_FREQ_MAX      1620         // �ձ���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
-#define ITUREGION2_AM_STEP_LENGTH   9            // �ձ���ʽAM�Ĳ�������KHzΪ��λ��
-#define ITUREGION3_AM_FREQ_MIN      522          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
-#define ITUREGION3_AM_FREQ_MAX      1620         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION2_AM_FREQ_MIN      540          // �ձ���ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION2_AM_FREQ_MAX      1710         // �ձ���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION2_AM_STEP_LENGTH   10            // �ձ���ʽAM�Ĳ�������KHzΪ��λ��
+#define ITUREGION3_AM_FREQ_MIN      531          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION3_AM_FREQ_MAX      1611         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
 #define ITUREGION3_AM_STEP_LENGTH   9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
 
 // standard model selectors
@@ -159,11 +159,11 @@ struct radio_freq
 
 static int fd_radio = -1;                           // �򿪴���3���ļ�������
 static int fd_bonovo= -1;                           // ��ȡ�����ĵ�̨Ƶ�ʵ��ļ�������
-static int cur_model= MODEL_CHINA;                  // Ĭ�ϵ���ʽ
+static int cur_model= MODEL_ITUREGION2;             // Set default Region to ITU Region 2 (North/South Americas)
 static int cur_band = BAND_FM;                      // Ĭ�ϵ�Ƶ��
-static int freq_min = CHINA_FM_FREQ_MIN;            // Ĭ�ϵ�FM����������СƵ��ֵ
-static int freq_max = CHINA_FM_FREQ_MAX;            // Ĭ�ϵ�FM�����������Ƶ��ֵ
-static int step_len = CHINA_FM_STEP_LENGTH;         // Ĭ�ϵ�FM��������
+static int freq_min = ITUREGION2_FM_FREQ_MIN;       // Ĭ�ϵ�FM����������СƵ��ֵ
+static int freq_max = ITUREGION2_FM_FREQ_MAX;       // Ĭ�ϵ�FM�����������Ƶ��ֵ
+static int step_len = ITUREGION3_FM_STEP_LENGTH;    // Ĭ�ϵ�FM��������
 static int mtype;                                   // FM AM�л����
 
 /*!
