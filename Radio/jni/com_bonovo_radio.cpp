@@ -22,8 +22,8 @@
 #define HANDLE_CTRL_DEV_MAJOR		230
 #define HANDLE_CTRL_DEV_MINOR		0
 
-#define IOCTL_HANDLE_GET_BRIGHTNESS		    _IO(HANDLE_CTRL_DEV_MAJOR, 1)
-#define IOCTL_HANDLE_GET_WINCEVOLUME		_IO(HANDLE_CTRL_DEV_MAJOR, 2)
+#define IOCTL_HANDLE_GET_BRIGHTNESS	    _IO(HANDLE_CTRL_DEV_MAJOR, 1)
+#define IOCTL_HANDLE_GET_WINCEVOLUME	    _IO(HANDLE_CTRL_DEV_MAJOR, 2)
 #define IOCTL_HANDLE_GET_RADIO_STATUS       _IO(HANDLE_CTRL_DEV_MAJOR, 3)
 #define IOCTL_HANDLE_START_RADIO_SEARCH     _IO(HANDLE_CTRL_DEV_MAJOR, 4)
 #define IOCTL_HANDLE_STOP_RADIO_SEARCH      _IO(HANDLE_CTRL_DEV_MAJOR, 5)
@@ -107,6 +107,16 @@ typedef enum
 #define EUROPE_FM_FREQ_MIN          8700         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define EUROPE_FM_FREQ_MAX          10800        // ŷ����ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define EUROPE_FM_STEP_LENGTH       10 //5            // ŷ����ʽFM�Ĳ�������10KHzΪ��λ��
+#define ITUREGION1_FM_FREQ_MIN      8700         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_FM_FREQ_MAX      10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_FM_STEP_LENGTH   10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
+#define ITUREGION2_FM_FREQ_MIN      7600         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_FM_FREQ_MAX      9000         // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_FM_STEP_LENGTH   10           // �ձ���ʽFM�Ĳ�������10KHzΪ��λ��
+#define ITUREGION3_FM_FREQ_MIN      8700         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION3_FM_FREQ_MAX      10800        // ŷ����ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION3_FM_STEP_LENGTH   10            // ŷ����ʽFM�Ĳ�������10KHzΪ��λ��
+
 // AM
 #define CHINA_AM_FREQ_MIN           531          // �й���ʽAM����СƵ��ֵ����KHzΪ��λ��
 #define CHINA_AM_FREQ_MAX           1602         // �й���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
@@ -117,10 +127,23 @@ typedef enum
 #define EUROPE_AM_FREQ_MIN          522          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
 #define EUROPE_AM_FREQ_MAX          1620         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
 #define EUROPE_AM_STEP_LENGTH       9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
+#define ITUREGION1_AM_FREQ_MIN      531          // �й���ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION1_AM_FREQ_MAX      1602         // �й���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION1_AM_STEP_LENGTH   9            // �й���ʽAM�Ĳ�������KHzΪ��λ��
+#define ITUREGION2_AM_FREQ_MIN      522          // �ձ���ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION2_AM_FREQ_MAX      1620         // �ձ���ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION2_AM_STEP_LENGTH   9            // �ձ���ʽAM�Ĳ�������KHzΪ��λ��
+#define ITUREGION3_AM_FREQ_MIN      522          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
+#define ITUREGION3_AM_FREQ_MAX      1620         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
+#define ITUREGION3_AM_STEP_LENGTH   9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
+
 // standard model selectors
 #define MODEL_CHINA                 0            // �й���ʽ
 #define MODEL_JNP                   1            // �ձ���ʽ
 #define MODEL_EUROPE                2            // ŷ����ʽ
+#define MODEL_ITUREGION1            3            // ITU Region 1 Frequencies
+#define MODEL_ITUREGION2            4            // ITU Region 2 Frequencies
+#define MODEL_ITUREGION3            5            // ITU Region 3 Frequencies
 
 /* band */
 #define BAND_FM                     0            // ��Ƶ
@@ -159,7 +182,9 @@ int activeAudio(CODEC_Level codec_mode)
     }
 	ret = ioctl(fd_bonovo,IOCTL_HANDLE_CODEC_SWITCH_SRC, codec_mode);
 	if(ret){
-		ALOGE("[=== BONOVO ===]%s ioctl is error. ret:%d\n", __FUNCTION__, ret);
+		ALOGE(
+
+"[=== BONOVO ===]%s ioctl is error. ret:%d\n", __FUNCTION__, ret);
 	}
 	return ret;
 }
@@ -180,7 +205,9 @@ int recoverAudio(CODEC_Level codec_mode)
     }
 	ret = ioctl(fd_bonovo, IOCTL_HANDLE_CODEC_RECOVER_SRC, codec_mode);
 	if(ret){
-		ALOGE("[=== BONOVO ===]%s ioctl is error. ret:%d\n", __FUNCTION__, ret);
+		ALOGE(
+
+"[=== BONOVO ===]%s ioctl is error. ret:%d\n", __FUNCTION__, ret);
 	}
 	return ret;
 }
@@ -248,6 +275,21 @@ int setRangeAndStep(int mode, int band)
 			freq_max = EUROPE_FM_FREQ_MAX;
 			step_len = EUROPE_FM_STEP_LENGTH;
 			break;
+		case MODEL_ITUREGION1:
+			freq_min = ITUREGION1_FM_FREQ_MIN;
+			freq_max = ITUREGION1_FM_FREQ_MAX;
+			step_len = ITUREGION1_FM_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION2:
+			freq_min = ITUREGION2_FM_FREQ_MIN;
+			freq_max = ITUREGION2_FM_FREQ_MAX;
+			step_len = ITUREGION2_FM_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION3:
+			freq_min = ITUREGION3_FM_FREQ_MIN;
+			freq_max = ITUREGION3_FM_FREQ_MAX;
+			step_len = ITUREGION3_FM_STEP_LENGTH;
+			break;
 		default:
 			debug("Current standard model is error.\n");
 			return -1;
@@ -272,6 +314,21 @@ int setRangeAndStep(int mode, int band)
 			freq_min = EUROPE_AM_FREQ_MIN;
 			freq_max = EUROPE_AM_FREQ_MAX;
 			step_len = EUROPE_AM_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION1:
+			freq_min = ITUREGION1_AM_FREQ_MIN;
+			freq_max = ITUREGION1_AM_FREQ_MAX;
+			step_len = ITUREGION1_AM_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION2:
+			freq_min = ITUREGION2_AM_FREQ_MIN;
+			freq_max = ITUREGION2_AM_FREQ_MAX;
+			step_len = ITUREGION2_AM_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION3:
+			freq_min = ITUREGION3_AM_FREQ_MIN;
+			freq_max = ITUREGION3_AM_FREQ_MAX;
+			step_len = ITUREGION3_AM_STEP_LENGTH;
 			break;
 		default:
 			LOGE("Current standard model is error.");
@@ -559,6 +616,15 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_FM_FREQ_MIN)
 				freq = EUROPE_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_FM_FREQ_MIN)
+				freq = ITUREGION1_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_FM_FREQ_MIN)
+				freq = ITUREGION2_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_FM_FREQ_MIN)
+				freq = ITUREGION3_FM_FREQ_MAX;
 		}
 
 	} else {
@@ -571,6 +637,15 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_AM_FREQ_MIN)
 				freq = EUROPE_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_AM_FREQ_MIN)
+				freq = ITUREGION1_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_AM_FREQ_MIN)
+				freq = ITUREGION2_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_AM_FREQ_MIN)
+				freq = ITUREGION3_AM_FREQ_MAX;
 		}
 
 	}
@@ -585,6 +660,15 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq > EUROPE_FM_FREQ_MAX)
 				freq = EUROPE_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq > ITUREGION1_FM_FREQ_MAX)
+				freq = ITUREGION1_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq > ITUREGION2_FM_FREQ_MAX)
+				freq = ITUREGION2_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq > ITUREGION3_FM_FREQ_MAX)
+				freq = ITUREGION3_FM_FREQ_MIN;
 		}
 
 	} else {
@@ -597,6 +681,15 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 		}else if(cur_model == MODEL_EUROPE){
 			if (freq > EUROPE_AM_FREQ_MAX)
 				freq = EUROPE_AM_FREQ_MIN;
+		}else if(cur_model == MODEL_ITUREGION1){
+			if (freq > ITUREGION1_AM_FREQ_MAX)
+				freq = ITUREGION1_AM_FREQ_MIN;
+		}else if(cur_model == MODEL_ITUREGION2){
+			if (freq > ITUREGION2_AM_FREQ_MAX)
+				freq = ITUREGION2_AM_FREQ_MIN;
+		}else if(cur_model == MODEL_ITUREGION3){
+			if (freq > ITUREGION3_AM_FREQ_MAX)
+				freq = ITUREGION3_AM_FREQ_MIN;
 		}
 
 	}
@@ -657,6 +750,15 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_FM_FREQ_MIN)
 				freq = EUROPE_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_FM_FREQ_MIN)
+				freq = ITUREGION1_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_FM_FREQ_MIN)
+				freq = ITUREGION2_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_FM_FREQ_MIN)
+				freq = ITUREGION3_FM_FREQ_MAX;
 		}
 
 	} else {
@@ -669,6 +771,15 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_AM_FREQ_MIN)
 				freq = EUROPE_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_AM_FREQ_MIN)
+				freq = ITUREGION1_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_AM_FREQ_MIN)
+				freq = ITUREGION2_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_AM_FREQ_MIN)
+				freq = ITUREGION3_AM_FREQ_MAX;
 		}
 	}
 
@@ -682,6 +793,15 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq > EUROPE_FM_FREQ_MAX)
 				freq = EUROPE_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq > ITUREGION1_FM_FREQ_MAX)
+				freq = ITUREGION1_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq > ITUREGION2_FM_FREQ_MAX)
+				freq = ITUREGION2_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq > ITUREGION3_FM_FREQ_MAX)
+				freq = ITUREGION3_FM_FREQ_MIN;
 		}
 
 	} else {
@@ -694,6 +814,15 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq > EUROPE_AM_FREQ_MAX)
 				freq = EUROPE_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq > ITUREGION1_AM_FREQ_MAX)
+				freq = ITUREGION1_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq > ITUREGION2_AM_FREQ_MAX)
+				freq = ITUREGION2_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq > ITUREGION3_AM_FREQ_MAX)
+				freq = ITUREGION3_AM_FREQ_MIN;
 		}
 	}
 
@@ -750,6 +879,15 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq > EUROPE_FM_FREQ_MAX)
 				freq = EUROPE_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq > ITUREGION1_FM_FREQ_MAX)
+				freq = ITUREGION1_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq > ITUREGION2_FM_FREQ_MAX)
+				freq = ITUREGION2_FM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq > ITUREGION3_FM_FREQ_MAX)
+				freq = ITUREGION3_FM_FREQ_MIN;
 		}
 	} else {
 		if (cur_model == MODEL_CHINA) {
@@ -761,6 +899,15 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq > EUROPE_AM_FREQ_MAX)
 				freq = EUROPE_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq > ITUREGION1_AM_FREQ_MAX)
+				freq = ITUREGION1_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq > ITUREGION2_AM_FREQ_MAX)
+				freq = ITUREGION2_AM_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq > ITUREGION3_AM_FREQ_MAX)
+				freq = ITUREGION3_AM_FREQ_MIN;
 		}
 
 	}
@@ -775,6 +922,15 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_FM_FREQ_MIN)
 				freq = EUROPE_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_FM_FREQ_MIN)
+				freq = ITUREGION1_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_FM_FREQ_MIN)
+				freq = ITUREGION2_FM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_FM_FREQ_MIN)
+				freq = ITUREGION3_FM_FREQ_MAX;
 		}
 	} else {
 		if (cur_model == MODEL_CHINA) {
@@ -786,6 +942,15 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_EUROPE) {
 			if (freq < EUROPE_AM_FREQ_MIN)
 				freq = EUROPE_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_AM_FREQ_MIN)
+				freq = ITUREGION1_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_AM_FREQ_MIN)
+				freq = ITUREGION2_AM_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_AM_FREQ_MIN)
+				freq = ITUREGION3_AM_FREQ_MAX;
 		}
 
 	}
