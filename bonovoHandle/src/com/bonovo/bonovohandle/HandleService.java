@@ -42,7 +42,7 @@ import android.os.UserHandle;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
-public class HandleService extends Service implements AudioManager.OnAudioFocusChangeListener{
+public class HandleService extends Service{
 
 	private static final String TAG = "HandleService";
 	private final int REMOVE_DIALOG = 0;
@@ -108,7 +108,25 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
 
 	private AudioManager amAudioManager;
 	private int currentVol, maxVol;
+	private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+		public void onAudioFocusChange(int focusChange) {
+ 		 
+			switch (focusChange) {
+				case AudioManager.AUDIOFOCUS_GAIN:
+					break;
 
+				case AudioManager.AUDIOFOCUS_LOSS:
+					break;
+
+				case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+					break;
+
+				case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+					break;
+				default:break;
+			}
+		}
+	};
 	private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 
 		@Override
@@ -201,9 +219,13 @@ public class HandleService extends Service implements AudioManager.OnAudioFocusC
                 if(!mIsAirplaneOn){
                     setAirplaneModeOn(false);
                 }
+                AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                amAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
                 Intent wakeup_intent = new Intent("android.intent.action.BONOVO_WAKEUP_KEY");
                 mContext.sendBroadcast(wakeup_intent);
             }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+            	AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            	int result = amAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
                 mIsAirplaneOn = isAirplaneOn();
                 setWakeupStatus(false);
                 setAirplaneFlag(mIsAirplaneOn);
