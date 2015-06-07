@@ -13,12 +13,12 @@
 #include <asm/ioctl.h>
 #include "com_bonovo_bluetooth_cmd.h"
 
-#define BT_WRITE_DEV    "/dev/ttyS3"         	// 蓝牙写命令的设备节点
-#define BT_READ_DEV     "/dev/bonovo_handle"    //"/dev/bonovo_bt"     // 蓝牙读数据的设备节点
-#define BT_CTRL_DEV  "/dev/bonovo_handle" 	    // 蓝牙控制设备节点
+#define BT_WRITE_DEV    "/dev/ttyS3"         	// 蓝牙写命令的设备节点  // Bluetooth device node write command
+#define BT_READ_DEV     "/dev/bonovo_handle"    //"/dev/bonovo_bt"     // 蓝牙读数据的设备节点  // Bluetooth device nodes to read data
+#define BT_CTRL_DEV  "/dev/bonovo_handle" 	    // 蓝牙控制设备节点		// Bluetooth control device node
 #define BT_BUFF_SIZE    128                   	// bt's buffer size
 #define BT_MAX_BUFF_SIZE 4096
-#define BT_CMD          0xA2                  	// 设置蓝牙命令码
+#define BT_CMD          0xA2                  	// 设置蓝牙命令码		// Bluetooth device node write command
 #define HANDLE_CTRL_DEV_MAJOR		230
 #define IOCTL_HANDLE_BT_POWER_ON            _IO(HANDLE_CTRL_DEV_MAJOR, 20)
 #define IOCTL_HANDLE_BT_POWER_OFF           _IO(HANDLE_CTRL_DEV_MAJOR, 21)
@@ -48,15 +48,17 @@ char gname [20];
 char gnum [20];
 
 const char *myBonovoBtSolicatedCmdArray[CMD_AT_MAX] = {
-		//2免提应用规范指令
+		//2免提应用规范指令	 // 2 Handsfree Application Specification Instruction
 		"AT#CA", "AT#CB", "AT#CC", "AT#CD", "AT#CE", "AT#CF", "AT#CG", "AT#CH", "AT#CI", "AT#CJ", "AT#CK", "AT#CL",
 		"AT#CM", "AT#CO", "AT#CW", "AT#CX", "AT#CY", "AT#CN", "AT#CP",
-		//3语音链路层
+		//3语音链路层	 		 // 3 Voice Link Layer
 		"AT#WI", "AT#MA", "AT#MC", "AT#MD", "AT#ME", "AT#MV", "AT#MO",
-		//4电话簿
+		//4电话簿			 // 4 Phonebook
 		"AT#PA", "AT#PB", "AT#PH", "AT#PI", "AT#PJ", "AT#PF", "AT#PE", "AT#PG", "AT#QA", "AT#QB", "AT#QC",
-		//5其他功能操作
-		"AT#CZ", "AT#CV", "AT#MY", "AT#MG", "AT#MH", "AT#MP", "AT#MQ", "AT#MF", "AT#MM", "AT#MN", "AT#MX", "AT#DA"};
+		//5其他功能操作		 // 5 Other functional operation
+		"AT#CZ", "AT#CV", "AT#MY", "AT#MG", "AT#MH", "AT#MP", "AT#MQ", "AT#MF", "AT#MM", "AT#MN", "AT#MX", "AT#DA",
+		//added by leonkernan
+		"AT#CQ", "AT#CR", "AT#CS", "AT#CT", "AT#MZ", "AT#QD", "AT#QE", "AT#PP"};
 
 unsigned int checkSum(unsigned char* cmdBuf, int size) {
 	unsigned int temp = 0;
@@ -78,9 +80,9 @@ int findFrameEnd(char *cmdBuf, int cmdBufLen) {
 /*!
  *************************************************************************************
  * function: activeAudio
- *     模拟音频切换函数
- * @param[in] CODEC_Level 要切换的模拟音频输入源
- * @return    int         0:设置成功  !0:设置失败
+ *     模拟音频切换函数		// Analog audio switching function
+ * @param[in] CODEC_Level 要切换的模拟音频输入源		// Analog audio input sources to be switched
+ * @return    int         0:设置成功  !0:设置失败		// 0: set successfully 0:! Setup failed
  *************************************************************************************
  */
 int activeAudio(CODEC_Level codec_mode)
@@ -100,8 +102,8 @@ int activeAudio(CODEC_Level codec_mode)
 /*!
  *************************************************************************************
  * function: recoverAudio
- *     恢复切换音频前的模拟输入源
- * @return    int  0:设置成功  !0:设置失败
+ *     恢复切换音频前的模拟输入源		// Analog input source switching audio before recovery
+ * @return    int  0:设置成功  !0:设置失败		// 0: set successfully 0:! Setup failed
  *************************************************************************************
  */
 int recoverAudio(CODEC_Level codec_mode)
@@ -121,7 +123,7 @@ int recoverAudio(CODEC_Level codec_mode)
 #if (0)
 /*!
  *********************************************
- * 解析后的姓名中不含空格字符的
+ * 解析后的姓名中不含空格字符的		// Name of the parsed without a space character
  *********************************************
  */
 int explainContactsWithoutSapce(char *data, int dataLen)
@@ -205,7 +207,7 @@ int explainContactsWithoutSapce(char *data, int dataLen)
 
 /*!
  *********************************************
- * 解析后的姓名中不含空格字符的
+ * 解析后的姓名中不含空格字符的		// Name of the parsed without a space character
  *********************************************
  */
 int explainContactsWithoutSapce(char *data, int dataLen)
@@ -412,13 +414,27 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_II, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='J'){    // end pairing
 				android_callback(CMD_UNSOLICATED_IJ, &myLineBuf[k+2], frameEnd-2);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='K'){    // call waiting
+				android_callback(CMD_UNSOLICATED_IK, &myLineBuf[k+2], frameEnd-2);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='L'){    // hold active and accept call waiting
+				android_callback(CMD_UNSOLICATED_IL, NULL, 0);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='N'){    // end active and accept call waiting
+				android_callback(CMD_UNSOLICATED_IN, NULL, 0);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='M'){    // conference call
+				android_callback(CMD_UNSOLICATED_IM, NULL, 0);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='Q'){    // incoming call with name
+				android_callback(CMD_UNSOLICATED_IQ, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='R'){    // current call number
 				android_callback(CMD_UNSOLICATED_IR, &myLineBuf[k+2], frameEnd-2);
 				// activeAudio(CODEC_LEVEL_BT_TEL);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='T'){    // released active and switched to call waiting
+				android_callback(CMD_UNSOLICATED_IT, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='V'){    // connecting
 				android_callback(CMD_UNSOLICATED_IV, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='U'){    // signal strength
-				android_callback(CMD_UNSOLICATED_IU, &myLineBuf[k+2], frameEnd-2);
+				android_callback(CMD_UNSOLICATED_IU, &myLineBuf[k+2], 1); // returns int between 0 and 5
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='X'){    // battery level
+				android_callback(CMD_UNSOLICATED_IX, &myLineBuf[k+2], 1); // returns int between 0 and 5
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='C'){    // audio connect
 				android_callback(CMD_UNSOLICATED_MC, NULL, 0);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='D'){    // audio disconnect
@@ -427,6 +443,8 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_MF, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='G'){    // current HFP status
 				android_callback(CMD_UNSOLICATED_MG, &myLineBuf[k+2], frameEnd-2);
+			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='H'){    // current Element Attributes Indication
+				android_callback(CMD_UNSOLICATED_MH, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='L'){    // current AVRCP status
 				android_callback(CMD_UNSOLICATED_ML, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='M'){    // model name
@@ -447,6 +465,10 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_PE, NULL, 0);
 			}else if(myLineBuf[k] == 'P' && myLineBuf[k+1] =='F'){    // voice dialing stop
 				android_callback(CMD_UNSOLICATED_PF, NULL, 0);
+			}else if(myLineBuf[k] == 'P' && myLineBuf[k+1] =='M'){    // SPP Connected or SPP data received
+				android_callback(CMD_UNSOLICATED_PM, &myLineBuf[k+2], frameEnd-2);
+			}else if(myLineBuf[k] == 'P' && myLineBuf[k+1] =='V'){    // network operator name
+				android_callback(CMD_UNSOLICATED_PV, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'O' && myLineBuf[k+1] =='K'){    // execute command successfully
 				android_callback(CMD_UNSOLICATED_OK, NULL, 0);
 			}else if(!strncmp(myLineBuf, "ERROR", 5)){                // execute command failed
@@ -471,7 +493,7 @@ void start_bonovo_bluetooth(void) {
 	pthread_t timerid;
 	int err = 0;
 	bonovo_bluetooth_thread_status = 0;
-	err = pthread_create(&timerid, NULL, thread_func_bluetooth_read, NULL); //创建定时器线程
+	err = pthread_create(&timerid, NULL, thread_func_bluetooth_read, NULL); //创建定时器线程	// Create a timer thread
 	if (err) {
 		ALOGE("cant creat thread_func_bluetooth thread\n");
 		return;
