@@ -74,7 +74,7 @@
 <string name="description_target_answer">Ответить</string>
 <string name="description_target_send_sms">Отправить SMS</string>
 <string name="description_target_decline">Отклонить</string>
-<string name="description_phone_incoming">Ожидание звонка</string>
+<string name="description_phone_incoming">Входящий вызов</string>
 <string name="description_phone_dialing">Набор номера</string>
 <string name="description_phone_in_call">Во время вызова</string>
 <string name="description_phone_hang_up">Завершить звонок</string>
