@@ -231,7 +231,7 @@ public class RadioService extends Service implements RadioInterface,
 					e.printStackTrace();
 				}*/
 				setFreq(curFreq);
-				setVolume(mVolume);
+				setVolume(mVolume, true);
 				if(mRemote){
 					setRemote(1);
 				}else {
@@ -430,7 +430,7 @@ public class RadioService extends Service implements RadioInterface,
         switch (focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
                 // Restore volume
-                setVolume(radioDuckVolume);
+                setVolume(radioDuckVolume, false);
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
                 stopService(new Intent("com.example.RadioService"));
@@ -439,12 +439,12 @@ public class RadioService extends Service implements RadioInterface,
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 // Reduce volume to Zero - save current volume;
                 radioDuckVolume = getVolume();
-                setVolume(0);
+                setVolume(0, false);
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                 // reduce volume by 50%
                 radioDuckVolume = getVolume();
-                setVolume(getVolume() / 2);
+                setVolume(getVolume() / 2, false);
                 break;
         }
 
@@ -489,13 +489,15 @@ public class RadioService extends Service implements RadioInterface,
 		radioType = type;
 	}
 
-	public int setVolume(int volume) {
+	public int setVolume(int volume, boolean savePref) {
 		mVolume = volume;
 		if (DEBUG) Log.v(TAG, "(Service)mVolume = "+mVolume);
 		jniSetVolume(mVolume);
-		SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
-		editor.putInt("mvolume", mVolume);
-		editor.commit();
+		if (savePref == true) {
+			SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
+			editor.putInt("mvolume", mVolume);
+			editor.commit();
+		}
 		return mVolume;
 	}
 
