@@ -36,7 +36,7 @@
     <string name="remote">Remote Control</string>
     <string name="lead">Lead</string>
     <string name="remind">Remind</string>
-    <string name="describe">Whether Automatic Searching And Save?</string>
+    <string name="describe">Continue with Automatic Search And Save?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="searching">Searching Now, Do Not Switch The Channel</string>
