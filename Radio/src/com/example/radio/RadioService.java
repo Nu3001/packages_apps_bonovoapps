@@ -8,9 +8,9 @@ import java.util.Locale;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +19,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.location.Address;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
+import android.media.MediaMetadataRetriever;
+import android.media.RemoteControlClient;
+import android.media.RemoteControlClient.MetadataEditor;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,10 +85,7 @@ public class RadioService extends Service implements RadioInterface,
 	private static final int RADIO_SEARCHING = 1;
 	private static final int RADIO_START_SEARCH = 2;
 
-	// show the FM back play notification on the title bar
-	private static final int NOTIFICATION_ID = 1;
-	PendingIntent contentIntent;
-	Notification notification;
+	private RemoteControlClient mRemoteControlClient;
 
 	// ������ SharedPreferences
 	private int functionId = 0; // 0:΢�� 1������ 2���Զ�
@@ -202,72 +202,60 @@ public class RadioService extends Service implements RadioInterface,
 		
 		if(DEBUG) Log.d(TAG, "------onCreate()");
 		PowerOnOff(true); // open radio
-//		new Thread(new Runnable() {
-//			public void run() {
-				if (DEBUG)
-					Log.v(TAG, "new Thread is up");
-				// jniSetVolume(mVolume);
-				// radioMute = jniGetMute(); //check if mute,avoid bring noisy
-				// // when open power
-				// if(radioMute == RADIO_SET_NOTMUTE){
-				// jniSetMute(RADIO_SET_MUTE);
-				// }
-				// // jniPowerOnoff(RADIO_POWER_ON,RADIO_TURN_CHANNEL);
-				if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
-					jniTurnFmAm(0); // open fm
-				} else if (RADIO_AM == radioType) {
-					jniTurnFmAm(1); // open am
-				}
-				if (DEBUG)
-					Log.v(TAG, "getCurrentFreq()===curfreq ==="
-							+ getCurrentFreq());
-				// if(radioMute == RADIO_SET_NOTMUTE){
-				// jniSetMute(RADIO_SET_NOTMUTE);
-				// }
-				updatePlaybackTitle();
-				/*try{
-					Thread.sleep(20);
-				} catch (Exception e){
-					e.printStackTrace();
-				}*/
-				setFreq(curFreq);
-				setVolume(mVolume, true);
-				if(mRemote){
-					setRemote(1);
-				}else {
-					setRemote(0);
-				}
-				
-//				String language = settings.getString("local_language", "zh");
-//				if(!Locale.getDefault().getLanguage().equals(language)){
-//					radioReadXML();
-//				}
-//			}
-			
-//		}).start();
-
+		if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
+			jniTurnFmAm(0); // open fm
+		} else if (RADIO_AM == radioType) {
+			jniTurnFmAm(1); // open am
+		}
+		if (DEBUG)
+			Log.v(TAG, "getCurrentFreq()===curfreq ==="
+					+ getCurrentFreq());
+		setFreq(curFreq);
+		setVolume(mVolume, true);
+		if(mRemote){
+			setRemote(1);
+		}else {
+			setRemote(0);
+		}
 		// handle event with audio
-		// remove by bonovo zbiao
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
 		mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
 				AudioManager.AUDIOFOCUS_GAIN);
 		this.registerReceiver(myReceiver, getIntentFilter());
+		Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+		ComponentName component =
+				new ComponentName(this, MediaButtonIntentReceiver.class);
+		mediaButtonIntent.setComponent(component);
+		PendingIntent mediaPendingIntent =
+				PendingIntent.getBroadcast(getApplicationContext(), 0,
+						mediaButtonIntent, 0);
+		mRemoteControlClient =
+				new RemoteControlClient(mediaPendingIntent);
+		mAudioManager.registerMediaButtonEventReceiver(component);
+		mAudioManager.registerRemoteControlClient(mRemoteControlClient);
+
+		mRemoteControlClient.setTransportControlFlags(
+				RemoteControlClient.FLAG_KEY_MEDIA_NEXT |
+						RemoteControlClient.FLAG_KEY_MEDIA_PREVIOUS);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		mAudioManager.abandonAudioFocus(this);
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
 		updatePreferences(RADIO_DATA_SAVE);
 		if (DEBUG)
 			Log.d(TAG, "onDestroy()  end curfreq is " + curFreq);
-		// this.unregisterReceiver(myReceiver);
-		// �����JNI���ֻ�δ���
 		PowerOnOff(false);
 		this.unregisterReceiver(myReceiver);
+		mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_STOPPED);
+		ComponentName component =
+				new ComponentName(this, MediaButtonIntentReceiver.class);
+		mAudioManager.unregisterMediaButtonEventReceiver(component);
+		mAudioManager.unregisterRemoteControlClient(mRemoteControlClient);
+		mAudioManager.abandonAudioFocus(this);
 	}
 
 	private Handler mRadioplayerHandler = new Handler() {
@@ -317,9 +305,6 @@ public class RadioService extends Service implements RadioInterface,
 				}
 				status = freq[0];
 				if (res == 0) {
-//					 Log.d(TAG, "++++++++++++++++ res:" + res +
-//					 " freq[0]:"+freq[0] + " freq[1]:" + freq[1] + " freq[2]:"
-//					 + freq[2]);
 					if (FLAG_AUTO == 1) {
 						/***************auto model************/
 						curFreq = freq[2];
@@ -378,9 +363,6 @@ public class RadioService extends Service implements RadioInterface,
 						sendBroadcast(it);
 						/*******************************************************************************/
 					}
-//					curFreq = freq[2];
-////					Log.d(TAG, "curFreq(Auto) ="+curFreq);
-//					mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 				}
 				try {
 					Thread.sleep(5);
@@ -398,28 +380,46 @@ public class RadioService extends Service implements RadioInterface,
 			FLAG_AUTO = 0;
 			mIsSearchThreadRunning = false;
 			updatePreferences(RADIO_DATA_SAVE);
-			updatePlaybackTitle();
 			Log.d(TAG, "+++++++++++++ STOP SEARCH!!!!");
 		}
 	};
 
 	public void updatePlaybackTitle() {
-		if (DEBUG)
-			Log.v(TAG, "---Notification curFreq = " + curFreq);
-		CharSequence contentTitle = getResources().getString(R.string.app_name);
-		CharSequence contentText = getResources().getString(R.string.playing)
-				+ ": " + changeCurFreqToCS(curFreq);
-		contentIntent = PendingIntent.getActivity(getApplicationContext(), 0,
-		new Intent(getApplicationContext(),
-		RadioActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-		notification = new Notification(R.drawable.import_channel,
-				contentTitle, 0);
-		notification.flags |= Notification.FLAG_ONGOING_EVENT; // ��flag����Ϊ���������ô֪ͨ�ͻ���QQһ��һֱ��״̬����ʾ
-		// ָ��״̬��Ҫ��ʾ����Ϣ���������
-		notification.setLatestEventInfo(getApplicationContext(), contentTitle,
-				contentText, contentIntent);
-		startForeground(NOTIFICATION_ID, notification); // ����״̬����Ϣ
+		// we can eventually embed RDS data in here, but for now just what info we have available.
+		String artist;
+		String album;
+		String song;
+		if (getCurChannelId() == -1) {
+			artist = album = song = getResources().getString(R.string.app_name) + " : " +
+			formatFreqDisplay (getCurrentFreq());
+		} else {
+			artist = getResources().getString(R.string.app_name) + " : " +
+					formatFreqDisplay (getCurrentFreq());
+			album = getChannelItem(getCurChannelId()).name;
+			song = getChannelItem(getCurChannelId()).abridge;
+		}
+		updatePlaybackTitle(album,artist,song);
+	}
+	private void updatePlaybackTitle(String album,String artist,String song){
+		MetadataEditor editor = mRemoteControlClient.editMetadata(false);
 
+		editor.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, album);
+		editor.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, artist);
+		editor.putString(MediaMetadataRetriever.METADATA_KEY_TITLE,song);
+
+		editor.apply();
+	}
+
+	private String formatFreqDisplay(int freq) {
+		String display = "";
+		if (freq < 1000) {
+			display = Integer.toString(freq) + " " +
+				getResources().getString(R.string.khz);
+		} else {
+			display = String.valueOf(freq/100.0) + " " +
+					getResources().getString(R.string.mhz);
+		}
+		return display;
 	}
 
     @Override
@@ -449,17 +449,6 @@ public class RadioService extends Service implements RadioInterface,
         }
 
     }
-
-	public CharSequence changeCurFreqToCS(int freq) { /* �˺���δʹ�� */
-		StringBuffer sb = new StringBuffer();
-		if (freq >= 8700 && freq <= 10800) {
-			sb.append(freq / 100).append('.').append(freq / 10 % 10)
-					.append("MHz");
-		} else {
-			sb.append(freq).append("KHz");
-		}
-		return sb;
-	}
 
     private void PowerOnOff(boolean onOff) {
 
@@ -572,7 +561,6 @@ public class RadioService extends Service implements RadioInterface,
 			mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 		}
 		updatePreferences(RADIO_DATA_SAVE);
-		updatePlaybackTitle();
 		
 		return curFreq;
 	}
@@ -592,7 +580,6 @@ public class RadioService extends Service implements RadioInterface,
 			mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 		}
 		updatePreferences(RADIO_DATA_SAVE);
-		updatePlaybackTitle();
 
 		return curFreq;
 	}
@@ -644,15 +631,6 @@ public class RadioService extends Service implements RadioInterface,
 	public void setCurChannelId(int id) {
 		// TODO Auto-generated method stub
 		curChannelId = id;
-
-		Context context = getApplicationContext();
-		CharSequence contentTitle = getResources().getString(R.string.app_name);
-		CharSequence contentText = getResources().getString(R.string.playing)
-				+ ": " + changeCurFreqToCS(curFreq);
-		notification.when = System.currentTimeMillis();
-		notification.setLatestEventInfo(context, contentTitle, contentText,
-				contentIntent);
-		startForeground(NOTIFICATION_ID, notification);
 	}
 
 	@Override

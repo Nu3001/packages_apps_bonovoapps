@@ -76,7 +76,7 @@ public class RadioActivity extends Activity implements
 	private AlertDialog di;
 	private View checkbox;
 
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	private static int  flag = 0;						//閼奉亜濮╅幖婊冨酱閺嶅洩顔�
 	private static int IS_AUTO_NOW = 1;
 	private static int IS_STEP_NOW = 2;
@@ -366,8 +366,6 @@ public class RadioActivity extends Activity implements
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
-//				updateFreqView();
-//				radioSetSelect(RadioService.RADIO_FM1);
 				break;
 			case R.id.btnfm2:
 				if (DEBUG)
@@ -713,29 +711,6 @@ public class RadioActivity extends Activity implements
 		}
 	};
 
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		// TODO Auto-generated method stub
-//		 switch (keyCode) {
-//         case KeyEvent.KEYCODE_MEDIA_NEXT:
-//        	  if (radioService.getFunctionId() == 0) {
-//					radioService.fineRight(radioService.getCurrentFreq());
-//				} else {
-//					radioService.stepRight(radioService.getCurrentFreq());
-//				}
-//             return true;
-//         case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-//        	 if (radioService.getFunctionId() == 0) {
-//					radioService.fineLeft(radioService.getCurrentFreq());
-//				} else {
-//					radioService.stepLeft(radioService.getCurrentFreq());
-//				}
-//        	 return true;
-//		 }
-//		return super.onKeyDown(keyCode, event);
-//		
-//	}
-	
 	/*
 	 * Removing a single Button
 	 * */
@@ -953,22 +928,9 @@ public class RadioActivity extends Activity implements
 			mMiddleButtonForward
 					.setBackgroundResource(R.drawable.btnstepforward);
 		}
-//		//when type is RADIO_COLLECT,INVISIBLE some controls
-//		if(radioService.getRadioType() == RadioService.RADIO_COLLECT){
-//			mMiddleButtonBackward.setVisibility(View.GONE);
-//			mMiddleButtonForward.setVisibility(View.GONE);
-//			mMiddleButtonAuto.setVisibility(View.GONE);
-//			mMiddleButtonStep.setVisibility(View.GONE);
-//			mMiddleButtonFine.setVisibility(View.GONE);
-//			mButtonAddHeart.setVisibility(View.INVISIBLE);
-//		}
-
-//		radioService.setFreq(radioService.getCurrentFreq());
-//		radioService.setVolume(radioService.getVolume());
 
 		if (DEBUG)
 			Log.v(TAG, "####setVolume#### " + radioService.getVolume());
-//		radioSetSelect(radioService.getRadioType());
         updateFreqView();
 		if (RadioService.RADIO_FM1 == radioService.getRadioType()) {
 			((TextView) findViewById(R.id.radiotype)).setText("FM"); /* 閿熸枻鎷稦M1鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
@@ -1057,28 +1019,40 @@ public class RadioActivity extends Activity implements
 		}
 	}
 
+	public int findChannelID(int freq) {
+		int counter;
+		int tempFreq;
+		int channelID = -1;
+		for (counter = 0; counter < radioService.RADIO_CHANNEL_COUNT; counter++) {
+			ChannelItem item;
+			tempFreq = 0;
+			item = radioService.getChannelItem(counter);
+			if(item.freq.contains(".")){
+				tempFreq =Integer.parseInt(item.freq
+						.replaceAll("\\.", "")) * 10;
+			}else if(!item.freq.equals("")){
+				tempFreq = Integer.parseInt(item.freq);
+			}
+			if (tempFreq == freq) {
+				channelID = counter;
+				break;
+			}
+		}
+		return channelID;
+	}
+
 	void updateFreqView() {
-		int length, temp;
+		int length,tempID,temp;
 		ImageView channelView;
 		temp = radioService.getCurrentFreq();
+		// if we've stepped into a new freq, the set ID might not be accurate
+		// let's check & fix
+		tempID = findChannelID(temp);
+		if (tempID != radioService.getCurChannelId()) {
+			radioService.setCurChannelId(tempID);
+		}
 		if (DEBUG)
 			Log.v(TAG, "<myu>curfreq = " + radioService.getCurrentFreq());
-		// if (radioService.getCurChannelId() < RadioService.RADIO_PAGE_COUNT) {
-		// /*閿熷壙璁规嫹娉ㄩ敓閰电尨鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹handleMessage閿熷彨璁规嫹搴旈敓鏂ゆ嫹閿熸枻鎷锋伅閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰疄閿熸枻鎷�/
-		// Log.d(TAG,
-		// "<myu>getCurChannelId is " + radioService.getCurChannelId()
-		// + " RADIO_PAGE_COUNT is "
-		// + RadioService.RADIO_PAGE_COUNT);
-		// ((TextView) findViewById(R.id.radiotype)).setText("FM1");
-		// ((TextView) findViewById(R.id.radiohz)).setText("MHz");
-		// } else if (radioService.getCurChannelId() <
-		// RadioService.RADIO_FM_COUNT) {
-		// ((TextView) findViewById(R.id.radiotype)).setText("FM2");
-		// ((TextView) findViewById(R.id.radiohz)).setText("MHz");
-		// } else {
-		// ((TextView) findViewById(R.id.radiotype)).setText("AM");
-		// ((TextView) findViewById(R.id.radiohz)).setText("KHz");
-		// }
 		if (radioService.getCurChannelId() >= 0) {
 			if (DEBUG)
 				Log.v(TAG,
@@ -1087,6 +1061,10 @@ public class RadioActivity extends Activity implements
 			((TextView) findViewById(R.id.channeldetails))
 					.setText((radioService.getChannelItem(radioService
 							.getCurChannelId())).name);
+		} else {
+			// We aren't set to an active ID/Favorite, so we need to clear the textviews
+			((TextView) findViewById(R.id.channeldetails))
+					.setText("");
 		}
 		if (temp >= RadioService.FM_LOW_FREQ && temp < 10000) {
 			length = 2;
@@ -1159,6 +1137,8 @@ public class RadioActivity extends Activity implements
 				break;
 			}
 		}
+		// update metadata
+		radioService.updatePlaybackTitle();
 
 	}
 
@@ -1242,41 +1222,6 @@ public class RadioActivity extends Activity implements
 		if (DEBUG)
 			Log.d(TAG, "onCreateDialog is open");
 		switch (id) {
-		case DIALOG_SCAN: /* 閿熺殕璁规嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鍊兼厱閿熸枻鎷烽敓锟�/
-			mSearchDialog = new ProgressDialog(this);
-
-			mSearchDialog.setTitle(getResources().getString(R.string.app_name));
-			mSearchDialog.setMessage(getResources().getString(
-					R.string.searchwait));
-			mSearchDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			mSearchDialog.setIndeterminate(true);
-			mSearchDialog.setCancelable(true);
-
-			mSearchDialog
-					.setOnCancelListener(new DialogInterface.OnCancelListener() {
-						public void onCancel(DialogInterface dialog) {
-							if (DEBUG)
-								Log.d(TAG, "Progress Dialog --- onCancel");
-						}
-					});
-			return mSearchDialog;
-		case DIALOG_VOLUME:
-			LayoutInflater inflater = LayoutInflater.from(this);
-			View settingView = inflater.inflate(R.layout.radio_setting_layout,
-					null);
-			return new AlertDialog.Builder(this).create();
-			/*
-			mVolumeSeekBar = new SeekBar(this);
-			mVolumeSeekBar.setPadding(15, 5, 15, 10);
-			mVolumeSeekBar.setMax(100);
-			mVolumeSeekBar.setProgress(radioService.getVolume());
-			mVolumeSeekBar.setOnSeekBarChangeListener(RadioActivity.this);
-			mVolCtrlDialog = new AlertDialog.Builder(RadioActivity.this)
-					.setTitle(getResources().getString(R.string.radio_volume))
-					.setIcon(R.drawable.sound).setView(mVolumeSeekBar)
-					.setCancelable(true).create();
-			return mVolCtrlDialog;
-			*/
 		case DIALOG_EDIT: /* 閿熷彨杈炬嫹閿熸枻鎷�537 539 541 閿熸枻鎷烽敓鎴尅鎷锋寚閿熸枻鎷�閿熺獤鐚存嫹!! */
 
 			if (DEBUG)
