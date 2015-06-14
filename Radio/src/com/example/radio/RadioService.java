@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
@@ -393,16 +395,26 @@ public class RadioService extends Service implements RadioInterface,
 			artist = album = song = getResources().getString(R.string.app_name) + " : " +
 			formatFreqDisplay (getCurrentFreq());
 		} else {
-			artist = getResources().getString(R.string.app_name) + " : " +
+			song = getResources().getString(R.string.app_name) + " : " +
 					formatFreqDisplay (getCurrentFreq());
-			album = getChannelItem(getCurChannelId()).name;
-			song = getChannelItem(getCurChannelId()).abridge;
+			artist = getChannelItem(getCurChannelId()).name;
+			album = getChannelItem(getCurChannelId()).abridge;
+			if (artist.equals("")) {
+				artist = song;
+			}
+			if (album.equals("")) {
+				album = song;
+			}
 		}
 		updatePlaybackTitle(album,artist,song);
 	}
 	private void updatePlaybackTitle(String album,String artist,String song){
+		Bitmap artwork;
+
 		MetadataEditor editor = mRemoteControlClient.editMetadata(false);
 
+		artwork = BitmapFactory.decodeResource(getResources(),R.drawable.radio);
+		editor.putBitmap(MetadataEditor.BITMAP_KEY_ARTWORK,artwork);
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, album);
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, artist);
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_TITLE,song);
