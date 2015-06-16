@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Radio</string>
-    <string name="mhz">MHZ</string>
-    <string name="khz">KHZ</string>
+    <string name="mhz">MHz</string>
+    <string name="khz">kHz</string>
     <string name="fm1">FM1</string>
     <string name="fm2">FM2</string>
     <string name="action_settings">Settings</string>
