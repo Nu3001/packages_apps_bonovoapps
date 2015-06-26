@@ -104,7 +104,7 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 			// TODO Auto-generated method stub
-			mSerivce2.setVolume(progress, true);
+			mSerivce2.setVolume(progress);
 		}
 
 		@Override

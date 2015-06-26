@@ -66,7 +66,7 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 	}
 	
 	public void setVolume(int volume){
-		radioService.setVolume(volume, true);
+		radioService.setVolume(volume);
 	}
 
 	@Override

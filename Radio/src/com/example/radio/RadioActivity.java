@@ -1446,7 +1446,7 @@ public class RadioActivity extends Activity implements
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		radioService.setVolume(progress, true);
+		radioService.setVolume(progress);
 	}
 
 	@Override

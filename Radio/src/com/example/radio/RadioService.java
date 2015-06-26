@@ -213,7 +213,7 @@ public class RadioService extends Service implements RadioInterface,
 			Log.v(TAG, "getCurrentFreq()===curfreq ==="
 					+ getCurrentFreq());
 		setFreq(curFreq);
-		setVolume(mVolume, true);
+		setVolume(mVolume);
 		if(mRemote){
 			setRemote(1);
 		}else {
@@ -442,7 +442,7 @@ public class RadioService extends Service implements RadioInterface,
         switch (focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
                 // Restore volume
-                setVolume(radioDuckVolume, false);
+                duckVolume(radioDuckVolume);
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
                 stopService(new Intent("com.example.RadioService"));
@@ -451,12 +451,12 @@ public class RadioService extends Service implements RadioInterface,
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 // Reduce volume to Zero - save current volume;
                 radioDuckVolume = getVolume();
-                setVolume(0, false);
+                duckVolume(0);
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                 // reduce volume by 50%
                 radioDuckVolume = getVolume();
-                setVolume(getVolume() / 2, false);
+                duckVolume(getVolume() / 2);
                 break;
         }
 
@@ -490,15 +490,18 @@ public class RadioService extends Service implements RadioInterface,
 		radioType = type;
 	}
 
-	public int setVolume(int volume, boolean savePref) {
+	public int duckVolume(int volume) {
+		jniSetVolume(volume);
+		return volume;
+	}
+	
+	public int setVolume(int volume) {
 		mVolume = volume;
 		if (DEBUG) Log.v(TAG, "(Service)mVolume = "+mVolume);
 		jniSetVolume(mVolume);
-		if (savePref == true) {
-			SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
-			editor.putInt("mvolume", mVolume);
-			editor.commit();
-		}
+		SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
+		editor.putInt("mvolume", mVolume);
+		editor.commit();
 		return mVolume;
 	}
 
