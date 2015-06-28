@@ -51,6 +51,7 @@ public class HandleService extends Service{
 	private final int VOLUME_SUB  = 3;
 	private final int VOLUME_MUTE = 4;
 	private final int OPEN_LAST_APP = 5;
+	private final int ACTIVATE_AIRPLANE_MODE = 6;
 	private final int DEF_VOLUME  = 10;
 	private final int VOLUME_DIALOGE_TIMEOUT = 2000;
     private final int CHANNEL_LOUT1_VOL = 0;
@@ -226,12 +227,11 @@ public class HandleService extends Service{
             }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
             	AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
             	int result = amAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
-                mIsAirplaneOn = isAirplaneOn();
-                setWakeupStatus(false);
-                setAirplaneFlag(mIsAirplaneOn);
-                if(!mIsAirplaneOn){
-                    setAirplaneModeOn(true);
-                }
+            	setWakeupStatus(false);
+
+                Message msg = mHandler.obtainMessage(ACTIVATE_AIRPLANE_MODE);
+				mHandler.sendMessageDelayed(msg, getConnectedSleepTime());
+
                 notifyMcuSleep();
                 Intent sleep_intent = new Intent("android.intent.action.BONOVO_SLEEP_KEY");
                 mContext.sendBroadcast(sleep_intent);
@@ -287,6 +287,9 @@ public class HandleService extends Service{
 								  .putInt("radioButton_Checked_Flag", carType)
 								  .commit();
 				Log.v(TAG, "MCU to HandlerService--> carType="+carType);
+			}else if(intent.getAction().equals("android.intent.action.BONOVO_SET_CONNECTED_SLEEP_TIME")){
+				int timeout = intent.getIntExtra("milliseconds", 1000);
+				setConnectedSleepTime(timeout);
 			}
 		}
 	};
@@ -301,6 +304,18 @@ public class HandleService extends Service{
     private boolean getWakeupStatus(){
         SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
 		return sp.getBoolean("WAKE_MODE", false);
+    }
+
+    private void setConnectedSleepTime(int milliSecondsToAirplaneMode){
+        SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
+		Editor editor = sp.edit();
+		editor.putInt("CONNECTED_SLEEP_TIME", milliSecondsToAirplaneMode);
+		editor.commit();
+    }
+
+    private int getConnectedSleepTime(){
+        SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
+		return sp.getInt("CONNECTED_SLEEP_TIME", 1000);		// default to 1 second (1000 milliseconds)
     }
 
     private void setAirplaneFlag(boolean isAirplane){
@@ -495,6 +510,7 @@ public class HandleService extends Service{
 		myIntentFilter.addAction("android.intent.action.BONOVO_SEND_POWER_KEY");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SET_SOUND_BALANCE");
 		myIntentFilter.addAction("android.intent.action.BONOVO_GET_SOUND_BALANCE");
+		myIntentFilter.addAction("android.intent.action.BONOVO_SET_CONNECTED_SLEEP_TIME");
 		myIntentFilter.addAction(Intent.ACTION_SCREEN_OFF);
 		myIntentFilter.addAction(Intent.ACTION_SCREEN_ON);
 		myIntentFilter.addAction("com.android.internal.car.can.action.CAR_TYPE_RESPONSE");
@@ -611,29 +627,6 @@ public class HandleService extends Service{
 		return (jnigetbrightness());
 	}
 
-	public void onAudioFocusChange(int focusChange) {
-		switch (focusChange) {
-		case AudioManager.AUDIOFOCUS_GAIN:
-			break;
-
-		case AudioManager.AUDIOFOCUS_LOSS:
-			break;
-
-		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-			// Lost focus for a short time, but we have to stop
-			// playback. We don't release the media player because playback
-			// is likely to resume
-			//if (mMediaPlayer.isPlaying()) mMediaPlayer.pause();
-			break;
-
-		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-			// Lost focus for a short time, but it's ok to keep playing
-			// at an attenuated level
-			//if (mMediaPlayer.isPlaying()) mMediaPlayer.setVolume(0.1f, 0.1f);
-			break;
-		}
-	}
-	
 	private final int MAX_VOLUME = 32;
 	private AlertDialog dial = null;
 	private Handler mHandler = new Handler(){
@@ -704,6 +697,13 @@ public class HandleService extends Service{
 				//readAndOpenProcess();
 				openBonovoRadio();
 				break;
+			case ACTIVATE_AIRPLANE_MODE:
+				mIsAirplaneOn = isAirplaneOn();              
+                setAirplaneFlag(mIsAirplaneOn);
+                if(!mIsAirplaneOn){
+                    setAirplaneModeOn(true);
+                }
+                break;
 			default:
 				break;
 			}
