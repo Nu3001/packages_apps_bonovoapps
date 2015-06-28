@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class FragmentService extends Service {
 	private final String TAG = "com.example.fragment.service";
@@ -124,37 +125,44 @@ public class FragmentService extends Service {
 		mCheckOTG = preferencesOTG.getInt("otg checked", PRESSHOST);
 		SharedPreferences preferencesStandby = getSharedPreferences("standby model", MODE_WORLD_READABLE);
 		mCheckStandby = preferencesStandby.getInt("standby checked", 120);	// Default standby is 120 minutes (2 hours)
-		if (mCheckMute) {
-			jniAsternMute(MUTE);
-		} else {
-			jniAsternMute(NO_MUTE);
-		}
-
-		if (mCheckCamera) {
-			jnirearviewCamera(CAMERA);
-		} else {
-			jnirearviewCamera(NO_CAMERA);
-		}
-		if(mCheckLight){
-			Log.d(TAG, "mCheckLight is true");
-			jnilowBrigthness(progessBrigth + 10);
-		}else {
-			Log.d(TAG, "mCheckLight is false");
-			jnilowBrigthness(0);
-		}
 		
-		if(mCheckVolume){
-			jniautoVolume(progessVolume + 10);
-		}else{
-			jniautoVolume(0);
-		}
+		try {
+			if (mCheckMute) {
+				jniAsternMute(MUTE);
+			} else {
+				jniAsternMute(NO_MUTE);
+			}
+	
+			if (mCheckCamera) {
+				jnirearviewCamera(CAMERA);
+			} else {
+				jnirearviewCamera(NO_CAMERA);
+			}
+			if(mCheckLight){
+				Log.d(TAG, "mCheckLight is true");
+				jnilowBrigthness(progessBrigth + 10);
+			}else {
+				Log.d(TAG, "mCheckLight is false");
+				jnilowBrigthness(0);
+			}
+			
+			if(mCheckVolume){
+				jniautoVolume(progessVolume + 10);
+			}else{
+				jniautoVolume(0);
+			}
+			
+			if(mCheckOTG == PRESSHOST){
+				switchOTG(PRESSHOST);
+			}else {
+				switchOTG(PRESSSLAVE);
+			}
+			jniSetStandby(mCheckStandby);
 		
-		if(mCheckOTG == PRESSHOST){
-			switchOTG(PRESSHOST);
-		}else {
-			switchOTG(PRESSSLAVE);
+		} catch (Exception e) {
+			Toast toast = Toast.makeText(this, "An error has occured.  The Android box must be connected to the headunit for this application to work.", Toast.LENGTH_LONG);
+			toast.show();
 		}
-		jniSetStandby(mCheckStandby);
 	}
 	
 	@Override

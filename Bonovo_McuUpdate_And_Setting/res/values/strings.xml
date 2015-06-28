@@ -58,4 +58,11 @@
     <string name="standby_infinite">Always On</string>
     <string name="standby_switch_on">ON</string>
     <string name="standby_switch_off">OFF</string>
+    <string name="list_connectedstandby">Connected Standby Time</string>
+    <string name="connectedstandby_description">This setting will delay the activation of airplane mode when the unit sleeps by the specified amount of time.</string>
+    <string name="connectedstandby_off">No Connected Standby</string>
+    <string name="connectedstandby_one_minute">One Minute</string>
+    <string name="connectedstandby_two_minutes">Two Minutes</string>
+    <string name="connectedstandby_five_minutes">Five Minutes</string>
+    <string name="connectedstandby_ten_minutes">Ten Minutes</string>
 </resources>
