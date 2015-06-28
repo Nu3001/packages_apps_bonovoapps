@@ -217,6 +217,7 @@ public class HandleService extends Service{
 			}else if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
                 notifyMcuWakeUp();
                 setWakeupStatus(true);
+                mHandler.removeMessages(ACTIVATE_AIRPLANE_MODE);	// If we woke before the timeout, remove the leftover airplane mode message
                 if(!mIsAirplaneOn){
                     setAirplaneModeOn(false);
                 }
