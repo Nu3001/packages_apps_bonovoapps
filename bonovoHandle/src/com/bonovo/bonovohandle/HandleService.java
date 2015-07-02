@@ -289,8 +289,9 @@ public class HandleService extends Service{
 								  .commit();
 				Log.v(TAG, "MCU to HandlerService--> carType="+carType);
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_SET_CONNECTED_SLEEP_TIME")){
-				int timeout = intent.getIntExtra("milliseconds", 1000);
-				setConnectedSleepTime(timeout);
+				long timeout = new Long(intent.getIntExtra("minutes", 1));
+				Log.v(TAG, "Setting connected sleep time to "+ timeout);
+				setConnectedSleepTime(timeout * 60000);	// intent values is in minutes, handler uses milliseconds. 60000 milliseconds in one minute.
 			}
 		}
 	};
@@ -307,16 +308,16 @@ public class HandleService extends Service{
 		return sp.getBoolean("WAKE_MODE", false);
     }
 
-    private void setConnectedSleepTime(int milliSecondsToAirplaneMode){
+    private void setConnectedSleepTime(long milliSecondsToAirplaneMode){
         SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
 		Editor editor = sp.edit();
-		editor.putInt("CONNECTED_SLEEP_TIME", milliSecondsToAirplaneMode);
+		editor.putLong("CONNECTED_SLEEP_TIME", milliSecondsToAirplaneMode);
 		editor.commit();
     }
 
-    private int getConnectedSleepTime(){
+    private long getConnectedSleepTime(){
         SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
-		return sp.getInt("CONNECTED_SLEEP_TIME", 1000);		// default to 1 second (1000 milliseconds)
+		return sp.getLong("CONNECTED_SLEEP_TIME", 1000);		// default to 1 second (1000 milliseconds)
     }
 
     private void setAirplaneFlag(boolean isAirplane){

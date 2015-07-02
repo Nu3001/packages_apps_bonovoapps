@@ -35,12 +35,14 @@ public class RightFragmentStandby extends Fragment {
 	private final int NO_STANDBY_TIME= 0;
 	private final int INFINITE_STANDBY= 65535;
 
-	// Connected Standby delay times (in seconds)
-	private final int CS_OFF= 1;
-	private final int CS_ONE_MIN= 60;
-	private final int CS_TWO_MIN= 120;
-	private final int CS_FIVE_MIN= 300;
-	private final int CS_TEN_MIN= 600;
+	// Connected Standby delay times (in minutes)
+	private final int CS_OFF= 0;
+	private final int CS_TEN_MIN= 10;
+	private final int CS_ONE_HOUR= 60;
+	private final int CS_FOUR_HOURS= 240;
+	private final int CS_HALF_DAY= 720;
+	private final int CS_ONE_DAY= 1440;
+	private final int CS_INFINITE= 65535;
 	
 	private RadioGroup radioGroup;
 	private RadioButton halfHourBtn;
@@ -54,10 +56,12 @@ public class RightFragmentStandby extends Fragment {
 
 	private RadioGroup csRadioGroup;
 	private RadioButton csOffBtn;
-	private RadioButton csOneMinBtn;
-	private RadioButton csTwoMinBtn;
-	private RadioButton csFiveMinBtn;
 	private RadioButton csTenMinBtn;
+	private RadioButton csOneHourBtn;
+	private RadioButton csFourHoursBtn;
+	private RadioButton csHalfDayBtn;
+	private RadioButton csOneDayBtn;
+	private RadioButton csInfiniteBtn;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -88,10 +92,12 @@ public class RightFragmentStandby extends Fragment {
 		
 		csRadioGroup = (RadioGroup)view.findViewById(R.id.connectedStandbyGroup);
 		csOffBtn = (RadioButton)view.findViewById(R.id.cs_off);
-		csOneMinBtn = (RadioButton)view.findViewById(R.id.cs_one_minute);
-		csTwoMinBtn = (RadioButton)view.findViewById(R.id.cs_two_minutes);
-		csFiveMinBtn = (RadioButton)view.findViewById(R.id.cs_five_minutes);
 		csTenMinBtn = (RadioButton)view.findViewById(R.id.cs_ten_minutes);
+		csOneHourBtn = (RadioButton)view.findViewById(R.id.cs_one_hour);
+		csFourHoursBtn = (RadioButton)view.findViewById(R.id.cs_four_hours);
+		csHalfDayBtn = (RadioButton)view.findViewById(R.id.cs_half_day);
+		csOneDayBtn = (RadioButton)view.findViewById(R.id.cs_one_day);
+		csInfiniteBtn = (RadioButton)view.findViewById(R.id.cs_infinite);
 		
 		readSharePreConfig();
 		checkRadioButton();
@@ -159,33 +165,43 @@ public class RightFragmentStandby extends Fragment {
 				if (checkedId == csOffBtn.getId()) {
 					cs_checkFlag = CS_OFF;
 					preferences.edit()
-					   		   .putInt("cs checked", checkFlag)
-					   		   .commit();
-				}else if (checkedId == csOneMinBtn.getId()) {
-					cs_checkFlag = CS_ONE_MIN;
-					preferences.edit()
-					   		   .putInt("cs checked", checkFlag)
-					   		   .commit();
-				}else if (checkedId == csTwoMinBtn.getId()) {
-					cs_checkFlag = CS_TWO_MIN;
-					preferences.edit()
-					   		   .putInt("cs checked", checkFlag)
-					   		   .commit();
-				}else if (checkedId == csFiveMinBtn.getId()) {
-					cs_checkFlag = CS_FIVE_MIN;
-					preferences.edit()
-					   		   .putInt("cs checked", checkFlag)
+					   		   .putInt("cs checked", cs_checkFlag)
 					   		   .commit();
 				}else if (checkedId == csTenMinBtn.getId()) {
 					cs_checkFlag = CS_TEN_MIN;
 					preferences.edit()
-					   		   .putInt("cs checked", checkFlag)
+					   		   .putInt("cs checked", cs_checkFlag)
 					   		   .commit();
+				}else if (checkedId == csOneHourBtn.getId()) {
+					cs_checkFlag = CS_ONE_HOUR;
+					preferences.edit()
+					   		   .putInt("cs checked", cs_checkFlag)
+					   		   .commit();
+				}else if (checkedId == csFourHoursBtn.getId()) {
+					cs_checkFlag = CS_FOUR_HOURS;
+					preferences.edit()
+					   		   .putInt("cs checked", cs_checkFlag)
+					   		   .commit();
+				}else if (checkedId == csHalfDayBtn.getId()) {
+					cs_checkFlag = CS_HALF_DAY;
+					preferences.edit()
+					   		   .putInt("cs checked", cs_checkFlag)
+					   		   .commit();
+				}else if (checkedId == csOneDayBtn.getId()) {
+					cs_checkFlag = CS_ONE_DAY;
+					preferences.edit()
+					   		   .putInt("cs checked", cs_checkFlag)
+					   		   .commit();
+				}else if (checkedId == csInfiniteBtn.getId()) {
+					checkFlag = CS_INFINITE;
+					preferences.edit()
+							   .putInt("cs checked", cs_checkFlag)
+							   .commit();
 				}
 
 				// Send the new value to the broadcastlistener in bonovoHandle, which will make sure it's saved 
 		        Intent intent = new Intent("android.intent.action.BONOVO_SET_CONNECTED_SLEEP_TIME");
-		        intent.putExtra("milliseconds", cs_checkFlag * 1000);
+		        intent.putExtra("minutes", cs_checkFlag);
 		        context.sendBroadcast(intent);
 
 			}
@@ -213,6 +229,7 @@ public class RightFragmentStandby extends Fragment {
 		// TODO Auto-generated method stub
 		preferences = context.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
 		checkFlag = preferences.getInt("standby checked", TWO_HOUR_TIME);	//默认全局变量为PRESSHOST
+		cs_checkFlag = preferences.getInt("cs checked", CS_OFF);
 		switchCheckFlag = preferences.getBoolean("switch_checked", false);
 	}
 	
@@ -241,17 +258,19 @@ public class RightFragmentStandby extends Fragment {
 
 		if(cs_checkFlag == CS_OFF){
 			csOffBtn.setChecked(true);
-		}else if (cs_checkFlag == CS_ONE_MIN) {
-			csOneMinBtn.setChecked(true);
-		}else if (cs_checkFlag == CS_TWO_MIN) {
-			csTwoMinBtn.setChecked(true);
-		}else if (cs_checkFlag == CS_FIVE_MIN) {
-			csFiveMinBtn.setChecked(true);
 		}else if (cs_checkFlag == CS_TEN_MIN) {
 			csTenMinBtn.setChecked(true);
-		}
-		
-		
+		}else if (cs_checkFlag == CS_ONE_HOUR) {
+			csOneHourBtn.setChecked(true);
+		}else if (cs_checkFlag == CS_FOUR_HOURS) {
+			csFourHoursBtn.setChecked(true);
+		}else if (cs_checkFlag == CS_HALF_DAY) {
+			csHalfDayBtn.setChecked(true);
+		}else if (cs_checkFlag == CS_ONE_DAY) {
+			csOneDayBtn.setChecked(true);
+		}else if (cs_checkFlag == CS_INFINITE) {
+			csInfiniteBtn.setChecked(true);
+		}		
 	}
 	
 	public interface CallBackStandby{
