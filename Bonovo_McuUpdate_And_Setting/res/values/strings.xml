@@ -11,7 +11,7 @@
     <string name="androidversion">Android Version: </string>
     <string name="check_update">Check Now</string>
     <string name="mcu_diatext">MCU upgrade files found</string>
-    <string name="notice">Tip: Do not perform other operations in the process of upgrading, Lest cause an accident</string>
+    <string name="notice">Tip: Please allow the update to complete before attempting to use other apps.</string>
     <string name="version">Version Information</string>
     <string name="update">MCU Update</string>
     <string name="btupdate">BT Update</string>
@@ -26,7 +26,7 @@
     <string name="found">Found Update File</string>
     <string name="not_found">Update File Not Found</string>
     <string name="update_ok">Update Success</string>
-    <string name="update_ok_msg">Is Restart, Please Later...</string>
+    <string name="update_ok_msg">MCU update completed, rebooting unit</string>
     <string name="msg_1"> </string>
     <string name="list_version">Box Version</string>
     <string name="list_update">MCU Update</string>
@@ -59,10 +59,12 @@
     <string name="standby_switch_on">ON</string>
     <string name="standby_switch_off">OFF</string>
     <string name="list_connectedstandby">Connected Standby Time</string>
-    <string name="connectedstandby_description">This setting will delay the activation of airplane mode when the unit sleeps by the specified amount of time.</string>
-    <string name="connectedstandby_off">No Connected Standby</string>
-    <string name="connectedstandby_one_minute">One Minute</string>
-    <string name="connectedstandby_two_minutes">Two Minutes</string>
-    <string name="connectedstandby_five_minutes">Five Minutes</string>
-    <string name="connectedstandby_ten_minutes">Ten Minutes</string>
+    <string name="connectedstandby_description">When going to standby, activate airplane mode:</string>
+    <string name="connectedstandby_off">Straight Away</string>
+    <string name="connectedstandby_ten_minutes">After Ten Minutes</string>
+    <string name="connectedstandby_one_hour">After One Hour</string>
+    <string name="connectedstandby_four_hours">After Four Hours</string>
+    <string name="connectedstandby_half_day">After Twelve Hours</string>
+    <string name="connectedstandby_one_day">After One Day</string>
+    <string name="connectedstandby_infinite">Never</string>
 </resources>

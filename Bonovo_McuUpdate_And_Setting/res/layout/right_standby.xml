@@ -7,11 +7,6 @@
     android:paddingRight="10dp"
     android:paddingTop="25dp" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -19,16 +14,6 @@
         android:text="@string/list_standby"
         android:textColor="#00ced1"
         android:textSize="20sp" />
-    
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/list_connectedstandby"
-        android:textColor="#00ced1"
-        android:textSize="20sp" />
-
-    </LinearLayout>
         
     <View
         android:layout_width="match_parent"
@@ -146,11 +131,11 @@
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content" >
 
-	                    <TextView
-	                        android:id="@+id/textView1"
+	                   	<TextView
+	                        android:id="@+id/textCSDiscription"
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
-	                        android:layout_margin="10dp"
+	                        android:layout_margin="6dp"
 	                        android:text="@string/connectedstandby_description"
 	                        android:textAppearance="?android:attr/textAppearanceSmall" />
 	
@@ -158,30 +143,9 @@
 	                        android:id="@+id/cs_off"
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
-	                        android:layout_marginTop="10dp"
+	                        android:layout_marginTop="7dp"
 	                        android:checked="true"
 	                        android:text="@string/connectedstandby_off" />
-	
-	                    <RadioButton
-	                        android:id="@+id/cs_one_minute"
-	                        android:layout_width="wrap_content"
-	                        android:layout_height="wrap_content"
-	                        android:layout_marginTop="7dp"
-	                        android:text="@string/connectedstandby_one_minute" />
-	
-	                    <RadioButton
-	                        android:id="@+id/cs_two_minutes"
-	                        android:layout_width="wrap_content"
-	                        android:layout_height="wrap_content"
-	                        android:layout_marginTop="7dp"
-	                        android:text="@string/connectedstandby_two_minutes" />
-	
-	                    <RadioButton
-	                        android:id="@+id/cs_five_minutes"
-	                        android:layout_width="wrap_content"
-	                        android:layout_height="wrap_content"
-	                        android:layout_marginTop="7dp"
-	                        android:text="@string/connectedstandby_five_minutes" />
 	
 	                    <RadioButton
 	                        android:id="@+id/cs_ten_minutes"
@@ -189,6 +153,41 @@
 	                        android:layout_height="wrap_content"
 	                        android:layout_marginTop="7dp"
 	                        android:text="@string/connectedstandby_ten_minutes" />
+	
+	                    <RadioButton
+	                        android:id="@+id/cs_one_hour"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginTop="7dp"
+	                        android:text="@string/connectedstandby_one_hour" />
+ 
+	                   	<RadioButton
+	                   	    android:id="@+id/cs_four_hours"
+	                   	    android:layout_width="wrap_content"
+	                   	    android:layout_height="wrap_content"
+	                   	    android:layout_marginTop="7dp"
+	                   	    android:text="@string/connectedstandby_four_hours" />
+ 
+	                    <RadioButton
+	                        android:id="@+id/cs_half_day"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginTop="7dp"
+	                        android:text="@string/connectedstandby_half_day" />
+
+	                    <RadioButton
+	                        android:id="@+id/cs_one_day"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginTop="7dp"
+	                        android:text="@string/connectedstandby_one_day" />
+ 
+	                    <RadioButton
+	                        android:id="@+id/cs_infinite"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginTop="7dp"
+	                        android:text="@string/connectedstandby_infinite" />
 	                </RadioGroup>
 	            </LinearLayout>
         	</ScrollView>
