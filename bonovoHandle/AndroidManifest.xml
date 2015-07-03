@@ -45,6 +45,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 		</activity>
+        <activity
+            android:name=".VideoSwitcherActivity"
+            android:clearTaskOnLaunch="true"
+            android:noHistory="true"
+            android:launchMode="singleTask" 
+            android:label="@string/title_activity_videoswitcher" >
+        </activity>
         <receiver 
             android:name=".HandleReceiver"
             android:enabled="true"

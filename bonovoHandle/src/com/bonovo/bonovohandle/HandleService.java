@@ -96,6 +96,8 @@ public class HandleService extends Service{
 	private native final int jniSetVolume(int volume) throws IllegalStateException;
     private native final int jniSetSoundBalance(int channel, int volume) throws IllegalStateException;
 	private native final int jniSetMute(boolean mute) throws IllegalStateException;
+	private native final int jniSetVideoChannel(int channel) throws IllegalStateException;
+	private native final int jniSetAudioChannel(int channel) throws IllegalStateException;
 	private native final boolean jniSendPowerKey() throws IllegalStateException;
 	private native final boolean jniOnGoToSleep() throws IllegalStateException;
 	private native final boolean jniOnWakeUp() throws IllegalStateException;
@@ -292,6 +294,24 @@ public class HandleService extends Service{
 				long timeout = new Long(intent.getIntExtra("minutes", 1));
 				Log.v(TAG, "Setting connected sleep time to "+ timeout);
 				setConnectedSleepTime(timeout * 60000);	// intent values is in minutes, handler uses milliseconds. 60000 milliseconds in one minute.
+			} else if (intent.getAction().equals("android.intent.action.BONOVO_SET_VIDEO_CHANNEL")) {
+				int channel = intent.getIntExtra("channel", 0);
+				jniSetVideoChannel(channel);
+
+				Boolean VideoSwitcher = intent.getExtras().getBoolean("videoswitcher", true);
+
+				if (VideoSwitcher == true) {
+					Intent switcherintent = new Intent(context, VideoSwitcherActivity.class);
+					if (channel == 0) {
+						switcherintent.putExtra("stop", true);
+					}
+					switcherintent.putExtra("channel", channel);
+					switcherintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(switcherintent);
+				}
+			} else if (intent.getAction().equals("android.intent.action.BONOVO_SET_AUDIO_CHANNEL")) {
+				int channel = intent.getIntExtra("channel", 0);
+				jniSetAudioChannel(channel);
 			}
 		}
 	};
@@ -513,6 +533,8 @@ public class HandleService extends Service{
 		myIntentFilter.addAction("android.intent.action.BONOVO_SET_SOUND_BALANCE");
 		myIntentFilter.addAction("android.intent.action.BONOVO_GET_SOUND_BALANCE");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SET_CONNECTED_SLEEP_TIME");
+		myIntentFilter.addAction("android.intent.action.BONOVO_SET_VIDEO_CHANNEL");
+		myIntentFilter.addAction("android.intent.action.BONOVO_SET_AUDIO_CHANNEL");
 		myIntentFilter.addAction(Intent.ACTION_SCREEN_OFF);
 		myIntentFilter.addAction(Intent.ACTION_SCREEN_ON);
 		myIntentFilter.addAction("com.android.internal.car.can.action.CAR_TYPE_RESPONSE");
