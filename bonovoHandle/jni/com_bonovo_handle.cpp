@@ -24,6 +24,26 @@
 // power
 #define IOCTL_HANDLE_SEND_POWER_KEY       _IO(HANDLE_CTRL_DEV_MAJOR, 11)
 
+// codec
+#define IOCTL_HANDLE_CODEC_SWITCH_SRC       _IO(HANDLE_CTRL_DEV_MAJOR, 30)
+#define IOCTL_HANDLE_CODEC_RECOVER_SRC      _IO(HANDLE_CTRL_DEV_MAJOR, 31)
+#define IOCTL_HANDLE_CODEC_INIT             _IO(HANDLE_CTRL_DEV_MAJOR, 32)
+#define IOCTL_HANDLE_CODEC_GET_CURRENT_SRC  _IO(HANDLE_CTRL_DEV_MAJOR, 33)
+
+// codec status
+typedef enum
+{
+    CODEC_LEVEL_NO_ANALOG = 0,
+    CODEC_LEVEL_BT_MUSIC = 1,
+    CODEC_LEVEL_AV_IN = 2,
+    CODEC_LEVEL_DVB = 3,
+    CODEC_LEVEL_DVD = 4,
+    CODEC_LEVEL_RADIO = 5,
+    CODEC_LEVEL_BT_TEL = 6,
+    CODEC_LEVEL_COUNT
+}CODEC_Level;
+#define CODEC_DEFAULT_SOURCE         CODEC_LEVEL_NO_ANALOG
+
 unsigned int checkSum(unsigned char* cmdBuf, int size)
 {
 	unsigned int temp = 0;
@@ -232,6 +252,42 @@ static int android_handle_getbrightness(JNIEnv *env, jobject thiz)
 	return brightness;
 }
 
+static int android_handle_setVideoChannel(JNIEnv *env, jobject thiz, jint channel)
+{
+	int ttyS3_fd = -1;
+	int dwByteWrite;
+	int sum;
+	unsigned char command[10] = {0xFA, 0xFA, 0x0A, 0x00, 0x83, 0x03, 0x03, 0x00};
+	command[6] = channel;
+	sum = checkSum((unsigned char*)command, 8);
+	command[8] = sum & 0x00FF;
+	command[9] = (sum >> 8) & 0x00FF;
+
+	if((ttyS3_fd = open("/dev/ttyS3", O_RDWR|O_NOCTTY|O_NONBLOCK)) < 0) {
+		LOGI("======bonovo dev/ttyS3 setVideoChannel open result = %d\n",ttyS3_fd);
+		return -1;
+	} else {
+	dwByteWrite = write(ttyS3_fd, command, sizeof(command));
+	close(ttyS3_fd);
+	return 0;
+	}
+}
+
+static int android_handle_setAudioChannel(JNIEnv *env, jobject thiz, jint channel)
+{
+	int fd, ret;
+
+	fd = open("/dev/bonovo_handle", O_RDWR|O_NOCTTY|O_NONBLOCK);
+	if (-1 == fd) {
+		LOGE("Can't Open bonovo_handle\n");
+		return(JNI_FALSE);
+	} else {
+		ret = ioctl(fd, IOCTL_HANDLE_CODEC_SWITCH_SRC, channel);
+		close(fd);
+	}
+	return ret;
+}
+
 static const char *classPathName = "com/bonovo/bonovohandle/HandleService";
 
 static JNINativeMethod sMethods[] = {
@@ -243,6 +299,8 @@ static JNINativeMethod sMethods[] = {
 	{"jniOnGoToSleep", "()Z", (void *)android_power_goToSleep},
 	{"jniOnWakeUp", "()Z", (void *)android_power_wakeUp},
 	{"jniSetSoundBalance", "(II)I", (void*)android_handle_setSingleVolume},
+	{"jniSetVideoChannel", "(I)I", (void *)android_handle_setVideoChannel},
+	{"jniSetAudioChannel", "(I)I", (void *)android_handle_setAudioChannel},
 };
 	
 /*
