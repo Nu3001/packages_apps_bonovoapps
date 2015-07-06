@@ -87,10 +87,15 @@ static jboolean android_power_wakeUp(JNIEnv *env, jobject thiz) {
 	sum = checkSum(cmd, 6);
 	cmd[6] = sum & 0x00FF;
 	cmd[7] = (sum >> 8) & 0x00FF;
-	if((cmdLen = write(fdTtyS3, cmd, 8)) != 8){
-		ALOGE("write /dev/ttyS3 failed,fdPower=%d. writeLen:%d\n", fdTtyS3, cmdLen);
-		close(fdTtyS3);
-		return JNI_FALSE;
+	
+	int i;
+	for(i=0; i < 3; i++)
+	{
+		if((cmdLen = write(fdTtyS3, cmd, 8)) != 8){
+			ALOGE("write /dev/ttyS3 failed,fdPower=%d. writeLen:%d\n", fdTtyS3, cmdLen);
+			close(fdTtyS3);
+			return JNI_FALSE;
+		}
 	}
 	close(fdTtyS3);
 
@@ -111,10 +116,15 @@ static jboolean android_power_goToSleep(JNIEnv *env, jobject thiz) {
 	sum = checkSum(cmd, 6);
 	cmd[6] = sum & 0x00FF;
 	cmd[7] = (sum >> 8) & 0x00FF;
-	if((len = write(fdTtyS3, cmd, 8)) != 8){
-		close(fdTtyS3);
-		ALOGE("write /dev/ttyS3 failed,fdPower=%d. writeLen:%d\n", fdTtyS3, len);
-		return JNI_FALSE;
+	
+	int i;
+	for(i=0; i < 3; i++)
+	{
+		if((len = write(fdTtyS3, cmd, 8)) != 8){
+			close(fdTtyS3);
+			ALOGE("write /dev/ttyS3 failed,fdPower=%d. writeLen:%d\n", fdTtyS3, len);
+			return JNI_FALSE;
+		}
 	}
 	close(fdTtyS3);
 
