@@ -45,11 +45,10 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 	private Button mBtnPhone = null;
 	private Button mBtnMusic = null;
 	private Button mBtnSettings = null;
-	private Button mBtnSyncContacts = null;
 	private ImageButton mIgeBtnVolUp = null;
 	private ImageButton mIgeBtnVolDown = null;
 	
-	//private Button mBtnBtPower = null; 	//0718 É¾³ý
+	//private Button mBtnBtPower = null; 	//0718 É¾ï¿½ï¿½
 	private TextView mTvBtNameInfo = null;
 	private TextView mTvBtName = null;
 	private TextView mTvBtPinInfo = null;
@@ -65,8 +64,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 	private Button mBtnMusicPause = null;
 	private Button mBtnMusicStop = null;
 	private Button mBtnMusicNext = null;
-	private MySwitch mSwBtPower = null;      //0718 ÐÂ¼Ó
-	private MySwitch mSwMusic = null;	 //0820 ÐÞ¸Ä
+	private MySwitch mSwBtPower = null;      //0718 ï¿½Â¼ï¿½
+	private MySwitch mSwMusic = null;	 //0820 ï¿½Þ¸ï¿½
 	private Context mContext = null;
 	
 	private static BonovoBlueToothService mBtService = null;
@@ -102,14 +101,12 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		mBtnPhone = (Button)findViewById(R.id.btnPhone);
 		mBtnMusic = (Button)findViewById(R.id.btnMusic);
 		mBtnSettings = (Button)findViewById(R.id.btnSettings);
-		mBtnSyncContacts = (Button)findViewById(R.id.btnSyncContacts);
 		mIgeBtnVolUp = (ImageButton)findViewById(R.id.btnVolAdd);
 		mIgeBtnVolDown = (ImageButton)findViewById(R.id.btnVolDown);
 		
 		mBtnPhone.setOnClickListener(this);
 		mBtnMusic.setOnClickListener(this);
 		mBtnSettings.setOnClickListener(this);
-		mBtnSyncContacts.setOnClickListener(this);
 		mIgeBtnVolUp.setOnClickListener(this);
 		mIgeBtnVolDown.setOnClickListener(this);
 		
@@ -147,17 +144,17 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		
 		
 		//-------------------------------------------------------------------------------------------------------
-		//ÏÂÃæµÄ´úÂëÊÇÎªÁË±£³ÖÀ¶ÑÀ½çÃæ·ç¸ñµÄÒ»ÖÂÐÔ¶øÉè¼ÆÌí¼ÓµÄ£»
-		//½«Ô­À´ÓÃButton±íÊ¾µÄÀ¶ÑÀ¿ª¹Ø¸ÄÎªÓÃSwitch±íÊ¾£»
-		//SwitchÊÇÒ»¸ö¿ÉÒÔÔÚÁ½ÖÖ×´Ì¬ÇÐ»»µÄ¿ª¹Ø¿Ø¼þ£»
-		//Í¨¹ýÊµÏÖCompoundButton.OnCheckedChangeListener½Ó¿Ú£¬²¢ÊµÏÖÆäÄÚ²¿ÀàµÄonCheckedChangedÀ´¼àÌý×´Ì¬±ä»¯£»
-		//È»ºóÔÙ½øÐÐÅÐ¶Ï£»
-		// 1.µ±switch´¦ÓÚÑ¡ÖÐ×´Ì¬Ê±£¬Ö»ÓÐÀ¶ÑÀ¿ª¹Ø×´Ì¬mTvBtStatus²»¿É¼û£¬ÆäËû¾ùÉèÖÃÎª¿É¼û£»
-		// 2.µ±switch´¦ÓÚÎ´Ñ¡ÖÐ×´Ì¬Ê±£¬Ö»ÓÐÀ¶ÑÀ¿ª¹Ø×´Ì¬mTvBtStatus¿É¼û£¬ÆäËû¾ùÉèÖÃÎª²»¿É¼û¡£
-		// 3.ÐÞ¸ÄÍêÉÆ¹Ù·½Switch¿Ø¼þ£¨Ïê¼ûMySwitchÄÚµÄ´úÂë£©¡£Ôö¼ÓÁË2ÏîÐ¡¹¦ÄÜ£º
-		// 1£©Ö§³ÖÓÃTrack±³¾°Í¼Æ¬µÄ·½Ê½´úÌæTexton TextoffµÈÎÄ×Ö·½Ê½±íÏÖ¿ª¹Ø×´Ì¬
-		// 2£©Ö§³Öµ÷Õû¿ØÖÆSwitchµÄ¸ß¶È
-		//  ¡ª¡ªswxia. Date:20140825.
+		//ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÓµÄ£ï¿½
+		//ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½Buttonï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Îªï¿½ï¿½Switchï¿½ï¿½Ê¾ï¿½ï¿½
+		//Switchï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ð»ï¿½ï¿½Ä¿ï¿½ï¿½Ø¿Ø¼ï¿½ï¿½ï¿½
+		//Í¨ï¿½ï¿½Êµï¿½ï¿½CompoundButton.OnCheckedChangeListenerï¿½Ó¿Ú£ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½onCheckedChangedï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ä»¯ï¿½ï¿½
+		//È»ï¿½ï¿½ï¿½Ù½ï¿½ï¿½ï¿½ï¿½Ð¶Ï£ï¿½
+		// 1.ï¿½ï¿½switchï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½×´Ì¬Ê±ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬mTvBtStatusï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½É¼ï¿½
+		// 2.ï¿½ï¿½switchï¿½ï¿½ï¿½ï¿½Î´Ñ¡ï¿½ï¿½×´Ì¬Ê±ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬mTvBtStatusï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½É¼ï¿½
+		// 3.ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Æ¹Ù·ï¿½Switchï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MySwitchï¿½ÚµÄ´ï¿½ï¿½ë£©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ü£ï¿½
+		// 1ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Trackï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Texton Textoffï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½Ê½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½×´Ì¬
+		// 2ï¿½ï¿½Ö§ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Switchï¿½Ä¸ß¶ï¿½
+		//  ï¿½ï¿½ï¿½ï¿½swxia. Date:20140825.
 		// ------------------------------------------------------------------------------------------------------  
 		
 		mSwBtPower = (MySwitch)findViewById(R.id.swBtStatus);	
@@ -178,7 +175,7 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 				mIgeBtStatus.setImageResource(powerStatus ? R.drawable.setting_bluetooth_opened : R.drawable.setting_bluetooth_close);
 				mTvBtHFPStatus.setText(hfpStatus ? R.string.phone_link_status_opened : R.string.phone_link_status_closed);
 				if(isChecked){
-					//Ñ¡ÖÐÊ±Ëù×öµÄ²Ù×÷
+					//Ñ¡ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
 					mTvBtName.setVisibility(View.VISIBLE);
 					mTvBtPin.setVisibility(View.VISIBLE);
 					mTvBtNameInfo.setText(mBtService.getBtName());
@@ -191,7 +188,7 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 					mBtnMusicName.setVisibility(View.VISIBLE);//0825
 					
 				}else{
-					//Î´Ñ¡ÖÐÊ±Ëù×öµÄ²Ù×÷
+					//Î´Ñ¡ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
 					mTvBtName.setVisibility(View.GONE);
 					mTvBtPin.setVisibility(View.GONE);
 					mTvBtNameInfo.setVisibility(View.GONE);
@@ -493,73 +490,7 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 			}
 			break;
 		}
-		
-		// the button of sync contacts
-		case R.id.btnSyncContacts:{
-			if((mBtService == null) || (!mBtService.getBtSwitchStatus())){
-				Toast.makeText(mContext, R.string.description_sync_contacts_disable, Toast.LENGTH_SHORT).show();
-				break;
-			}
-			
-			String syncInfo = getString(R.string.description_sync_select) + "\n" 
-					+ getString(R.string.description_sync_sim) + "\n"
-					+ getString(R.string.description_sync_phone);
-			new AlertDialog.Builder(BluetoothSettings.this)
-				.setTitle(R.string.title)
-				.setMessage(syncInfo)
-				.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-					
-					@SuppressWarnings("deprecation")
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						if (mBtService.getBtSwitchStatus() && mBtService.getBtHFPStatus()) {
 				
-							showDialog(DIALOG_SYNC_CONTACTS);
-							new Thread() {
-								@Override
-								public void run() {
-								    mIsSyncPhoneBook = true;
-									mBtService.SynchSimContacts();
-								}
-							}.start();
-						} else {
-							Toast.makeText(getApplicationContext(),
-									R.string.description_sync_contacts_disable, Toast.LENGTH_SHORT)
-									.show();
-						}
-						
-					}
-				})
-				.setNeutralButton("Phone", new DialogInterface.OnClickListener() {
-					
-					@SuppressWarnings("deprecation")
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						if (mBtService.getBtSwitchStatus() && mBtService.getBtHFPStatus()) {
-				
-							showDialog(DIALOG_SYNC_CONTACTS);
-							new Thread() {
-								@Override
-								public void run() {
-								    mIsSyncPhoneBook = true;
-									mBtService.SynchPhoneContacts();
-								}
-				
-							}.start();
-						} else {
-							Toast.makeText(getApplicationContext(),
-									R.string.description_sync_contacts_disable, Toast.LENGTH_SHORT)
-									.show();
-						}
-					}
-				})
-				.create()
-				.show();
-			break;
-		}
-		
 		// the button of volume up
 		case R.id.btnVolAdd:{
 			if((mBtService == null) || (!mBtService.getBtSwitchStatus())){
@@ -584,9 +515,9 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 			break;
 		}
 			//-------------------------------------------------------------------------------------------------------
-			//ÏÂÃæµÄButton´úÂëÊÇÎªÁË±£³ÖÀ¶ÑÀ½çÃæ·ç¸ñµÄÒ»ÖÂÐÔ¶øÉ¾³ýµÄ¡£
-			//ÏÂÃæButtonÊµÏÖµÄÀ¶ÑÀ¿ª¹Ø¿ØÖÆ¹¦ÄÜÒÑ¾­ÓÃÉÏÃæµÄSwitch±íÊ¾¡£
-			//  ¡ª¡ªswxia. Date:20140721.
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Buttonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¶ï¿½É¾ï¿½ï¿½Ä¡ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ButtonÊµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Switchï¿½ï¿½Ê¾ï¿½ï¿½
+			//  ï¿½ï¿½ï¿½ï¿½swxia. Date:20140721.
 			// ------------------------------------------------------------------------------------------------------  
 //	    	case R.id.btnBluetoothStatus:{
 //			mBtService.setBtSwitchStatus(!mBtService.getBtSwitchStatus());

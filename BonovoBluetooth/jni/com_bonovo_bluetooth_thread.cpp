@@ -477,6 +477,10 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_IO0, NULL, 0);          // mute false
 			}else if(!strncmp(myLineBuf, "IO1", 3)){
 				android_callback(CMD_UNSOLICATED_IO1, NULL, 0);          // mute true
+			}else if(!strncmp(myLineBuf, "MO0", 3)){
+				android_callback(CMD_UNSOLICATED_MO0, NULL, 0);          // anti-pop speaker off
+			}else if(!strncmp(myLineBuf, "MO1", 3)){
+				android_callback(CMD_UNSOLICATED_MO1, NULL, 0);          // anti-pop speaker on
 			}
 		}
 	}

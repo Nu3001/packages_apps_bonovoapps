@@ -123,6 +123,7 @@ public class BonovoBlueToothService extends Service {
 	private final static String ACTION_BT_POWERON = "android.intent.action.BONOVO_BT_POWERON";
 	private final static String ACTION_BT_POWEROFF = "android.intent.action.BONOVO_BT_POWEROFF";
 	
+	// Phone actions
 	private final static String ACTION_CALL_DIAL = "android.intent.action.BONOVO_CALL_DIAL";
 	private final static String ACTION_CALL_ANSWER = "android.intent.action.BONOVO_CALL_ANSWER";
 	private final static String ACTION_CALL_HANGUP = "android.intent.action.BONOVO_CALL_HANGUP";
@@ -130,11 +131,20 @@ public class BonovoBlueToothService extends Service {
 	private final static String ACTION_CALL_SWITCHAUDIO = "android.intent.action.BONOVO_CALL_SWITCHAUDIO";
 	private final static String ACTION_CALL_VOLUMEUP = "android.intent.action.BONOVO_CALL_VOLUMEUP";
 	private final static String ACTION_CALL_VOLUMEDOWN = "android.intent.action.BONOVO_CALL_VOLUMEDOWN";
-	private final static String ACTION_CALL_REJECTCALLWAITING = "android.intent.action.BONOVO_REJECTCALLWAITING";
-	private final static String ACTION_CALL_ENDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_ENDANDACCEPTCALLWAITING";
-	private final static String ACTION_CALL_HOLDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_HOLDANDACCEPTCALLWAITING";
-	private final static String ACTION_CALL_MAKECONFERENCECALL = "android.intent.action.BONOVO_MAKECONFERENCECALL";
-
+	private final static String ACTION_CALL_REJECTCALLWAITING = "android.intent.action.BONOVO_CALL_REJECTCALLWAITING";
+	private final static String ACTION_CALL_ENDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_CALL_ENDANDACCEPTCALLWAITING";
+	private final static String ACTION_CALL_HOLDANDACCEPTCALLWAITING = "android.intent.action.BONOVO_CALL_HOLDANDACCEPTCALLWAITING";
+	private final static String ACTION_CALL_MAKECONFERENCECALL = "android.intent.action.BONOVO_CALL_MAKECONFERENCECALL";
+	private final static String ACTION_CALL_VOICEDIAL = "android.intent.action.BONOVO_CALL_VOICEDIAL";
+	private final static String ACTION_CALL_VOICEDIAL_CANCEL = "android.intent.action.BONOVO_CALL_VOICEDIAL_CANCEL";
+	
+	// A2DP actions
+	private final static String ACTION_MUSIC_PLAY = "android.intent.action.BONOVO_BTMUSIC_PLAY";
+	private final static String ACTION_MUSIC_STOP = "android.intent.action.BONOVO_BTMUSIC_STOP";
+	private final static String ACTION_MUSIC_PAUSE = "android.intent.action.BONOVO_BTMUSIC_PAUSE";
+	private final static String ACTION_MUSIC_PREVTRACK = "android.intent.action.BONOVO_BTMUSIC_PREVTRACK";
+	private final static String ACTION_MUSIC_NEXTTRACK = "android.intent.action.BONOVO_BTMUSIC_NEXTTRACK";
+	
     // onKeyEvent
     private final static String ACTION_KEY_BT = "android.intent.action.BONOVO_BT";
     private final static String ACTION_KEY_BT_ANSWER = "android.intent.action.BONOVO_BT_ANSWER";
@@ -203,6 +213,13 @@ public class BonovoBlueToothService extends Service {
 		myIntentFilter.addAction(ACTION_CALL_ENDANDACCEPTCALLWAITING);
 		myIntentFilter.addAction(ACTION_CALL_HOLDANDACCEPTCALLWAITING);
 		myIntentFilter.addAction(ACTION_CALL_MAKECONFERENCECALL);
+		myIntentFilter.addAction(ACTION_CALL_VOICEDIAL);
+		myIntentFilter.addAction(ACTION_CALL_VOICEDIAL_CANCEL);
+		myIntentFilter.addAction(ACTION_MUSIC_PLAY);
+		myIntentFilter.addAction(ACTION_MUSIC_PAUSE);
+		myIntentFilter.addAction(ACTION_MUSIC_STOP);
+		myIntentFilter.addAction(ACTION_MUSIC_NEXTTRACK);
+		myIntentFilter.addAction(ACTION_MUSIC_PREVTRACK);
 		return myIntentFilter;
 	};
 	
@@ -331,6 +348,20 @@ public class BonovoBlueToothService extends Service {
 			    if(getPhoneState() == PhoneState.ACTIVE){
 				    BlueToothPhoneRejectWaitingCall();
 			    }
+			}else if(action.equals(ACTION_CALL_VOICEDIAL)){
+				BlueToothPhoneVoiceDial();
+			}else if(action.equals(ACTION_CALL_VOICEDIAL_CANCEL)){
+				BlueToothPhoneVoiceDialCancel();
+			}else if(action.equals(ACTION_MUSIC_PLAY)){
+				BlueToothMusicPlay();
+			}else if(action.equals(ACTION_MUSIC_STOP)){
+				BlueToothMusicStop();
+			}else if(action.equals(ACTION_MUSIC_PAUSE)){
+				BlueToothMusicPause();
+			}else if(action.equals(ACTION_MUSIC_NEXTTRACK)){
+				BlueToothMusicNext();
+			}else if(action.equals(ACTION_MUSIC_PREVTRACK)){
+				BlueToothMusicPre();
 			}
         }
 		
@@ -390,6 +421,7 @@ public class BonovoBlueToothService extends Service {
 			break;
 			case MSG_PHONE_NEW_CALL_WAITING:{
 				Intent icw = new Intent(BonovoBlueToothData.ACTION_PHONE_NEW_CALL_WAITING);
+				icw.putExtra(BonovoBlueToothData.PHONE_NUMBER, (String)msg.obj);
 				mContext.sendBroadcast(icw);
 			}
 			break;
@@ -880,7 +912,21 @@ public class BonovoBlueToothService extends Service {
 	public void BlueToothPhoneConferenceCalls() {
 		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CT);
 	}
+
+	/**
+	 * Start voice dial, activates voice commands on the connected phone (siri / ok google)
+	 */
+	public void BlueToothPhoneVoiceDial() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CI);
+	}
 		
+	/**
+	 * Cancel the voice dial command
+	 */
+	public void BlueToothPhoneVoiceDialCancel() {
+		BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_CJ);
+	}
+	
 	/**
 	 * Set or check bt's name
 	 * @param name  if name is null,check bt's name. Otherwise set name.
@@ -1370,6 +1416,26 @@ public class BonovoBlueToothService extends Service {
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PZ");
 			// Last number redial failed
 			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MO0:
+			// Speaker Anti-Pop function
+			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO0)");
+			
+			// disconnect speaker
+			if(mBtMusicIsEnable && getMusicStatus()){
+				recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
+			}
+			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+			if(DEB) Log.d(TAG, "Bluetooth device disconnected from speaker.");
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MO1:
+			// Speaker Anti-Pop function
+			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO1)");
+			
+			// reconnect speaker
+			if(mBtMusicIsEnable && getMusicStatus()){
+				activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
+			}
+			activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+			if(DEB) Log.d(TAG, "Bluetooth device reconnected to speaker.");
 		default:
 			break;
 		}
@@ -1588,8 +1654,11 @@ public class BonovoBlueToothService extends Service {
 		public static final int CMD_UNSOLICATED_PM = 57;	// SPP Connect or SPP Data Indication
 		public static final int CMD_UNSOLICATED_MH = 58;	// AVRCP current element attributes
 		public static final int CMD_UNSOLICATED_IT = 59;	// Release active call and switched to call waiting
+
+		public static final int CMD_UNSOLICATED_MO0 = 60;	// Anti-pop - Turn off speaker notice
+		public static final int CMD_UNSOLICATED_MO1 = 61;	// Anti-pop - Turn speaker back on notice
 		
-		public static final int CMD_UNSOLICATED_MAX = 60;
+		public static final int CMD_UNSOLICATED_MAX = 62;
 		
 //		public static final int CMD_UNSOLICATED_IS = 0;
 //		public static final int CMD_UNSOLICATED_IA = 1;

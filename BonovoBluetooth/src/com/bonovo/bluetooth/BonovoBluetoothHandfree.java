@@ -142,6 +142,12 @@ public class BonovoBluetoothHandfree extends Activity
 						
 					}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
 						requestAudioFocus();
+						
+						// If we've switched calls quickly, a hangup message may still be pending.
+						//   If so, remove it so the new call display doesn't get removed.
+						mHandler.removeMessages(MSG_DIAL_HANG_UP);
+						mHandler.removeMessages(MSG_DIAL_FINISH_ACTIVITY);
+						
 						setView(phoneLayouts.PHONE_RINGING_IN);
 						
 						if(number != null) {
@@ -161,6 +167,12 @@ public class BonovoBluetoothHandfree extends Activity
 
 					}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
 						requestAudioFocus();
+						
+						// If we've switched calls quickly, a hangup message may still be pending.
+						//   If so, remove it so the new call display doesn't get removed.
+						mHandler.removeMessages(MSG_DIAL_HANG_UP);
+						mHandler.removeMessages(MSG_DIAL_FINISH_ACTIVITY);
+						
 						setView(phoneLayouts.PHONE_RINGING_OUT);
 						
 						if(number != null) {
@@ -180,6 +192,12 @@ public class BonovoBluetoothHandfree extends Activity
 						
 					}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
 						requestAudioFocus();
+						
+						// If we've switched calls quickly, a hangup message may still be pending.
+						//   If so, remove it so the new call display doesn't get removed.
+						mHandler.removeMessages(MSG_DIAL_HANG_UP);
+						mHandler.removeMessages(MSG_DIAL_FINISH_ACTIVITY);
+						
 						setView(phoneLayouts.PHONE_INCALL);
 						startCallTimer(myBlueToothService.getAnswerTime());
 						mCallTime.setText(R.string.description_phone_in_call);
@@ -222,6 +240,8 @@ public class BonovoBluetoothHandfree extends Activity
 				mCallNumber.setText(mCallNumber.getText() + "\n" + mCallWaitingNumber.getText());
 				mCallNumber.setTextSize(R.dimen.call_number_conference_text_size);
 				
+				setContactPhoto(mContext, "0");	 // More than one person in call, default the contact photo
+				
 				mCallWaitingContainer.setVisibility(View.GONE);
 				mConferenceButton.setVisibility(View.GONE);
 				
@@ -233,6 +253,8 @@ public class BonovoBluetoothHandfree extends Activity
 				String activeCall = (String) mCallNumber.getText();
 				mCallNumber.setText(inActiveCall);
 				mCallWaitingNumber.setText(activeCall);
+				
+				setContactPhoto(mContext, inActiveCall);
 				
 				mRejectCallWaiting.setText(R.string.call_waiting_end_held);
 				mRejectCallWaiting.setVisibility(View.VISIBLE);

@@ -59,9 +59,9 @@
     	
 	    <ImageView
 	        android:id="@+id/contactPhoto"
-	        android:layout_width="100dp"
-	        android:layout_height="100dp"
-	        android:layout_marginRight="20dp"
+	        android:layout_width="@dimen/caller_photo_size"
+	        android:layout_height="@dimen/caller_photo_size"
+	        android:layout_marginRight="@dimen/call_info_left_margin"
 	        android:scaleType="fitCenter" />
 	    
 	    <LinearLayout
@@ -73,7 +73,7 @@
 		        android:id="@+id/tvTelephoneNumber"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_marginLeft="20dp"
+		        android:layout_marginLeft="@dimen/call_info_left_margin"
 		        android:textColor="@color/white"
 		        android:textSize="@dimen/call_number_text_size"
 		        android:visibility="visible" />
@@ -83,7 +83,7 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_centerVertical="true"
-			    android:layout_marginLeft="21dp"
+			    android:layout_marginLeft="@dimen/call_info_left_margin"
 			    android:layout_marginTop="10dp"
 			    android:gravity="top"
 			    android:textColor="@color/gray"
@@ -93,7 +93,7 @@
 			    android:id="@+id/timer"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
-			    android:layout_marginLeft="21dp"
+			    android:layout_marginLeft="@dimen/call_info_left_margin"
 			    android:layout_marginTop="20dp"
 			    android:textColor="@color/gray"
 			    android:textSize="@dimen/call_info_text_size"
@@ -121,7 +121,7 @@
         
         <ImageButton
             android:id="@+id/MuteMicButton"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/call_halfbutton_width"
             android:layout_height="@dimen/call_button_height"
             android:layout_margin="2dp"
             android:background="@drawable/btn_compound_background"
@@ -130,7 +130,7 @@
         
         <ImageButton
             android:id="@+id/DialpadViewButton"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/call_halfbutton_width"
             android:layout_height="@dimen/call_button_height"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="2dp"
@@ -142,7 +142,7 @@
 
         <ImageButton
             android:id="@+id/answerButton"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/call_button_width"
             android:layout_height="@dimen/call_button_height"
             android:layout_margin="2dp"
             android:background="@drawable/answer_call_bg"
@@ -152,7 +152,7 @@
         
         <ImageButton
             android:id="@+id/endCallButton"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/call_button_width"
             android:layout_height="@dimen/call_button_height"
             android:layout_margin="2dp"
             android:background="@drawable/reject_call_bg"
