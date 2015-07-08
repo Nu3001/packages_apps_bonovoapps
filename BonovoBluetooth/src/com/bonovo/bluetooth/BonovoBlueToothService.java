@@ -1434,7 +1434,9 @@ public class BonovoBlueToothService extends Service {
 			if(mBtMusicIsEnable && getMusicStatus()){
 				activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
 			}
-			activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+			if(getPhoneState() != PhoneState.IDLE){
+				activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+			}
 			if(DEB) Log.d(TAG, "Bluetooth device reconnected to speaker.");
 		default:
 			break;
