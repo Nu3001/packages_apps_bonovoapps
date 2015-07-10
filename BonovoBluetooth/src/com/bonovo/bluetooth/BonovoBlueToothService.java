@@ -54,7 +54,7 @@ public class BonovoBlueToothService extends Service {
 	private final static String DEF_BT_PIN = "1234";
 	private String myBtName = DEF_BT_NAME; // bt name
 	private String myBtPinCode = DEF_BT_PIN; // PIN code
-	private PhoneState mBtPhoneState = PhoneState.OFFHOOK;
+	private PhoneState mBtPhoneState = PhoneState.IDLE;
     private List<Contact> mListContacts;
 	
 	/**
