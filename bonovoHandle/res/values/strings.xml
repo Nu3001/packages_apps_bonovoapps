@@ -21,7 +21,6 @@
     <string name="dvb_in">DVB In</string>
     <string name="dvd_in">DVD In</string>
     <string name="radio_in">Radio</string>
-    <string name="bt_tel">Bluetooth HFP</string>
     <string name="aux_in2">Aux In 2</string>
     <string name="back_video">Backup Camera</string>
 </resources>
