@@ -174,11 +174,11 @@ public class RadioActivity extends Activity implements
 		public void handleMessage(Message msg) {
 			int what = msg.what;
 			switch (what) {
-			case R.id.btnhome:// 閿熸枻鎷烽敓鏂ゆ嫹 閿熸枻鎷烽敓鏂ゆ嫹閿熻緝鍖℃嫹Service
+			/*case R.id.btnhome:// 閿熸枻鎷烽敓鏂ゆ嫹 閿熸枻鎷烽敓鏂ゆ嫹閿熻緝鍖℃嫹Service
 				if (DEBUG)
 					Log.d(TAG, "btnhome has worked");
 				finish();
-				break;
+				break; */
 			case R.id.btnclose:// 閿熸枻鎷烽敓鏂ゆ嫹 閿熻緝鍖℃嫹Service
 				if (DEBUG)
 					Log.d(TAG, "btnclose has worked");
@@ -367,7 +367,7 @@ public class RadioActivity extends Activity implements
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
 				break;
-			case R.id.btnfm2:
+			/*case R.id.btnfm2:
 				if (DEBUG)
 					Log.d(TAG, "btnfm2 has worked");
 				if(!radioService.mIsSearchThreadRunning){
@@ -378,7 +378,7 @@ public class RadioActivity extends Activity implements
 				}else {
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
-				break;
+				break; */
 			case R.id.btnam:
 				if (DEBUG)
 					Log.d(TAG, "btnam has worked");
@@ -402,12 +402,12 @@ public class RadioActivity extends Activity implements
 					Toast.makeText(getApplicationContext(), R.string.searching, Toast.LENGTH_SHORT).show();
 				}
 				break;
-			case R.id.btnvolume:
+			/*case R.id.btnvolume:
 				if (DEBUG)
 					Log.d(TAG, "btlvoume has worked");
 				showDialog(DIALOG_VOLUME);
 				// radioService.popupVolumeWindows();
-				break;
+				break; */
 			case R.id.btnsetting:
 				if (DEBUG)
 					Log.d(TAG, "btnsrtting has worked");
