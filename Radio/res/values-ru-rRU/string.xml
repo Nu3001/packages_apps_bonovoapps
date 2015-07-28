@@ -44,4 +44,24 @@
 <string name="searching">Идёт поиск, не переключайте частоту</string>
 <string name="clear">Очистить</string>
 <string name="unrealized">Пока не реализовано</string>
+  <string name="clear_content">Удалить весь текущий список?</string>
+  <string name="invalid">Please Switch to the channel effectively</string>
+  <string name="nowhere">Нет свободных ячеек</string>
+  <string name="samefreq">есть такая частота, нет смысла сохранять</string>
+  <string name="no_reminds">Next time no longer prompt</string>
+  <string name="addHeart">Избранное</string>
+  <string name="is_addHeart_toast">Добавлено в коллекцию</string>
+  <string name="same_addHeart_toast">В коллекции уже есть эта частота</string>
+  <string name="clear_single_channel">Удалить информацию о текущем канале?</string>
+  <string name="clear_addHeart_toast">Частота удалена их коллекции</string>
+  <string name="not_effective_freq">Нет эффективной частоты</string>
+  <string name="volume_change">Громкость</string>
+  <string name="volume_change_info">Кликните здесь</string>
+  <string name="remote_info">Выберите модель пульта</string>
+  <string name="remote_checked">Check the open</string>
+  <string name="lead_info">Импорт списка каналов</string>
+  <string name="system_choose">Выберите ваш диапазон</string>
+  <string name="system_choose_title">Пожалуйста выберите ваш диапазон радиовещания</string>
+  <string name="mhz">MHz</string>
+  <string name="khz">kHz</string>
 </resources>
