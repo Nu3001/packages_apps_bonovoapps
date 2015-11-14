@@ -71,6 +71,9 @@ public class RadioService extends Service implements RadioInterface,
 	public static final int CHINA_MODEL = 0;
 	public static final int JAPAN_MODEL = 1;
 	public static final int EUR_MODEL = 2;
+	public static final int ITUREGION1_MODEL = 3;
+	public static final int ITUREGION2_MODEL = 4;
+	public static final int ITUREGION3_MODEL = 5;
 	public static int RADIO_MODEL = 0;
 	
 	public static  int FM_LOW_FREQ = 8700;
@@ -478,7 +481,7 @@ public class RadioService extends Service implements RadioInterface,
 
 	public void turnFmAm(int type) {
 		if (DEBUG)
-			Log.v(TAG, "<myu>turnFmAm");
+			Log.v(TAG, "<myu>turnFmAm type=" + type );
 		jniTurnFmAm(type);
 	}
 
@@ -1192,11 +1195,29 @@ public class RadioService extends Service implements RadioInterface,
 			FM_LOW_FREQ = 8700;
 			AM_HIGH_FREQ = 1620;
 			AM_LOW_FREQ = 522;
-		}else {
+		}else if (RADIO_MODEL == CHINA_MODEL) {
 			jniSetModel(CHINA_MODEL);
 			FM_HIGH_FREQ = 10800;
 			FM_LOW_FREQ = 8700;
 			AM_HIGH_FREQ = 1602;
+			AM_LOW_FREQ = 531;
+		} else if (RADIO_MODEL == ITUREGION1_MODEL) {
+			jniSetModel(ITUREGION1_MODEL);
+			FM_HIGH_FREQ = 10800;
+			FM_LOW_FREQ = 8750;
+			AM_HIGH_FREQ = 153;
+			AM_LOW_FREQ = 279;
+		}else if (RADIO_MODEL == ITUREGION2_MODEL) {
+			jniSetModel(ITUREGION2_MODEL);
+			FM_HIGH_FREQ = 10790;
+			FM_LOW_FREQ = 8790;
+			AM_HIGH_FREQ = 1710;
+			AM_LOW_FREQ = 540;
+		}else if (RADIO_MODEL == ITUREGION3_MODEL) {
+			jniSetModel(ITUREGION3_MODEL);
+			FM_HIGH_FREQ = 10800;
+			FM_LOW_FREQ = 8750;
+			AM_HIGH_FREQ = 1611;
 			AM_LOW_FREQ = 531;
 		}
 	}

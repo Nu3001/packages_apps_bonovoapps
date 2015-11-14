@@ -34,6 +34,9 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 	private RadioButton checkJapanButton;
 	private RadioButton checkChinaButton;
 	private RadioButton checkEuropeButton;
+	private RadioButton checkITURegion1Button;
+	private RadioButton checkITURegion2Button;
+	private RadioButton checkITURegion3Button;
 	private SeekBar mSeekBar;
 	private boolean remoteCheck;
 	
@@ -127,6 +130,9 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 		checkJapanButton = (RadioButton) findViewById(R.id.checkjapan);
 		checkChinaButton = (RadioButton) findViewById(R.id.checkchina);
 		checkEuropeButton = (RadioButton) findViewById(R.id.checkeurope);
+		checkITURegion1Button = (RadioButton) findViewById(R.id.checkITURegion1);
+		checkITURegion2Button = (RadioButton) findViewById(R.id.checkITURegion2);
+		checkITURegion3Button = (RadioButton) findViewById(R.id.checkITURegion3);
 		final SharedPreferences modelpre = getSharedPreferences(
 				"CHECKED", 0);
 		if(modelpre.getInt("modelCheck", checkChinaButton.getId()) == checkChinaButton.getId()){
@@ -135,6 +141,12 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 			checkJapanButton.setChecked(true);
 		}else if (modelpre.getInt("modelCheck", checkEuropeButton.getId()) == checkEuropeButton.getId()) {
 			checkEuropeButton.setChecked(true);
+		}else if (modelpre.getInt("modelCheck", checkITURegion1Button.getId()) == checkITURegion1Button.getId()) {
+			checkITURegion1Button.setChecked(true);
+		}else if (modelpre.getInt("modelCheck", checkITURegion2Button.getId()) == checkITURegion2Button.getId()) {
+			checkITURegion2Button.setChecked(true);
+		}else if (modelpre.getInt("modelCheck", checkITURegion3Button.getId()) == checkITURegion3Button.getId()) {
+			checkITURegion3Button.setChecked(true);
 		}
 		mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			
@@ -159,6 +171,30 @@ public class RadioSetting extends Activity implements OnClickListener ,ServiceCo
 					sendBroadcast(intent);
 				}else if(checkedId == checkEuropeButton.getId()){
 					modelpre.edit().putInt("radioModel", RadioService.EUR_MODEL)
+								   .putInt("modelCheck", checkedId)
+								   .commit();
+					mSerivce2.readAndSetModelInfo();
+					Intent intent = new Intent();
+					intent.setAction("updateFreqView");
+					sendBroadcast(intent);
+				}else if(checkedId == checkITURegion1Button.getId()){
+					modelpre.edit().putInt("radioModel", RadioService.ITUREGION1_MODEL)
+								   .putInt("modelCheck", checkedId)
+								   .commit();
+					mSerivce2.readAndSetModelInfo();
+					Intent intent = new Intent();
+					intent.setAction("updateFreqView");
+					sendBroadcast(intent);
+				}else if(checkedId == checkITURegion2Button.getId()){
+					modelpre.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL)
+								   .putInt("modelCheck", checkedId)
+								   .commit();
+					mSerivce2.readAndSetModelInfo();
+					Intent intent = new Intent();
+					intent.setAction("updateFreqView");
+					sendBroadcast(intent);
+				}else if(checkedId == checkITURegion3Button.getId()){
+					modelpre.edit().putInt("radioModel", RadioService.ITUREGION3_MODEL)
 								   .putInt("modelCheck", checkedId)
 								   .commit();
 					mSerivce2.readAndSetModelInfo();

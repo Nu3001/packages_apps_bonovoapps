@@ -1779,10 +1779,8 @@ public class RadioActivity extends Activity implements
 		int OUTSCOPE = 0 ,OUTSCOPE_FLAG = 1 ;
 		int START = 0,END = 0,END_EMPTY = 0;
 		int focus_btn = radioService.getCurChannelId();//当前焦点Button对应的Type的Id：0~144;
-		if (focus_btn > 0) {
-			Log.v(TAG, "&&&&&&radioService.getChannelItem(focus_btn).freq = "+radioService.getChannelItem(focus_btn).freq + " focus_btn="+focus_btn);
-		}
-		if(focus_btn < 0 || !radioService.getChannelItem(focus_btn).freq.equals("")){
+		Log.v(TAG, "&&&&&&radioService.getChannelItem(focus_btn).freq = "+radioService.getChannelItem(focus_btn).freq + " focus_btn="+focus_btn);
+		if(!radioService.getChannelItem(focus_btn).freq.equals("")){
 			if(HEART_STATIC_FLAG == 0){
 				//当全局变量为0时,说明当前焦点频道在收藏栏中不存在,点击爱心按钮为添加到收藏栏,且爱心变红
 				if(radioService.getRadioType() == RadioService.RADIO_FM1){
@@ -1843,12 +1841,10 @@ public class RadioActivity extends Activity implements
 							
 							/**************当前频率与焦点频率相同时,加入收藏栏的频率为焦点中文名
 							 **************若不同时,则收藏栏显示频率值***********************/
-							if (focus_btn > 0) {
-								Log.v(TAG, "*******************CurrentFreq ="+radioService.getCurrentFreq()+" |item.freq="+radioService.getChannelItem(focus_btn).freq);
-							}
-							if(focus_btn < 0 || !radioService.getChannelItem(focus_btn).freq.equals("")){
-								if(focus_btn < 0 || (radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*10
-										||radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*1)){
+							Log.v(TAG, "*******************CurrentFreq ="+radioService.getCurrentFreq()+" |item.freq="+radioService.getChannelItem(focus_btn).freq);
+							if(!radioService.getChannelItem(focus_btn).freq.equals("")){
+								if(radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*10
+										||radioService.getCurrentFreq() == Integer.parseInt(radioService.getChannelItem(focus_btn).freq.replaceAll("\\.", ""))*1){
 									item.freq = curfreq;
 									item.name = radioService.getChannelItem(focus_btn).name;
 									item.abridge = radioService.getChannelItem(focus_btn).abridge;//收藏栏中的频道,若在FM/AM中存在对应的中文名字,则把名称由频率值替换为中文名
