@@ -137,6 +137,26 @@ typedef enum
 #define ITUREGION3_AM_FREQ_MAX      1611         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
 #define ITUREGION3_AM_STEP_LENGTH   9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
 
+// WX - Weather Radio
+#define CHINA_WX_FREQ_MIN           8700         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define CHINA_WX_FREQ_MAX           10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define CHINA_WX_STEP_LENGTH        10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
+#define JNP_WX_FREQ_MIN             7600         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define JNP_WX_FREQ_MAX             9000         // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define JNP_WX_STEP_LENGTH          10           // �ձ���ʽFM�Ĳ�������10KHzΪ��λ��
+#define EUROPE_WX_FREQ_MIN          6580         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define EUROPE_WX_FREQ_MAX          7400         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define EUROPE_WX_STEP_LENGTH       10           // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
+#define ITUREGION1_WX_FREQ_MIN      8750         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_WX_FREQ_MAX      10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_WX_STEP_LENGTH   10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
+#define ITUREGION2_WX_FREQ_MIN      8790         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_WX_FREQ_MAX      10790        // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION2_WX_STEP_LENGTH   10           // �ձ���ʽFM�Ĳ�������10KHzΪ��λ��
+#define ITUREGION3_WX_FREQ_MIN      8750         // ŷ����ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION3_WX_FREQ_MAX      10800        // ŷ����ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION3_WX_STEP_LENGTH   10            // ŷ����ʽFM�Ĳ�������10KHzΪ��λ��
+
 // standard model selectors
 #define MODEL_CHINA                 0            // �й���ʽ
 #define MODEL_JNP                   1            // �ձ���ʽ
@@ -150,6 +170,7 @@ typedef enum
 #define BAND_AM                     1            // ����
 #define BAND_SW                     2            // �̲�
 #define BAND_LW                     3            // ����
+#define BAND_WX                     4            // Weather Radio
 
 struct radio_freq
 {
@@ -250,7 +271,7 @@ int setRangeAndStep(int mode, int band)
 	unsigned int sum = 0;
 	unsigned char cmdBuf[10] = {0xFA, 0xFA, 0x0A, 0x00, 0xA1};
 
-	if((mode < 0)||(mode > 2)||(band < 0)||(band > 3)||(fd_radio < 0))
+	if((mode < 0)||(mode > 5)||(band < 0)||(band > 4)||(fd_radio < 0))
 		return -1;
 	cur_model = mode;
 	cur_band = band;
@@ -335,6 +356,46 @@ int setRangeAndStep(int mode, int band)
 			return -1;
 			break;
 		}
+		break;
+	case BAND_WX:
+		switch(cur_model)
+		{
+		case MODEL_CHINA:
+			freq_min = CHINA_WX_FREQ_MIN;
+			freq_max = CHINA_WX_FREQ_MAX;
+			step_len = CHINA_WX_STEP_LENGTH;
+			break;
+		case MODEL_JNP:
+			freq_min = JNP_WX_FREQ_MIN;
+			freq_max = JNP_WX_FREQ_MAX;
+			step_len = JNP_WX_STEP_LENGTH;
+			break;
+		case MODEL_EUROPE:
+			freq_min = EUROPE_WX_FREQ_MIN;
+			freq_max = EUROPE_WX_FREQ_MAX;
+			step_len = EUROPE_WX_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION1:
+			freq_min = ITUREGION1_WX_FREQ_MIN;
+			freq_max = ITUREGION1_WX_FREQ_MAX;
+			step_len = ITUREGION1_WX_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION2:
+			freq_min = ITUREGION2_WX_FREQ_MIN;
+			freq_max = ITUREGION2_WX_FREQ_MAX;
+			step_len = ITUREGION2_WX_STEP_LENGTH;
+			break;
+		case MODEL_ITUREGION3:
+			freq_min = ITUREGION3_WX_FREQ_MIN;
+			freq_max = ITUREGION3_WX_FREQ_MAX;
+			step_len = ITUREGION3_WX_STEP_LENGTH;
+			break;
+		default:
+			debug("Current standard model is error.\n");
+			return -1;
+			break;
+		}
+		//send command to set 
 		break;
 	case BAND_SW:
 	case BAND_LW:
@@ -626,6 +687,27 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 			if (freq < ITUREGION3_FM_FREQ_MIN)
 				freq = ITUREGION3_FM_FREQ_MAX;
 		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MIN)
+				freq = CHINA_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MIN)
+				freq = JNP_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MIN)
+				freq = EUROPE_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MIN)
+				freq = ITUREGION1_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MIN)
+				freq = ITUREGION2_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MIN)
+				freq = ITUREGION3_WX_FREQ_MAX;
+		}
 
 	} else {
 		if (cur_model == MODEL_CHINA) {
@@ -648,7 +730,7 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 				freq = ITUREGION3_AM_FREQ_MAX;
 		}
 
-	}
+	} else 
 
 	if (mtype == 0) {
 		if (cur_model == MODEL_CHINA) {
@@ -669,6 +751,27 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_ITUREGION3) {
 			if (freq > ITUREGION3_FM_FREQ_MAX)
 				freq = ITUREGION3_FM_FREQ_MIN;
+		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MAX)
+				freq = CHINA_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MAX)
+				freq = JNP_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MAX)
+				freq = EUROPE_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MAX)
+				freq = ITUREGION1_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MAX)
+				freq = ITUREGION2_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MAX)
+				freq = ITUREGION3_WX_FREQ_MIN;
 		}
 
 	} else {
@@ -760,6 +863,27 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 			if (freq < ITUREGION3_FM_FREQ_MIN)
 				freq = ITUREGION3_FM_FREQ_MAX;
 		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MIN)
+				freq = CHINA_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MIN)
+				freq = JNP_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MIN)
+				freq = EUROPE_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MIN)
+				freq = ITUREGION1_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MIN)
+				freq = ITUREGION2_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MIN)
+				freq = ITUREGION3_WX_FREQ_MAX;
+		}
 
 	} else {
 		if (cur_model == MODEL_CHINA) {
@@ -802,6 +926,27 @@ static int android_radio_FineLeft(JNIEnv *env, jobject thiz, jint freq)
 		} else if (cur_model == MODEL_ITUREGION3) {
 			if (freq > ITUREGION3_FM_FREQ_MAX)
 				freq = ITUREGION3_FM_FREQ_MIN;
+		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MAX)
+				freq = CHINA_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MAX)
+				freq = JNP_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MAX)
+				freq = EUROPE_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MAX)
+				freq = ITUREGION1_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MAX)
+				freq = ITUREGION2_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MAX)
+				freq = ITUREGION3_WX_FREQ_MIN;
 		}
 
 	} else {
@@ -889,6 +1034,28 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 			if (freq > ITUREGION3_FM_FREQ_MAX)
 				freq = ITUREGION3_FM_FREQ_MIN;
 		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MAX)
+				freq = CHINA_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MAX)
+				freq = JNP_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MAX)
+				freq = EUROPE_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MAX)
+				freq = ITUREGION1_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MAX)
+				freq = ITUREGION2_WX_FREQ_MIN;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MAX)
+				freq = ITUREGION3_WX_FREQ_MIN;
+		}
+	
 	} else {
 		if (cur_model == MODEL_CHINA) {
 			if (freq > CHINA_AM_FREQ_MAX)
@@ -932,6 +1099,28 @@ static int android_radio_FineRight(JNIEnv *env, jobject thiz, jint freq)
 			if (freq < ITUREGION3_FM_FREQ_MIN)
 				freq = ITUREGION3_FM_FREQ_MAX;
 		}
+		
+	} else if (mtype == 4) {
+	if (cur_model == MODEL_CHINA) {
+			if (freq < CHINA_WX_FREQ_MIN)
+				freq = CHINA_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_JNP) {
+			if (freq < JNP_WX_FREQ_MIN)
+				freq = JNP_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_EUROPE) {
+			if (freq < EUROPE_WX_FREQ_MIN)
+				freq = EUROPE_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION1) {
+			if (freq < ITUREGION1_WX_FREQ_MIN)
+				freq = ITUREGION1_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION2) {
+			if (freq < ITUREGION2_WX_FREQ_MIN)
+				freq = ITUREGION2_WX_FREQ_MAX;
+		} else if (cur_model == MODEL_ITUREGION3) {
+			if (freq < ITUREGION3_WX_FREQ_MIN)
+				freq = ITUREGION3_WX_FREQ_MAX;
+		}
+		
 	} else {
 		if (cur_model == MODEL_CHINA) {
 			if (freq < CHINA_AM_FREQ_MIN)
