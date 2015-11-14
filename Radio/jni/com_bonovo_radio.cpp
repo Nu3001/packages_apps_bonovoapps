@@ -138,8 +138,8 @@ typedef enum
 #define ITUREGION3_AM_STEP_LENGTH   9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
 
 // WX - Weather Radio
-#define CHINA_WX_FREQ_MIN           8700         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
-#define CHINA_WX_FREQ_MAX           10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define CHINA_WX_FREQ_MIN           16240         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define CHINA_WX_FREQ_MAX           16255        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define CHINA_WX_STEP_LENGTH        10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
 #define JNP_WX_FREQ_MIN             7600         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define JNP_WX_FREQ_MAX             9000         // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
@@ -147,8 +147,8 @@ typedef enum
 #define EUROPE_WX_FREQ_MIN          6580         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
 #define EUROPE_WX_FREQ_MAX          7400         // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
 #define EUROPE_WX_STEP_LENGTH       10           // Russia (including Kaliningrad), Belarus, Moldova, Ukraine and Turkmenistan
-#define ITUREGION1_WX_FREQ_MIN      8750         // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
-#define ITUREGION1_WX_FREQ_MAX      10800        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_WX_FREQ_MIN      16240        // �й���ʽFM����СƵ��ֵ����10KHzΪ��λ��
+#define ITUREGION1_WX_FREQ_MAX      16255        // �й���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
 #define ITUREGION1_WX_STEP_LENGTH   10           // �й���ʽFM�Ĳ�������10KHzΪ��λ��
 #define ITUREGION2_WX_FREQ_MIN      8790         // �ձ���ʽFM����СƵ��ֵ����10KHzΪ��λ��
 #define ITUREGION2_WX_FREQ_MAX      10790        // �ձ���ʽFM�����Ƶ��ֵ����10KHzΪ��λ��
