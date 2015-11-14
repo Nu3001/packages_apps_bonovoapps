@@ -1359,12 +1359,12 @@ static int android_radio_ReadSeek(JNIEnv *env, jobject thiz, jintArray freq, int
 		debug("The buffer where the frequence in is empty��\n");
 		temp_freq[1] = 0;
 		temp_freq[2] = 0;
-		env->SetIntArrayRegion(freq, 0, 3, temp_freq);
+		env->SetIntArrayRegion(freq, 0, 6, temp_freq);
 		return 1;
 	}
 	temp_freq[1] = temp.is_valid;
 	temp_freq[2] = temp.freq[0] + (temp.freq[1] << 8);
-	env->SetIntArrayRegion(freq, 0, 3, temp_freq);
+	env->SetIntArrayRegion(freq, 0, 6, temp_freq);
 	return 0;
 }
 
@@ -1397,9 +1397,9 @@ static int android_radio_TurnFmAm(JNIEnv *env, jobject thiz, jint type)
 		return -1;
 	}
 
-	if((type < 0)||(type > 3))
+	if((type < 0)||(type > 4))
 	{
-		LOGE("The type you input is invalid.The type value is in [1,3]\n");
+		LOGE("The type you input is invalid.The type value is in [1,4]\n");
 		return -1;
 	}
 
@@ -1480,7 +1480,7 @@ static int android_radio_Remote(JNIEnv *env, jobject thiz, jint remote)
  */
 static int android_radio_SetModel(JNIEnv *env, jobject thiz, jint type)
 {
-	if((type < 0) ||(type > 2))
+	if((type < 0) ||(type > 4))
 		return -1;
 	cur_model = type;
 	if(setRangeAndStep(cur_model, cur_band) < 0)
