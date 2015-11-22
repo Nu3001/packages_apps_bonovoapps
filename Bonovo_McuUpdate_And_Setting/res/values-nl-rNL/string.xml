@@ -6,7 +6,7 @@
     <string name="hello_world">Hallo Wereld!</string>
     <string name="title">MCU update gevonden. Wilt u deze installeren?</string>
     <string name="agree">OK</string>
-    <string name="cancel">Anuleren</string>
+    <string name="cancel">Annuleren</string>
     <string name="button">Updates zoeken</string>
     <string name="mcuversion">MCU Versie:</string>
     <string name="sysversion">Systeem Versie:</string>
