@@ -1236,32 +1236,36 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 		break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MA:{
             if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MA");
-			setMusicStatus(false);
-            mHandler.removeMessages(MSG_STOP_MUSIC);
-    
-            abandonAudioFocus();
-            
-			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
-			Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
-			mHandler.sendMessage(msg);
-			
-			mHandler.removeMessages(MSG_UPDATE_A2DP_TRACKINFO);
+            if (mBtMusicIsEnable == true) {
+				setMusicStatus(false);
+	            mHandler.removeMessages(MSG_STOP_MUSIC);
+	    
+	            abandonAudioFocus();
+	            
+				recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
+				Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
+				mHandler.sendMessage(msg);
+				
+				mHandler.removeMessages(MSG_UPDATE_A2DP_TRACKINFO);
+            }
 		}
 		break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MB:{
             if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MB");
-            activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
-			setMusicStatus(true);
-			
-			getAudioFocus();
+            if (mBtMusicIsEnable == true) {
+	            activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
+				setMusicStatus(true);
 				
-			Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
-			mHandler.sendMessage(msg);
-			
-			Message msg2 = mHandler.obtainMessage(MSG_UPDATE_A2DP_TRACKINFO);
-			mHandler.sendMessage(msg2);
+				getAudioFocus();
+					
+				Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
+				mHandler.sendMessage(msg);
+				
+				Message msg2 = mHandler.obtainMessage(MSG_UPDATE_A2DP_TRACKINFO);
+				mHandler.sendMessage(msg2);
+            }
 		}
-			break;
+		break;
         case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PA:{
             Log.d(TAG, "Callback -->CMD_UNSOLICATED_PA  param:" + param);
             if(param.startsWith("0\r\n")){
