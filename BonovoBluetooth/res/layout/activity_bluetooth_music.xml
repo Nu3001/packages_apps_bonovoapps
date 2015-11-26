@@ -3,66 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BluetoothSettings" >
-    <ImageView 
+
+    <ImageView
         android:id="@+id/imageViewBackgroudMusic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/setting_music_bg"
-        android:contentDescription="@string/description_background_bg"/>
-    
-    <Button
-        android:id="@+id/buttonBluetoothMusicPre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageViewFrame"
-        android:layout_below="@+id/imageViewFrame"
-        android:layout_marginTop="60px"
-        android:background="@drawable/music_up_img" />
-
-    <Button
-        android:id="@+id/buttonBluetoothMusicPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonBluetoothMusicPre"
-        android:layout_toRightOf="@+id/buttonBluetoothMusicPre"
-        android:background="@drawable/music_broadcast_img"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/buttonBluetoothMusicPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonBluetoothMusicPre"
-        android:layout_toRightOf="@+id/buttonBluetoothMusicPre"
-        android:background="@drawable/music_pause_img" />
-
-    <Button
-        android:id="@+id/buttonBluetoothMusicStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonBluetoothMusicPlay"
-        android:layout_toRightOf="@+id/buttonBluetoothMusicPlay"
-        android:background="@drawable/music_stop_img" />
-
-    <Button
-        android:id="@+id/buttonBluetoothMusicNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonBluetoothMusicStop"
-        android:layout_toRightOf="@+id/buttonBluetoothMusicStop"
-        android:background="@drawable/music_next_img" />
-
-    <ImageView
-        android:id="@+id/imageViewFrame"
-        android:layout_width="448px"
-        android:layout_height="149px"
-        android:layout_below="@+id/tvSettingTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/music_bg" />
+        android:contentDescription="@string/description_background_bg"
+        android:src="@drawable/setting_music_bg" />
 
     <TextView
         android:id="@+id/tvSettingTitle"
@@ -76,5 +25,73 @@
         android:textColor="#00BDFF"
         android:textSize="@dimen/title_text_size"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtTrackName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSettingTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="@string/trackname"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/txtArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTrackName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/artist"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtAlbumName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtArtistName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTrackName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp" >
+        
+        <Button
+	        android:id="@+id/buttonBluetoothMusicPre"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/music_up_img" />
+	
+	    <Button
+	        android:id="@+id/buttonBluetoothMusicPlay"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/music_broadcast_img"
+	        android:visibility="gone" />
+	
+	    <Button
+	        android:id="@+id/buttonBluetoothMusicPause"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/music_pause_img" />
+	
+	    <Button
+	        android:id="@+id/buttonBluetoothMusicStop"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/music_stop_img" />
+	
+	    <Button
+	        android:id="@+id/buttonBluetoothMusicNext"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/music_next_img" />
+    </LinearLayout>
 
 </RelativeLayout>

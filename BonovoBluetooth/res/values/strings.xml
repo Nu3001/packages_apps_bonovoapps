@@ -106,5 +106,8 @@
     <string name="description_sync_contacts_complete">Contact synchronization has completed. This window will now close</string>
     <string name="description_sync_contacts_error">Sync timeout. Contacts successfully downloaded: </string>
     <string name="description_sync_contacts_notsupport">Your phone does not support downloading contacts to this device.</string>
+    <string name="trackname">Track Name</string>
+    <string name="artist">Artist</string>
+    <string name="album">Album</string>
 
 </resources>

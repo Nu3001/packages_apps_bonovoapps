@@ -1,8 +1,6 @@
 package com.bonovo.bluetooth;
 
 import com.bonovo.bluetooth.BonovoBlueToothService.BonovoBlueToothData;
-import com.bonovo.bluetooth.BonovoBlueToothService.AudioLevel;
-import com.bonovo.bluetooth.BonovoBlueToothReceiver;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,10 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.media.AudioManager;
 
 public class BluetoothSettings extends Activity implements View.OnClickListener, View.OnLongClickListener{
 
@@ -59,6 +55,9 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 	private TextView mBtnName = null;       //0825
 	private TextView mBtnMusicName = null;  //0825
 	
+	private TextView mTvA2DPTrackName = null;
+	private TextView mTvA2DPArtist = null;
+	private TextView mTvA2DPAlbum = null;
 	private Button mBtnMusicPre = null;
 	private Button mBtnMusicPlay = null;
 	private Button mBtnMusicPause = null;
@@ -121,6 +120,10 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		mTvBtHFPStatus = (TextView)findViewById(R.id.textViewPhoneLinkStatus);
 		mBtnName = (TextView)findViewById(R.id.textView5);      //0825
 		mBtnMusicName = (TextView)findViewById(R.id.textView6);	//0825	
+
+		mTvA2DPTrackName = (TextView)findViewById(R.id.txtTrackName);
+		mTvA2DPArtist = (TextView)findViewById(R.id.txtArtistName);
+		mTvA2DPAlbum = (TextView)findViewById(R.id.txtAlbumName);
 		
 		mTvBtName.setOnLongClickListener(this);
 		mTvBtNameInfo.setOnLongClickListener(this);
@@ -240,22 +243,11 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		intent.setClassName("com.bonovo.bluetooth", "com.bonovo.bluetooth.BonovoBlueToothService");
 		unbindService(mServiceConnection);
 		unregisterReceiver(mReceiver);
-		AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
-		//注册接收的Receiver
-		ComponentName mRemoteControlClientReceiverComponent;
-		mRemoteControlClientReceiverComponent = new ComponentName(
-		                getPackageName(), BonovoBlueToothReceiver.class.getName());
-		audioManager.unregisterMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
 	}
 	
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
-		ComponentName mRemoteControlClientReceiverComponent;
-		mRemoteControlClientReceiverComponent = new ComponentName(
-				getPackageName(), BonovoBlueToothReceiver.class.getName());
-		audioManager.registerMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
 	}
 	
 	private ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -282,8 +274,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 			mTvBtPinInfo.setText(mBtService.getBtPinCode());
 			
 			boolean musicStatus = mBtService.getMusicStatus();
-			mBtnMusicPlay.setVisibility(musicStatus ? View.INVISIBLE : View.VISIBLE);
-			mBtnMusicPause.setVisibility(musicStatus ? View.VISIBLE : View.INVISIBLE);
+			mBtnMusicPlay.setVisibility(musicStatus ? View.GONE : View.VISIBLE);
+			mBtnMusicPause.setVisibility(musicStatus ? View.VISIBLE : View.GONE);
 		}
 	};
 
@@ -299,12 +291,10 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
         intentFilter.addAction(BonovoBlueToothData.ACTION_SEND_COMMANDER_ERROR);
 		intentFilter.addAction(BonovoBlueToothData.ACTION_BT_NAME);
 		intentFilter.addAction(BonovoBlueToothData.ACTION_BT_PINCODE);
-		intentFilter.addAction("BlueTooth.Media_Broadcast_Next");
-        intentFilter.addAction("BlueTooth.Media_Broadcast_Last");
-        intentFilter.addAction("BlueTooth.Media_Broadcast_Play_Pause");
         intentFilter.addAction("android.intent.action.ACTION_SHUTDOWN");
 		intentFilter.addAction("android.intent.action.BONOVO_SLEEP_KEY");
 		intentFilter.addAction("android.intent.action.BONOVO_WAKEUP_KEY");
+		intentFilter.addAction("BlueTooth.Media_Broadcast_A2DP_TRACK_CHANGED");
 		return intentFilter;
 	}
 	
@@ -324,8 +314,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
                 if(mBtService != null){
 				    musicStatus = mBtService.getMusicStatus();
 			    }
-				mBtnMusicPlay.setVisibility(musicStatus ? View.INVISIBLE : View.VISIBLE);
-				mBtnMusicPause.setVisibility(musicStatus ? View.VISIBLE : View.INVISIBLE);
+				mBtnMusicPlay.setVisibility(musicStatus ? View.GONE : View.VISIBLE);
+				mBtnMusicPause.setVisibility(musicStatus ? View.VISIBLE : View.GONE);
 			}else if(BonovoBlueToothData.ACTION_SYNC_CONTACTS_COMPLETE.equals(action)){
                 if(mBluetoothContactsDialog == null){
                     showDialog(DIALOG_SYNC_CONTACTS);
@@ -390,52 +380,26 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 						}
 					}
 				}
-			}else if (intent.getAction().equals("BlueTooth.Media_Broadcast_Next")) {
-				if(mBtService != null && mBtService.getBtSwitchStatus() && mBtService.getMusicServiceEnable()){
-					mBtService.BlueToothMusicNext();
-					if(DEBUG) Log.d(TAG, "btnNext is been pressed.");
-				}else{
-					Toast.makeText(mContext, R.string.description_music_disable, Toast.LENGTH_SHORT).show();
-				}
-			} else if (intent.getAction().equals("BlueTooth.Media_Broadcast_Last")) {
-				if(mBtService != null && mBtService.getBtSwitchStatus() && mBtService.getMusicServiceEnable()){
-					mBtService.BlueToothMusicPre();
-					if(DEBUG) Log.d(TAG, "btnPre is been pressed.");
-				}else{
-					Toast.makeText(mContext, R.string.description_music_disable, Toast.LENGTH_SHORT).show();
-				}
-			
-			} else if (intent.getAction().equals("BlueTooth.Media_Broadcast_Play_Pause")) {
-				if(mBtService.getMusicStatus()){
-					if(mBtService != null && mBtService.getMusicServiceEnable()){
-						mBtService.BlueToothMusicPause();
-                        if(DEBUG) Log.d(TAG, "btnPuse is been pressed.");
-					}else{
-                        Toast.makeText(mContext, R.string.description_music_disable, Toast.LENGTH_SHORT).show();
-					}
-					
-				}else{
-					if(mBtService != null && mBtService.getMusicServiceEnable()){
-						mBtService.BlueToothMusicPlay();
-						if(DEBUG) Log.d(TAG, "btnPlay is been pressed.");
-					}else{
-						Toast.makeText(mContext, R.string.description_music_disable, Toast.LENGTH_SHORT).show();
-					}
-				}
 			}else if(action.equals("android.intent.action.BONOVO_SLEEP_KEY")
                || action.equals("android.intent.action.ACTION_SHUTDOWN")){
 				mTvBtStatus.setText(R.string.bluetooth_status_closed);
     			mIgeBtStatus.setImageResource(R.drawable.setting_bluetooth_close);
     			mTvBtHFPStatus.setText(R.string.phone_link_status_closed);
                 mBtnMusicPlay.setVisibility(View.VISIBLE);
-			    mBtnMusicPause.setVisibility(View.INVISIBLE);
-			}else if(action.equals("android.intent.action.BONOVO_WAKEUP_KEY")){
-
+			    mBtnMusicPause.setVisibility(View.GONE);
+			}else if(action.equals("BlueTooth.Media_Broadcast_A2DP_TRACK_CHANGED")){
+				updateTrackInfo();
 			}
 		}
 		
 	};
 
+	void updateTrackInfo() {
+		mTvA2DPTrackName.setText(mBtService.a2dpTrackName);
+		mTvA2DPArtist.setText(mBtService.a2dpArtist);
+		mTvA2DPAlbum.setText(mBtService.a2dpAlbum);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -471,6 +435,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 				mStubBtMusic.setVisibility(View.VISIBLE);
 				mBtnMusic.setVisibility(View.GONE);
 				mBtnSettings.setVisibility(View.VISIBLE);
+				
+				updateTrackInfo();
 			}
 			if(mStubBtSettings != null){
 				mStubBtSettings.setVisibility(View.GONE);
@@ -546,6 +512,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
     		}else{
     			Toast.makeText(mContext, R.string.description_music_disable, Toast.LENGTH_SHORT).show();
     		}
+    		
+    		updateTrackInfo();
     		break;
     	case R.id.buttonBluetoothMusicPause:
     		if(mBtService != null && mBtService.getBtSwitchStatus()){

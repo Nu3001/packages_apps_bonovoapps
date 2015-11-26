@@ -2,8 +2,10 @@ package com.bonovo.bluetooth;
 
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -24,12 +26,17 @@ import android.content.OperationApplicationException;
 import android.content.ContentUris;
 import android.os.RemoteException;
 import android.util.Log;
+import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
+import android.media.RemoteControlClient;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.ArrayList;
+import com.bonovo.bluetooth.BonovoBlueToothReceiver;
 
 @SuppressWarnings("deprecation")
-public class BonovoBlueToothService extends Service {
+public class BonovoBlueToothService extends Service implements AudioManager.OnAudioFocusChangeListener {
 	private static final String TAG = "BonovoBlueToothService";
 	private boolean DEB = false;
 	private static Context mContext;
@@ -39,16 +46,21 @@ public class BonovoBlueToothService extends Service {
 	private boolean myBtMusicStatus = false;
 	private boolean mBtMusicIsEnable = false;
 	private boolean mStartComplete = false;
-    private boolean mReadName = false;
-    private boolean mReadPinCode = false;
+	private boolean mReadName = false;
+	private boolean mReadPinCode = false;
 	private boolean mIsBindered = false;
-    private boolean mIsSyncingContacts = false;
-    private boolean mMicMuted = false;
-    private int mPhoneSignalLevel = 0;
-    private int mPhoneBatteryLevel = 0;
-    private String mPhoneOperatorName = "";
-    private int mSetNameTime = 0;
-    private int mSetPinCodeTime = 0;
+	private boolean mIsSyncingContacts = false;
+	private boolean mMicMuted = false;
+	private int mPhoneSignalLevel = 0;
+	private int mPhoneBatteryLevel = 0;
+	private String mPhoneOperatorName = "";
+	private int mSetNameTime = 0;
+	private int mSetPinCodeTime = 0;
+	public String a2dpTrackName = "";
+	public String a2dpArtist = "";
+    public String a2dpAlbum = "";
+    public long trackLenMs = 0;
+    public long trackPosMs = 0;
     private final static int MAX_SET_TIME = 5; 
 	private final static String DEF_BT_NAME = "BTHFD";
 	private final static String DEF_BT_PIN = "1234";
@@ -56,6 +68,8 @@ public class BonovoBlueToothService extends Service {
 	private String myBtPinCode = DEF_BT_PIN; // PIN code
 	private PhoneState mBtPhoneState = PhoneState.IDLE;
     private List<Contact> mListContacts;
+    private AudioManager mAudioManager;
+    private RemoteControlClient mRemoteControlClient;
 	
 	/**
 	 * The Phone state. One of the following:
@@ -108,6 +122,7 @@ public class BonovoBlueToothService extends Service {
     private static final int MSG_PHONE_CONFERENCE_CALL = 37;
     private static final int MSG_PHONE_HUNG_UP_INACTIVE = 38;
     private static final int MSG_PHONE_HUNG_UP_ACTIVE_SWITCHED_TO_CALL_WAITING = 39;
+    private static final int MSG_UPDATE_A2DP_TRACKINFO = 40;
 	private static final int DELAY_TIME_CHECKPINCODE = 2000;
 	private static final int DELAY_TIME_DISCONNECT = 1000;
 	private static final int DELAY_TIME_SHUTDOWN = 5000;
@@ -120,6 +135,7 @@ public class BonovoBlueToothService extends Service {
 	private String mCurrNumber = "";
 	private long mAnswerTimer = -1;
 	private boolean mIsBtWillShutDown = false;
+	private boolean mHasAudioFocus = false;
 	private final static String ACTION_BT_POWERON = "android.intent.action.BONOVO_BT_POWERON";
 	private final static String ACTION_BT_POWEROFF = "android.intent.action.BONOVO_BT_POWEROFF";
 	
@@ -197,6 +213,9 @@ public class BonovoBlueToothService extends Service {
         myIntentFilter.addAction("android.intent.action.ACTION_SHUTDOWN");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SLEEP_KEY");
 		myIntentFilter.addAction("android.intent.action.BONOVO_WAKEUP_KEY");
+		myIntentFilter.addAction("BlueTooth.Media_Broadcast_Next");
+        myIntentFilter.addAction("BlueTooth.Media_Broadcast_Last");
+        myIntentFilter.addAction("BlueTooth.Media_Broadcast_Play_Pause");
 		myIntentFilter.addAction(ACTION_CALL_DIAL);
 		myIntentFilter.addAction(ACTION_CALL_ANSWER);
 		myIntentFilter.addAction(ACTION_CALL_HANGUP);
@@ -356,11 +375,11 @@ public class BonovoBlueToothService extends Service {
 				BlueToothMusicPlay();
 			}else if(action.equals(ACTION_MUSIC_STOP)){
 				BlueToothMusicStop();
-			}else if(action.equals(ACTION_MUSIC_PAUSE)){
+			}else if(action.equals(ACTION_MUSIC_PAUSE) || action.equals("BlueTooth.Media_Broadcast_Play_Pause")){
 				BlueToothMusicPause();
-			}else if(action.equals(ACTION_MUSIC_NEXTTRACK)){
+			}else if(action.equals(ACTION_MUSIC_NEXTTRACK) || action.equals("BlueTooth.Media_Broadcast_Next")){
 				BlueToothMusicNext();
-			}else if(action.equals(ACTION_MUSIC_PREVTRACK)){
+			}else if(action.equals(ACTION_MUSIC_PREVTRACK) || action.equals("BlueTooth.Media_Broadcast_Last")){
 				BlueToothMusicPre();
 			}
         }
@@ -680,6 +699,14 @@ public class BonovoBlueToothService extends Service {
                 sendBroadcast(intent);
                 break;
             }
+            case MSG_UPDATE_A2DP_TRACKINFO:{
+    			// Request Bluetooth track current position and length
+    			BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QD);
+                
+    			// Run this again in a few seconds to update the info
+                mHandler.sendEmptyMessageDelayed(MSG_UPDATE_A2DP_TRACKINFO, 1000);
+                break;
+            }
 			default:
 				break;
 			}
@@ -692,6 +719,8 @@ public class BonovoBlueToothService extends Service {
 		mContext = getApplicationContext();
         mListContacts = new ArrayList<BonovoBlueToothService.Contact>();
         mListContacts.clear();
+        
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         
 		getBtName();
 		getBtPinCode();
@@ -1128,8 +1157,54 @@ public class BonovoBlueToothService extends Service {
 		mAnswerTimer = time;
 	}
 
-	public void BlueToothCallback(int Cmd, String param) {
+	private void getAudioFocus(){
+		Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+		ComponentName mComponent = new ComponentName(this, BonovoBlueToothReceiver.class);
+		mediaButtonIntent.setComponent(mComponent);
+		PendingIntent mediaPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, mediaButtonIntent, 0);
+		mRemoteControlClient = new RemoteControlClient(mediaPendingIntent);
+		mAudioManager.registerMediaButtonEventReceiver(mComponent);
+        mAudioManager.registerRemoteControlClient(mRemoteControlClient);
+        mRemoteControlClient.setTransportControlFlags(
+				RemoteControlClient.FLAG_KEY_MEDIA_NEXT |
+				RemoteControlClient.FLAG_KEY_MEDIA_PREVIOUS |
+				RemoteControlClient.FLAG_KEY_MEDIA_PLAY_PAUSE);
+		
+		int result = mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+		if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+			mHasAudioFocus = true;
+		} else {
+			mHasAudioFocus = false;
+		}
+	}
+	
+	private void abandonAudioFocus() {
+		if (mHasAudioFocus == true) {
+			ComponentName mComponent = new ComponentName(this, BonovoBlueToothReceiver.class);
+			mAudioManager.unregisterMediaButtonEventReceiver(mComponent);
+			mAudioManager.unregisterRemoteControlClient(mRemoteControlClient);
+			
+			int result = mAudioManager.abandonAudioFocus(this);
+			if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+				mHasAudioFocus = false;
+			}
+		}
+	}
+	
+	
+	public void BlueToothCallback(int Cmd, byte[] bparam) {
 		if(DEB) Log.d(TAG, "BlueToothCallback cmd=" + Cmd);
+		String param = "";
+	
+		if(bparam != null) {
+			try {
+				param = new String(bparam, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(DEB) Log.d(TAG, "BlueToothCallback param=" + param);
 
 		switch (Cmd) {
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IA:{ // HFP disconnect
@@ -1163,17 +1238,28 @@ public class BonovoBlueToothService extends Service {
             if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MA");
 			setMusicStatus(false);
             mHandler.removeMessages(MSG_STOP_MUSIC);
+    
+            abandonAudioFocus();
+            
 			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
 			Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
 			mHandler.sendMessage(msg);
+			
+			mHandler.removeMessages(MSG_UPDATE_A2DP_TRACKINFO);
 		}
 		break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MB:{
             if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MB");
             activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
 			setMusicStatus(true);
+			
+			getAudioFocus();
+				
 			Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
 			mHandler.sendMessage(msg);
+			
+			Message msg2 = mHandler.obtainMessage(MSG_UPDATE_A2DP_TRACKINFO);
+			mHandler.sendMessage(msg2);
 		}
 			break;
         case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PA:{
@@ -1416,6 +1502,76 @@ public class BonovoBlueToothService extends Service {
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PZ");
 			// Last number redial failed
 			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MH:
+			if(DEB) Log.d(TAG, "MH: A2DP Elements Attributes Indication. " + param);
+			// A2DP track info, don't call this often or the audio will start skipping
+			int element = bparam[0];
+			if(element == 1){
+				a2dpTrackName = param.substring(3).trim();		
+				if(DEB) Log.d(TAG, "A2DP Track title: " + a2dpTrackName);
+			} else if(element == 2){
+				a2dpArtist = param.substring(3).trim();
+				if(DEB) Log.d(TAG, "A2DP Track artist: " + a2dpArtist);
+			} else if(element == 3){
+				a2dpAlbum = param.substring(3).trim();
+				if(DEB) Log.d(TAG, "A2DP Track album: " + a2dpAlbum);
+			} else if(element == 4){
+				// track number
+			} else if(element == 5){
+				// total number of tracks
+			} else if(element == 7){
+				if(DEB) Log.d(TAG, "A2DP Track length: " + param.substring(2));
+				
+				// Update the track info for our remotecontrolclient
+				RemoteControlClient.MetadataEditor ed = mRemoteControlClient.editMetadata(false);
+		        ed.putString(MediaMetadataRetriever.METADATA_KEY_TITLE, a2dpTrackName);
+		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, a2dpArtist);
+		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST, a2dpArtist);
+		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, a2dpAlbum);
+		        ed.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, trackLenMs);
+		        ed.apply();
+				
+				// Now we've updated all the details, broadcast the track change to all apps 
+				Intent intent = new Intent(BonovoBlueToothData.A2DP_TRACK_CHANGED);
+	            sendBroadcast(intent);
+			}
+			
+			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MJ:
+			// We call this every second to update track position and if track len changes,
+			// then we flag a track change and read the new track metadata. 
+			// We can call this every second without skipping unlike _MH
+			//
+			// Would be unneeded if the BT firmware just exposed the AVRCP track change event!
+			//
+			if(DEB) Log.d(TAG, "MJ: A2DP playing status. " + param);
+					
+			long oldTrackLenMs = trackLenMs;
+					
+			trackPosMs = Long.parseLong(param.substring(1,9), 16);
+			if(DEB) Log.d(TAG, "Track Pos: " + trackPosMs + " ms");
+			
+			trackLenMs = Long.parseLong(param.substring(9,17), 16);
+			if(DEB) Log.d(TAG, "Track Len: " + trackLenMs + " ms");
+			
+			if(param.startsWith("0")){
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_STOPPED, trackPosMs, 1.0f);
+			} else if(param.startsWith("1")){
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING, trackPosMs, 1.0f);
+			} if(param.startsWith("2")){
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PAUSED, trackPosMs, 1.0f);
+			} else if(param.startsWith("3")){
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_FAST_FORWARDING, trackPosMs, 1.0f);
+			} else if(param.startsWith("4")){
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_REWINDING, trackPosMs, 1.0f);
+			}
+				
+			if (oldTrackLenMs != trackLenMs) {
+				// track has changed, request new track details
+				BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QE);
+			}
+			
+			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MO0:
 			// Speaker Anti-Pop function
 			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO0)");
@@ -1426,6 +1582,7 @@ public class BonovoBlueToothService extends Service {
 			}
 			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
 			if(DEB) Log.d(TAG, "Bluetooth device disconnected from speaker.");
+			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MO1:
 			// Speaker Anti-Pop function
 			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO1)");
@@ -1438,6 +1595,7 @@ public class BonovoBlueToothService extends Service {
 				activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
 			}
 			if(DEB) Log.d(TAG, "Bluetooth device reconnected to speaker.");
+			break;
 		default:
 			break;
 		}
@@ -1659,62 +1817,9 @@ public class BonovoBlueToothService extends Service {
 
 		public static final int CMD_UNSOLICATED_MO0 = 60;	// Anti-pop - Turn off speaker notice
 		public static final int CMD_UNSOLICATED_MO1 = 61;	// Anti-pop - Turn speaker back on notice
-		
-		public static final int CMD_UNSOLICATED_MAX = 62;
-		
-//		public static final int CMD_UNSOLICATED_IS = 0;
-//		public static final int CMD_UNSOLICATED_IA = 1;
-//		public static final int CMD_UNSOLICATED_IB = 2;
-//		public static final int CMD_UNSOLICATED_IC = 3;
-//		public static final int CMD_UNSOLICATED_ID = 4;
-//		public static final int CMD_UNSOLICATED_IF = 5;
-//		public static final int CMD_UNSOLICATED_IG = 6;
-//		public static final int CMD_UNSOLICATED_II = 7;
-//		public static final int CMD_UNSOLICATED_IJ = 8;
-//		public static final int CMD_UNSOLICATED_IR = 9;
-//		public static final int CMD_UNSOLICATED_IV = 10;
-//		public static final int CMD_UNSOLICATED_IU = 11;
-//		public static final int CMD_UNSOLICATED_MA = 12;
-//		public static final int CMD_UNSOLICATED_MB = 13;
-//		public static final int CMD_UNSOLICATED_MC = 14;
-//		public static final int CMD_UNSOLICATED_MD = 15;
-//		public static final int CMD_UNSOLICATED_MF = 16;
-//		public static final int CMD_UNSOLICATED_MG = 17;
-//		public static final int CMD_UNSOLICATED_ML = 18;
-//		public static final int CMD_UNSOLICATED_MM = 19;
-//		public static final int CMD_UNSOLICATED_MN = 20;
-//		public static final int CMD_UNSOLICATED_MU = 22;
-//		public static final int CMD_UNSOLICATED_MW = 23;
-//		public static final int CMD_UNSOLICATED_MX = 24;
-//		public static final int CMD_UNSOLICATED_PA = 25;
-//		public static final int CMD_UNSOLICATED_MY = 26;
-//		public static final int CMD_UNSOLICATED_PB = 27;
-//		public static final int CMD_UNSOLICATED_PC = 28;
-//		public static final int CMD_UNSOLICATED_PN = 29;
-//		public static final int CMD_UNSOLICATED_PK = 30;
-//		public static final int CMD_UNSOLICATED_PL = 31;
-//		public static final int CMD_UNSOLICATED_PE = 32;
-//		public static final int CMD_UNSOLICATED_PF = 33;
-//		public static final int CMD_UNSOLICATED_WA = 34;
-//		public static final int CMD_UNSOLICATED_WB = 35;
-//		public static final int CMD_UNSOLICATED_WC = 36;
-//		public static final int CMD_UNSOLICATED_WD = 37;
-//		public static final int CMD_UNSOLICATED_WN = 38;
-//		public static final int CMD_UNSOLICATED_IX = 39;
-//		public static final int CMD_UNSOLICATED_MK = 40;
-//		public static final int CMD_UNSOLICATED_QH = 41;
-//		public static final int CMD_UNSOLICATED_ERROR = 42;
-//		public static final int CMD_UNSOLICATED_OK = 43;
-//		public static final int CMD_UNSOLICATED_MAX = 44;
-//		public static final int CMD_UNSOLICATED_QB = 45;
-//		public static final int CMD_UNSOLICATED_QA = 46;
-//		public static final int CMD_UNSOLICATED_CZ = 47;
-//		public static final int CMD_UNSOLICATED_CV = 48;
-//		
-//		// add by bonovo zbiao
-//		public static final int CMD_UNSOLICATED_IO0 = 50;
-//		public static final int CMD_UNSOLICATED_IO1 = 51;
-	}
+		public static final int CMD_UNSOLICATED_MJ = 62;	// A2DP Playback state
+		public static final int CMD_UNSOLICATED_MAX = 63;
+	}		
 
 	class BonovoBlueToothRequestCmd {
 		public static final int CMD_SOLICATED_CA = 0;	// Enter pairing mode
@@ -1802,7 +1907,8 @@ public class BonovoBlueToothService extends Service {
         public final static String ACTION_PHONE_NETWORK_NAME_CHANGED = "android.intent.action.PHONE_NETWORK_NAME_CHANGED";
         public final static String ACTION_PHONE_SIGNAL_LEVEL_CHANGED = "android.intent.action.PHONE_SIGNAL_LEVEL_CHANGED";
         public final static String ACTION_PHONE_BATTERY_LEVEL_CHANGED = "android.intent.action.PHONE_BATTERY_LEVEL_CHANGED";
-
+        public final static String A2DP_TRACK_CHANGED = "BlueTooth.Media_Broadcast_A2DP_TRACK_CHANGED";
+        
 		public final static String NAME = "name";
 		public final static String LEVEL = "level";
 		public final static String PHONE_NUMBER = "phone_number";
@@ -1814,5 +1920,25 @@ public class BonovoBlueToothService extends Service {
 		public final static String HFP_STATUS = "hfp_status";
 		public final static String A2DP_STATUS = "a2dp_status";
         public final static String KEY_SYNC_CONTACTS_COUNT = "contacts_count";
+	}
+	
+	@Override
+	public void onAudioFocusChange(int focusChange) {
+		// TODO Auto-generated method stub
+		if(DEB) Log.d(TAG, "onAudioFocusChange focusChange: " + focusChange);
+		switch (focusChange) {
+		case AudioManager.AUDIOFOCUS_GAIN:
+			break;
+		case AudioManager.AUDIOFOCUS_LOSS:
+			BlueToothMusicStop();
+			break;
+		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+			break;
+		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+			break;
+
+		default:
+			break;
+		}
 	}
 }
