@@ -758,9 +758,14 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	}
 	
 	public int activeAudio(int level){
+		if (level == AudioLevel.CODEC_LEVEL_BT_MUSIC && mBtMusicIsEnable == false) {
+			// Abort if there is an attempt to activate music when it is switched off
+			Log.d(TAG, "Attempt to activate BT music audio when it is disabled.");
+			return 0;
+		}
 		Message msg = mHandler.obtainMessage(MSG_ACTIVE_AUDIO, level, 0);
-        mHandler.sendMessage(msg);
-		return 0;
+		mHandler.sendMessage(msg);
+        return 0;
 	}
 	
 	//
@@ -1236,18 +1241,16 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 		break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MA:{
             if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MA");
-            if (mBtMusicIsEnable == true) {
-				setMusicStatus(false);
-	            mHandler.removeMessages(MSG_STOP_MUSIC);
+			setMusicStatus(false);
+            mHandler.removeMessages(MSG_STOP_MUSIC);
 	    
-	            abandonAudioFocus();
+            abandonAudioFocus();
 	            
-				recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
-				Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
-				mHandler.sendMessage(msg);
+			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
+			Message msg = mHandler.obtainMessage(MSG_AUDIO_STATE_CHANGE);
+			mHandler.sendMessage(msg);
 				
-				mHandler.removeMessages(MSG_UPDATE_A2DP_TRACKINFO);
-            }
+			mHandler.removeMessages(MSG_UPDATE_A2DP_TRACKINFO);
 		}
 		break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_MB:{
@@ -1581,7 +1584,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO0)");
 			
 			// disconnect speaker
-			if(mBtMusicIsEnable && getMusicStatus()){
+			if((mBtMusicIsEnable == true) && getMusicStatus()){
 				recoveryAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
 			}
 			recoveryAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
@@ -1592,7 +1595,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			if(DEB) Log.d(TAG, "Callback -->Speaker Anti-Pop (MO1)");
 			
 			// reconnect speaker
-			if(mBtMusicIsEnable && getMusicStatus()){
+			if((mBtMusicIsEnable == true) && getMusicStatus()){
 				activeAudio(AudioLevel.CODEC_LEVEL_BT_MUSIC);
 			}
 			if(getPhoneState() != PhoneState.IDLE){
@@ -1890,7 +1893,10 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 		
 		public static final int CMD_SOLICATED_PP = 56;	// Send data via SPP
 		
-		public static final int CMD_SOLICATED_MAX = 57;
+		public static final int CMD_SOLICATED_MI = 57;	//
+		public static final int CMD_SOLICATED_MJ = 58;	// 
+		
+		public static final int CMD_SOLICATED_MAX = 59;
 	}
 	
 	class BonovoBlueToothData {

@@ -65,6 +65,8 @@ enum {
 	CMD_AT_QD,
 	CMD_AT_QE,
 	CMD_AT_PP,
+	CMD_AT_MI,
+	CMD_AT_MJ,
 	CMD_AT_MAX,
 };
 
