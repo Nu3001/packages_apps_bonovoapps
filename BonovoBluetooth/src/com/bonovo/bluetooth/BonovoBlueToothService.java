@@ -78,6 +78,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
     private List<Contact> mListContacts;
     private AudioManager mAudioManager;
     private RemoteControlClient mRemoteControlClient;
+    private int mBTErrCount = 0;
 	
 	/**
 	 * The Phone state. One of the following:
@@ -718,7 +719,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	    			BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QD);
 	                
 	    			// Run this again in a few seconds to update the info
-	                mHandler.sendEmptyMessageDelayed(MSG_UPDATE_A2DP_TRACKINFO, 1000);
+	                mHandler.sendEmptyMessageDelayed(MSG_UPDATE_A2DP_TRACKINFO, 2000);
 	                
             	} else {
             		if(DEB) Log.d(TAG, " --> A2DP track info update request ignored as BT module startup not complete or profile disconnected.");
@@ -1638,21 +1639,33 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			trackLenMs = Long.parseLong(param.substring(9,17), 16);
 			
 			if(param.startsWith("0")){
-				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_STOPPED, trackPosMs, 1.0f);
-				mA2DPPlaying = false;
+				if (mA2DPPlaying == true) {
+					mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_STOPPED);
+					mA2DPPlaying = false;
+				}
 			} else if(param.startsWith("1")){
-				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING, trackPosMs, 1.0f);
-				mA2DPPlaying = true;
+				if (mA2DPPlaying == false) {
+					mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING);
+					mA2DPPlaying = true;
+				}
 			} if(param.startsWith("2")){
-				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PAUSED, trackPosMs, 1.0f);
-				mA2DPPlaying = false;
+				if (mA2DPPlaying == true) {
+					mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_PAUSED);
+					mA2DPPlaying = false;
+				}
 			} else if(param.startsWith("3")){
-				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_FAST_FORWARDING, trackPosMs, 1.0f);
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_FAST_FORWARDING);
 			} else if(param.startsWith("4")){
-				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_REWINDING, trackPosMs, 1.0f);
+				mRemoteControlClient.setPlaybackState(RemoteControlClient.PLAYSTATE_REWINDING);
 			} else if(param.startsWith("F")){
-				Log.d(TAG, "Bluetooth module error mode.  Resetting Bluetooth module.");
-				BlueToothReset();	
+				mBTErrCount = mBTErrCount + 1;
+				Log.d(TAG, "Bluetooth module error count " + mBTErrCount);
+				
+				if (mBTErrCount > 2) {
+					Log.d(TAG, "Bluetooth module error count > 2..  Resetting Bluetooth module.");
+					mBTErrCount = 0;
+					BlueToothReset();
+				}
 			}
 				
 			if (oldTrackLenMs != trackLenMs) {

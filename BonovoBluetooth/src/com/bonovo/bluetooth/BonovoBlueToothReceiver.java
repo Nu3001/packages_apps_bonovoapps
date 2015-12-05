@@ -22,9 +22,9 @@ public class BonovoBlueToothReceiver extends BroadcastReceiver {
 		}else if(intent.getAction().equals(Intent.ACTION_MEDIA_BUTTON)){
             KeyEvent keyEvent = (KeyEvent) intent
                             .getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            int keyCode = keyEvent.getKeyCode();// °´ÏÂ / ËÉ¿ª °´Å¥
+            int keyCode = keyEvent.getKeyCode();// ï¿½ï¿½ï¿½ï¿½ / ï¿½É¿ï¿½ ï¿½ï¿½Å¥
             int keyAction = keyEvent.getAction() ;
-            // »ñµÃÊÂ¼þµÄÊ±¼ä
+            // ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
             // long downtime = keyEvent.getEventTime();
             String command = null;
             switch (keyCode) {
@@ -46,12 +46,15 @@ public class BonovoBlueToothReceiver extends BroadcastReceiver {
                                     if(command.equals("KEYCODE_MEDIA_NEXT")){
                                             Intent it = new Intent("BlueTooth.Media_Broadcast_Next");
                                             context.sendBroadcast(it);
+                                            if(DEBUG) Log.d(TAG, "broadcast receiver: KEYCODE_MEDIA_NEXT -> BlueTooth.Media_Broadcast_Next");
                                     } else if (command.equals("KEYCODE_MEDIA_PREVIOUS")) {
                                             Intent it = new Intent("BlueTooth.Media_Broadcast_Last");
                                             context.sendBroadcast(it);
+                                            if(DEBUG) Log.d(TAG, "broadcast receiver: KEYCODE_MEDIA_PREVIOUS -> BlueTooth.Media_Broadcast_Last");
                                     } else if (command.equals("KEYCODE_MEDIA_PLAY_PAUSE")) {
                                         Intent it = new Intent("BlueTooth.Media_Broadcast_Play_Pause");
                                         context.sendBroadcast(it);
+                                        if(DEBUG) Log.d(TAG, "broadcast receiver: KEYCODE_MEDIA_PLAY_PAUSE -> BlueTooth.Media_Broadcast_Play_Pause");
                                     } 
                             } else {
 
