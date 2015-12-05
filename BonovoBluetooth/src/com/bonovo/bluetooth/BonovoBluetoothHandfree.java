@@ -149,19 +149,7 @@ public class BonovoBluetoothHandfree extends Activity
 						mHandler.removeMessages(MSG_DIAL_FINISH_ACTIVITY);
 						
 						setView(phoneLayouts.PHONE_RINGING_IN);
-						
-						if(number != null) {
-//							mDigits.setText(number);
-                            String disp = getNameByNumber(mContext, number);
-                            if(disp == null){
-                                disp = number;
-                            }
-							mCallNumber.setText(disp);
-							
-							final Editable digits = mDigits.getText();
-							digits.clear();
-							setContactPhoto(mContext, number);
-						}
+						setCallInfo(number, "");
 						
 						mCallTime.setText(R.string.description_phone_incoming);
 
@@ -174,19 +162,7 @@ public class BonovoBluetoothHandfree extends Activity
 						mHandler.removeMessages(MSG_DIAL_FINISH_ACTIVITY);
 						
 						setView(phoneLayouts.PHONE_RINGING_OUT);
-						
-						if(number != null) {
-//							mDigits.setText(number);
-                            String disp = getNameByNumber(mContext, number);
-                            if(disp == null){
-                                disp = number;
-                            }
-							mCallNumber.setText(disp);
-							setContactPhoto(mContext, number);
-							
-							final Editable digits = mDigits.getText();
-							digits.clear();
-						}
+						setCallInfo(number, "");
 						
 						mCallTime.setText(R.string.description_phone_dialing);
 						
@@ -200,6 +176,7 @@ public class BonovoBluetoothHandfree extends Activity
 						
 						setView(phoneLayouts.PHONE_INCALL);
 						startCallTimer(myBlueToothService.getAnswerTime());
+						mCallNumber.setVisibility(View.VISIBLE);
 						mCallTime.setText(R.string.description_phone_in_call);
 					}
 				}
@@ -270,6 +247,8 @@ public class BonovoBluetoothHandfree extends Activity
 				mCallNumber.setText(mCallWaitingNumber.getText());
 				mCallWaitingContainer.setVisibility(View.GONE);
 				mConferenceButton.setVisibility(View.GONE);
+			}else if(BonovoBlueToothData.ACTION_PHONE_NAME_RECEIVED.equals(action)){
+				setCallInfo("", intent.getStringExtra("name"));
 			}
 		}
 	};
@@ -285,6 +264,7 @@ public class BonovoBluetoothHandfree extends Activity
 		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_BATTERY_LEVEL_CHANGED);
 		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_NETWORK_NAME_CHANGED);
 		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_SIGNAL_LEVEL_CHANGED);
+		myIntentFilter.addAction(BonovoBlueToothData.ACTION_PHONE_NAME_RECEIVED);
 		return myIntentFilter;
 	};
 	
@@ -308,55 +288,35 @@ public class BonovoBluetoothHandfree extends Activity
 				setView(phoneLayouts.PHONE_DIALPAD);
 				
 			}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_RINGING_IN);
 				mCallTime.setText(R.string.description_phone_incoming);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
 				
 			}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_RINGING_OUT);
 				mCallTime.setText(R.string.description_phone_dialing);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
-//				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
 				
 			}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_INCALL);
 				startCallTimer(myBlueToothService.getAnswerTime());
 				mCallTime.setText(R.string.description_phone_in_call);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
-//				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
 
 			}
 		}
@@ -526,56 +486,36 @@ public class BonovoBluetoothHandfree extends Activity
 				abandonAudioFocus();
 				
 			}else if(BonovoBlueToothService.PhoneState.RINGING == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_RINGING_IN);
 				mCallTime.setText(R.string.description_phone_incoming);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
-//				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
+				
 				
 			}else if(BonovoBlueToothService.PhoneState.DIALING == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_RINGING_OUT);
 				mCallTime.setText(R.string.description_phone_dialing);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
-//				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
 				
 			}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
+				requestAudioFocus();
 				setView(phoneLayouts.PHONE_INCALL);
 				startCallTimer(myBlueToothService.getAnswerTime());
 				mCallTime.setText(R.string.description_phone_in_call);
                 String number = myBlueToothService.getCurrentNumber();
-                String disp = getNameByNumber(mContext, number);
+                setCallInfo(number, "");
                 
-                if(disp == null){
-                    disp = number;
-                }
-                
-				mCallNumber.setText(disp);
-//				mDigits.setText(myBlueToothService.getCurrentNumber());
 				final Editable digits = mDigits.getText();
 				digits.clear();
-				requestAudioFocus();
-				setContactPhoto(mContext, number);
 			}
         }
 	}
@@ -784,6 +724,22 @@ public class BonovoBluetoothHandfree extends Activity
 		}
 	}
 	
+	private void setCallInfo(String number, String name){
+		String disp = "";
+		if(name.isEmpty()) {
+			disp = getNameByNumber(mContext, number);
+			
+	        if(disp == null){
+	            disp = number;
+	        }
+		} else {
+			disp = name;
+		}
+		
+		mCallNumber.setText(disp);
+		setContactPhoto(mContext, disp);
+	}
+	
 	private void setContactPhoto(Context context, String number){
         if(context == null)
 	        return;
@@ -919,7 +875,7 @@ public class BonovoBluetoothHandfree extends Activity
 											
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.GONE);
-			mCallNumber.setVisibility(View.GONE);
+			mCallNumber.setVisibility(View.INVISIBLE);
 			
 			// Dial pad can show to both dial a number and to send DTMF codes during an active call. 
 			//  Therefore it has two different states to handle

@@ -447,6 +447,8 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_MH, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='J'){    // A2DP playback state
 				android_callback(CMD_UNSOLICATED_MJ, &myLineBuf[k+2], frameEnd-2);
+			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='K'){    // A2DP profile connected indication
+				android_callback(CMD_UNSOLICATED_MK, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='L'){    // current AVRCP status
 				android_callback(CMD_UNSOLICATED_ML, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'M' && myLineBuf[k+1] =='M'){    // model name
