@@ -741,6 +741,8 @@ public class HandleService extends Service{
 		b.setView(v);
 		AlertDialog d = b.create();
 		d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		// Make dialog non-focusable before showing, stops it breaking immersive mode apps like automate.
+		d.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
 		d.show();
 
 
