@@ -1532,9 +1532,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			mMicMuted = true;		
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IK:{
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IK param:" + param);
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IK param:" + cleanInfo(param));
 			// call waiting - number attached
-			Message msg = mHandler.obtainMessage(MSG_PHONE_NEW_CALL_WAITING, param);
+			Message msg = mHandler.obtainMessage(MSG_PHONE_NEW_CALL_WAITING, cleanInfo(param));
 			mHandler.sendMessage(msg);
 			break;
 		}
@@ -1567,10 +1567,10 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			break;
 		}
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IQ:{
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IQ param:" + param);
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IQ param:" + cleanInfo(param));
 			// The phone has supplied the other parties name from it's own contacts
 			Intent intent = new Intent(BonovoBlueToothData.ACTION_PHONE_NAME_RECEIVED);
-			intent.putExtra("name", param.substring(2));
+			intent.putExtra("name", cleanInfo(param.substring(2)));
             sendBroadcast(intent);
 			break;
 		}
@@ -1579,9 +1579,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			// current call holding
 			break;			
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PV:
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PV param:" + param);
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_PV param:" + cleanInfo(param));
 			// Current phone network operator name
-			Message msg1 = mHandler.obtainMessage(MSG_PHONE_NETWORKNAME, param);
+			Message msg1 = mHandler.obtainMessage(MSG_PHONE_NETWORKNAME, cleanInfo(param));
 			mHandler.sendMessage(msg1);
 			break;			
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_PZ:

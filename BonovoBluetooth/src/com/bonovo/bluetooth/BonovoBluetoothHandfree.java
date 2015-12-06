@@ -176,7 +176,6 @@ public class BonovoBluetoothHandfree extends Activity
 						
 						setView(phoneLayouts.PHONE_INCALL);
 						startCallTimer(myBlueToothService.getAnswerTime());
-						mCallNumber.setVisibility(View.VISIBLE);
 						mCallTime.setText(R.string.description_phone_in_call);
 					}
 				}
@@ -875,7 +874,6 @@ public class BonovoBluetoothHandfree extends Activity
 											
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.GONE);
-			mCallNumber.setVisibility(View.INVISIBLE);
 			
 			// Dial pad can show to both dial a number and to send DTMF codes during an active call. 
 			//  Therefore it has two different states to handle
@@ -909,7 +907,6 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.VISIBLE);
-			mCallNumber.setVisibility(View.VISIBLE);
 			mDialpadViewButton.setVisibility(View.VISIBLE);
 			mMicMuteButton.setVisibility(View.VISIBLE);
 			
@@ -923,7 +920,6 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			mAnswerButton.setVisibility(View.VISIBLE);
 			mEndCallButton.setVisibility(View.VISIBLE);
-			mCallNumber.setVisibility(View.VISIBLE);
 			mDialpadViewButton.setVisibility(View.GONE);
 			mMicMuteButton.setVisibility(View.GONE);
 			mConferenceButton.setVisibility(View.GONE);
@@ -938,7 +934,6 @@ public class BonovoBluetoothHandfree extends Activity
 			
 			mAnswerButton.setVisibility(View.GONE);
 			mEndCallButton.setVisibility(View.VISIBLE);
-			mCallNumber.setVisibility(View.VISIBLE);
 			mDialpadViewButton.setVisibility(View.GONE);
 			mMicMuteButton.setVisibility(View.GONE);
 			mConferenceButton.setVisibility(View.GONE);
