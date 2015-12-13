@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bluetooth</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="hello_world">Hallo wereld!</string>
+    <string name="description_phone_button">Telefoon</string>
+    <string name="description_music_button">Muziek</string>
+    <string name="description_settings_button">Instellingen</string>
+    <string name="description_sync_button">Synchroniseer Contacten</string>
+    <string name="description_bottom_bg">onder achtergrond</string>
+    <string name="description_add_volume">Zet volume hoger knop</string>
+    <string name="description_sub_volume">Zet volume lager knop</string>
+    <string name="description_background_bg">Achtergrond foto</string>
+    <string name="setting_button_bluetooth_status_open">Zet Aan</string>
+    <string name="setting_button_bluetooth_status_closed">Zet Uit</string>
+    
+    <string name="bluetooth_name">Naam:</string>
+    <string name="bluetooth_default_name">Unit</string>
+    <string name="bluetooth_pincode">Pincode:</string>
+    <string name="bluetooth_default_pincode">8888</string>
+    <string name="call_default_number">0612345678</string>
+    <string name="bluetooth_status_opened">Bluetooth geopend</string>
+    <string name="bluetooth_status_closed">Bluetooth gesloten</string>
+    <!-- string name="phone_link_status_opened">Telefoon verbonden</string>
+    <string name="phone_link_status_closed">Telefoon verbroken</string -->
+    <string name="phone_link_status_opened">Verbonden</string>
+    <string name="phone_link_status_closed">Verbroken</string>
+    
+    <!-- button name -->
+    <string name="setting_button_bluetooth_setting">Instellingen</string>
+    <string name="setting_button_bluetooth_music">Muziek</string>
+    <string name="simcontacts">Contacten</string>
+    <string name="downloadcontacts">Synchroniseer telefoonboek</string>
+    <string name="title">Synchroniseer contacten</string>
+    <string name="tn_dial">Bellen</string>
+    <string name="title_activity_bonovo_dial">BonovoBellen</string>
+    <string name="title_activity_bonovo_bluetooth_dial">BonovoBluetoothBellen</string>
+    <string name="title_section1">Gedeelte 1</string>
+    <string name="title_section2">Gedeelte 2</string>
+    <string name="title_section3">Gedeelte 3</string>
+    <string name="description_delete_button">Verwijderen</string>
+    <string name="description_image_button_one">een</string>
+    <string name="description_image_button_two">twee</string>
+    <string name="description_image_button_three">drie</string>
+    <string name="description_image_button_four">vier</string>
+    <string name="description_image_button_five">vijf</string>
+    <string name="description_image_button_six">zes</string>
+    <string name="description_image_button_seven">zeven</string>
+    <string name="description_image_button_eight">acht</string>
+    <string name="description_image_button_nine">negen</string>
+    <string name="description_image_button_zero">nul</string>
+    <string name="description_image_button_star">Ster</string>
+    <string name="description_image_button_pound">Pond</string>
+    <string name="description_dial_button">Bellen</string>
+    <string name="description_search_button">Zoeken</string>
+    <string name="action_menu_overflow_description">Meer opties</string>
+    <string name="dialerIconLabel">Telefoon</string>
+    <string name="recentCallsIconLabel">Bel log</string>
+    <string name="dialerAllContactsLabel">Favorieten en alle contacten</string>
+    <string name="title_activity_bonovo_bluetooth_handfree">BlueToothHandfree</string>
+    <string name="title_activity_bonovo_bluetooth_in_call_screen">BonovoBluetoothTelefoonScherm</string>
+    <string name="onscreenAudioText">Audio</string>
+    <string name="onscreenHoldText">Wacht</string>
+    <string name="onscreenSwapCallsText">Omwisselen</string>
+    <string name="onscreenShowDialpadText">Toetsscherm</string>
+	<string name="onscreenAddCallText">Nummer toevoegen</string>
+	<string name="onscreenMergeCallsText">Nummer samenvoegen</string>
+	<string name="onscreenEndCallText">Ophangen</string>
+	<string name="onscreenMuteText">Mute</string>
+	<string name="description_target_answer">Opnemen</string>
+    <string name="description_target_send_sms">Stuur SMS</string>
+    <string name="description_target_decline">Niet opnemen</string>
+    <string name="description_phone_incoming">Wacht opnemen</string>
+    <string name="description_phone_dialing">Bellen</string>
+    <string name="description_phone_in_call">In gesprek</string>
+    <string name="description_phone_hang_up">Ophangen</string>
+    <string name="description_phone_call_time">Gesprektijd</string>
+    <string name="description_sync_select">Synchronisatie Select</string>
+    <string name="description_sync_sim">Sim: synchroniseer de contacten van simkaart</string>
+    <string name="description_sync_phone">Telefoon: synchroniseer de contacten in het telefoonboek</string>
+    <string name="description_title_setting">BlueToothInstellingen</string>
+    <string name="description_title_music">BlueToothMuziek</string>
+    <string name="description_dial_info">Het HFP van bluetooth is niet verbonden</string>
+    <string name="description_bt_info">U kunt uw bluetooth naam en pin code veranderen:</string>
+    <string name="description_bt_name_hint">Tot 32 tekens</string>
+    <string name="description_bt_pin_hint">Tot 16 cijfers</string>
+    <string name="description_updata_name_fail">Update bluetooth naam mislukt!</string>
+    <string name="description_updata_pin_fail">Update bluetooth pin code mislukt!</string>
+    
+    <string name="description_music_disable">Muziek functie is uitgeschakeld omdat de bluetooth bron niet is verbonden of de bluetooth uitgeschakeld staat.</string>
+    <string name="description_phone_disable">Telefoon functie is uitgeschakeld omdat de bluetooth bron niet is verbonden of de bluetooth uitgeschakeld staat.</string>
+    <string name="description_sync_contacts_disable">U kunt niet uw contacten synchroniseren omdat de bluetooth bron niet is verbonden of de bluetooth uitgeschakeld staat.</string>
+    <string name="description_volume_disable">U kunt niet het volume wijzigen omdat de bluetooth bron niet is verbonden of de bluetooth uitgeschakeld staat.</string>
+    <string name="description_switch_bt_music">Bt Muziek</string>
+
+</resources>

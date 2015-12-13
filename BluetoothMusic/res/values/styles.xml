@@ -1,0 +1,81 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="NormalTextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+     <style name="status" parent="@android:style/TextAppearance.Medium"> 
+         <item name="android:textSize">25sp</item> 
+          <item name="android:textColor">#FFFFFF</item> 
+</style> 
+    <style name="DialtactsDigitsTextAppearance">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textSize">@dimen/dialpad_digits_text_size</item>
+        <item name="android:freezesText">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:editable">true</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+    
+    <style name="DialtactsDialpadButtonStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:soundEffectsEnabled">false</item>
+    </style>
+    
+    <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->
+    <style name="InCallButton">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_height">@dimen/in_call_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- "Compound button" variation of InCallButton.
+         These buttons have the concept of two states: checked and unchecked.
+         (This style is just like "InCallButton" except that we also
+         clear out android:textOn and android:textOff, to avoid the default
+         text label behavior of the ToggleButton class.) -->
+    <style name="InCallCompoundButton" parent="InCallButton">
+        <item name="android:textOn">@null</item>
+        <item name="android:textOff">@null</item>
+    </style>
+    <style name="status" parent="@android:style/TextAppearance.Large.Inverse"> 
+</style> 
+
+    
+     <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+</resources>
