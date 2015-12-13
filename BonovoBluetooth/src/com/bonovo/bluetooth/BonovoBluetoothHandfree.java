@@ -733,19 +733,17 @@ public class BonovoBluetoothHandfree extends Activity
 	private void setCallInfo(String number, String name){
 		String disp = "";
 		
-		if(name.isEmpty() && number.isEmpty()) {
-			// oops?
-		}else{ 
-			if(name.isEmpty()) {
-				disp = getNameByNumber(mContext, number);
-			
-				if(disp == null){
-					disp = number;
-	        	}
-			} else {
-				disp = name;
-			}
+		if(name.isEmpty()) {
+			disp = getNameByNumber(mContext, number);
 		
+			if(disp == null){
+				disp = number;
+	        	}
+		} else {
+			disp = name;
+		}
+		
+		if (!disp.isEmpty()) {
 			mCallNumber.setText(disp);
 			setContactPhoto(mContext, disp);
 		}
