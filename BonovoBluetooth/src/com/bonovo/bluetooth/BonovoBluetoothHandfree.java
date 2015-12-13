@@ -165,7 +165,6 @@ public class BonovoBluetoothHandfree extends Activity
 						setCallInfo(number, "");
 						
 						mCallTime.setText(R.string.description_phone_dialing);
-						
 					}else if(BonovoBlueToothService.PhoneState.ACTIVE == phoneState){
 						requestAudioFocus();
 						
@@ -456,6 +455,14 @@ public class BonovoBluetoothHandfree extends Activity
 			}
 		}
 	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		
+		Log.d(TAG, "onNewIntent() called. action: " + intent.getAction() + "  categories: " + intent.getCategories().toString());
+		
+	}
 
 	@Override
 	protected void onResume() {
@@ -725,18 +732,23 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	private void setCallInfo(String number, String name){
 		String disp = "";
-		if(name.isEmpty()) {
-			disp = getNameByNumber(mContext, number);
-			
-	        if(disp == null){
-	            disp = number;
-	        }
-		} else {
-			disp = name;
-		}
 		
-		mCallNumber.setText(disp);
-		setContactPhoto(mContext, disp);
+		if(name.isEmpty() && number.isEmpty()) {
+			// oops?
+		}else{ 
+			if(name.isEmpty()) {
+				disp = getNameByNumber(mContext, number);
+			
+				if(disp == null){
+					disp = number;
+	        	}
+			} else {
+				disp = name;
+			}
+		
+			mCallNumber.setText(disp);
+			setContactPhoto(mContext, disp);
+		}
 	}
 	
 	private void setContactPhoto(Context context, String number){

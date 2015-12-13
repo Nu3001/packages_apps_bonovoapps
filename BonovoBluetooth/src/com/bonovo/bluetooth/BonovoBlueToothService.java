@@ -169,6 +169,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	private final static String ACTION_MUSIC_PAUSE = "android.intent.action.BONOVO_BTMUSIC_PAUSE";
 	private final static String ACTION_MUSIC_PREVTRACK = "android.intent.action.BONOVO_BTMUSIC_PREVTRACK";
 	private final static String ACTION_MUSIC_NEXTTRACK = "android.intent.action.BONOVO_BTMUSIC_NEXTTRACK";
+	private final static String ACTION_MUSIC_INFO_REFRESH = "android.intent.action.BONOVO_REQUEST_TRACKINFO_REFRESH";
 	
     // onKeyEvent
     private final static String ACTION_KEY_BT = "android.intent.action.BONOVO_BT";
@@ -248,6 +249,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 		myIntentFilter.addAction(ACTION_MUSIC_STOP);
 		myIntentFilter.addAction(ACTION_MUSIC_NEXTTRACK);
 		myIntentFilter.addAction(ACTION_MUSIC_PREVTRACK);
+		myIntentFilter.addAction(ACTION_MUSIC_INFO_REFRESH);
 		return myIntentFilter;
 	};
 	
@@ -392,9 +394,13 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 				BlueToothMusicNext();
 			}else if(action.equals(ACTION_MUSIC_PREVTRACK) || action.equals("BlueTooth.Media_Broadcast_Last")){
 				BlueToothMusicPre();
+			}else if(action.equals(ACTION_MUSIC_INFO_REFRESH)){
+				// Force a track info refresh 
+				if(mA2DPProfileConnected) {
+					BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QE);
+				}
 			}
         }
-		
 	};
 	
 	private void wakeUpAndUnlockIfNeed(){
@@ -1409,12 +1415,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_II:{
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_II  mStartComplete : " + mStartComplete);
-			if(!mStartComplete){
-				mStartComplete = true;
-				mHandler.sendEmptyMessage(MSG_BT_CHECK_NAME);
-				mHandler.sendEmptyMessageDelayed(MSG_BT_CHECK_PINCODE, DELAY_TIME_CHECKPINCODE);
-			}
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_II");
 		}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IJ:
@@ -1518,7 +1519,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_OK");
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_ERROR: {
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_ERROR");
+			Log.d(TAG, "Bluetooth HFP - CMD_UNSOLICATED_ERROR. Error code: " + cleanInfo(param));
             Message msg = mHandler.obtainMessage(MSG_SEND_COMMANDER_ERROR);
 			mHandler.sendMessage(msg);
 			break;
@@ -1557,6 +1558,16 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			// Release held or reject waiting call (hang up the inactive call)
 			Message msg = mHandler.obtainMessage(MSG_PHONE_HUNG_UP_INACTIVE);
 			mHandler.sendMessage(msg);
+			break;
+		}
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IS:{
+			Log.d(TAG, " ** Bluetooth HFP Module init complete. Firmware version: " + cleanInfo(param));
+			// Bluetooth module has sent notice that it has completed it's own
+			//  initialization and is now ready to receive commands.
+			
+			mStartComplete = true;
+			mHandler.sendEmptyMessage(MSG_BT_CHECK_NAME);
+			mHandler.sendEmptyMessageDelayed(MSG_BT_CHECK_PINCODE, DELAY_TIME_CHECKPINCODE);
 			break;
 		}
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IT:{
@@ -1620,6 +1631,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 				
 				// Now we've updated all the details, broadcast the track change to all apps 
 				Intent intent = new Intent(BonovoBlueToothData.A2DP_TRACK_CHANGED);
+				intent.putExtra("Artist", a2dpArtist);
+				intent.putExtra("Album", a2dpAlbum);
+				intent.putExtra("Title", a2dpTrackName);
 	            sendBroadcast(intent);
 			}
 			
@@ -1631,7 +1645,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			//
 			// Would be unneeded if the BT firmware just exposed the AVRCP track change event!
 			//
-			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MJ: A2DP playing status. " + param);
+			
+			// Uncomment this only if you need it, otherwise it will spam up the logcat a heck of a lot
+			//if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_MJ: A2DP playing status. " + param);
 					
 			long oldTrackLenMs = trackLenMs;
 					
@@ -1698,6 +1714,11 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			}
 			if(DEB) Log.d(TAG, "Bluetooth device reconnected to speaker.");
 			break;
+		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_UNKNOWN:{
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_UNKNOWN param: " + cleanInfo(param));
+			// unknown response, log for further study
+			break;
+		}
 		default:
 			break;
 		}
@@ -1919,8 +1940,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 
 		public static final int CMD_UNSOLICATED_MO0 = 60;	// Anti-pop - Turn off speaker notice
 		public static final int CMD_UNSOLICATED_MO1 = 61;	// Anti-pop - Turn speaker back on notice
-		public static final int CMD_UNSOLICATED_MJ = 62;	// A2DP Playback state
-		public static final int CMD_UNSOLICATED_MAX = 63;
+		public static final int CMD_UNSOLICATED_MJ = 62;		// A2DP Playback state
+		public static final int CMD_UNSOLICATED_UNKNOWN = 63;	// Unknown response
+		public static final int CMD_UNSOLICATED_MAX = 64;
 	}		
 
 	class BonovoBlueToothRequestCmd {
@@ -2013,7 +2035,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
         public final static String ACTION_PHONE_SIGNAL_LEVEL_CHANGED = "android.intent.action.PHONE_SIGNAL_LEVEL_CHANGED";
         public final static String ACTION_PHONE_BATTERY_LEVEL_CHANGED = "android.intent.action.PHONE_BATTERY_LEVEL_CHANGED";
         public final static String ACTION_PHONE_NAME_RECEIVED = "android.intent.action.PHONE_NAME_RECEIVED";
-        public final static String A2DP_TRACK_CHANGED = "BlueTooth.Media_Broadcast_A2DP_TRACK_CHANGED";
+        public final static String A2DP_TRACK_CHANGED = "android.intent.action.A2DP_TRACK_CHANGED";
         
 		public final static String NAME = "name";
 		public final static String LEVEL = "level";

@@ -16,40 +16,50 @@
 
     <application
         android:allowBackup="true"
+        android:label="@string/app_name" 
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
         android:persistent="true">
+        
+        <!--  the bluetooth settings application -->
         <activity
             android:name="com.bonovo.bluetooth.BluetoothSettings"
-            android:label="@string/app_name" >
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:icon="@drawable/ic_launcher"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:taskAffinity="com.bonovo.bluetooth.settings"
+            android:label="@string/title_activity_bonovo_bluetooth_settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        
+        <!--  the bluetooth receiver both launches the service on boot and receives media key presses for it -->
        <receiver
             android:name="com.bonovo.bluetooth.BonovoBlueToothReceiver"
             android:enabled="true"
             android:exported="false"
             android:label="BonovoBlueToothReceiver" >
-            <intent-filter android:priority="-100">
+            <intent-filter>
                 <action android:name="android.intent.action.PRE_LAUNCHER"/>
                 <action android:name="android.intent.action.MEDIA_BUTTON"></action> 
             </intent-filter>
         </receiver>
 
+       <!--  the bluetooth phone application -->
         <activity
             android:name="com.bonovo.bluetooth.BonovoBluetoothHandfree"
             android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_phone"
             android:label="@string/title_activity_bonovo_bluetooth_handfree"
             android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:taskAffinity="com.bonovo.bluetooth.phone" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
 
 				<category android:name="android.intent.category.APP_BT_PHONE"/>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -78,6 +88,7 @@
             </intent-filter>
         </activity>
         
+        <!--  the bluetooth service is shared by all activities -->
         <service android:name="com.bonovo.bluetooth.BonovoBlueToothService"
             android:enabled="true"
             android:exported="false" >

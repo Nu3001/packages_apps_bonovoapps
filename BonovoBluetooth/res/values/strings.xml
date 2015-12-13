@@ -59,8 +59,10 @@
     <string name="dialerIconLabel">Phone</string>
     <string name="recentCallsIconLabel">Call log</string>
     <string name="dialerAllContactsLabel">Favorites and all contacts</string>
-    <string name="title_activity_bonovo_bluetooth_handfree">BlueToothHandfree</string>
+    <string name="title_activity_bonovo_bluetooth_handfree">Bluetooth Phone</string>
     <string name="title_activity_bonovo_bluetooth_in_call_screen">BonovoBluetoothInCallScreen</string>
+    <string name="title_activity_bonovo_bluetooth_music">Bluetooth Music</string>
+    <string name="title_activity_bonovo_bluetooth_settings">Bluetooth Settings</string>
     <string name="onscreenAudioText">Audio</string>
     <string name="onscreenHoldText">Hold Call</string>
     <string name="onscreenSwapCallsText">Swap Calls</string>

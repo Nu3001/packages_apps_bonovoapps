@@ -380,9 +380,6 @@ void *thread_func_bluetooth_read(void *argv) {
 			else if(myLineBuf[k] == 'P' && myLineBuf[k+1] == 'C'){
 				android_callback(CMD_UNSOLICATED_PC, NULL, 0);
 			}
-			else if(myLineBuf[k] == 'P' && myLineBuf[k+1] == 'F'){
-				android_callback(CMD_UNSOLICATED_PF, NULL, 0);
-			}
 			else if(myLineBuf[k] == 'Q' && myLineBuf[k+1] == 'B'){
 				android_callback(CMD_UNSOLICATED_QB, NULL, 0);
 			}
@@ -427,6 +424,8 @@ void *thread_func_bluetooth_read(void *argv) {
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='R'){    // current call number
 				android_callback(CMD_UNSOLICATED_IR, &myLineBuf[k+2], frameEnd-2);
 				// activeAudio(CODEC_LEVEL_BT_TEL);
+			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='S'){    // bluetooth module init complete, returns firmware version
+				android_callback(CMD_UNSOLICATED_IS, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='T'){    // released active and switched to call waiting
 				android_callback(CMD_UNSOLICATED_IT, NULL, 0);
 			}else if(myLineBuf[k] == 'I' && myLineBuf[k+1] =='V'){    // connecting
@@ -475,8 +474,8 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_PV, &myLineBuf[k+2], frameEnd-2);
 			}else if(myLineBuf[k] == 'O' && myLineBuf[k+1] =='K'){    // execute command successfully
 				android_callback(CMD_UNSOLICATED_OK, NULL, 0);
-			}else if(!strncmp(myLineBuf, "ERROR", 5)){                // execute command failed
-				android_callback(CMD_UNSOLICATED_ERROR, NULL, 0);
+			}else if(!strncmp(myLineBuf, "ERROR", 5)){                // execute command failed, error code in the param
+				android_callback(CMD_UNSOLICATED_ERROR, &myLineBuf[k], frameEnd);
 			}else if(!strncmp(myLineBuf, "IO0", 3)){
 				android_callback(CMD_UNSOLICATED_IO0, NULL, 0);          // mute false
 			}else if(!strncmp(myLineBuf, "IO1", 3)){
@@ -485,6 +484,8 @@ void *thread_func_bluetooth_read(void *argv) {
 				android_callback(CMD_UNSOLICATED_MO0, NULL, 0);          // anti-pop speaker off
 			}else if(!strncmp(myLineBuf, "MO1", 3)){
 				android_callback(CMD_UNSOLICATED_MO1, NULL, 0);          // anti-pop speaker on
+			}else{    													// unhandled response
+				android_callback(CMD_UNSOLICATED_UNKNOWN, &myLineBuf[k], frameEnd);
 			}
 		}
 	}
