@@ -18,95 +18,85 @@
         android:id="@+id/textView1"
         style="@style/NormalTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="195dp"
+        android:layout_marginLeft="430dp"
+        android:layout_marginTop="185dp"
         android:text="@string/bluetooth_name"
         android:textSize="25sp"
-        android:visibility="gone"/>
+        android:visibility="visible" />
+
     <TextView
-     
         android:id="@+id/textView2"
         style="@style/NormalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView1"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/textView1"
-        android:text="@string/bluetooth_default_name" 
-        android:visibility="gone"
-        android:textSize="25sp"/>
+        android:text="@string/bluetooth_default_name"
+        android:textSize="25sp"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/textView3"
         style="@style/NormalTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="82dp"
-        android:layout_marginTop="250dp"
-        android:text="@string/bluetooth_pincode" 
+        android:layout_marginLeft="430dp"
+        android:layout_marginTop="230dp"
+        android:text="@string/bluetooth_pincode"
         android:textSize="25sp"
-        android:visibility="gone"/>
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/textView4"
         style="@style/NormalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/textView2"
         android:layout_alignTop="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
-        android:text="@string/bluetooth_default_pincode" 
-        android:visibility="gone"
-        android:textSize="25sp"/>
+        android:text="@string/bluetooth_default_pincode"
+        android:textSize="25sp"
+        android:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/imageViewBlueToothStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="450dp"
-        android:layout_marginTop="70dp" 
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/setting_bluetooth_close"/>
         <!-- 
         android:layout_marginTop="@dimen/imageView_bt_status_margin_top" 
         android:layout_centerHorizontal="true"-->
 
     <TextView
         android:id="@+id/textViewBlueToothStatus"
-        android:textColor="#ffffffff" 
-        android:background="#00000000"
-        android:textSize="25sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="460dp"
-        android:layout_marginTop="240dp"
-        android:layout_below="@+id/imageViewBlueToothStatus"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="430dp"
+        android:layout_marginTop="70dp"
+        android:background="#00000000"
         android:text="@string/bluetooth_status_closed"
-        />
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textViewPhoneLinkStatus"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="460dp"
-        android:layout_marginTop="240dp" 
         android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_alignTop="@+id/textView3"
+        android:layout_marginLeft="460dp"
         android:layout_marginRight="@dimen/text_link_status_phone_margin_right"
-        android:text="@string/phone_link_status_closed"
-        android:textColor="#ffffffff" 
+        android:layout_marginTop="120dp"
         android:background="#00000000"
-        android:textSize="25sp"
-        android:visibility="gone" />  
+        android:text="@string/phone_link_status_closed"
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
  
    	<!-- Switch 
 		android:id="@+id/swBtStatus"
@@ -122,19 +112,19 @@
 		android:switchTextAppearance="@style/status"
 		android:text="@string/description_switch_bt_status"     
 		  /> -->
+
    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="70dp"
-        android:textColor="#ffffffff" 
-        android:background="#00000000"
-        android:textSize="25sp"
-        android:text="@string/description_switch_bt_status"
-        />
+       android:id="@+id/textView5"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginLeft="50dp"
+       android:layout_marginTop="70dp"
+       android:background="#00000000"
+       android:text="@string/description_switch_bt_status"
+       android:textColor="#ffffffff"
+       android:textSize="25sp" />
 
     <!-- Switch
 		android:id="@+id/swBtMusic"
@@ -150,19 +140,20 @@
         android:switchTextAppearance="@style/status"
 		android:text="@string/description_switch_bt_music" 
 		android:visibility="gone" /-->
+
    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="130dp"
-        android:textColor="#ffffffff" 
-        android:background="#00000000"
-        android:textSize="25sp"
-   		android:text="@string/description_switch_bt_music"
-   		android:visibility="visible"/>
+       android:id="@+id/textView6"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginLeft="50dp"
+       android:layout_marginTop="130dp"
+       android:background="#00000000"
+       android:text="@string/description_switch_bt_music"
+       android:textColor="#ffffffff"
+       android:textSize="25sp"
+       android:visibility="visible" />
 
     <TextView
         android:id="@+id/tvSettingTitle"
@@ -207,5 +198,14 @@
         wison:thumbTextPadding="25dp"
         wison:trackOff="@drawable/switch_track_off_button"
         wison:trackOn="@drawable/switch_track_on_button" />
+
+    <CheckBox
+        android:id="@+id/chkMusicFocus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignRight="@+id/swBtMusic"
+        android:layout_marginTop="200dp"
+        android:text="@string/musicaudiofocus" />
 
 </RelativeLayout>

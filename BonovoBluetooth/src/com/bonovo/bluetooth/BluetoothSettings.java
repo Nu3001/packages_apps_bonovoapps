@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +45,6 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 	private TextView mTvBtPin = null;
 	private TextView mTvBtStatus = null;
 	private TextView mTvBtHFPStatus = null;
-	private ImageView mIgeBtStatus = null;
 	private TextView mBtnName = null;       //0825
 	private TextView mBtnMusicName = null;  //0825
 	
@@ -54,6 +54,8 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 	private MySwitch mSwBtPower = null;      //0718 �¼�
 	private MySwitch mSwMusic = null;	 //0820 �޸�
 	private Context mContext = null;
+	
+	private CheckBox mChkMusicFocus = null;
 	
 	private static BonovoBlueToothService mBtService = null;
 	
@@ -104,10 +106,7 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		mTvBtNameInfo.setOnLongClickListener(this);
 		mTvBtPin.setOnLongClickListener(this);
 		mTvBtPinInfo.setOnLongClickListener(this);
-		
-		mIgeBtStatus = (ImageView)findViewById(R.id.imageViewBlueToothStatus);
-			
-		
+							
 		//-------------------------------------------------------------------------------------------------------
 		//����Ĵ�����Ϊ�˱��������������һ���Զ������ӵģ�
 		//��ԭ����Button��ʾ���������ظ�Ϊ��Switch��ʾ��
@@ -137,7 +136,6 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 				boolean hfpStatus = mBtService.getBtHFPStatus();
 				//	mSwBtPower.setText(powerStatus ? R.string.setting_button_bluetooth_status_closed : R.string.setting_button_bluetooth_status_open);						
 				mTvBtStatus.setText(powerStatus ? R.string.bluetooth_status_opened : R.string.bluetooth_status_closed);
-				mIgeBtStatus.setImageResource(powerStatus ? R.drawable.setting_bluetooth_opened : R.drawable.setting_bluetooth_close);
 				mTvBtHFPStatus.setText(hfpStatus ? R.string.phone_link_status_opened : R.string.phone_link_status_closed);
 				if(isChecked){
 					//ѡ��ʱ�����Ĳ���
@@ -170,10 +168,7 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 		mSwMusic = (MySwitch)findViewById(R.id.swBtMusic);
 	    mSwMusic.setChecked(false);
         mSwMusic.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-
-			@Override
-			
-					
+			@Override		
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
 				if(isChecked){
 					if(mBtService != null){
@@ -186,7 +181,24 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 				}
 			}
 		});
-		
+        
+        mChkMusicFocus = (CheckBox)findViewById(R.id.chkMusicFocus);
+        mChkMusicFocus.setChecked(false);
+        mChkMusicFocus.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+			@Override		
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+				if(isChecked){
+					if(mBtService != null){
+						mBtService.setMusicFocus(true);
+					}
+				}else{
+					if(mBtService != null){
+						mBtService.setMusicFocus(false);
+					}
+				}
+			}
+		});
+        
 		registerReceiver(mReceiver, getIntentFilter());
 
 		Intent intent = new Intent();
@@ -225,9 +237,9 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 			boolean powerStatus = mBtService.getBtSwitchStatus();
 			boolean hfpStatus = mBtService.getBtHFPStatus();
             mSwBtPower.setChecked(powerStatus);
+            mChkMusicFocus.setChecked(mBtService.getMusicFocus());
 			//	mBtnBtPower.setText(powerStatus ? R.string.setting_button_bluetooth_status_closed : R.string.setting_button_bluetooth_status_open);
 			mTvBtStatus.setText(powerStatus ? R.string.bluetooth_status_opened : R.string.bluetooth_status_closed);
-			mIgeBtStatus.setImageResource(powerStatus ? R.drawable.setting_bluetooth_opened : R.drawable.setting_bluetooth_close);
 			mTvBtHFPStatus.setText(hfpStatus ? R.string.phone_link_status_opened : R.string.phone_link_status_closed);
 			mTvBtNameInfo.setText(mBtService.getBtName());
 			mTvBtPinInfo.setText(mBtService.getBtPinCode());
@@ -299,7 +311,6 @@ public class BluetoothSettings extends Activity implements View.OnClickListener,
 			}else if(action.equals("android.intent.action.BONOVO_SLEEP_KEY")
                || action.equals("android.intent.action.ACTION_SHUTDOWN")){
 				mTvBtStatus.setText(R.string.bluetooth_status_closed);
-    			mIgeBtStatus.setImageResource(R.drawable.setting_bluetooth_close);
     			mTvBtHFPStatus.setText(R.string.phone_link_status_closed);
 			}
 		}

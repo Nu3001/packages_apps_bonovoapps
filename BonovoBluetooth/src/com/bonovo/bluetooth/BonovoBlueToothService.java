@@ -79,6 +79,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
     private AudioManager mAudioManager;
     private RemoteControlClient mRemoteControlClient;
     private int mBTErrCount = 0;
+    private boolean mBtMusicFocus = false;				// True if we want exclusive focus when playing. false wont take exclusive focus
 	
 	/**
 	 * The Phone state. One of the following:
@@ -722,8 +723,8 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	            	if(DEB) Log.d(TAG, " --> Updating A2DP track info.");
 	            	
 	    			// Request Bluetooth track current position and length
-	    			BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QD);
-	                
+	            	BonovoBlueToothSet(BonovoBlueToothRequestCmd.CMD_SOLICATED_QD);
+	            	
 	    			// Run this again in a few seconds to update the info
 	                mHandler.sendEmptyMessageDelayed(MSG_UPDATE_A2DP_TRACKINFO, 2000);
 	                
@@ -757,6 +758,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			setBtHFPStatus(false);
 			myBtMusicStatus = false;
 		}
+		mBtMusicFocus = settings.getBoolean("mBtMusicFocus", true);
 		setBtSwitchStatus(myBtSwitchStatus);
 		registerReceiver(mBroadcastReceiver, getIntentFilter());
 	}
@@ -1063,12 +1065,30 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	}
 
 	/*
+	 * get mBtMusicFocus
+	 */
+	public boolean getMusicFocus(){
+		return mBtMusicFocus;
+	}
+
+	/*
+	 * set mBtMusicFocus
+	 */
+	public void setMusicFocus(boolean offOn){
+		mBtMusicFocus = offOn;
+		SharedPreferences settings = getSharedPreferences("com.bonovo.bluetooth", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("mBtMusicFocus", mBtMusicFocus);
+		editor.commit();
+	}
+
+	/*
 	 * get mBtMusicIsEnable
 	 */
 	public boolean getMusicServiceEnable(){
 		return mBtMusicIsEnable;
 	}
-
+	
 	/*
 	 * get bluetooth name
 	 */
@@ -1218,6 +1238,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 	}
 
 	private void getAudioFocus(){
+		int result;
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
 		ComponentName mComponent = new ComponentName(this, BonovoBlueToothReceiver.class);
@@ -1230,8 +1251,13 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 				RemoteControlClient.FLAG_KEY_MEDIA_NEXT |
 				RemoteControlClient.FLAG_KEY_MEDIA_PREVIOUS |
 				RemoteControlClient.FLAG_KEY_MEDIA_PLAY_PAUSE);
-		
-		int result = mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        
+        if (mBtMusicFocus) {
+        	result = mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        } else {
+        	result = mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+        }
+        
 		if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
 			mHasAudioFocus = true;
 		} else {
@@ -1615,20 +1641,23 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 				// total number of tracks
 			} else if(element == 7){
 				//if(DEB) Log.d(TAG, "A2DP Track length: " + param.substring(3));
-				Bitmap artwork;
 				
-				// Update the track info for our remotecontrolclient
-				MetadataEditor ed = mRemoteControlClient.editMetadata(false);
-				artwork = BitmapFactory.decodeResource(getResources(),R.drawable.radio);
-				ed.putBitmap(MetadataEditor.BITMAP_KEY_ARTWORK,artwork);
+				if (mRemoteControlClient != null) {
+					Bitmap artwork;
 				
-		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, a2dpAlbum);
-		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, a2dpArtist);
-		        ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST, a2dpArtist);
-		        ed.putString(MediaMetadataRetriever.METADATA_KEY_TITLE, a2dpTrackName);
-		        ed.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, trackLenMs);
-		        ed.apply();
+					// Update the track info for our remotecontrolclient
+					MetadataEditor ed = mRemoteControlClient.editMetadata(false);
+					artwork = BitmapFactory.decodeResource(getResources(),R.drawable.radio);
+					ed.putBitmap(MetadataEditor.BITMAP_KEY_ARTWORK,artwork);
 				
+		        	ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, a2dpAlbum);
+		        	ed.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, a2dpArtist);
+		        	ed.putString(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST, a2dpArtist);
+		        	ed.putString(MediaMetadataRetriever.METADATA_KEY_TITLE, a2dpTrackName);
+		        	ed.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, trackLenMs);
+		        	ed.apply();
+				}
+		        
 				// Now we've updated all the details, broadcast the track change to all apps 
 				Intent intent = new Intent(BonovoBlueToothData.A2DP_TRACK_CHANGED);
 				intent.putExtra("Artist", a2dpArtist);

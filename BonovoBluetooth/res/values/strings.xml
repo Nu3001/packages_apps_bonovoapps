@@ -111,5 +111,5 @@
     <string name="trackname">Track Name</string>
     <string name="artist">Artist</string>
     <string name="album">Album</string>
-
+    <string name="musicaudiofocus">Mute Android sounds when Bluetooth audio is playing</string>
 </resources>

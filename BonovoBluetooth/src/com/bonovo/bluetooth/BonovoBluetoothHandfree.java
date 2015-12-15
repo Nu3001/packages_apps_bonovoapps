@@ -90,6 +90,8 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	private boolean mTimerIsCounting = false;
 	private boolean mIsUserStarted = false;
+	private boolean mContactPhotoSet = false;
+	private boolean mNameSet = false;
 	
 	private static final int MSG_DIAL_HANG_UP = 0;
 	private static final int MSG_DIAL_FINISH_ACTIVITY = 1;
@@ -123,6 +125,8 @@ public class BonovoBluetoothHandfree extends Activity
 						}
 					}
 					number = number.substring(0, i);
+				} else {
+					number = "";
 				}
 				if(myBlueToothService != null){
 					BonovoBlueToothService.PhoneState phoneState = myBlueToothService.getPhoneState();
@@ -135,6 +139,8 @@ public class BonovoBluetoothHandfree extends Activity
 						
 						mCallTime.setText(R.string.description_phone_call_time);
 						stopCallTimer();
+						mContactPhotoSet = false;
+						mNameSet = false;
 						
 						Message msg = mHandler.obtainMessage(MSG_DIAL_HANG_UP);
 						mHandler.sendMessageDelayed(msg, DELAY_TIME_HANG_UP);
@@ -246,7 +252,11 @@ public class BonovoBluetoothHandfree extends Activity
 				mCallWaitingContainer.setVisibility(View.GONE);
 				mConferenceButton.setVisibility(View.GONE);
 			}else if(BonovoBlueToothData.ACTION_PHONE_NAME_RECEIVED.equals(action)){
-				setCallInfo("", intent.getStringExtra("name"));
+				String name = intent.getStringExtra("name");
+				
+				if (name != null && name.isEmpty() == false) {
+					setCallInfo("", name);
+				}
 			}
 		}
 	};
@@ -282,6 +292,8 @@ public class BonovoBluetoothHandfree extends Activity
 					|| BonovoBlueToothService.PhoneState.OFFHOOK == phoneState){
 				abandonAudioFocus();
 				stopCallTimer();
+				mContactPhotoSet = false;
+				mNameSet = false;
 				mCallTime.setText(R.string.description_phone_hang_up);
 				setView(phoneLayouts.PHONE_DIALPAD);
 				
@@ -733,19 +745,25 @@ public class BonovoBluetoothHandfree extends Activity
 	private void setCallInfo(String number, String name){
 		String disp = "";
 		
-		if(name.isEmpty()) {
-			disp = getNameByNumber(mContext, number);
-		
-			if(disp == null){
-				disp = number;
-	        	}
-		} else {
-			disp = name;
-		}
-		
-		if (!disp.isEmpty()) {
-			mCallNumber.setText(disp);
-			setContactPhoto(mContext, disp);
+		if (mNameSet == false) {
+			if(name == null || name.isEmpty()) {
+				disp = getNameByNumber(mContext, number);
+			
+				if(disp == null){
+					disp = number;
+		        	}
+			} else {
+				disp = name;
+				mNameSet = true;
+			}
+			
+			if (disp != null && disp.isEmpty() == false) {
+				mCallNumber.setText(disp);
+				
+				if (mContactPhotoSet == false) {
+					setContactPhoto(mContext, disp);
+				}
+			}
 		}
 	}
 	
@@ -762,7 +780,8 @@ public class BonovoBluetoothHandfree extends Activity
 
 		if (contactPhotoUri == null) {
 			Log.d(TAG, "setContactPhoto: number: " + number + " no photo set.");
-
+			mContactPhotoSet = false;
+			
 			// Show the default image
 			mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
 		}else{
@@ -773,6 +792,7 @@ public class BonovoBluetoothHandfree extends Activity
 			try {
 				Bitmap contactBitmap = BitmapFactory.decodeStream(resolver.openInputStream(contactPhotoUri));
 				mContactPhoto.setImageBitmap(getCircleBitmap(contactBitmap));		
+				mContactPhotoSet = true;
 			}catch(java.io.IOException ioe){
 				// show the default image
 				mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
