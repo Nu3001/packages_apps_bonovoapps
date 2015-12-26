@@ -744,27 +744,18 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	private void setCallInfo(String number, String name){
 		String disp = "";
-		
-		if (mNameSet == false) {
-			if(name == null || name.isEmpty()) {
-				disp = getNameByNumber(mContext, number);
+		if(name == null || name.isEmpty()) {
+			disp = getNameByNumber(mContext, number);
 			
-				if(disp == null){
-					disp = number;
-		        	}
-			} else {
-				disp = name;
-				mNameSet = true;
-			}
-			
-			if (disp != null && disp.isEmpty() == false) {
-				mCallNumber.setText(disp);
-				
-				if (mContactPhotoSet == false) {
-					setContactPhoto(mContext, disp);
-				}
-			}
+	        if(disp == null){
+	            disp = number;
+	        }
+		} else {
+			disp = name;
 		}
+		
+		mCallNumber.setText(disp);
+		setContactPhoto(mContext, disp);
 	}
 	
 	private void setContactPhoto(Context context, String number){
@@ -780,8 +771,7 @@ public class BonovoBluetoothHandfree extends Activity
 
 		if (contactPhotoUri == null) {
 			Log.d(TAG, "setContactPhoto: number: " + number + " no photo set.");
-			mContactPhotoSet = false;
-			
+
 			// Show the default image
 			mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
 		}else{
@@ -792,7 +782,6 @@ public class BonovoBluetoothHandfree extends Activity
 			try {
 				Bitmap contactBitmap = BitmapFactory.decodeStream(resolver.openInputStream(contactPhotoUri));
 				mContactPhoto.setImageBitmap(getCircleBitmap(contactBitmap));		
-				mContactPhotoSet = true;
 			}catch(java.io.IOException ioe){
 				// show the default image
 				mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
