@@ -252,11 +252,11 @@ public class BonovoBluetoothHandfree extends Activity
 				mCallWaitingContainer.setVisibility(View.GONE);
 				mConferenceButton.setVisibility(View.GONE);
 			}else if(BonovoBlueToothData.ACTION_PHONE_NAME_RECEIVED.equals(action)){
-				String name = intent.getStringExtra("name");
-				
-				if (name != null && name.isEmpty() == false) {
-					setCallInfo("", name);
-				}
+			//	String name = intent.getStringExtra("name");
+			//	
+			//	if (name != null && name.isEmpty() == false) {
+			//		setCallInfo("", name);
+			//	}
 			}
 		}
 	};
