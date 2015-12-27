@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.xmlpull.v1.XmlPullParser;
+import com.radio.widget.RadioPlayerStatusStore;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -35,6 +36,28 @@ import com.android.internal.car.can.CanRadio;
 public class RadioService extends Service implements RadioInterface,
 		AudioManager.OnAudioFocusChangeListener {
 
+    public static final String ACTION_START = "com.example.radioplayer.start";
+    public static final String EXTRA_KEY_STOP = "com.example.radioplayer.key_stop";
+    public static final String ACTION_STOP = "com.example.radioplayer.stop";
+    public static final String ACTION_NEXT = "com.example.radioplayer.next";
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        final String action = intent.getAction();
+        if (ACTION_START.equals(action)) {
+            final boolean stop = intent.getBooleanExtra(EXTRA_KEY_STOP, false);
+            Log.d(TAG, "start radio service, stop :" + stop);
+            if (stop)
+                stopSelf();
+        }
+        if (ACTION_NEXT.equals(action)){
+            if (getFunctionId() == 0) {
+                fineRight(getCurrentFreq());
+            } else {
+                stepRight(getCurrentFreq());
+            }
+        }
+        return 0;
+    }
 	public static final String MSG_CLOSE = "com.example.radioplayer.close";
 	private static final String TAG = "RadioService";
 	private static final String APPLICATIONS = "applications";
@@ -61,12 +84,12 @@ public class RadioService extends Service implements RadioInterface,
 	public static int STEP_OR_AUTO;			//step or auto flag
 	public static int IS_AUTO_NOW = 1;
 	public static int SEARCH_OVER = 0;
-	
+
 	public static final int CHINA_MODEL = 0;
 	public static final int JAPAN_MODEL = 1;
 	public static final int EUR_MODEL = 2;
 	public static int RADIO_MODEL = 0;
-	
+
 	public static  int FM_LOW_FREQ = 8700;
 	public static  int FM_HIGH_FREQ = 10800;
 	public static  int AM_LOW_FREQ = 520;
@@ -105,11 +128,16 @@ public class RadioService extends Service implements RadioInterface,
 	private RadioStatusChangeListener mStatusListener;
 	private SharedPreferences settings;
 	public boolean mIsSearchThreadRunning = false; // һ��������̨���߳��������еı�
-	
+
 	private static boolean mDown = false;			//keyEvent flag
 	public static boolean isLive = false;			//activity islive flag
+
+	private boolean mTransientLossOfFocus = false;
+	private boolean mRadioFocus = false;
 	private CanRadio mCanRadio = null;
-	
+
+	private int mGVolume = mVolume;
+
 	static {
 		System.loadLibrary("radio");
 	}
@@ -146,7 +174,7 @@ public class RadioService extends Service implements RadioInterface,
 	private native final int jniSetModel(int type) throws IllegalStateException;
 
 	private native final int jniSetFreq(int freq) throws IllegalStateException;
-	
+
 	private native final int jniSetRemote(int remote) throws IllegalStateException;
 
 	// Channel����
@@ -170,10 +198,10 @@ public class RadioService extends Service implements RadioInterface,
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
 		if(DEBUG) Log.v(TAG, "------onBind()");
-		
+
 		return serviceBinder;
 	}
-	
+
 	@Override
 	public boolean onUnbind(Intent intent) {
 		// TODO Auto-generated method stub
@@ -182,22 +210,28 @@ public class RadioService extends Service implements RadioInterface,
 		return super.onUnbind(intent);
 	}
 
+
+    private RadioPlayerStatusStore mRaidoPlayerStatusStore;
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		mContext = this;
         mCanRadio = new CanRadio(this);
+        mRaidoPlayerStatusStore = RadioPlayerStatusStore.getInstance();
+        mRaidoPlayerStatusStore.setContext(this);
+        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
+                RadioPlayerStatusStore.VALUE_PLAY);
 		synchronized (this) {
 			settings = getSharedPreferences("RadioPreferences", MODE_PRIVATE);
 //			SharedPreferences preferences = getSharedPreferences("CHECKED", 0);
 //			mRemote = preferences.getBoolean("onoff", true);
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			mRemote = prefs.getBoolean("checkbox_remote_preference", true);
 			readAndSetModelInfo();
 			updatePreferences(RADIO_DATA_READ);
 		}
-		
+
 		if(DEBUG) Log.d(TAG, "------onCreate()");
 		PowerOnOff(true); // open radio
 //		new Thread(new Runnable() {
@@ -213,8 +247,12 @@ public class RadioService extends Service implements RadioInterface,
 				// // jniPowerOnoff(RADIO_POWER_ON,RADIO_TURN_CHANNEL);
 				if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
 					jniTurnFmAm(0); // open fm
+					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_FM);
 				} else if (RADIO_AM == radioType) {
 					jniTurnFmAm(1); // open am
+					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_AM);
+				}else if(RADIO_COLLECT == radioType){
+					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_COLLECT);
 				}
 				if (DEBUG)
 					Log.v(TAG, "getCurrentFreq()===curfreq ==="
@@ -235,19 +273,19 @@ public class RadioService extends Service implements RadioInterface,
 				}else {
 					setRemote(0);
 				}
-				
+
 //				String language = settings.getString("local_language", "zh");
 //				if(!Locale.getDefault().getLanguage().equals(language)){
 //					radioReadXML();
 //				}
 //			}
-			
+
 //		}).start();
 
 		// handle event with audio
 		// remove by bonovo zbiao
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE); /* �������� */
-//********* removed by bonovo zbiao 
+//********* removed by bonovo zbiao
 		mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
 				AudioManager.AUDIOFOCUS_GAIN);
 		//radioVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -263,6 +301,8 @@ public class RadioService extends Service implements RadioInterface,
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
 		updatePreferences(RADIO_DATA_SAVE);
+        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
+                RadioPlayerStatusStore.VALUE_STOP);
 		if (DEBUG)
 			Log.d(TAG, "onDestroy()  end curfreq is " + curFreq);
 		// this.unregisterReceiver(myReceiver);
@@ -336,14 +376,14 @@ public class RadioService extends Service implements RadioInterface,
 							curFreq = freq[2]; // 自动搜到的台的频率
 							Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@curFreq(FLAG Auto) ="+ curFreq);
 							int autoFreq;
-							
+
 							autoFreq = curFreq;
 							if(getRadioType() == RADIO_FM1){
 								mCanRadio.sendRadioInfo(CanRadio.BAND_FM, curFreq);
 							}else if (getRadioType() == RADIO_AM) {
 								mCanRadio.sendRadioInfo(CanRadio.BAND_AM, curFreq);
 							}
-							
+
 							Intent it = new Intent();
 							Bundle mbundle = new Bundle();
 							mbundle.putInt("auto-curfreq", autoFreq);
@@ -352,7 +392,7 @@ public class RadioService extends Service implements RadioInterface,
 							it.setAction("Auto-Search");
 							it.putExtras(mbundle);
 							sendBroadcast(it);
-							
+
 							idex++;
 						}
 					} else {
@@ -363,12 +403,12 @@ public class RadioService extends Service implements RadioInterface,
 						}else if (getRadioType() == RADIO_AM) {
 							mCanRadio.sendRadioInfo(CanRadio.BAND_AM, curFreq);
 						}
-						
+
 						Log.d(TAG, "curFreq(No-Auto) =" + curFreq);
 						if(isLive){
 							mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 						}
-						
+
 						/****单步时候发送curFreq给Activity广播,调用curFreq_Compare_To_Collect(int curFreq)
 						 ****函数与收藏栏列表的频率作比较,变化爱心图标*************************************/
 						Intent it = new Intent();
@@ -391,11 +431,11 @@ public class RadioService extends Service implements RadioInterface,
 				}
 			} while (status != RADIO_NO_ACTION);
 			if(freq[0] == SEARCH_OVER && STEP_OR_AUTO == IS_AUTO_NOW){
-				//when auto search is complete,set Channal0 with the first freq 
+				//when auto search is complete,set Channal0 with the first freq
 				Intent intent = new Intent("Radio_Auto_Complete");
 				sendBroadcast(intent);
 			}
-			
+
 			FLAG_AUTO = 0;
 			mIsSearchThreadRunning = false;
 			updatePreferences(RADIO_DATA_SAVE);
@@ -438,19 +478,39 @@ public class RadioService extends Service implements RadioInterface,
 	@Override
 	public void onAudioFocusChange(int focusChange) {
 		// TODO Auto-generated method stub
-		if (DEBUG)
-			Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
+		//if (DEBUG)
+		Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
 		switch (focusChange) {
 		case AudioManager.AUDIOFOCUS_GAIN:
+			Log.v(TAG, "----onAudioFocusChange----AudioManager.AUDIOFOCUS_GAIN:" + focusChange+"getRadioStatus()="+getRadioStatus()+" mTransientLossOfFocus="+mTransientLossOfFocus);
+
+			if (getRadioStatus()==false && mTransientLossOfFocus) {
+                                mTransientLossOfFocus = false;
+                                PowerOnOff(true);
+				    setFreq(getCurrentFreq());
+                    }
+
 			break;
 		case AudioManager.AUDIOFOCUS_LOSS:
+			Log.v(TAG, "----onAudioFocusChange----AudioManager.AUDIOFOCUS_LOSS:" + focusChange);
 			//************ removed by bonovo zbiao
 			//stopService(new Intent("com.example.RadioService"));
 			//this.stopSelf();
-			break;
+
+			//break;
 		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+			Log.v(TAG, "----onAudioFocusChange----AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:" + focusChange);
+
+			 if (getRadioStatus() ==true) {
+
+                                mTransientLossOfFocus = true;
+				    PowerOnOff(false);
+                      }
+
+
 			break;
 		case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+			Log.v(TAG, "----onAudioFocusChange----AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:" + focusChange);
 			break;
 
 		}
@@ -468,8 +528,9 @@ public class RadioService extends Service implements RadioInterface,
 		return sb;
 	}
 
+	boolean m_PowerOnOffStatus=false;
     private void PowerOnOff(boolean onOff) {
-
+		m_PowerOnOffStatus=onOff;
 		if(onOff) {
 			jniPowerOnoff(RADIO_POWER_ON);
 			Intent intent = new Intent("android.intent.action.BONOVO_RADIO_POWER_ON");
@@ -482,10 +543,25 @@ public class RadioService extends Service implements RadioInterface,
         mCanRadio.controlRadioDisplay(onOff);
     }
 
+	public boolean getRadioStatus() {
+		return m_PowerOnOffStatus;
+	}
+
 	public void turnFmAm(int type) {
 		if (DEBUG)
 			Log.v(TAG, "<myu>turnFmAm");
 		jniTurnFmAm(type);
+        String fmType = null;
+        if (type == RADIO_FM1 || type == RADIO_FM2) {
+            fmType = RadioPlayerStatusStore.VALUE_FM;
+        }
+        if (type == RADIO_AM) {
+            fmType = RadioPlayerStatusStore.VALUE_AM;
+        }
+        if(type == RADIO_COLLECT){
+        	fmType = RadioPlayerStatusStore.VALUE_COLLECT;
+        }
+        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
 	}
 
 	public int getRadioType() {
@@ -499,11 +575,11 @@ public class RadioService extends Service implements RadioInterface,
 	public int setVolume(int volume) {
 		mVolume = volume;
 		if (DEBUG) Log.v(TAG, "(Service)mVolume = "+mVolume);
-		jniSetVolume(mVolume);
+		int ret=jniSetVolume(mVolume);
 		SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
 		editor.putInt("mvolume", mVolume);
 		editor.commit();
-		return mVolume;
+		return ret;
 	}
 
 	public int getVolume() {
@@ -578,7 +654,7 @@ public class RadioService extends Service implements RadioInterface,
 		}
 		updatePreferences(RADIO_DATA_SAVE);
 		updatePlaybackTitle();
-		
+
 		return curFreq;
 	}
 
@@ -616,7 +692,7 @@ public class RadioService extends Service implements RadioInterface,
 		jniStepLeft(freq);
 		new Thread(runnable).start();
 		// mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
-		
+
 		return curFreq;
 	}
 
@@ -634,7 +710,7 @@ public class RadioService extends Service implements RadioInterface,
 		jniStepRight(freq);
 		// mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 		new Thread(runnable).start();
-		
+
 		return curFreq;
 	}
 
@@ -671,7 +747,7 @@ public class RadioService extends Service implements RadioInterface,
 		// TODO Auto-generated method stub
 		mStatusListener = null;
 	}
-	
+
 	public void setRemote(int remote) {
 		// TODO Auto-generated method stub
 		jniSetRemote(remote);
@@ -726,6 +802,7 @@ public class RadioService extends Service implements RadioInterface,
 	@Override
 	public void setFreq(int freq) {
 		// TODO Auto-generated method stub
+		Log.v(TAG, "JNI setfreq has worked ------freq is " + freq);
 		if (DEBUG)
 			Log.v(TAG, "JNI setfreq has worked ------freq is " + freq);
 		jniSetFreq(freq);
@@ -767,7 +844,7 @@ public class RadioService extends Service implements RadioInterface,
 //		Log.v(TAG, "-->" + language);
 		return language;
 	}
-	
+
 	/* 解析XML */
 	public boolean radioReadXML() {
 		InputStream inputStream;
@@ -785,9 +862,9 @@ public class RadioService extends Service implements RadioInterface,
 		 */
 		try {
 			if(getLocalLanguage().equals("zh")){
-				inputStream = getAssets().open("RadioDefChannel.xml"); 
+				inputStream = getAssets().open("RadioDefChannel.xml");
 			}else {
-				inputStream = getAssets().open("RadioDefChannel_otherLanguage.xml"); 
+				inputStream = getAssets().open("RadioDefChannel_otherLanguage.xml");
 			}
 
 			parser.setInput(inputStream, "UTF-8");
@@ -865,6 +942,18 @@ public class RadioService extends Service implements RadioInterface,
 		StringBuilder sbfreq = new StringBuilder(RADIO_CHANNEL_COUNT);
 		StringBuilder sbname = new StringBuilder(RADIO_CHANNEL_COUNT);
 
+        String fmType = null;
+        if (radioType == RADIO_FM1 || radioType == RADIO_FM2) {
+            fmType = RadioPlayerStatusStore.VALUE_FM;
+        }
+        if (radioType == RADIO_AM) {
+            fmType = RadioPlayerStatusStore.VALUE_AM;
+        }
+        if (radioType == RADIO_COLLECT) {
+            fmType = RadioPlayerStatusStore.VALUE_COLLECT;
+        }
+        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
+        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_HZ, String.valueOf(curFreq));
 		if (type == RADIO_DATA_SAVE) {
 			// get activities preferences.get edit to add value
 			// SharedPreferences��һ������������ݴ洢��ʽ.���Լ�ֵ�����洢Ӧ�ó����
@@ -1000,7 +1089,7 @@ public class RadioService extends Service implements RadioInterface,
 							curFreq = Integer.parseInt(mChannelList
 									.get(curChannelId).freq);
 						}
-						
+
 					}
 				} else if (RADIO_AM == radioType) {
 					if (curChannelId < RADIO_PAGE_COUNT) {
@@ -1041,6 +1130,7 @@ public class RadioService extends Service implements RadioInterface,
 		radioType = 0;
 		functionId = 0;
 		curChannelId = 0;
+		//Log.v(TAG,".provinceId= "+provinceId+"cityId="+cityId);
 		if (DEBUG)
 			Log.v(TAG, "<myu>importChannelList has been into");
 		if (m_channel_list == null || m_channel_list.size() <= provinceId
@@ -1062,6 +1152,9 @@ public class RadioService extends Service implements RadioInterface,
 			} else {
 				amNum++;
 				mChannelList.add(item);
+
+				Log.v(TAG,".freq= "+item.freq +"name="+item.name);
+
 				if(DEBUG)Log.v(TAG,"3333333mChannelList.size() = "+mChannelList.size());
 			}
 		}
@@ -1091,22 +1184,49 @@ public class RadioService extends Service implements RadioInterface,
 			if(DEBUG)Log.v(TAG,"66666666mChannelList.size() = "+mChannelList.size());
 			mChannelList.size();
 		}
+
+
+	      //for(int i=0;i<mChannelList.size();i++)
+	     // {
+	      //		Log.v(TAG,"mChannelList.get("+i+").freq= "+mChannelList.get(i).freq );
+	     // }
+
+		//if(DEBUG)
+		//Log.v(TAG,"mChannelList.get("+curChannelId+").freq= "+mChannelList.get(curChannelId).freq +"mChannelList.size()="+mChannelList.size());
+
 		if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
 			turnFmAm(RADIO_TYPE_FM);
-			curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq
-					.replaceAll("\\.", "")) * 10;
-		} else if (RADIO_AM == radioType) {
-			curFreq = Integer
-					.parseInt(mChannelList.get(fmNum + curChannelId).freq);
-		} else if(RADIO_COLLECT == radioType){
-			if(mChannelList.get(curChannelId).freq.contains(".")){
+			if(mChannelList.get(curChannelId).freq!="")
+			{
 				curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq
 						.replaceAll("\\.", "")) * 10;
-			}else{
+			}
+
+		} else if (RADIO_AM == radioType) {
+			if(mChannelList.get(fmNum + curChannelId).freq!="")
+			{
 				curFreq = Integer
 						.parseInt(mChannelList.get(fmNum + curChannelId).freq);
 			}
-			
+
+		} else if(RADIO_COLLECT == radioType){
+
+			if(mChannelList.get(curChannelId).freq!="")
+			{
+				if(mChannelList.get(curChannelId).freq.contains(".")){
+					curFreq = Integer.parseInt(mChannelList.get(curChannelId).freq
+							.replaceAll("\\.", "")) * 10;
+				}else{
+					if(mChannelList.get(fmNum + curChannelId).freq!="")
+					{
+						curFreq = Integer
+								.parseInt(mChannelList.get(fmNum + curChannelId).freq);
+					}
+
+				}
+			}
+
+
 		}
 		updatePreferences(RADIO_DATA_SAVE);
 		if (refresh) {
@@ -1115,7 +1235,7 @@ public class RadioService extends Service implements RadioInterface,
 		}
 		return true;
 	}
-	
+
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 
         @Override
@@ -1125,7 +1245,7 @@ public class RadioService extends Service implements RadioInterface,
 					"android.intent.action.BONOVO_SLEEP_KEY")) {
 				PowerOnOff(false);
 				Log.v("myu", "BonovoRadio is sleep PowerOnOff");
-				//stopService(new Intent("com.example.RadioService")); 
+				//stopService(new Intent("com.example.RadioService"));
             }else if (intent.getAction().equals("android.intent.action.BONOVO_WAKEUP_KEY")){
                 PowerOnOff(true);
                 Log.v("myu", "BonovoRadio is wakeup");
@@ -1141,6 +1261,57 @@ public class RadioService extends Service implements RadioInterface,
 			}else if (intent.getAction().equals("android.intent.action.BONOVO_RADIO_TURNUP")) {
 				fineRight(getCurrentFreq());
 			}
+			else if (intent.getAction().equals("android.intent.action.BONOVO_RADIO_SETFM")){
+
+				int fm_freq = intent.getIntExtra("FM",0);
+
+				if(fm_freq>0)
+				{
+					turnFmAm(0);
+					setCurrentFreq(fm_freq/10);
+					setRadioType(RadioService.RADIO_FM1);
+				}
+
+				int am_freq = intent.getIntExtra("AM",0);
+
+				if(am_freq>0)
+				{
+					turnFmAm(1);
+					setCurrentFreq(am_freq/1000);
+					setRadioType(RadioService.RADIO_AM);
+				}
+
+				setFreq(getCurrentFreq());
+
+
+
+				if (mStatusListener != null) {
+					mStatusListener.onStatusChange(UPDATE_DETAIL_FREQ);
+				}
+
+				Log.v(TAG, "BONOVO_RADIO_SETFM    FM="+fm_freq+",AM="+am_freq);
+
+			}else if (intent.getAction().equals("android.media.VOLUME_CHANGED_ACTION")) {
+				int nStreamType = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE,0);
+				int nValue = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE,0);
+				int nOldValue = intent.getIntExtra(AudioManager.EXTRA_PREV_VOLUME_STREAM_VALUE,0);
+
+				Log.v("myu", "BroadcastReceiver is VOLUME_CHANGED_ACTION nStreamType"+nStreamType+",nValue="+nValue+",nOldValue="+nOldValue);
+
+				if(nStreamType==3 && nOldValue>0 && nValue==0)
+				{
+					mGVolume=getVolume();
+					//int ret= setVolume(nValue);
+					//Log.v("myu", "BroadcastReceiver is VOLUME_CHANGED_ACTION ret="+ret);
+				}
+				else if(nStreamType==3)
+				{
+					//int ret=setVolume(mGVolume);
+
+					//Log.v("myu", "BroadcastReceiver is VOLUME_CHANGED_ACTION ret="+ret);
+				}
+
+			}
 		}
     };
 
@@ -1150,6 +1321,8 @@ public class RadioService extends Service implements RadioInterface,
         myIntentFilter.addAction("android.intent.action.BONOVO_WAKEUP_KEY");
         myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_TURNDOWN");
         myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_TURNUP");
+	 	myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_SETFM");
+	 	myIntentFilter.addAction("android.media.VOLUME_CHANGED_ACTION");
 		return myIntentFilter;
 	}
 
@@ -1184,7 +1357,7 @@ public class RadioService extends Service implements RadioInterface,
 			}
 		}
 	}
-	
+
 	/*
 	 * Read And Set Radio Model -->china japan europe
 	 */

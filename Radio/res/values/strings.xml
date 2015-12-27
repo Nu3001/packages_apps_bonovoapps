@@ -61,4 +61,6 @@
     <string name="lead_info">Import channel list</string>
     <string name="system_choose">Choose your area</string>
     <string name="system_choose_title">Please select your region</string>
+    <string name="widget_loading">Loading...</string>
+
 </resources>

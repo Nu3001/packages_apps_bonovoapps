@@ -116,7 +116,7 @@ typedef enum
 #define JNP_AM_STEP_LENGTH          9            // �ձ���ʽAM�Ĳ�������KHzΪ��λ��
 #define EUROPE_AM_FREQ_MIN          522          // ŷ����ʽAM����СƵ��ֵ����KHzΪ��λ��
 #define EUROPE_AM_FREQ_MAX          1620         // ŷ����ʽAM�����Ƶ��ֵ����KHzΪ��λ��
-#define EUROPE_AM_STEP_LENGTH       9            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
+#define EUROPE_AM_STEP_LENGTH       10            // ŷ����ʽAM�Ĳ�������KHzΪ��λ��
 // standard model selectors
 #define MODEL_CHINA                 0            // �й���ʽ
 #define MODEL_JNP                   1            // �ձ���ʽ
@@ -253,7 +253,7 @@ int setRangeAndStep(int mode, int band)
 			return -1;
 			break;
 		}
-		//send command to set 
+		//send command to set
 		break;
 	case BAND_AM:
 		switch(cur_model)
@@ -352,7 +352,7 @@ static int android_radio_PowerOnoff(JNIEnv *env, jobject thiz, jint OnOff)
 	int dwByteWrite, ret;
 	unsigned int sum = 0;
 	unsigned char cmdBuf[10] = {0xFA, 0xFA, 0x0A, 0x00, 0xA1, CMD_RADIO_FREQ};
-	
+
     if(OnOff == 1)
     {
 		if((fd_radio = open(RADIO_DEV_NODE, O_RDWR|O_NOCTTY|O_NONBLOCK)) < 0) {
@@ -607,7 +607,7 @@ static int android_radio_SetFreq(JNIEnv *env, jobject thiz, jint freq)
 	sum = checkSum(cmdBuf, cmdBuf[2]-2);
 	cmdBuf[8] = sum & 0xFF;
 	cmdBuf[9] = (sum>>8)& 0xFF;
-	
+
 //	int i = 0;
 //	for( ; i<10; i++){
 //		debug("setFreq-->cmdBuf[%d]=0x%2x",i,cmdBuf[i]);
@@ -997,7 +997,7 @@ static int android_radio_ReadSeek(JNIEnv *env, jobject thiz, jintArray freq, int
 		LOGE("The buffer size you input is too small!\n");
 		return -2;
 	}
-	
+
 	temp_freq[0] = ioctl(fd_bonovo, IOCTL_HANDLE_GET_RADIO_STATUS);
 	res = ioctl(fd_bonovo, IOCTL_HANDLE_GET_RADIO_FREQ, &temp);
 	if (res == -1)
@@ -1060,7 +1060,7 @@ static int android_radio_TurnFmAm(JNIEnv *env, jobject thiz, jint type)
 		return -2;
 	}
 	debug("android_radio_TurnFmAm Select Band Radio.\n");
-	
+
 	cur_band = type;
 	debug("android_radio_TurnFmAm cur_model:%d cur_band:%d\n", cur_model, cur_band);
 	if(setRangeAndStep(cur_model, type) < 0)
@@ -1193,7 +1193,7 @@ static int registerNatives(JNIEnv* env)
 /*
  * This is called by the VM when the shared library is first loaded.
  */
- 
+
 typedef union {
     JNIEnv* env;
     void* venv;
@@ -1205,7 +1205,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     uenv.venv = NULL;
     jint result = -1;
     JNIEnv* env = NULL;
-    
+
     LOGI("JNI_OnLoad");
 
     if (vm->GetEnv(&uenv.venv, JNI_VERSION_1_6) != JNI_OK) {
@@ -1218,9 +1218,9 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
         LOGE("ERROR: registerNatives failed");
         goto bail;
     }
-    
+
     result = JNI_VERSION_1_6;
-    
+
 bail:
     return result;
 }

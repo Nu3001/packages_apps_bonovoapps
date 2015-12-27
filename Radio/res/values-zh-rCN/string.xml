@@ -61,5 +61,6 @@
     <string name="lead_info">导入频道列表</string>
     <string name="system_choose">选择您所在地区</string>
     <string name="system_choose_title">请选择一个地区</string>
+    <string name="widget_loading">Loading...</string>
     
 </resources>
