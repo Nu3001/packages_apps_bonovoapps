@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- title layout -->
+
+    <RelativeLayout
+        android:id="@+id/import_title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_bar" >
+
+        <ImageButton
+            android:id="@+id/import_button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/import_import"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <!-- middle area -->
+
+    <RelativeLayout
+        android:id="@+id/import_middle_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/importbg" >
+
+        <Button
+            android:id="@+id/import_button_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/import_country"
+            android:text="@string/import_area"
+            android:textColor="@android:color/white"
+            android:textSize="21sp" />
+
+        <Button
+            android:id="@+id/import_button_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="69dp"
+            android:background="@drawable/import_province"
+            android:text="@string/import_city"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/import_button_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="138dp"
+            android:background="@drawable/import_city"
+            android:text="@string/import_city"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/import_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/import_button_area"
+            android:cacheColorHint="#00000000"
+            android:divider="#000"
+            android:fadeScrollbars="true"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:scrollbarDefaultDelayBeforeFade="2000"
+            android:scrollbarFadeDuration="3000"
+            android:scrollbarSize="18dp"
+            android:scrollbarStyle="outsideOverlay" />
+
+        <Button
+            android:id="@+id/import_button_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="380dp"
+            android:background="@drawable/import_bottom_btn"
+            android:text="@string/import_import"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>
