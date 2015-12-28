@@ -714,7 +714,31 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
                 break;
             }
             case MSG_SEND_COMMANDER_ERROR:{
+            	String errCode = (String)msg.obj;
+            	if(errCode == "0003"){
+            		showToast("HFP - serial command timeout");
+            	}else if(errCode == "0001"){
+            		showToast("HFP - event failed");
+            	}else if(errCode == "0004"){
+            		showToast("HFP - connection to phone failed");
+            	}else if(errCode == "000B"){
+            		showToast("HFP - pairing request failed");
+            	}else if(errCode == "0010"){
+            		showToast("A2DP - stop command failed");
+            	}else if(errCode == "0020"){
+            		showToast("A2DP - skip forward command failed");
+            	}else if(errCode == "0030"){
+            		showToast("A2DP - skip backward command failed");
+            	}else if(errCode == "0080"){
+            		showToast("A2DP - play / pause command failed");
+            	}else if(errCode == "0100"){
+            		showToast("Bluetooth - Remote device has not acknowledged sent command");
+            	} else {
+            		showToast("Bluetooth - Error code: " + (String)msg.obj);
+            	}
+            	
                 Intent intent = new Intent(BonovoBlueToothData.ACTION_SEND_COMMANDER_ERROR);
+                intent.putExtra("ErrorCode", (String)msg.obj);
                 sendBroadcast(intent);
                 break;
             }
@@ -1406,6 +1430,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_ID:
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_ID param:" + param + "  mBtPhoneState: " + mBtPhoneState);
             activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+            setCurrentNumber(param);
 			if(getPhoneState() == PhoneState.IDLE){
 				setPhoneState(PhoneState.RINGING);
 				Message msg = mHandler.obtainMessage(MSG_START_HANDFREE);
@@ -1448,19 +1473,29 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IJ");
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IR:{
-				if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IR param:" + param);
-                activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
-                if((getPhoneState() != PhoneState.ACTIVE)&&(getPhoneState() != PhoneState.DIALING)){
-				    setPhoneState(PhoneState.DIALING);
-				}else if(getPhoneState() == PhoneState.IDLE){
-					setPhoneState(PhoneState.ACTIVE);
-					Message msg = mHandler.obtainMessage(MSG_START_HANDFREE, param);
-					mHandler.sendMessage(msg);
-				}else {
-					Message msg = mHandler.obtainMessage(MSG_PHONE_STATE_CHANGE, param);
-					mHandler.sendMessage(msg);
-				}
+			// Phone has returned current call info (phone number)
+			if(DEB) Log.d(TAG, "Callback -->CMD_UNSOLICATED_IR param:" + param);
+			activeAudio(AudioLevel.CODEC_LEVEL_BT_TEL);
+			setCurrentNumber(param);
+			
+			if((getPhoneState() != PhoneState.ACTIVE)&&(getPhoneState() != PhoneState.DIALING)){
+				setPhoneState(PhoneState.DIALING);
+				
+				Message msg = mHandler.obtainMessage(MSG_PHONE_STATE_CHANGE);
+				msg.obj = cleanInfo(param);
+				mHandler.sendMessage(msg);
+			}else if(getPhoneState() == PhoneState.IDLE){
+				setPhoneState(PhoneState.ACTIVE);
+					
+				Message msg = mHandler.obtainMessage(MSG_START_HANDFREE);
+				msg.obj = cleanInfo(param);
+				mHandler.sendMessage(msg);
+			}else {
+				Message msg = mHandler.obtainMessage(MSG_PHONE_STATE_CHANGE);
+				msg.obj = cleanInfo(param);
+				mHandler.sendMessage(msg);
 			}
+		}
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_IX:
 			// Connected device has returned it's battery level
@@ -1546,7 +1581,7 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
 			break;
 		case BonovoBlueToothUnsolicatedCmd.CMD_UNSOLICATED_ERROR: {
 			Log.d(TAG, "Bluetooth HFP - CMD_UNSOLICATED_ERROR. Error code: " + cleanInfo(param));
-            Message msg = mHandler.obtainMessage(MSG_SEND_COMMANDER_ERROR);
+            Message msg = mHandler.obtainMessage(MSG_SEND_COMMANDER_ERROR, cleanInfo(param));
 			mHandler.sendMessage(msg);
 			break;
 		}
