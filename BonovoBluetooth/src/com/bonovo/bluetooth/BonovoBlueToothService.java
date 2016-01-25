@@ -733,6 +733,9 @@ public class BonovoBlueToothService extends Service implements AudioManager.OnAu
             		showToast("A2DP - play / pause command failed");
             	}else if(errCode == "0100"){
             		showToast("Bluetooth - Remote device has not acknowledged sent command");
+            	}else if(errCode == "0000"){
+            		// Error code 0000 is too generic and seems to be alarming people unnecessarily
+            		//  So lets not show it
             	} else {
             		showToast("Bluetooth - Error code: " + (String)msg.obj);
             	}

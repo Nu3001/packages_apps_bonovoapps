@@ -751,25 +751,19 @@ public class BonovoBluetoothHandfree extends Activity
 	
 	// Sets the photo on the incall page to the image specified in PhotoUri
 	private void setContactPhoto(Context context, String PhotoUri){
-        if(context == null)
+        if(context == null || mContactPhoto == null)
 	        return;
-               
-        if(mContactPhoto == null) {
-        	Log.d(TAG, "setContactPhoto: mContactPhoto is null.");
-        	return;
-        }
-
-        if(DEBUG) Log.d(TAG, "SetContactPhoto called with photo uri: " + PhotoUri);
         
-		Uri contactPhotoUri = Uri.parse(PhotoUri);
-
-		if (contactPhotoUri == null) {
+		if (PhotoUri == null || PhotoUri.isEmpty()) {
 			// Show the default image
 			mContactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture_holo_light));
 		}else{
+			
 			// Show the contact image
 			ContentResolver resolver = context.getContentResolver();
 			try {
+				Uri contactPhotoUri = Uri.parse(PhotoUri);
+				
 				Bitmap contactBitmap = BitmapFactory.decodeStream(resolver.openInputStream(contactPhotoUri));
 				mContactPhoto.setImageBitmap(getCircleBitmap(contactBitmap));		
 			}catch(java.io.IOException ioe){
