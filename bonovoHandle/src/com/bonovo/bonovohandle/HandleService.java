@@ -52,6 +52,7 @@ public class HandleService extends Service{
 	private final int VOLUME_MUTE = 4;
 	private final int OPEN_LAST_APP = 5;
 	private final int ACTIVATE_AIRPLANE_MODE = 6;
+	private final int ACTIVATE_SHUTDOWN_WATCHDOG = 7;
 	private final int DEF_VOLUME  = 10;
 	private final int VOLUME_DIALOGE_TIMEOUT = 2000;
     private final int CHANNEL_LOUT1_VOL = 0;
@@ -220,6 +221,7 @@ public class HandleService extends Service{
                 notifyMcuWakeUp();
                 setWakeupStatus(true);
                 mHandler.removeMessages(ACTIVATE_AIRPLANE_MODE);	// If we woke before the timeout, remove the leftover airplane mode message
+                mHandler.removeMessages(ACTIVATE_SHUTDOWN_WATCHDOG);	// Remove the watchdog since we have deliberately woken up
                 if(!mIsAirplaneOn){
                     setAirplaneModeOn(false);
                 }
@@ -227,14 +229,22 @@ public class HandleService extends Service{
                 amAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
                 Intent wakeup_intent = new Intent("android.intent.action.BONOVO_WAKEUP_KEY");
                 mContext.sendBroadcast(wakeup_intent);
-            }else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
-            	AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            	int result = amAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
-            	setWakeupStatus(false);
+			}else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+				AudioManager amAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+				int result = amAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
+				setWakeupStatus(false);
 
-                Message msg = mHandler.obtainMessage(ACTIVATE_AIRPLANE_MODE);
+				Message msg = mHandler.obtainMessage(ACTIVATE_AIRPLANE_MODE);
 				mHandler.sendMessageDelayed(msg, getConnectedSleepTime());
 
+				// If we are still running one minute after the MCU is supposed to have
+				//  shut us down, we have to do it ourselves.  That's what this is for.
+				if (getShutdownTime() < 65535) {
+					Message msgwd = mHandler.obtainMessage(ACTIVATE_SHUTDOWN_WATCHDOG);
+					mHandler.sendMessageDelayed(msgwd, (getShutdownTime() + 1) * 60000);	// Need to convert minutes to milliseconds
+					Log.d(TAG, "Setting watchdog timer for " + (getShutdownTime() + 1) + " minutes.");
+				}
+				
                 notifyMcuSleep();
                 Intent sleep_intent = new Intent("android.intent.action.BONOVO_SLEEP_KEY");
                 mContext.sendBroadcast(sleep_intent);
@@ -328,18 +338,23 @@ public class HandleService extends Service{
 		return sp.getBoolean("WAKE_MODE", false);
     }
 
-    private void setConnectedSleepTime(long milliSecondsToAirplaneMode){
-        SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
+	private void setConnectedSleepTime(long milliSecondsToAirplaneMode){
+		SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
 		Editor editor = sp.edit();
 		editor.putLong("CONNECTED_SLEEP_TIME", milliSecondsToAirplaneMode);
 		editor.commit();
-    }
+	}
 
-    private long getConnectedSleepTime(){
-        SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
+	private long getConnectedSleepTime(){
+		SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
 		return sp.getLong("CONNECTED_SLEEP_TIME", 1000);		// default to 1 second (1000 milliseconds)
-    }
+	}
 
+	private long getShutdownTime(){
+		SharedPreferences sp = mContext.getSharedPreferences("standby model", Context.MODE_WORLD_READABLE);
+		return sp.getLong("standby checked", 1);		// default to 1 minute if we could not get it from the mcu preference
+	}
+    
     private void setAirplaneFlag(boolean isAirplane){
         SharedPreferences sp = mContext.getSharedPreferences(STORAGE, MODE_PRIVATE);
 		Editor editor = sp.edit();
@@ -723,11 +738,21 @@ public class HandleService extends Service{
 				break;
 			case ACTIVATE_AIRPLANE_MODE:
 				mIsAirplaneOn = isAirplaneOn();              
-                setAirplaneFlag(mIsAirplaneOn);
-                if(!mIsAirplaneOn){
-                    setAirplaneModeOn(true);
-                }
-                break;
+				setAirplaneFlag(mIsAirplaneOn);
+				if(!mIsAirplaneOn){
+					setAirplaneModeOn(true);
+				}
+				break;
+			case ACTIVATE_SHUTDOWN_WATCHDOG:
+				// Shutdown the unit
+				Log.d(TAG, "Watchdog shutdown timer activated. Attempting to shutdown unit.");
+				
+				Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
+				intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				
+				break;
 			default:
 				break;
 			}
