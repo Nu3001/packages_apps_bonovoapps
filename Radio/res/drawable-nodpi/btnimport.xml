@@ -2,10 +2,10 @@
 
  <selector xmlns:android="http://schemas.android.com/apk/res/android">
      <item android:state_pressed="true"
-           android:drawable="@drawable/checkboximportbtn_d" /> <!-- pressed -->
+           android:drawable="@drawable/checkboximportbtn_d1" /> <!-- pressed -->
      <item android:state_focused="true"
-           android:drawable="@drawable/checkboximportbtn_d" /> <!-- focused -->
+           android:drawable="@drawable/checkboximportbtn_d1" /> <!-- focused -->
      <item android:state_selected="true"
-           android:drawable="@drawable/checkboximportbtn_d" /> <!-- selected -->
-     <item android:drawable="@drawable/checkboximportbtn_u" /> <!-- default -->
+           android:drawable="@drawable/checkboximportbtn_d1" /> <!-- selected -->
+     <item android:drawable="@drawable/checkboximportbtn_u1" /> <!-- default -->
  </selector>

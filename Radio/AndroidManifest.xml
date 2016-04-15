@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.radio"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="23" />
 
     <supports-screens
         android:anyDensity="true"
@@ -34,6 +34,16 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="com.radio.widget.RadioPlayerAppWidget" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/radio_player_widget" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.bonovo.radio.RADIO_STATUS"/>
+                <action android:name="com.bonovo.radio.widget.ACTION_PLAY_STOP"/>
+            </intent-filter>
+        </receiver>
         <receiver android:name="com.example.radio.MediaButtonIntentReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" >
@@ -48,12 +58,6 @@
             android:screenOrientation="landscape" >
         </activity>
 
-        <!-- 将activity模拟成Dialog并设置成NoActionBar模式 -->
-        <activity
-            android:name="com.example.radio.RadioSetting"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
-        </activity>
         <activity
             android:name="com.example.radio.IntentActivity"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
@@ -66,7 +70,7 @@
 
         <service android:name="RadioService" >
             <intent-filter>
-                <action android:name="com.example.RadioService" />
+                <action android:name="com.example.radio.RadioService" />
             </intent-filter>
         </service>
     </application>

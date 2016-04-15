@@ -25,6 +25,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 	private VolumeSeekBarPreferences seekBarPreferences;
 	private CheckBoxPreference checkBoxRemote;
 	private ListPreference countryListPre;
+	private ListPreference layoutList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,10 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		countryListPre = (ListPreference) findPreference("countries_list_preference");
 		countryListPre.setOnPreferenceChangeListener(this);
 		countryListPre.setOnPreferenceClickListener(this);
+
+		layoutList = (ListPreference) findPreference("layout_list_preference");
+		layoutList.setOnPreferenceChangeListener(this);
+		layoutList.setOnPreferenceClickListener(this);
 
 	}
 
@@ -88,6 +93,8 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		public void setRemoteModel(boolean flag);
 		
 		public void readModelInfo();
+
+		public void readLayoutInfo();
 	}
 
 	@Override
@@ -135,6 +142,21 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 			}else if(newValue.equals("6")){
 				modelpre.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL).commit();
 				callbackSetting.readModelInfo();
+				Intent intent = new Intent();
+				intent.setAction("updateFreqView");
+				context.sendBroadcast(intent);
+			}
+
+		} else if(preference == layoutList){
+			if(newValue.equals("1")){
+				modelpre.edit().putInt("radioLayout", RadioService.NEW_LAYOUT).commit();
+				callbackSetting.readLayoutInfo();
+				Intent intent = new Intent();
+				intent.setAction("updateFreqView");
+				context.sendBroadcast(intent);
+			}else if(newValue.equals("2")){
+				modelpre.edit().putInt("radioLayout", RadioService.OLD_LAYOUT).commit();
+				callbackSetting.readLayoutInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);

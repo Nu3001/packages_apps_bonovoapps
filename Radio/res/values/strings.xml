@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Radio</string>
     <string name="mhz">MHz</string>
     <string name="khz">kHz</string>
@@ -36,7 +37,10 @@
     <string name="ITURegion1">ITU Region 1 (Europe and Africa)</string>
     <string name="ITURegion2">ITU Region 2 (North/South Americas)</string>
     <string name="ITURegion3">ITU Region 3 (Australia and Asia)</string>
+    <string name="layout1">New Layout</string>
+    <string name="layout2">Original Layout</string>
     <string name="system">Type Selection</string>
+    <string name="layout">Layout Selection</string>
     <string name="volume">Volume</string>
     <string name="remote">Remote Control</string>
     <string name="lead">Lead</string>
@@ -64,5 +68,9 @@
     <string name="remote_checked">Check the open</string>
     <string name="lead_info">Import channel list</string>
     <string name="system_choose">Choose your area</string>
+    <string name="layout_choose">Choose your design</string>
     <string name="system_choose_title">Please select your region</string>
+    <string name="layout_choose_title">Please select a Design</string>
+    <string name="widget_loading">Loading...</string>
+
 </resources>

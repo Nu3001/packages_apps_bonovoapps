@@ -1355,7 +1355,7 @@ static int registerNatives(JNIEnv* env)
 /*
  * This is called by the VM when the shared library is first loaded.
  */
- 
+
 typedef union {
     JNIEnv* env;
     void* venv;
@@ -1367,7 +1367,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     uenv.venv = NULL;
     jint result = -1;
     JNIEnv* env = NULL;
-    
+
     LOGI("JNI_OnLoad");
 
     if (vm->GetEnv(&uenv.venv, JNI_VERSION_1_6) != JNI_OK) {
@@ -1380,9 +1380,9 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
         LOGE("ERROR: registerNatives failed");
         goto bail;
     }
-    
+
     result = JNI_VERSION_1_6;
-    
+
 bail:
     return result;
 }

@@ -15,7 +15,7 @@
             android:layout_height="32dp"
             android:background="@drawable/ic_volume"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="3dp"  />
+            android:layout_marginStart="3dp"  />
 
         <SeekBar
             android:id="@+id/seekbar1"

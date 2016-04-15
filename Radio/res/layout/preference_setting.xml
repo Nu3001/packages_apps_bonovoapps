@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:example="http://schemas.android.com/apk/res/com.example.radio" >
 
     <PreferenceCategory>
@@ -45,6 +46,17 @@
             android:key="countries_list_preference"
             android:title="@string/system_choose"
             android:defaultValue="2"  />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/layout" >
+
+        <ListPreference
+            android:dialogTitle="@string/layout_choose_title"
+            android:entries="@array/layouts"
+            android:entryValues="@array/layouts_value"
+            android:key="layout_list_preference"
+            android:title="@string/layout_choose"
+            android:defaultValue="1" />
     </PreferenceCategory>
 
 </PreferenceScreen>

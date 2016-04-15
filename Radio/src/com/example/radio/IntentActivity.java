@@ -15,7 +15,7 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
 	private RadioService radioService;
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.empty_layout);
 
-		Intent settingIntent = new Intent("com.example.RadioService");
+		Intent settingIntent = new Intent("com.example.radio.RadioService");
 		this.bindService(settingIntent, this, BIND_AUTO_CREATE);
 	}
 
@@ -64,7 +64,7 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 		// TODO Auto-generated method stub
 		return radioService.getVolume();
 	}
-	
+
 	public void setVolume(int volume){
 		radioService.setVolume(volume);
 	}
@@ -83,6 +83,11 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 	public void readModelInfo() {
 		// TODO Auto-generated method stub
 		radioService.readAndSetModelInfo();
+	}
+
+	@Override
+	public void readLayoutInfo(){
+		radioService.readAndSetLayoutInfo();
 	}
 
 }

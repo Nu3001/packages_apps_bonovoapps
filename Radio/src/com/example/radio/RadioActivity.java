@@ -43,7 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("HandlerLeak")
-public class RadioActivity extends Activity implements 
+public class RadioActivity extends Activity implements
 		ServiceConnection, OnClickListener, OnSeekBarChangeListener ,OnLongClickListener{
 
 	/** message id. */
@@ -82,6 +82,7 @@ public class RadioActivity extends Activity implements
 	private static int IS_STEP_NOW = 2;
 	private final static String TAG = "RadioActivity";
 	private RadioService radioService = null;
+	private int currentLayout = 1;
 
 	private ImageButton mMiddleButtonForward;
 	private ImageButton mMiddleButtonBackward;
@@ -102,12 +103,14 @@ public class RadioActivity extends Activity implements
 	private Button mButtonClear;
 	private Button mButtonAddHeart;
 	private Button[] channelBtn = new Button[CHANNEL_SIZE];
-	Intent serviceIntent = new Intent("com.example.RadioService");
+	Intent serviceIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.radio_player_layout);
+		setContentView(R.layout.radio_player_layout_1);
+
+		serviceIntent = new Intent(getApplicationContext(), RadioService.class);
 		setupview();
 		
 		registerReceiver(myBroadcastReveiver, getIntentFilter());
@@ -182,37 +185,53 @@ public class RadioActivity extends Activity implements
 			case R.id.btnclose:// 閿熸枻鎷烽敓鏂ゆ嫹 閿熻緝鍖℃嫹Service
 				if (DEBUG)
 					Log.d(TAG, "btnclose has worked");
-				radioService.stopService(new Intent("com.example.RadioService"));
+				radioService.stopService(new Intent("com.example.radio.RadioService"));
 				finish();
 				break;
 			case R.id.btncollect:
 				add_or_clear_Collect();
 				gone_Empty_ButtonView();
 				break;
-			case R.id.btnimport:
-				if (DEBUG)
-					Log.d(TAG, "btnimport has worked");
-				Intent it = new Intent(RadioActivity.this,
-						RadioImportActivity.class);
-				RadioActivity.this.startActivity(it);
-				break;
+//			case R.id.btnimport:
+//				if (DEBUG)
+//					Log.d(TAG, "btnimport has worked");
+//				Intent it = new Intent(RadioActivity.this,
+//						RadioImportActivity.class);
+//				RadioActivity.this.startActivity(it);
+//				break;
 			case R.id.btnfine:
 				if (DEBUG)
 					Log.d(TAG, "btnfine has worked");
 				radioService.setFunctionId(0);
-				mMiddleButtonBackward
-						.setBackgroundResource(R.drawable.btnfinebackward);
-				mMiddleButtonForward
-						.setBackgroundResource(R.drawable.btnfineforward);
+				if (currentLayout == 1) {
+					mMiddleButtonBackward
+							.setBackgroundResource(R.drawable.btnfinebackward1);
+					mMiddleButtonForward
+							.setBackgroundResource(R.drawable.btnfineforward1);
+				}
+				else {
+					mMiddleButtonBackward
+							.setBackgroundResource(R.drawable.btnfinebackward2);
+					mMiddleButtonForward
+							.setBackgroundResource(R.drawable.btnfineforward2);
+				}
 				break;
 			case R.id.btnstep:
 				if (DEBUG)
 					Log.d(TAG, "btnstep has worked");
 				radioService.setFunctionId(1);
-				mMiddleButtonBackward
-						.setBackgroundResource(R.drawable.btnstepbackward);
-				mMiddleButtonForward
-						.setBackgroundResource(R.drawable.btnstepforward);
+				if (currentLayout == 1) {
+					mMiddleButtonBackward
+							.setBackgroundResource(R.drawable.btnstepbackward1);
+					mMiddleButtonForward
+							.setBackgroundResource(R.drawable.btnstepforward1);
+				}
+				else {
+					mMiddleButtonBackward
+							.setBackgroundResource(R.drawable.btnstepbackward2);
+					mMiddleButtonForward
+							.setBackgroundResource(R.drawable.btnstepforward2);
+				}
 				break;
 			case R.id.btnauto:
 				if (DEBUG)
@@ -497,6 +516,7 @@ public class RadioActivity extends Activity implements
 				}
 				break;
 			case UPDATE_DETAIL_FREQ:
+				radioSetSelect(radioService.getRadioType());
 				updateFreqView();
 				break;
 			default:
@@ -915,18 +935,57 @@ public class RadioActivity extends Activity implements
 			Log.v(TAG, "RadioService is connected");
 		radioService = ((RadioService.ServiceBinder) service).getService();
 		radioService.registStatusListener(mRadioStatusListener);
+
+        currentLayout = radioService.getLayout();
+        updateLayout(currentLayout);
+
+		int fm_freq = getIntent().getIntExtra("FM",0);
+
+		if(fm_freq>0)
+		{
+			radioService.setCurrentFreq(fm_freq/10);
+			radioService.turnFmAm(0);
+			radioSetSelect(RadioService.RADIO_FM1);
+		}
+
+		int am_freq = getIntent().getIntExtra("AM",0);
+
+		if(am_freq>0)
+		{
+			radioService.setCurrentFreq(am_freq/1000);
+			radioService.turnFmAm(1);
+			radioSetSelect(RadioService.RADIO_AM);
+		}
+
 		curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 		gone_Empty_ButtonView();
 		if (radioService.getFunctionId() == 0) {
-			mMiddleButtonBackward
-					.setBackgroundResource(R.drawable.btnfinebackward);
-			mMiddleButtonForward
-					.setBackgroundResource(R.drawable.btnfineforward);
+			if (currentLayout == 1) {
+				mMiddleButtonBackward
+						.setBackgroundResource(R.drawable.btnfinebackward1);
+				mMiddleButtonForward
+						.setBackgroundResource(R.drawable.btnfineforward1);
+			}
+			else {
+				mMiddleButtonBackward
+						.setBackgroundResource(R.drawable.btnfinebackward2);
+				mMiddleButtonForward
+						.setBackgroundResource(R.drawable.btnfineforward2);
+			}
+
 		} else if (radioService.getFunctionId() == 1) {
+		if (currentLayout == 1) {
 			mMiddleButtonBackward
-					.setBackgroundResource(R.drawable.btnstepbackward);
+					.setBackgroundResource(R.drawable.btnstepbackward1);
 			mMiddleButtonForward
-					.setBackgroundResource(R.drawable.btnstepforward);
+					.setBackgroundResource(R.drawable.btnstepforward1);
+		}
+		else{
+			mMiddleButtonBackward
+					.setBackgroundResource(R.drawable.btnstepbackward2);
+			mMiddleButtonForward
+					.setBackgroundResource(R.drawable.btnstepforward2);
+		}
 		}
 
 		if (DEBUG)
@@ -991,7 +1050,7 @@ public class RadioActivity extends Activity implements
 			
 		} else if (RadioService.RADIO_AM == type) {
 			((TextView) findViewById(R.id.radiotype)).setText("AM"); /* 閿熸枻鎷稟M鏃秚ext閿熺殕璁规嫹閿熷彨浼欐嫹閿熸枻鎷锋伅 */
-			((TextView) findViewById(R.id.radiohz)).setText("KHz");
+			((TextView) findViewById(R.id.radiohz)).setText("kHz");
 			mButtonButtonFm1.setSelected(false);
 			//mButtonButtonFm2.setSelected(false);
 			mButtonButtonAm.setSelected(true);
@@ -1949,6 +2008,7 @@ public class RadioActivity extends Activity implements
 		myIntentFilter.addAction("Radio_Auto_Complete");
 		myIntentFilter.addAction("Step-Search");
 		myIntentFilter.addAction("updateFreqView");
+		myIntentFilter.addAction("MediaStatus.BonovoRadio.Media_Broadcast_Close");
 		return myIntentFilter;
 		
 	};
@@ -2047,7 +2107,33 @@ public class RadioActivity extends Activity implements
 				curFreq_Compare_To_Collect(stepCurfreq);
 			}else if(intent.getAction().equals("updateFreqView")){
 				updateFreqView();
+			}else if(intent.getAction().equals("updateLayout")){
+                currentLayout = intent.getIntExtra("radioLayout", 0);
+                updateLayout(currentLayout);
+            }
+			else if(intent.getAction().equals("MediaStatus.BonovoRadio.Media_Broadcast_Close"))
+			{
+				Log.v(TAG, "MediaStatus.BonovoRadio.Media_Broadcast_Close");
+				AudioManager audioManager = (AudioManager) context.getSystemService(AUDIO_SERVICE);
+				ComponentName mRemoteControlClientReceiverComponent;
+				mRemoteControlClientReceiverComponent = new ComponentName(
+				                getPackageName(), MediaButtonIntentReceiver.class.getName());
+				audioManager.unregisterMediaButtonEventReceiver(mRemoteControlClientReceiverComponent);
+				radioService.stopService(new Intent("com.example.radio.RadioService"));
+
+				finish();
 			}
 		}
 	};
+
+    public void updateLayout(int layout){
+        if (layout == 1) {
+            setContentView(R.layout.radio_player_layout_1);
+			setupview();
+        }
+        else if (layout == 2) {
+            setContentView(R.layout.radio_player_layout_2);
+			setupview();
+        }
+    }
 }
