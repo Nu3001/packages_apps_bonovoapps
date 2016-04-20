@@ -39,6 +39,16 @@
     <string name="ITURegion3">ITU Region 3 (Australia and Asia)</string>
     <string name="layout1">New Layout</string>
     <string name="layout2">Original Layout</string>
+    <string name="layout3">Custom Layout</string>
+    <string name="save_colors">Save Color Scheme</string>
+    <string name="alpha">Alpha</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="brt">Brightness</string>
+    <string name="con">Contrast</string>
+    <string name="sat">Saturation</string>
+    <string name="hue">Hue</string>
     <string name="system">Type Selection</string>
     <string name="layout">Layout Selection</string>
     <string name="volume">Volume</string>

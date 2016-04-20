@@ -57,6 +57,7 @@
             android:key="layout_list_preference"
             android:title="@string/layout_choose"
             android:defaultValue="1" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

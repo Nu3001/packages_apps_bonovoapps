@@ -20,6 +20,14 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
@@ -102,7 +110,11 @@ public class RadioService extends Service implements RadioInterface,
 
     public static final int NEW_LAYOUT = 1;
     public static final int OLD_LAYOUT = 2;
-    private static int radioLayout = 1;
+	public static final int CUSTOM_LAYOUT = 3;
+    public static int RADIO_LAYOUT = 1;
+
+    public static int colors[] = new int [4];
+    public static int colorFilters[] = new int [4];
 
 	public static  int FM_LOW_FREQ = 8700;
 	public static  int FM_HIGH_FREQ = 10800;
@@ -224,20 +236,19 @@ public class RadioService extends Service implements RadioInterface,
 	}
 
 
-    private RadioPlayerStatusStore mRaidoPlayerStatusStore;
+    private RadioPlayerStatusStore mRadioPlayerStatusStore;
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		mContext = this;
         mCanRadio = new CanRadio(this);
-        mRaidoPlayerStatusStore = RadioPlayerStatusStore.getInstance();
-        mRaidoPlayerStatusStore.setContext(this);
-        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
+        mRadioPlayerStatusStore = RadioPlayerStatusStore.getInstance();
+        mRadioPlayerStatusStore.setContext(this);
+        mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
                 RadioPlayerStatusStore.VALUE_PLAY);
 		synchronized (this) {
 			settings = getSharedPreferences("RadioPreferences", MODE_PRIVATE);
-//			SharedPreferences preferences = getSharedPreferences("CHECKED", 0);
 //			mRemote = preferences.getBoolean("onoff", true);
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			mRemote = prefs.getBoolean("checkbox_remote_preference", true);
@@ -252,12 +263,12 @@ public class RadioService extends Service implements RadioInterface,
 
 				if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
 					jniTurnFmAm(0); // open fm
-					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_FM);
+                    mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_FM);
 				} else if (RADIO_AM == radioType) {
 					jniTurnFmAm(1); // open am
-					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_AM);
+                    mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_AM);
 				}else if(RADIO_COLLECT == radioType){
-					mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_COLLECT);
+                    mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, RadioPlayerStatusStore.VALUE_COLLECT);
 				}
 				if (DEBUG)
 					Log.v(TAG, "getCurrentFreq()===curfreq ==="
@@ -302,7 +313,7 @@ public class RadioService extends Service implements RadioInterface,
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
 		updatePreferences(RADIO_DATA_SAVE);
-        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
+        mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_PLAY_STOP,
                 RadioPlayerStatusStore.VALUE_STOP);
 		if (DEBUG)
 			Log.d(TAG, "onDestroy()  end curfreq is " + curFreq);
@@ -571,7 +582,7 @@ public class RadioService extends Service implements RadioInterface,
         if(type == RADIO_COLLECT){
         	fmType = RadioPlayerStatusStore.VALUE_COLLECT;
         }
-        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
+        mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
 	}
 
 	public int getRadioType() {
@@ -956,8 +967,8 @@ public class RadioService extends Service implements RadioInterface,
         if (radioType == RADIO_COLLECT) {
             fmType = RadioPlayerStatusStore.VALUE_COLLECT;
         }
-        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
-        mRaidoPlayerStatusStore.put(RadioPlayerStatusStore.KEY_HZ, String.valueOf(curFreq));
+        mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_FM_AM, fmType);
+        mRadioPlayerStatusStore.put(RadioPlayerStatusStore.KEY_HZ, String.valueOf(curFreq));
 		if (type == RADIO_DATA_SAVE) {
 			// get activities preferences.get edit to add value
 			// SharedPreferences��һ������������ݴ洢��ʽ.���Լ�ֵ�����洢Ӧ�ó����
@@ -968,7 +979,7 @@ public class RadioService extends Service implements RadioInterface,
 			editor.putInt("chanId", curChannelId);
 			editor.putInt("mvolume", mVolume);
 			editor.putInt("mfreq", curFreq);
-            editor.putInt("radioLayout", radioLayout);
+            editor.putInt("radioLayout", RADIO_LAYOUT);
 			for (ChannelItem item : mChannelList) {
 				// StringBuilder.Append()�÷��൱��String��ġ�+��
 				sbfreq.append(item.freq);
@@ -990,7 +1001,8 @@ public class RadioService extends Service implements RadioInterface,
 				curChannelId = settings.getInt("chanId", 0);
 				mVolume = settings.getInt("mvolume", 0);
 				curFreq = settings.getInt("mfreq", 0);
-                radioLayout = settings.getInt("radioLayout", 0);
+                RADIO_LAYOUT = settings.getInt("radioLayout", 0);
+                getCustomColors();
 
 				String[] freqArray = new String[0];
 				String[] nameArray = new String[0];
@@ -1191,15 +1203,6 @@ public class RadioService extends Service implements RadioInterface,
 			mChannelList.size();
 		}
 
-
-	      //for(int i=0;i<mChannelList.size();i++)
-	     // {
-	      //		Log.v(TAG,"mChannelList.get("+i+").freq= "+mChannelList.get(i).freq );
-	     // }
-
-		//if(DEBUG)
-		//Log.v(TAG,"mChannelList.get("+curChannelId+").freq= "+mChannelList.get(curChannelId).freq +"mChannelList.size()="+mChannelList.size());
-
 		if (RADIO_FM1 == radioType || RADIO_FM2 == radioType) {
 			turnFmAm(RADIO_TYPE_FM);
 			if(mChannelList.get(curChannelId).freq!="")
@@ -1368,9 +1371,8 @@ public class RadioService extends Service implements RadioInterface,
 	 * Read And Set Radio Model -->china japan europe
 	 */
 	public void readAndSetModelInfo(){
-		SharedPreferences modelpre = getSharedPreferences(
-				"CHECKED", 0);
-		RADIO_MODEL = modelpre.getInt("radioModel", 0);
+
+		RADIO_MODEL = settings.getInt("radioModel", 0);
 		if(RADIO_MODEL == JAPAN_MODEL){
 			jniSetModel(JAPAN_MODEL);
 			FM_HIGH_FREQ = 9000;
@@ -1410,26 +1412,58 @@ public class RadioService extends Service implements RadioInterface,
 		}
 	}
 
-    public void readAndSetLayoutInfo() {
-        SharedPreferences modelpre = getSharedPreferences(
-                "CHECKED", 0);
-        setLayout(modelpre.getInt("radioLayout", 0));
-    }
-
-    public int setLayout(int layout) {
-        radioLayout = layout;
-
-        Intent it = new Intent();
-        Bundle mbundle = new Bundle();
-        mbundle.putInt("radioLayout", radioLayout);
-        it.setAction("updateLayout");
-        it.putExtras(mbundle);
-        sendBroadcast(it);
-
-        return radioLayout;
-    }
-
     public int getLayout() {
-        return radioLayout;
+        RADIO_LAYOUT = settings.getInt("radioLayout", 0);
+        return RADIO_LAYOUT;
     }
+
+    public void setCustomColors(int alpha, int red, int green, int blue, int brightness, int contrast, int saturation, int hue) {
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("alpha", alpha);
+        editor.putInt("red", red);
+        editor.putInt("green", green);
+        editor.putInt("blue", blue);
+        editor.putInt("brightness", brightness);
+        editor.putInt("contrast", contrast);
+        editor.putInt("saturation", saturation);
+        editor.putInt("hue", hue);
+        editor.commit();
+        getCustomColors();
+
+    }
+
+    public void getCustomColors() {
+        colors[0] = settings.getInt("alpha", 0);
+        colors[1] = settings.getInt("red", 0);
+        colors[2] = settings.getInt("green", 0);
+        colors[3] = settings.getInt("blue", 0);
+        colorFilters[0] = settings.getInt("brightness", 0);
+        colorFilters[1] = settings.getInt("contrast", 0);
+        colorFilters[2] = settings.getInt("saturation", 0);
+        colorFilters[3] = settings.getInt("hue", 0);
+    }
+
+    public Drawable changeColor(Bitmap bmap) {
+
+        int aRGB = Color.argb(colors[0], colors[1], colors[2], colors[3]);
+        ColorFilter colorFilter = ColorFilterGenerator.adjustColor(colorFilters[0], colorFilters[1], colorFilters[2], colorFilters[3]);
+
+        Canvas canvas = new Canvas();
+        Bitmap result = Bitmap.createBitmap(bmap.getWidth(), bmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        canvas.setBitmap(result);
+        Paint paint = new Paint();
+        paint.setFilterBitmap(false);
+
+        paint.setColorFilter(new PorterDuffColorFilter(aRGB, PorterDuff.Mode.MULTIPLY));
+        canvas.drawBitmap(bmap, 0, 0, paint);
+        paint.setColorFilter(null);
+
+        paint.setColorFilter(colorFilter);
+        canvas.drawBitmap(result, 0, 0, paint);
+        paint.setColorFilter(null);
+
+        return new BitmapDrawable(getResources(), result);
+    }
+
 }

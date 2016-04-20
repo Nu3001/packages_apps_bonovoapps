@@ -239,7 +239,6 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 			if (DEBUG) Log.v(TAG, "radioReadXML  is null");
 		}
 		this.registerReceiver(myReceiver, getIntentFilter());
-		lstart3 = System.currentTimeMillis();
 	}
 
 	@Override

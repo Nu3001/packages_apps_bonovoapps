@@ -21,10 +21,13 @@
     <string-array name="layouts">
         <item>@string/layout1</item>
         <item>@string/layout2</item>
+        <item>@string/layout3</item>
     </string-array>
 
     <string-array name="layouts_value">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
+
 </resources>

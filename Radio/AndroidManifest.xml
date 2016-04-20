@@ -59,6 +59,11 @@
         </activity>
 
         <activity
+            android:name="com.example.radio.RadioCustomColorActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
             android:name="com.example.radio.IntentActivity"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
             <intent-filter>

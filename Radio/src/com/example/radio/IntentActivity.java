@@ -87,7 +87,7 @@ public class IntentActivity extends Activity implements ServiceConnection, Callb
 
 	@Override
 	public void readLayoutInfo(){
-		radioService.readAndSetLayoutInfo();
+		radioService.getLayout();
 	}
 
 }

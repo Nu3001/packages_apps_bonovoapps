@@ -3,6 +3,9 @@ package com.example.radio;
 import com.example.radio.RadioInterface.RadioStatusChangeListener;
 import com.example.radio.RadioService.ChannelItem;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ColorFilter;
 import android.media.AudioManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.os.Bundle;
@@ -82,7 +85,10 @@ public class RadioActivity extends Activity implements
 	private static int IS_STEP_NOW = 2;
 	private final static String TAG = "RadioActivity";
 	private RadioService radioService = null;
-	private int currentLayout = 1;
+
+    private int currentLayout = 1;
+    private View topPanel, midPanel, botPanel;
+    private Bitmap bmapTop, bmapMid, bmapBot;
 
 	private ImageButton mMiddleButtonForward;
 	private ImageButton mMiddleButtonBackward;
@@ -2008,6 +2014,7 @@ public class RadioActivity extends Activity implements
 		myIntentFilter.addAction("Radio_Auto_Complete");
 		myIntentFilter.addAction("Step-Search");
 		myIntentFilter.addAction("updateFreqView");
+		myIntentFilter.addAction("updateLayoutView");
 		myIntentFilter.addAction("MediaStatus.BonovoRadio.Media_Broadcast_Close");
 		return myIntentFilter;
 		
@@ -2107,9 +2114,8 @@ public class RadioActivity extends Activity implements
 				curFreq_Compare_To_Collect(stepCurfreq);
 			}else if(intent.getAction().equals("updateFreqView")){
 				updateFreqView();
-			}else if(intent.getAction().equals("updateLayout")){
-                currentLayout = intent.getIntExtra("radioLayout", 0);
-                updateLayout(currentLayout);
+			}else if(intent.getAction().equals("updateLayoutView")){
+                updateLayout(radioService.getLayout());
             }
 			else if(intent.getAction().equals("MediaStatus.BonovoRadio.Media_Broadcast_Close"))
 			{
@@ -2135,5 +2141,21 @@ public class RadioActivity extends Activity implements
             setContentView(R.layout.radio_player_layout_2);
 			setupview();
         }
+		else if (layout == 3) {
+			setContentView(R.layout.radio_player_layout_custom);
+			setupview();
+
+            topPanel = findViewById(R.id.topPanel);
+            midPanel = findViewById(R.id.midPanel);
+            botPanel = findViewById(R.id.bottomPanel);
+
+            bmapTop = BitmapFactory.decodeResource(getResources(), R.drawable.top_bg_custom);
+            bmapMid = BitmapFactory.decodeResource(getResources(), R.drawable.buttonbar_bg_custom);
+            bmapBot = BitmapFactory.decodeResource(getResources(), R.drawable.bottom_bg_custom);
+
+            topPanel.setBackground(radioService.changeColor(bmapTop));
+            midPanel.setBackground(radioService.changeColor(bmapMid));
+            botPanel.setBackground(radioService.changeColor(bmapBot));
+		}
     }
 }
