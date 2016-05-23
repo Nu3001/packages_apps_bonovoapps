@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.view.LayoutInflater;
 
 
 public class RadioImportActivity extends Activity implements OnClickListener,
@@ -111,7 +112,7 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 		setupViews();
 
 		// bind a service with RadioService
-		Intent serviceIntent = new Intent("com.example.RadioService");
+		Intent serviceIntent = new Intent("com.example.radio.RadioService");
 		this.bindService(serviceIntent, this, BIND_AUTO_CREATE);
 	}
 
@@ -147,6 +148,8 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 
 	}
 
+	private LayoutInflater mInflater;
+
 	// ��ʾ�����б�
 	private void showPlayList() {
 
@@ -169,9 +172,9 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 				if (mCitySel >= 0) {
 					item.id = R.drawable.import_channel;
 				} else if (mProvinceSel >= 0) {
-					item.id = R.drawable.import_city;
+					item.id = R.drawable.import_city_icon;
 				} else {
-					item.id = R.drawable.import_province;
+					item.id = R.drawable.import_province_icon;
 				}
 				item.text = title;
 				viewList.add(item);
@@ -236,7 +239,6 @@ public class RadioImportActivity extends Activity implements OnClickListener,
 			if (DEBUG) Log.v(TAG, "radioReadXML  is null");
 		}
 		this.registerReceiver(myReceiver, getIntentFilter());
-		lstart3 = System.currentTimeMillis();
 	}
 
 	@Override

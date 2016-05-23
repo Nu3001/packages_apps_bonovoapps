@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/channel44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel46"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/channel47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btnchannel1"
+                android:textColor="@color/solid_white"
+                android:maxLength="7"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</HorizontalScrollView>
