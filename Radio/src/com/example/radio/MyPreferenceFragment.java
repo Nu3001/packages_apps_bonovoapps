@@ -25,12 +25,13 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 	private VolumeSeekBarPreferences seekBarPreferences;
 	private CheckBoxPreference checkBoxRemote;
 	private ListPreference countryListPre;
+	private ListPreference layoutList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.layout.preference_setting);
+		addPreferencesFromResource(R.xml.preference_setting);
 		seekBarPreferences = (VolumeSeekBarPreferences) findPreference("seekBarPreference");
 		seekBarPreferences.setSeekbarListener(new seekBarCallBack() {
 
@@ -54,6 +55,10 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		countryListPre = (ListPreference) findPreference("countries_list_preference");
 		countryListPre.setOnPreferenceChangeListener(this);
 		countryListPre.setOnPreferenceClickListener(this);
+
+		layoutList = (ListPreference) findPreference("layout_list_preference");
+		layoutList.setOnPreferenceChangeListener(this);
+		layoutList.setOnPreferenceClickListener(this);
 
 	}
 
@@ -88,12 +93,14 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		public void setRemoteModel(boolean flag);
 		
 		public void readModelInfo();
+
+		public void readLayoutInfo();
 	}
 
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		// TODO Auto-generated method stub
-		SharedPreferences modelpre = context.getSharedPreferences("CHECKED", 0);
+		SharedPreferences settings = context.getSharedPreferences("RadioPreferences", 0);
 		if(preference == checkBoxRemote){
 			if((Boolean)newValue){
 				callbackSetting.setRemoteModel(true);
@@ -103,41 +110,63 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 			
 		}else if(preference == countryListPre){
 			if(newValue.equals("1")){
-				modelpre.edit().putInt("radioModel", RadioService.JAPAN_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.JAPAN_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
 			}else if(newValue.equals("2")){
-				modelpre.edit().putInt("radioModel", RadioService.CHINA_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.CHINA_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
 			}else if(newValue.equals("3")){
-				modelpre.edit().putInt("radioModel", RadioService.EUR_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.EUR_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
 			}else if(newValue.equals("4")){
-				modelpre.edit().putInt("radioModel", RadioService.ITUREGION1_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.ITUREGION1_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
 			}else if(newValue.equals("5")){
-				modelpre.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
 			}else if(newValue.equals("6")){
-				modelpre.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL).commit();
+                settings.edit().putInt("radioModel", RadioService.ITUREGION2_MODEL).commit();
 				callbackSetting.readModelInfo();
 				Intent intent = new Intent();
 				intent.setAction("updateFreqView");
 				context.sendBroadcast(intent);
+			}
+
+		} else if(preference == layoutList){
+			if(newValue.equals("1")){
+                settings.edit().putInt("radioLayout", RadioService.NEW_LAYOUT).commit();
+				callbackSetting.readLayoutInfo();
+				Intent intent = new Intent();
+				intent.setAction("updateLayoutView");
+				context.sendBroadcast(intent);
+			}else if(newValue.equals("2")) {
+                settings.edit().putInt("radioLayout", RadioService.OLD_LAYOUT).commit();
+				callbackSetting.readLayoutInfo();
+				Intent intent = new Intent();
+				intent.setAction("updateLayoutView");
+				context.sendBroadcast(intent);
+			}else if(newValue.equals("3")){
+                settings.edit().putInt("radioLayout", RadioService.CUSTOM_LAYOUT).commit();
+				callbackSetting.readLayoutInfo();
+				Intent intent = new Intent(this.getActivity().getBaseContext(), RadioCustomColorActivity.class);
+				intent.setAction("updateLayoutView");
+				context.sendBroadcast(intent);
+				startActivity(intent);
 			}
 		}
 		return true;

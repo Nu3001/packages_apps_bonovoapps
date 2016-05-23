@@ -5,6 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.KeyEvent;
+import com.radio.widget.RadioPlayerStatusStore;
+import android.content.BroadcastReceiver;
+import android.content.SharedPreferences;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 
 public class MediaButtonIntentReceiver extends BroadcastReceiver {
 	
@@ -30,6 +36,16 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
 			case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
 				command = "KEYCODE_MEDIA_PREVIOUS";
 				break;
+			case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+				command = "KEYCODE_MEDIA_PLAY_PAUSE";
+				break;
+			case KeyEvent.KEYCODE_MEDIA_PLAY:
+					command = "KEYCODE_MEDIA_PLAY";
+			break;
+			
+			case KeyEvent.KEYCODE_MEDIA_PAUSE:
+					command = "KEYCODE_MEDIA_PAUSE";
+			break;
 			default:
 				break;
 			}
@@ -43,7 +59,71 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
 						} else if (command.equals("KEYCODE_MEDIA_PREVIOUS")) {
 							Intent it = new Intent("Radio.Media_Broadcast_Last");
 							context.sendBroadcast(it);
+					}else if (command.equals("KEYCODE_MEDIA_PLAY_PAUSE")) {
+							//Intent it = new Intent("Radio.Media_Broadcast_PLAY_PAUSE");
+							//context.sendBroadcast(it);
+							  ComponentName 	mRadioServiceComponent = new ComponentName("com.example.radio", "com.example.radio.RadioService");
+
+						         RadioPlayerStatusStore mRadioPlayerStatusStore = RadioPlayerStatusStore.getInstance();
+								 
+						            if (mRadioPlayerStatusStore.getContext() == null)
+						                  mRadioPlayerStatusStore.setContext(context);
+									
+							     String playStop = mRadioPlayerStatusStore.get(RadioPlayerStatusStore.KEY_PLAY_STOP);
+
+
+							      if (RadioPlayerStatusStore.VALUE_PLAY.equals(playStop)) {
+						                final Intent serviceIntent = new Intent();
+						                serviceIntent.setComponent(mRadioServiceComponent);
+						                context.stopService(serviceIntent);
+						            }
+						            if (RadioPlayerStatusStore.VALUE_STOP.equals(playStop) ||
+						                    playStop.equals("")) {
+						                final Intent serviceIntent = new Intent();
+						                serviceIntent.setComponent(mRadioServiceComponent);
+						                context.startService(serviceIntent);
+						            }
+
 					}
+					else if (command.equals("KEYCODE_MEDIA_PLAY")){
+						
+							  ComponentName 	mRadioServiceComponent = new ComponentName("com.example.radio", "com.example.radio.RadioService");
+
+						         RadioPlayerStatusStore mRadioPlayerStatusStore = RadioPlayerStatusStore.getInstance();
+								 
+						            if (mRadioPlayerStatusStore.getContext() == null)
+						                  mRadioPlayerStatusStore.setContext(context);
+									
+							     String playStop = mRadioPlayerStatusStore.get(RadioPlayerStatusStore.KEY_PLAY_STOP);
+
+
+						            if (RadioPlayerStatusStore.VALUE_STOP.equals(playStop) ||
+						                    playStop.equals("")) {
+						                final Intent serviceIntent = new Intent();
+						                serviceIntent.setComponent(mRadioServiceComponent);
+						                context.startService(serviceIntent);
+						            }						
+						
+					}
+					else if (command.equals("KEYCODE_MEDIA_PAUSE")){
+						
+							  ComponentName 	mRadioServiceComponent = new ComponentName("com.example.radio", "com.example.radio.RadioService");
+
+						         RadioPlayerStatusStore mRadioPlayerStatusStore = RadioPlayerStatusStore.getInstance();
+								 
+						            if (mRadioPlayerStatusStore.getContext() == null)
+						                  mRadioPlayerStatusStore.setContext(context);
+									
+							     String playStop = mRadioPlayerStatusStore.get(RadioPlayerStatusStore.KEY_PLAY_STOP);
+
+
+							      if (RadioPlayerStatusStore.VALUE_PLAY.equals(playStop)) {
+						                final Intent serviceIntent = new Intent();
+						                serviceIntent.setComponent(mRadioServiceComponent);
+						                context.stopService(serviceIntent);
+						            }					
+					}
+
 				} else {
 	
 					}

@@ -5,7 +5,4 @@
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
 
-    <dimen name="radio_button_text_size">22sp</dimen>
-    <dimen name="channel_details_text_size">20sp</dimen>
-
 </resources>

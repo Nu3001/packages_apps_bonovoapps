@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="208dp"
+    android:layout_height="66dp"
+    android:gravity="center" >
+            
+            <ImageView 
+                android:id="@+id/number1"
+                android:layout_width="48dp"
+                android:layout_height="66dp"
+                android:src="@drawable/number1"/>
+            <ImageView
+                android:id="@+id/number2"
+                android:layout_width="48dp"
+                android:layout_height="66dp"
+                android:layout_alignTop="@id/number1"
+                android:layout_toRightOf="@id/number1"/>
+            <ImageView
+                android:id="@+id/number3"
+                android:layout_width="48dp"
+                android:layout_height="66dp"
+                android:layout_alignTop="@id/number1"
+                android:layout_toRightOf="@id/number2"/>
+            <ImageView
+                android:id="@+id/number4"
+                android:layout_width="16dp"
+                android:layout_height="66dp"
+                android:layout_alignTop="@id/number1"
+                android:layout_toRightOf="@id/number3"
+                android:src="@drawable/point"
+                android:visibility="gone"/>
+            <ImageView
+                 android:id="@+id/number5"
+                android:layout_width="48dp"
+                android:layout_height="66dp"
+                android:layout_alignTop="@id/number1"
+                android:layout_toRightOf="@id/number4"/>
+    
+
+</RelativeLayout>

@@ -6305,15 +6305,85 @@
 		</City>
 		<City value="百色市">
 			<Channel>
-				<Abbr value="广西电台新闻综合广播"/>
-				<Name value="广西电台新闻综合广播"/>
-				<Freq value="1071"/>
+				<Abbr value="中国之声"/>
+				<Name value="中国之声"/>
+				<Freq value="603"/>
 			</Channel>
 			<Channel>
-				<Abbr value="广西人民广播电台新闻综合广播"/>
-				<Name value="广西人民广播电台新闻综合广播"/>
-				<Freq value="1440"/>
+				<Abbr value="中国之声"/>
+				<Name value="中国之声"/>
+				<Freq value="756"/>
 			</Channel>
+                        <Channel>
+                                <Abbr value="经济之声"/>
+                                <Name value="经济之声"/>
+                                <Freq value="927"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="新闻910"/>
+                                <Name value="新闻910"/>
+                                <Freq value="1008"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="私家车930"/>
+                                <Name value="私家车930"/>
+                                <Freq value="1143"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="907女主播"/>
+                                <Name value="907女主播"/>
+                                <Freq value="1224"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="新闻910"/>
+                                <Name value="新闻910"/>
+                                <Freq value="1440"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="970女主播"/>
+                                <Name value="970女主播"/>
+                                <Freq value="1575"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="风尚调频"/>
+                                <Name value="风尚调频"/>
+                                <Freq value="87.6"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="中国之声"/>
+                                <Name value="中国之声"/>
+                                <Freq value="90.6"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="交通1003"/>
+                                <Name value="交通1003"/>
+                                <Freq value="94.9"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="音乐950"/>
+                                <Name value="音乐950"/>
+                                <Freq value="97.8"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="新闻910"/>
+                                <Name value="新闻910"/>
+                                <Freq value="100.8"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="私家车930"/>
+                                <Name value="私家车930"/>
+                                <Freq value="104.6"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="百色综合广播"/>
+                                <Name value="百色综合广播"/>
+                                <Freq value="105.2"/>
+                        </Channel>
+                        <Channel>
+                                <Abbr value="970女主播"/>
+                                <Name value="970女主播"/>
+                                <Freq value="107"/>
+                        </Channel>
 		</City>
 		<City value="河池市">
 			<Channel>
