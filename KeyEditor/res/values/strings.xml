@@ -88,6 +88,7 @@
     <string name="radio_turn_up">Turn Up Radio</string>
     <string name="radio_turn_down">Turn Down Radio</string>
     <string name="radio_switch_fmam">FM/AM</string>
+    <string name="app_switch">App Switcher</string>
     
     <string name="info_serv_start_and_exit_addr">Using new device which has be not found in system! Do you want start up IrConfigApp to custom the new infrared remote device?</string>
     <string name="info_main_start_and_exit_addr">Using new device which has be found in system! Do you want import the config file?</string>

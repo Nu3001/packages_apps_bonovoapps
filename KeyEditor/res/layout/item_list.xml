@@ -31,7 +31,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -59,7 +59,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -126,7 +126,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -154,7 +154,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -221,7 +221,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -249,7 +249,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -316,7 +316,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -344,7 +344,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -411,7 +411,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -439,7 +439,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -506,7 +506,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -534,7 +534,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -601,7 +601,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -628,7 +628,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -693,7 +693,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -720,7 +720,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -785,7 +785,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -812,7 +812,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -876,7 +876,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -903,7 +903,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -967,7 +967,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -994,7 +994,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -1058,7 +1058,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -1085,7 +1085,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1149,7 +1149,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal" >
 
@@ -1176,7 +1176,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1241,7 +1241,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1269,7 +1269,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1334,7 +1334,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1362,7 +1362,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1427,7 +1427,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1455,7 +1455,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1520,7 +1520,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 
@@ -1530,7 +1530,7 @@
             	    android:layout_height="match_parent"
             	    android:gravity="center_vertical"
             	    android:textColor="#ffffff"
-                	android:text="@string/dvd" />
+                	android:text="@string/app_switch" />
 
 	            <Button
     	            android:id="@+id/btnDvd"
@@ -1548,7 +1548,7 @@
 		        android:paddingRight="10dip"
 		        android:paddingTop="4dip"
 		        android:paddingBottom="4dip"
-		        android:layout_marginRight="@dimen/row_pitch"
+		        android:layout_marginEnd="@dimen/row_pitch"
 		        android:background="@drawable/corners_bg"
                 android:orientation="horizontal">
 

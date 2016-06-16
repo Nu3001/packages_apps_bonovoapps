@@ -11,8 +11,10 @@
     <string name="def_volume">10</string>
 	<string name="title_activity_power">Power</string>
     <string name="title_activity_source">Source Control</string>
+    <string name="title_activity_applist">Application List</string>
 	<string name="action_settings">Settings</string>
     <string name="title_activity_videoswitcher">VideoSwitcher</string>
+    <string name="title_activity_appswitcher">AppSwitcher</string>
     <string name="audiotitle">Audio Source</string>
     <string name="videotitle">Video Source</string>
     <string name="digital_only">Digital (Android)</string>
@@ -23,4 +25,7 @@
     <string name="radio_in">Radio</string>
     <string name="aux_in2">Aux In 2</string>
     <string name="back_video">Backup Camera</string>
+    <string name="icon">Icon</string>
+    <string name="save">Save and Exit</string>
+    <string name="clear">Clear</string>
 </resources>
