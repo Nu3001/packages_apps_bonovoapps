@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.content.ComponentName;
 
 import android.app.AlertDialog;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Gravity;
 import android.app.Service;
 import android.provider.Settings;
@@ -70,6 +71,7 @@ public class HandleService extends Service{
 	private final String STORAGE_S8 = "storage_s8";
 	private final String PROCESS = "process";
 	private final String APPLICATIONS = "applications";
+	private final String APPS = "apps";
 	private final String BONOVO_RADIO = "com.example.radio";
 	private Context mContext = null;
 	private TextView mTextView = null;
@@ -82,10 +84,12 @@ public class HandleService extends Service{
 	private static int s8Volume = 0;//sonata8 volume 0;
 	private SharedPreferences preferences;
 	private SharedPreferences preferences2;
+	private static boolean AppSwitchVisible = false;
 
     private static final boolean mIsKillProcessWhenScreenOff = false;
 
 	private ArrayList<String> mInitProcessList = null;
+    private ArrayList<String> appSwitchPackages = new ArrayList<String>();
 	
 	private ServiceBinder  serviceBinder = new ServiceBinder();
 
@@ -322,7 +326,20 @@ public class HandleService extends Service{
 			} else if (intent.getAction().equals("android.intent.action.BONOVO_SET_AUDIO_CHANNEL")) {
 				int channel = intent.getIntExtra("channel", 0);
 				jniSetAudioChannel(channel);
-			}
+            } else if (intent.getAction().equals("android.intent.action.XDAUTO_APP_SWITCH")) {
+                Log.d(TAG, "============== HandleService:XDAUTO_APP_SWITCH intent Triggered");
+                if (!AppSwitchVisible) {
+                    getAppSwitch();
+                    Intent switcherintent = new Intent(context, AppSwitchActivity.class);
+                    switcherintent.putExtra("apps", appSwitchPackages);
+                    switcherintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(switcherintent);
+                }
+                else {
+                    Intent appSwitch = new Intent(AppSwitchActivity.SWITCH_APP);
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(appSwitch);
+                }
+            }
 		}
 	};
 
@@ -559,6 +576,7 @@ public class HandleService extends Service{
 		myIntentFilter.addAction("android.intent.action.SEND_FOR_HANDLER_CAR_TYPE");
 		myIntentFilter.addAction("com.android.internal.car.can.action.SERIAL_TYPE_CHANGED");
 		myIntentFilter.addAction("com.android.internal.car.can.action.CAR_TYPE_CHANGED");
+        myIntentFilter.addAction("android.intent.action.XDAUTO_APP_SWITCH");
 		return myIntentFilter;
 	};
 	
@@ -1018,6 +1036,15 @@ public class HandleService extends Service{
 		return sp.getBoolean("MUTE", false);
 	}
 
+    public void getAppSwitch() {
+        appSwitchPackages.clear();
+        SharedPreferences sp = mContext.getSharedPreferences(APPS, MODE_PRIVATE);
+        int size = sp.getInt("apparraysize", 0);
+
+        for(int i=0; i<size; i++)
+            appSwitchPackages.add(sp.getString("APP_" + i, ""));
+    }
+
 	public boolean sendPowerKey(){
 		return jniSendPowerKey();
 	}
@@ -1053,4 +1080,17 @@ public class HandleService extends Service{
 		}
     	
     }
+
+    public static boolean isAppSwitchVisible() {
+        return AppSwitchVisible;
+    }
+
+    public static void AppSwitchResumed() {
+        AppSwitchVisible = true;
+    }
+
+    public static void AppSwitchPaused() {
+        AppSwitchVisible = false;
+    }
+
 }
