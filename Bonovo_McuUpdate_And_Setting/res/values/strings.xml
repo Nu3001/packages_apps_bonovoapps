@@ -29,6 +29,7 @@
     <string name="update_ok_msg">MCU update completed, rebooting unit</string>
     <string name="msg_1"> </string>
     <string name="list_version">Box Version</string>
+    <string name="list_capabilities">Capabilities</string>
     <string name="list_update">MCU Update</string>
     <string name="list_config">Car Config</string>
     <string name="list_serial_config">Serial Config</string>
@@ -67,4 +68,13 @@
     <string name="connectedstandby_half_day">After Twelve Hours</string>
     <string name="connectedstandby_one_day">After One Day</string>
     <string name="connectedstandby_infinite">Never</string>
+    <!-- Capabilities -->
+    <string name="choose_capabilities">Choose Capabilities</string>
+    <string name="capability_preset">Preset:</string>
+    <string name="preset_nu_series">NU Series (Carpad II)</string>
+    <string name="preset_nr_series">NR Series (Carpad III)</string>
+    <string name="preset_custom">Custom (Advanced)</string>
+    <string name="all_capabilities">All Capabilities</string>
+    <string name="cap_backlight_keys_custom_color">Edit keys backlight color</string>
+    <string name="cap_backlight_keys_brightness">Edit keys backlight brightness</string>
 </resources>
