@@ -8,7 +8,7 @@
             <item>@string/ITURegion2</item>
             <item>@string/ITURegion3</item>
     </string-array>
-    
+
     <string-array name="department_value">
         <item>1</item>
         <item>2</item>
@@ -28,6 +28,24 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+
+    <string-array name="scan_delays">
+        <item>@string/scan_delay_1</item>
+        <item>@string/scan_delay_2</item>
+        <item>@string/scan_delay_3</item>
+        <item>@string/scan_delay_5</item>
+        <item>@string/scan_delay_7</item>
+        <item>@string/scan_delay_10</item>
+    </string-array>
+
+    <string-array name="scan_delay_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
     </string-array>
 
 </resources>

@@ -1399,6 +1399,11 @@ public class RadioService extends Service implements RadioInterface,
         return RADIO_LAYOUT;
     }
 
+	public int getScanDelayMs() {
+		// Default delay = 3 seconds
+		return settings.getInt("scanDelayMsecs", 3000);
+	}
+
     public void setCustomColors(int alpha, int red, int green, int blue, int brightness, int contrast, int saturation, int hue) {
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("alpha", alpha);

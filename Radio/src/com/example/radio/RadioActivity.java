@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -52,8 +53,6 @@ public class RadioActivity extends Activity implements
 	private static final int DISMISS_INPUT_DIALOG = 4;
 	private static final int VOLUME_DELAY_TIME = 3000;
 	private static final int CHANNEL_SIZE = 48;						//Channel娑擃亝鏆�
-
-	private static final long DELAY_SCAN_SEEK = 3000;
 
 	private static int FOCUS_BUTTON_ID = 0;
 	private static int HEART_STATIC_FLAG = 0;
@@ -521,7 +520,7 @@ public class RadioActivity extends Activity implements
 					stopScan();
 				} else {
 					radioService.stepRight(radioService.getCurrentFreq());
-					mHandler.postDelayed(this, DELAY_SCAN_SEEK);
+					mHandler.postDelayed(this, radioService.getScanDelayMs());
 				}
 			} else {
 				Toast.makeText(RadioActivity.this, "Not scanning, current function=" + radioService.getFunctionId(), Toast.LENGTH_SHORT).show();
@@ -544,7 +543,7 @@ public class RadioActivity extends Activity implements
 			mMiddleButtonStep.setText(R.string.scanning);
 			radioService.setFunctionId(RadioInterface.FUNCTION_SCAN);
 			radioService.stepRight(radioService.getCurrentFreq());
-			mHandler.postDelayed(mScanRunnable, DELAY_SCAN_SEEK);
+			mHandler.postDelayed(mScanRunnable, radioService.getScanDelayMs());
 		} else {
 			Log.i(TAG, "NOT starting scan, because function=" + radioService.getFunctionId());
 		}
@@ -2144,6 +2143,8 @@ public class RadioActivity extends Activity implements
 				radioService.stopService(new Intent("com.example.radio.RadioService"));
 
 				finish();
+			} else if (intent.getAction().equals("Radio.scanDelayUpdated")) {
+
 			}
 		}
 	};

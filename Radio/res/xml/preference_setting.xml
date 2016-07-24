@@ -60,4 +60,17 @@
 
     </PreferenceCategory>
 
+
+    <PreferenceCategory android:title="@string/scan">
+
+        <ListPreference
+            android:dialogTitle="@string/pref_scan_delay"
+            android:entries="@array/scan_delays"
+            android:entryValues="@array/scan_delay_values"
+            android:key="scan_delay_list_preference"
+            android:title="@string/pref_scan_delay"
+            android:defaultValue="3" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

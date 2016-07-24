@@ -85,4 +85,13 @@
     <string name="layout_choose_title">Please select a Design</string>
     <string name="widget_loading">Loading...</string>
 
+    <string name="scan">Scan</string>
+    <string name="pref_scan_delay">Scan delay</string>
+    <string name="scan_delay_1">1 second</string>
+    <string name="scan_delay_2">2 seconds</string>
+    <string name="scan_delay_3">3 seconds</string>
+    <string name="scan_delay_5">5 seconds</string>
+    <string name="scan_delay_7">7 seconds</string>
+    <string name="scan_delay_10">10 seconds</string>
+
 </resources>
