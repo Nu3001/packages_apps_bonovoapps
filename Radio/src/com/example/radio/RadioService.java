@@ -1,23 +1,14 @@
 package com.example.radio;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import org.xmlpull.v1.XmlPullParser;
-import com.radio.widget.RadioPlayerStatusStore;
-
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -28,9 +19,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import android.media.AudioManager;
-import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaMetadataRetriever;
 import android.media.RemoteControlClient;
 import android.media.RemoteControlClient.MetadataEditor;
@@ -42,11 +31,17 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Xml;
-import android.view.KeyEvent;
 import android.widget.Toast;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
+
 import com.android.internal.car.can.CanRadio;
+import com.radio.widget.RadioPlayerStatusStore;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class RadioService extends Service implements RadioInterface,
         AudioManager.OnAudioFocusChangeListener {
@@ -55,6 +50,7 @@ public class RadioService extends Service implements RadioInterface,
     public static final String EXTRA_KEY_STOP = "com.example.radioplayer.key_stop";
     public static final String ACTION_STOP = "com.example.radioplayer.stop";
     public static final String ACTION_NEXT = "com.example.radioplayer.next";
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final String action = intent.getAction();
@@ -65,7 +61,9 @@ public class RadioService extends Service implements RadioInterface,
                 stopSelf();
         }
         if (ACTION_NEXT.equals(action)){
-            if (getFunctionId() == 0) {
+            if (getFunctionId() == FUNCTION_SCAN) {
+                setFunctionId(FUNCTION_STEP_SEEK);
+            } else if (getFunctionId() == FUNCTION_FINE_TUNE) {
                 fineRight(getCurrentFreq());
             } else {
                 stepRight(getCurrentFreq());
@@ -486,14 +484,20 @@ public class RadioService extends Service implements RadioInterface,
 	}
 
 	private String formatFreqDisplay(int freq) {
-		String display = "";
+		return formatFreqDisplay(this, freq);
+	}
+
+	public static String formatFreqDisplay(Context context, int freq) {
+		String display;
+
 		if (freq < 1000) {
 			display = Integer.toString(freq) + " " +
-				getResources().getString(R.string.khz);
+					context.getResources().getString(R.string.khz);
 		} else {
 			display = String.valueOf(freq/100.0) + " " +
-					getResources().getString(R.string.mhz);
+					context.getResources().getString(R.string.mhz);
 		}
+
 		return display;
 	}
 

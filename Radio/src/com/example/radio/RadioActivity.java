@@ -53,6 +53,8 @@ public class RadioActivity extends Activity implements
 	private static final int VOLUME_DELAY_TIME = 3000;
 	private static final int CHANNEL_SIZE = 48;						//Channel娑擃亝鏆�
 
+	private static final long DELAY_SCAN_SEEK = 3000;
+
 	private static int FOCUS_BUTTON_ID = 0;
 	private static int HEART_STATIC_FLAG = 0;
 
@@ -148,6 +150,7 @@ public class RadioActivity extends Activity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
+		stopScan();
 		unbindService(this);
 
 		if(DEBUG) Log.d(TAG, "++++++onPause()");
@@ -200,7 +203,8 @@ public class RadioActivity extends Activity implements
 			case R.id.btnfine:
 				if (DEBUG)
 					Log.d(TAG, "btnfine has worked");
-				radioService.setFunctionId(0);
+				stopScan();
+				radioService.setFunctionId(RadioInterface.FUNCTION_FINE_TUNE);
 				if (currentLayout == 1) {
 					mMiddleButtonBackward
 							.setBackgroundResource(R.drawable.btnfinebackward1);
@@ -217,7 +221,8 @@ public class RadioActivity extends Activity implements
 			case R.id.btnstep:
 				if (DEBUG)
 					Log.d(TAG, "btnstep has worked");
-				radioService.setFunctionId(1);
+				stopScan();
+				radioService.setFunctionId(RadioInterface.FUNCTION_STEP_SEEK);
 				if (currentLayout == 1) {
 					mMiddleButtonBackward
 							.setBackgroundResource(R.drawable.btnstepbackward1);
@@ -416,7 +421,9 @@ public class RadioActivity extends Activity implements
 				RadioActivity.this.startActivity(setting);
 				break;
 			case R.id.btnforward:
-				if (radioService.getFunctionId() == 0) {
+				if (radioService.getFunctionId() == RadioInterface.FUNCTION_SCAN) {
+					stopScan();
+				} else if (radioService.getFunctionId() == RadioInterface.FUNCTION_FINE_TUNE) {
 					radioService.fineRight(radioService.getCurrentFreq());
 					curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 				} else {
@@ -425,7 +432,9 @@ public class RadioActivity extends Activity implements
 				}
 				break;
 			case R.id.btnbackward:
-				if (radioService.getFunctionId() == 0) {
+				if (radioService.getFunctionId() == RadioInterface.FUNCTION_SCAN) {
+					stopScan();
+				} else if (radioService.getFunctionId() == RadioInterface.FUNCTION_FINE_TUNE) {
 					radioService.fineLeft(radioService.getCurrentFreq());
 					curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 				} else {
@@ -502,6 +511,58 @@ public class RadioActivity extends Activity implements
 			}
 		}
 	};
+
+	private final Runnable mScanRunnable = new Runnable() {
+		@Override
+		public void run() {
+			if (radioService.getFunctionId() == RadioInterface.FUNCTION_SCAN) {
+				if (mScanStartFreq != -1 && radioService.getCurrentFreq() == mScanStartFreq) {
+					// We've made it all the way around!
+					stopScan();
+				} else {
+					radioService.stepRight(radioService.getCurrentFreq());
+					mHandler.postDelayed(this, DELAY_SCAN_SEEK);
+				}
+			} else {
+				Toast.makeText(RadioActivity.this, "Not scanning, current function=" + radioService.getFunctionId(), Toast.LENGTH_SHORT).show();
+			}
+		}
+	};
+
+	private int mSavedFunctionId = -1;
+	private int mScanStartFreq = -1;
+
+	public void startScan() {
+		if (radioService.getFunctionId() != RadioInterface.FUNCTION_SCAN) {
+			mScanStartFreq = radioService.getCurrentFreq();
+			mSavedFunctionId = radioService.getFunctionId();
+
+			String freq = RadioService.formatFreqDisplay(this, mScanStartFreq);
+			Toast.makeText(this, getString(R.string.start_scan, freq), Toast.LENGTH_LONG).show();
+			if (DEBUG) Log.v(TAG, "Scanning from " + freq);
+
+			mMiddleButtonStep.setText(R.string.scanning);
+			radioService.setFunctionId(RadioInterface.FUNCTION_SCAN);
+			radioService.stepRight(radioService.getCurrentFreq());
+			mHandler.postDelayed(mScanRunnable, DELAY_SCAN_SEEK);
+		} else {
+			Log.i(TAG, "NOT starting scan, because function=" + radioService.getFunctionId());
+		}
+	}
+
+	public void stopScan() {
+		if (radioService.getFunctionId() == RadioInterface.FUNCTION_SCAN) {
+			mHandler.removeCallbacks(mScanRunnable);
+			radioService.setFunctionId(mSavedFunctionId);
+			mSavedFunctionId = -1;
+			mScanStartFreq = -1;
+			if (DEBUG) Log.v(TAG, "Stop Scan at " + radioService.getCurrentFreq());
+		} else {
+			if (DEBUG) Log.v(TAG, "stopScan: not currently scanning; func=" + radioService.getFunctionId());
+		}
+
+		mMiddleButtonStep.setText(R.string.step);
+	}
 
 	private int editChannelId = -1;
 
@@ -599,6 +660,10 @@ public class RadioActivity extends Activity implements
 				createDialog().show();
 			}
 			break;
+        case R.id.btnstep:
+            // Long-press STEP button enables the SCAN feature
+			startScan();
+            break;
 		default:
 			break;
 		}
@@ -631,6 +696,7 @@ public class RadioActivity extends Activity implements
 		mMiddleButtonFine.setOnClickListener(this);
 		mMiddleButtonStep = (Button) findViewById(R.id.btnstep);
 		mMiddleButtonStep.setOnClickListener(this);
+        mMiddleButtonStep.setOnLongClickListener(this);
 		mMiddleButtonAuto = (Button) findViewById(R.id.btnauto);
 		mMiddleButtonAuto.setOnClickListener(this);
 		mButtonSaveToFavs = (Button)findViewById(R.id.collect);
@@ -933,7 +999,7 @@ public class RadioActivity extends Activity implements
 
 		curFreq_Compare_To_Collect(radioService.getCurrentFreq());
 		gone_Empty_ButtonView();
-		if (radioService.getFunctionId() == 0) {
+		if (radioService.getFunctionId() == RadioInterface.FUNCTION_FINE_TUNE) {
 			if (currentLayout == 1) {
 				mMiddleButtonBackward
 						.setBackgroundResource(R.drawable.btnfinebackward1);
@@ -947,19 +1013,19 @@ public class RadioActivity extends Activity implements
 						.setBackgroundResource(R.drawable.btnfineforward2);
 			}
 
-		} else if (radioService.getFunctionId() == 1) {
-		if (currentLayout == 1) {
-			mMiddleButtonBackward
-					.setBackgroundResource(R.drawable.btnstepbackward1);
-			mMiddleButtonForward
-					.setBackgroundResource(R.drawable.btnstepforward1);
-		}
-		else{
-			mMiddleButtonBackward
-					.setBackgroundResource(R.drawable.btnstepbackward2);
-			mMiddleButtonForward
-					.setBackgroundResource(R.drawable.btnstepforward2);
-		}
+		} else if (radioService.getFunctionId() == RadioInterface.FUNCTION_STEP_SEEK) {
+			if (currentLayout == 1) {
+				mMiddleButtonBackward
+						.setBackgroundResource(R.drawable.btnstepbackward1);
+				mMiddleButtonForward
+						.setBackgroundResource(R.drawable.btnstepforward1);
+			}
+			else{
+				mMiddleButtonBackward
+						.setBackgroundResource(R.drawable.btnstepbackward2);
+				mMiddleButtonForward
+						.setBackgroundResource(R.drawable.btnstepforward2);
+			}
 		}
 
 		if (DEBUG)
