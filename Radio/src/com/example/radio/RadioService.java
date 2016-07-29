@@ -479,6 +479,7 @@ public class RadioService extends Service implements RadioInterface,
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, album);
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, artist);
 		editor.putString(MediaMetadataRetriever.METADATA_KEY_TITLE,song);
+		editor.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, Long.MAX_VALUE);
 
 		editor.apply();
 	}
