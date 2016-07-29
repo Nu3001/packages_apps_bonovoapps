@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fine">Tune</string>
+    <string name="step">Seek</string>
+
+    <string name="samefreq">This frequency is already saved</string>
+    <string name="no_reminds">Don\'t show again</string>
+</resources>

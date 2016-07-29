@@ -1,23 +1,14 @@
 package com.example.radio;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import org.xmlpull.v1.XmlPullParser;
-import com.radio.widget.RadioPlayerStatusStore;
-
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -28,9 +19,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import android.media.AudioManager;
-import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaMetadataRetriever;
 import android.media.RemoteControlClient;
 import android.media.RemoteControlClient.MetadataEditor;
@@ -42,11 +31,17 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Xml;
-import android.view.KeyEvent;
 import android.widget.Toast;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
+
 import com.android.internal.car.can.CanRadio;
+import com.radio.widget.RadioPlayerStatusStore;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class RadioService extends Service implements RadioInterface,
         AudioManager.OnAudioFocusChangeListener {
@@ -55,6 +50,7 @@ public class RadioService extends Service implements RadioInterface,
     public static final String EXTRA_KEY_STOP = "com.example.radioplayer.key_stop";
     public static final String ACTION_STOP = "com.example.radioplayer.stop";
     public static final String ACTION_NEXT = "com.example.radioplayer.next";
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final String action = intent.getAction();
@@ -65,7 +61,9 @@ public class RadioService extends Service implements RadioInterface,
                 stopSelf();
         }
         if (ACTION_NEXT.equals(action)){
-            if (getFunctionId() == 0) {
+            if (getFunctionId() == FUNCTION_SCAN) {
+                setFunctionId(FUNCTION_STEP_SEEK);
+            } else if (getFunctionId() == FUNCTION_FINE_TUNE) {
                 fineRight(getCurrentFreq());
             } else {
                 stepRight(getCurrentFreq());
@@ -73,6 +71,7 @@ public class RadioService extends Service implements RadioInterface,
         }
         return 0;
     }
+
 	public static final String MSG_CLOSE = "com.example.radioplayer.close";
 	private static final String TAG = "RadioService";
 	private static final String APPLICATIONS = "applications";
@@ -221,7 +220,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		if(DEBUG) Log.v(TAG, "------onBind()");
 
 		return serviceBinder;
@@ -229,7 +227,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public boolean onUnbind(Intent intent) {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.d(TAG, "------onUnbind()");
 		return super.onUnbind(intent);
@@ -239,7 +236,6 @@ public class RadioService extends Service implements RadioInterface,
     private RadioPlayerStatusStore mRadioPlayerStatusStore;
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
 		mContext = this;
         mCanRadio = new CanRadio(this);
@@ -255,7 +251,7 @@ public class RadioService extends Service implements RadioInterface,
 			readAndSetModelInfo();
 			updatePreferences(RADIO_DATA_READ);
 		}
-		
+
 		if(DEBUG) Log.d(TAG, "------onCreate()");
 		PowerOnOff(true); // open radio
 				if (DEBUG)
@@ -308,7 +304,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		stopForeground(false);
 		if(DEBUG) Log.d(TAG, "------onDestroy()");
@@ -357,7 +352,6 @@ public class RadioService extends Service implements RadioInterface,
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			int res, status = RADIO_START_SEARCH;
 			int idex = 0;
 			if (DEBUG)
@@ -389,14 +383,14 @@ public class RadioService extends Service implements RadioInterface,
 							curFreq = freq[2]; // 自动搜到的台的频率
 							Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@curFreq(FLAG Auto) ="+ curFreq);
 							int autoFreq;
-							
+
 							autoFreq = curFreq;
 							if(getRadioType() == RADIO_FM1){
 								mCanRadio.sendRadioInfo(CanRadio.BAND_FM, curFreq);
 							}else if (getRadioType() == RADIO_AM) {
 								mCanRadio.sendRadioInfo(CanRadio.BAND_AM, curFreq);
 							}
-							
+
 							Intent it = new Intent();
 							Bundle mbundle = new Bundle();
 							mbundle.putInt("auto-curfreq", autoFreq);
@@ -405,7 +399,7 @@ public class RadioService extends Service implements RadioInterface,
 							it.setAction("Auto-Search");
 							it.putExtras(mbundle);
 							sendBroadcast(it);
-							
+
 							idex++;
 						}
 					} else {
@@ -416,12 +410,12 @@ public class RadioService extends Service implements RadioInterface,
 						}else if (getRadioType() == RADIO_AM) {
 							mCanRadio.sendRadioInfo(CanRadio.BAND_AM, curFreq);
 						}
-						
+
 						Log.d(TAG, "curFreq(No-Auto) =" + curFreq);
 						if(isLive){
 							mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 						}
-						
+
 						/****单步时候发送curFreq给Activity广播,调用curFreq_Compare_To_Collect(int curFreq)
 						 ****函数与收藏栏列表的频率作比较,变化爱心图标*************************************/
 						Intent it = new Intent();
@@ -441,11 +435,11 @@ public class RadioService extends Service implements RadioInterface,
 				}
 			} while (status != RADIO_NO_ACTION);
 			if(freq[0] == SEARCH_OVER && STEP_OR_AUTO == IS_AUTO_NOW){
-				//when auto search is complete,set Channal0 with the first freq 
+				//when auto search is complete,set Channal0 with the first freq
 				Intent intent = new Intent("Radio_Auto_Complete");
 				sendBroadcast(intent);
 			}
-			
+
 			FLAG_AUTO = 0;
 			mIsSearchThreadRunning = false;
 			updatePreferences(RADIO_DATA_SAVE);
@@ -490,20 +484,25 @@ public class RadioService extends Service implements RadioInterface,
 	}
 
 	private String formatFreqDisplay(int freq) {
-		String display = "";
+		return formatFreqDisplay(this, freq);
+	}
+
+	public static String formatFreqDisplay(Context context, int freq) {
+		String display;
+
 		if (freq < 1000) {
 			display = Integer.toString(freq) + " " +
-				getResources().getString(R.string.khz);
+					context.getResources().getString(R.string.khz);
 		} else {
 			display = String.valueOf(freq/100.0) + " " +
-					getResources().getString(R.string.mhz);
+					context.getResources().getString(R.string.mhz);
 		}
+
 		return display;
 	}
 
 	@Override
 	public void onAudioFocusChange(int focusChange) {
-		// TODO Auto-generated method stub
 		//if (DEBUG)
 		Log.v(TAG, "----onAudioFocusChange----focusChange:" + focusChange);
 		switch (focusChange) {
@@ -597,7 +596,7 @@ public class RadioService extends Service implements RadioInterface,
 		jniSetVolume(volume);
 		return volume;
 	}
-	
+
 	public int setVolume(int volume) {
 		mVolume = volume;
 		if (DEBUG) Log.v(TAG, "(Service)mVolume = "+mVolume);
@@ -640,31 +639,26 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public void setFunctionId(int id) {
-		// TODO Auto-generated method stub
 		functionId = id;
 	}
 
 	@Override
 	public int getFunctionId() {
-		// TODO Auto-generated method stub
 		return functionId;
 	}
 
 	@Override
 	public void setCurrentFreq(int freq) {
-		// TODO Auto-generated method stub
 		curFreq = freq;
 	}
 
 	@Override
 	public int getCurrentFreq() {
-		// TODO Auto-generated method stub
 		return curFreq;
 	}
 
 	@Override
 	public int fineLeft(int freq) {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.v(TAG, " ++++++++JNI fineLeft worked. Input freq:" + freq);
 		curFreq = jniFineLeft(freq);
@@ -679,13 +673,12 @@ public class RadioService extends Service implements RadioInterface,
 			mRadioplayerHandler.sendEmptyMessage(UPDATE_DETAIL_FREQ);
 		}
 		updatePreferences(RADIO_DATA_SAVE);
-		
+
 		return curFreq;
 	}
 
 	@Override
 	public int fineRight(int freq) {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.v(TAG, " JNI fineRight worked ");
 		curFreq = jniFineRight(freq);
@@ -704,7 +697,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public int stepLeft(int freq) {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.v(TAG, " JNI stepLeft worked ");
 		if (mIsSearchThreadRunning) {
@@ -722,7 +714,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public int stepRight(int freq) {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.v(TAG, " JNI stepRight worked ");
 		if (mIsSearchThreadRunning) {
@@ -740,37 +731,31 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public int getCurChannelId() {
-		// TODO Auto-generated method stub
 		return curChannelId;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void setCurChannelId(int id) {
-		// TODO Auto-generated method stub
 		curChannelId = id;
 	}
 
 	@Override
 	public void registStatusListener(RadioStatusChangeListener listener) {
-		// TODO Auto-generated method stub
 		mStatusListener = listener;
 	}
 
 	@Override
 	public void unRegistStatusListener() {
-		// TODO Auto-generated method stub
 		mStatusListener = null;
 	}
 
 	public void setRemote(int remote) {
-		// TODO Auto-generated method stub
 		jniSetRemote(remote);
 	}
 
 	@Override
 	public void onAutoSearch() {
-		// TODO Auto-generated method stub
 		if (DEBUG)
 			Log.d(TAG, "onAutoSearch");
 		if (mIsSearchThreadRunning) {
@@ -816,7 +801,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public void setFreq(int freq) {
-		// TODO Auto-generated method stub
 		Log.v(TAG, "JNI setfreq has worked ------freq is " + freq);
 		if (DEBUG)
 			Log.v(TAG, "JNI setfreq has worked ------freq is " + freq);
@@ -851,7 +835,6 @@ public class RadioService extends Service implements RadioInterface,
 	 * 获取当前系统语言
 	 */
 	private String getLocalLanguage() {
-		// TODO Auto-generated method stub
 		String language = Locale.getDefault().getLanguage();
 //		SharedPreferences.Editor editor = settings.edit(); /* ��editor���ڱ���״̬ */
 //		editor.putString("local_language", language);
@@ -1337,7 +1320,6 @@ public class RadioService extends Service implements RadioInterface,
 
 	@Override
 	public void clearAllContent() {
-		// TODO Auto-generated method stub
 		if (getRadioType() == RADIO_FM1 || getRadioType() == RADIO_FM2) {
 
 			for (int i = 0; i < RADIO_FM_COUNT; i++) {
@@ -1416,6 +1398,11 @@ public class RadioService extends Service implements RadioInterface,
         RADIO_LAYOUT = settings.getInt("radioLayout", 0);
         return RADIO_LAYOUT;
     }
+
+	public int getScanDelayMs() {
+		// Default delay = 3 seconds
+		return settings.getInt("scanDelayMsecs", 3000);
+	}
 
     public void setCustomColors(int alpha, int red, int green, int blue, int brightness, int contrast, int saturation, int hue) {
         SharedPreferences.Editor editor = settings.edit();

@@ -11,6 +11,8 @@
     <string name="fine">Fine</string>
     <string name="step">Step</string>
     <string name="auto">Auto</string>
+    <string name="start_scan">Scanning from %s&#8230;</string>
+    <string name="scanning">Scanning&#8230;</string>
     <string name="radio_volume">Radio-Volume</string>
     <string name="fmsearch">Start searching the FM band frequency?</string>
     <string name="amsearch">Start searching the AM band frequency?</string>
@@ -30,7 +32,7 @@
     <string name="alert_dialog_cancel">Cancel</string>
     <string name="valid_freq_fm">Please Enter Valid FM Freq：87.5-108.0MHz</string>
     <string name="valid_freq_am">Please Enter Valid AM Freq：520-1710KHz</string>
-    <string name="searchwait">Searching Now, Please Wait For A While...</string>
+    <string name="searchwait">Searching Now, Please Wait...</string>
     <string name="china">China</string>
     <string name="japan">Japan</string>
     <string name="europe">Europe</string>
@@ -68,7 +70,7 @@
     <string name="no_reminds">Next time no longer prompt</string>
     <string name="addHeart">addHeart</string>
     <string name="is_addHeart_toast">Has been added to the collection</string>
-    <string name="same_addHeart_toast">Collection already has this freq</string>
+    <string name="same_addHeart_toast">Collection already has this frequency</string>
     <string name="clear_single_channel">Clear the currently selected channel info?</string>
     <string name="clear_addHeart_toast">Frequency has been dropped from the collection</string>
     <string name="not_effective_freq">Not effective frequency</string>
@@ -82,5 +84,14 @@
     <string name="system_choose_title">Please select your region</string>
     <string name="layout_choose_title">Please select a Design</string>
     <string name="widget_loading">Loading...</string>
+
+    <string name="scan">Scan</string>
+    <string name="pref_scan_delay">Scan delay</string>
+    <string name="scan_delay_1">1 second</string>
+    <string name="scan_delay_2">2 seconds</string>
+    <string name="scan_delay_3">3 seconds</string>
+    <string name="scan_delay_5">5 seconds</string>
+    <string name="scan_delay_7">7 seconds</string>
+    <string name="scan_delay_10">10 seconds</string>
 
 </resources>

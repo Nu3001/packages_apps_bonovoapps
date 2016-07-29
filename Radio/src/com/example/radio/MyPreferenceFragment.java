@@ -13,6 +13,7 @@ import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,12 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
 	private Activity context;
 	private CallbackSetting callbackSetting;
-	
+
 	private VolumeSeekBarPreferences seekBarPreferences;
 	private CheckBoxPreference checkBoxRemote;
 	private ListPreference countryListPre;
 	private ListPreference layoutList;
+	private ListPreference scanDelayPref;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		checkBoxRemote = (CheckBoxPreference) findPreference("checkbox_remote_preference");
 		checkBoxRemote.setOnPreferenceChangeListener(this);
 		checkBoxRemote.setOnPreferenceClickListener(this);
-		
+
 		countryListPre = (ListPreference) findPreference("countries_list_preference");
 		countryListPre.setOnPreferenceChangeListener(this);
 		countryListPre.setOnPreferenceClickListener(this);
@@ -60,6 +62,8 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		layoutList.setOnPreferenceChangeListener(this);
 		layoutList.setOnPreferenceClickListener(this);
 
+		scanDelayPref = (ListPreference) findPreference("scan_delay_list_preference");
+		scanDelayPref.setOnPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -89,9 +93,9 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		public int getVolume();
 
 		public void setVolume(int volume);
-		
+
 		public void setRemoteModel(boolean flag);
-		
+
 		public void readModelInfo();
 
 		public void readLayoutInfo();
@@ -107,7 +111,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 			}else {
 				callbackSetting.setRemoteModel(false);
 			}
-			
+
 		}else if(preference == countryListPre){
 			if(newValue.equals("1")){
                 settings.edit().putInt("radioModel", RadioService.JAPAN_MODEL).commit();
@@ -168,6 +172,16 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 				context.sendBroadcast(intent);
 				startActivity(intent);
 			}
+		} else if (preference == scanDelayPref) {
+			int secs;
+
+			try {
+				secs = Integer.parseInt(String.valueOf(newValue), 10);
+			} catch (NumberFormatException nfe) {
+				return false;
+			}
+
+			settings.edit().putInt("scanDelayMsecs", (int) (DateUtils.SECOND_IN_MILLIS * secs)).apply();
 		}
 		return true;
 	}
@@ -177,13 +191,13 @@ public class MyPreferenceFragment extends PreferenceFragment implements
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
 		// TODO Auto-generated method stub
 		if(preference == seekBarPreferences){
-			
+
 		}
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
