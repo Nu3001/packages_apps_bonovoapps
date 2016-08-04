@@ -47,14 +47,24 @@
     <string name="list_otg">Режим OTG</string>
     <string name="otg_of_host">Подключение устройств(host)</string>
     <string name="otg_of_slave">Подключен к PC (slave)</string>
-    <string name="list_standby">Режимы Standby</string>
+    <string name="list_standby">Режим Сна</string>
     <string name="standby_half_hour">30 минут</string>
     <string name="standby_one_hour">60 минут</string>
     <string name="standby_two_hour">2 часа</string>
     <string name="standby_half_day">12 часов</string>
     <string name="standby_one_day">24 часа</string>
-    <string name="standby_no_standby">Выключено</string>
-    <string name="standby_two_day">2 дня</string>
+    <string name="standby_no_standby">Отключен</string>
+    <string name="standby_two_day">2 суток</string>
     <string name="standby_switch_on">ON</string>
     <string name="standby_switch_off">OFF</string>
+    <string name="standby_infinite">Всегда вкл</string>
+    <string name="list_connectedstandby">Сеть в режиме сна</string>
+    <string name="connectedstandby_description">В режиме сна отключать сеть:</string>
+    <string name="connectedstandby_off">Сразу</string>
+    <string name="connectedstandby_ten_minutes">Через 10 минут</string>
+    <string name="connectedstandby_one_hour">Через 1 час</string>
+    <string name="connectedstandby_four_hours">Через 4 часа</string>
+    <string name="connectedstandby_half_day">Через 12 часов</string>
+    <string name="connectedstandby_one_day">Через 1 сутки</string>
+    <string name="connectedstandby_infinite">Никогда</string>
 </resources>
