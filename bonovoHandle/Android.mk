@@ -25,8 +25,8 @@ include $(BUILD_PACKAGE)
 include $(CLEAR_VARS)
 
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := librecyclerviewv7:libs/android-support-v7-recyclerview.jar \
-										libcardviewv7:libs/android-support-v7-cardview.jar \
-										libsupportv4:libs/android-support-v4.jar
+                                        libcardviewv7:libs/android-support-v7-cardview.jar \
+                                        libsupportv4:libs/android-support-v4.jar
 
 include $(BUILD_MULTI_PREBUILT)
 
