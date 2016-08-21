@@ -1,7 +1,6 @@
 package com.bonovo.bonovohandle;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;

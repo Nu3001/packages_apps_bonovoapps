@@ -81,7 +81,7 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setLayoutParams(new LinearLayout.LayoutParams(width * count, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        mAdapter = new AppSwitchAdapter(this, appItem, this, this);
+        mAdapter = new AppSwitchAdapter(appItem, this, this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
