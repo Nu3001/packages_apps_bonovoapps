@@ -57,6 +57,9 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                     if (cb.isChecked()) {
                         appListSize = appListSize + 1;
                     }
+                    else {
+                        appListSize = appListSize - 1;
+                    }
 
                     AppItem item = (AppItem) cb.getTag();
                     item.setSelected(cb.isChecked());
