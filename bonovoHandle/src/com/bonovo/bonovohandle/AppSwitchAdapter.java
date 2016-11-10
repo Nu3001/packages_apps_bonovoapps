@@ -1,6 +1,5 @@
 package com.bonovo.bonovohandle;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
@@ -8,8 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +20,8 @@ import android.widget.TextView;
         private final ItemClickListener itemClickListener;
         private final ItemLongClickListener itemLongClickListener;
         private int selectedPos = 0;
-        private Context mContext;
 
-        public AppSwitchAdapter(Context mContext, AppItem[] appItem, @NonNull ItemClickListener clickListener, @NonNull ItemLongClickListener longClickListener) {
-            this.mContext = mContext;
+        public AppSwitchAdapter(AppItem[] appItem, ItemClickListener clickListener, ItemLongClickListener longClickListener) {
             this.appItem = appItem;
             this.itemClickListener = clickListener;
             this.itemLongClickListener = longClickListener;

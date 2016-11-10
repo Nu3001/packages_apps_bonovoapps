@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,14 +14,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="6">
+        android:layout_weight="6"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_margin="2dp"
             android:text="@string/save"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="@string/clear"/>
 
     </LinearLayout>
 

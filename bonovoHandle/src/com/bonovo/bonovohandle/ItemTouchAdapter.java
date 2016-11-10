@@ -3,12 +3,28 @@ package com.bonovo.bonovohandle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-public class ItemTouchAdapter extends ItemTouchHelper.SimpleCallback {
+public class ItemTouchAdapter extends ItemTouchHelper.Callback {
     private AppListAdapter mAppListAdapter;
 
     public ItemTouchAdapter(AppListAdapter appListAdapter){
-        super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.mAppListAdapter = appListAdapter;
+    }
+
+    @Override
+    public boolean isLongPressDragEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isItemViewSwipeEnabled() {
+        return false;
+    }
+
+    @Override
+    public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+        return makeMovementFlags(dragFlags, swipeFlags);
     }
 
     @Override

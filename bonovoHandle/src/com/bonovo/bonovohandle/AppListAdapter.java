@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
@@ -57,6 +56,9 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
                     if (cb.isChecked()) {
                         appListSize = appListSize + 1;
+                    }
+                    else {
+                        appListSize = appListSize - 1;
                     }
 
                     AppItem item = (AppItem) cb.getTag();

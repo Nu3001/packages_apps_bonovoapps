@@ -26,6 +26,7 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
 
     RecyclerView recyclerView;
     AppSwitchAdapter mAdapter;
+    Handler handler;
     int currentPos = 0;
     int newPos = 0;
     private ArrayList<String> apps = new ArrayList<String>();
@@ -40,6 +41,7 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
 
         HandleService.AppSwitchResumed();
         Intent intent = getIntent();
+        handler = new Handler();
         apps = intent.getExtras().getStringArrayList("apps");
 
         if (apps != null) {
@@ -81,7 +83,7 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setLayoutParams(new LinearLayout.LayoutParams(width * count, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        mAdapter = new AppSwitchAdapter(this, appItem, this, this);
+        mAdapter = new AppSwitchAdapter(appItem, this, this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -94,10 +96,13 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
         if (mIntent != null) {
             try {
                 startActivity(mIntent);
-            } catch (ActivityNotFoundException err) {
+            } catch (ActivityNotFoundException e) {
                 Toast t = Toast.makeText(getApplicationContext(),
-                        "App not found", Toast.LENGTH_SHORT);
+                        e.getMessage(), Toast.LENGTH_LONG);
                 t.show();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -131,20 +136,17 @@ public class AppSwitchActivity extends Activity implements ItemClickListener, It
     @Override
     public void onItemClicked(final int position) {
         currentPos = position;
-        Handler handler = new Handler();
-
-        handler.postDelayed(new Runnable() {
-            int selectedPos = position;
-            @Override
-            public void run() {
-                if (this.selectedPos == currentPos) {
-                        launchApp(apps.get(position));
-                    finish();
-                }
-            }
-        }, 3000);
-
+        handler.removeCallbacks(selectApp);
+        handler.postDelayed(selectApp, 2500);
     }
+
+    private Runnable selectApp = new Runnable() {
+        @Override
+        public void run() {
+                launchApp(apps.get(currentPos));
+                finish();
+        }
+    };
 
     @Override
     public void onItemLongClicked(int position, View v) {
