@@ -149,9 +149,10 @@ public class RadioActivity extends Activity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		stopScan();
-		unbindService(this);
-
+                if (radioService != null) {
+		   stopScan();
+		   unbindService(this);
+                }
 		if(DEBUG) Log.d(TAG, "++++++onPause()");
 	}
 
