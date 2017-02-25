@@ -212,10 +212,12 @@ public class HandleService extends Service{
 				editor.putBoolean(BONOVO_RADIO, true);
 				editor.commit();
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_RADIO_POWER_OFF")){
-				SharedPreferences sp = mContext.getSharedPreferences(APPLICATIONS, MODE_PRIVATE);
-				Editor editor = sp.edit();
-				editor.putBoolean(BONOVO_RADIO, false);
-				editor.commit();
+				if (getWakeupStatus()) {
+				  SharedPreferences sp = mContext.getSharedPreferences(APPLICATIONS, MODE_PRIVATE);
+				  Editor editor = sp.edit();
+				  editor.putBoolean(BONOVO_RADIO, false);
+				  editor.commit();
+				}
 			//}else if(intent.getAction().equals("android.intent.action.BONOVO_RADIO_KEY")){
 			//	Log.d(TAG, "-------- KEYCODE_BONOVO_RADIO ----------");
 			//	openPackage(BONOVO_RADIO);
