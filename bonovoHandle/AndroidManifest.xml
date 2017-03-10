@@ -92,6 +92,7 @@
             android:label="HandleReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PRE_LAUNCHER"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         
@@ -99,6 +100,16 @@
             android:name=".HandleService">
             <intent-filter >
                 <action  android:name="com.bonovo.bonovohandle.HandleService"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".MediaListener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+                <action android:name="com.bonovo.bonovohandle.MediaListener" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
 		

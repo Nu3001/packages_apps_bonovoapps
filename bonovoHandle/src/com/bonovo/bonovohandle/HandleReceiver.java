@@ -10,13 +10,15 @@ public class HandleReceiver extends BroadcastReceiver {
 	public static final String TAG = "HandleReceiver";
 	@Override
 	public void onReceive(Context context, Intent intent) {
-//		if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)
-//		    || intent.getAction().equals("android.intent.action.PRE_LAUNCHER"))
-		{
-			Log.d(TAG, "intent:" + intent.getAction());
+		Log.d(TAG, "intent:" + intent.getAction());
+		if (intent.getAction().equals("android.intent.action.PRE_LAUNCHER")) {
 			Intent intent_service = new Intent(context, HandleService.class);
 			intent_service.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startService(intent_service);
+		} else if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+			Intent intent_media = new Intent(context, MediaListener.class);
+			intent_media.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startService(intent_media);
 		}
 	}
 

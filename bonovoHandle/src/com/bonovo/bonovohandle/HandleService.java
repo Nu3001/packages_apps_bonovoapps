@@ -51,7 +51,6 @@ public class HandleService extends Service{
 	private final int VOLUME_ADD  = 2;
 	private final int VOLUME_SUB  = 3;
 	private final int VOLUME_MUTE = 4;
-	private final int OPEN_LAST_APP = 5;
 	private final int ACTIVATE_AIRPLANE_MODE = 6;
 	private final int ACTIVATE_SHUTDOWN_WATCHDOG = 7;
 	private final int DEF_VOLUME  = 10;
@@ -70,9 +69,7 @@ public class HandleService extends Service{
 	private final String STORAGE = "storage";
 	private final String STORAGE_S8 = "storage_s8";
 	private final String PROCESS = "process";
-	private final String APPLICATIONS = "applications";
 	private final String APPS = "apps";
-	private final String BONOVO_RADIO = "com.example.radio";
 	private Context mContext = null;
 	private TextView mTextView = null;
 	private ImageView mImageView = null;
@@ -86,11 +83,6 @@ public class HandleService extends Service{
 	private SharedPreferences preferences2;
 	private static boolean AppSwitchVisible = false;
 
-    private static final boolean mIsKillProcessWhenScreenOff = false;
-
-	private ArrayList<String> mInitProcessList = null;
-    private ArrayList<String> appSwitchPackages = new ArrayList<String>();
-	
 	private ServiceBinder  serviceBinder = new ServiceBinder();
 
 	static {
@@ -106,6 +98,8 @@ public class HandleService extends Service{
 	private native final boolean jniSendPowerKey() throws IllegalStateException;
 	private native final boolean jniOnGoToSleep() throws IllegalStateException;
 	private native final boolean jniOnWakeUp() throws IllegalStateException;
+
+	private ArrayList<String> appSwitchPackages = new ArrayList<String>();
 	
 	public class ServiceBinder extends Binder{
 		
@@ -142,11 +136,8 @@ public class HandleService extends Service{
 
 			if(intent.getAction().equals("android.intent.action.BONOVO_UPDATEBRIGHTNESS_KEY")){
 				Log.v(TAG, "report");
-//				Settings.System.putInt(mContext.getContentResolver(),
-//				Settings.System.SCREEN_BRIGHTNESS, getBrightness());
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_VOLUMEADD_KEY")){
 				if(dial == null){
-//					Log.v(TAG, "++++++ VOLUME ADD+ dial is null");
 					dial = createVolumeDialog(getVolume());
 				}else{
 					if(!dial.isShowing()){
@@ -158,9 +149,7 @@ public class HandleService extends Service{
 				}
 				mHandler.sendMessage(mHandler.obtainMessage(VOLUME_ADD));
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_VOLUMESUB_KEY")){
-//				Log.v(TAG, "++++++android.intent.action.BONOVO_VOLUMESUB_KEY");
 				if(dial == null){
-//					Log.v(TAG, "++++++ VOLUME SUB- dial is null");
 					dial = createVolumeDialog(getVolume());
 				}else{
 					if(!dial.isShowing()){
@@ -197,30 +186,6 @@ public class HandleService extends Service{
 					mHandler.removeMessages(REMOVE_DIALOG);
 					mHandler.sendMessageDelayed(msg, VOLUME_DIALOGE_TIMEOUT);
 				}
-			}else if(intent.getAction().equals("android.intent.action.BONOVO_SLEEP_KEY")){
-				killAppsAndGoHome();
-			}else if(intent.getAction().equals("android.intent.action.BONOVO_WAKEUP_KEY")){
-//				Intent main_intent = new Intent(Intent.ACTION_MAIN);
-//				main_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//				main_intent.addCategory(Intent.CATEGORY_HOME);
-//				startActivity(main_intent);
-				//Intent startSeviceIntent = new Intent(Intent.ACTION_BOOT_COMPLETED);
-				//mContext.sendBroadcast(startSeviceIntent);
-			}else if(intent.getAction().equals("android.intent.action.BONOVO_RADIO_POWER_ON")){
-				SharedPreferences sp = mContext.getSharedPreferences(APPLICATIONS, MODE_PRIVATE);
-				Editor editor = sp.edit();
-				editor.putBoolean(BONOVO_RADIO, true);
-				editor.commit();
-			}else if(intent.getAction().equals("android.intent.action.BONOVO_RADIO_POWER_OFF")){
-				if (getWakeupStatus()) {
-				  SharedPreferences sp = mContext.getSharedPreferences(APPLICATIONS, MODE_PRIVATE);
-				  Editor editor = sp.edit();
-				  editor.putBoolean(BONOVO_RADIO, false);
-				  editor.commit();
-				}
-			//}else if(intent.getAction().equals("android.intent.action.BONOVO_RADIO_KEY")){
-			//	Log.d(TAG, "-------- KEYCODE_BONOVO_RADIO ----------");
-			//	openPackage(BONOVO_RADIO);
 			}else if(intent.getAction().equals("android.intent.action.BONOVO_SEND_POWER_KEY")){
 			    sendPowerKey();
 			}else if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
@@ -276,10 +241,6 @@ public class HandleService extends Service{
                 mContext.sendBroadcast(sb_intent);
             }else if(intent.getAction().equals("com.android.internal.car.can.action.CAR_TYPE_RESPONSE")){
 				carType = intent.getIntExtra("car_type", 0);
-//				if(carType == 1){
-//					Intent intentReadInfo = new Intent("com.android.internal.car.can.action.ACTION_S8_READINFO");
-//					sendBroadcast(intentReadInfo);
-//				}
 				Log.d(TAG, "car_type = "+carType);
 			}else if (intent.getAction().equals("com.android.internal.car.can.action.RECEIVED")) {
 				Bundle bundle = intent.getBundleExtra("sonata8_bundle");
@@ -404,152 +365,6 @@ public class HandleService extends Service{
         mContext.sendBroadcastAsUser(intent, UserHandle.ALL);
     }
 
-    private void killAppsAndGoHome(){
-        if(!mIsKillProcessWhenScreenOff)
-            return;
-
-        Intent main_intent = new Intent(Intent.ACTION_MAIN);
-		main_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		main_intent.addCategory(Intent.CATEGORY_HOME);
-		startActivity(main_intent);
-
-		ActivityManager activityManager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
-	    List<RunningAppProcessInfo> procList = activityManager.getRunningAppProcesses();
-
-        // get input method packages
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        List<InputMethodInfo> imi = imm.getInputMethodList();
-        int imCnt = (imi == null)?0:imi.size();
-        
-		for(Iterator<RunningAppProcessInfo> iterator = procList.iterator(); iterator.hasNext();){
-			RunningAppProcessInfo procInfo = iterator.next();
-			if(isSystemApp(procInfo.processName) ||
-				"com.bonovo.bluetooth".equals(procInfo.processName)){
-				continue;
-			}
-
-            boolean isInitPackage = false;
-			for(Iterator<String> procInitName = mInitProcessList.iterator(); procInitName.hasNext();){
-				String initName = procInitName.next();
-				if(initName.equals(procInfo.processName)){
-                    isInitPackage = true;
-					continue;
-				}
-			}
-            if(isInitPackage){
-                continue;
-            }
-
-            boolean isInputMethodPackage = false;
-            for(int i=0; i<imCnt; i++){
-                String imPackageName = imi.get(i).getPackageName();
-                if(imPackageName.equals(procInfo.processName)){
-                    isInputMethodPackage = true;
-                    break;
-                }
-            }
-            if(isInputMethodPackage){
-                continue;
-            }
-
-			activityManager.killBackgroundProcesses(procInfo.processName);
-			activityManager.forceStopPackage(procInfo.processName);
-		}
-    }
-
-	private boolean isSystemApp(String processName){
-		/*if(mInitProcessList == null){
-			return false;
-		}
-		for(Iterator<String> it = mInitProcessList.iterator(); it.hasNext();){
-			String temp = it.next();
-			Log.d(TAG, "isSystemApp processName:" + temp);
-			if(processName.equals(temp)){
-				return true;
-			}
-		}
-		return false;
-		*/
-		return ("system".equals(processName) || ("com.android.launcher".equals(processName)) 
-				|| "com.android.systemui".equals(processName) || ("com.example.radio").equals(processName));
-	}
-
-/*	private void saveProcessList() {
-		ActivityManager activityManager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
-		List<RunningAppProcessInfo> procList = activityManager.getRunningAppProcesses();
-
-		SharedPreferences sp = mContext.getSharedPreferences(PROCESS, MODE_WORLD_WRITEABLE);
-		Editor editor = sp.edit();
-		editor.putInt("count", procList.size());
-
-		int i=0;
-		for(Iterator<RunningAppProcessInfo> iterator = procList.iterator(); iterator.hasNext();){
-			RunningAppProcessInfo procInfo = iterator.next();
-			Log.d(TAG, "-------- saveProcessList processName:" + procInfo.processName);
-			String proc = "proc" + i;
-			editor.putString(proc, procInfo.processName);
-			i++;
-		}
-		editor.commit();
-	}*/
-
-	private void readAndOpenProcess() {
-		ActivityManager activityManager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
-		List<RunningAppProcessInfo> procList = activityManager.getRunningAppProcesses();
-		ArrayList<String> list = new ArrayList<String>();
-		for(Iterator<RunningAppProcessInfo> iterator = procList.iterator(); iterator.hasNext();){
-			RunningAppProcessInfo procInfo = iterator.next();
-			list.add(procInfo.processName);
-		}
-
-		SharedPreferences sp = mContext.getSharedPreferences(PROCESS, MODE_WORLD_WRITEABLE);
-		int count = sp.getInt("count", 0);
-		for(int i=0; i<count; i++) {
-			String proc = "proc" + i;
-			String procName = sp.getString(proc, "");
-			i++;
-			if(!list.contains(procName)){
-				//openPackage(procName);
-			}
-		}
-	}
-
-	private void openPackage(String packageName){
-		try {
-			PackageInfo pkInfo = getPackageManager().getPackageInfo(packageName, 0);
-			Intent resolveIntent = new Intent(Intent.ACTION_MAIN);
-			resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-			resolveIntent.setPackage(pkInfo.packageName);
-
-			List<ResolveInfo> apps = getPackageManager().queryIntentActivities(resolveIntent, 0);
-			ResolveInfo rInfo = apps.iterator().next();
-			if(rInfo != null){
-				String pkName = rInfo.activityInfo.packageName;
-				String clName = rInfo.activityInfo.name;
-
-				Intent intent = new Intent(Intent.ACTION_MAIN);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-				intent.addCategory(Intent.CATEGORY_LAUNCHER);
-				ComponentName cn = new ComponentName(pkName, clName);
-				intent.setComponent(cn);
-				startActivity(intent);
-				//startActivityAsUser(intent, UserHandle.USER_CURRENT);
-			}
-		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	private void openBonovoRadio() {
-		SharedPreferences sp = mContext.getSharedPreferences(APPLICATIONS, MODE_PRIVATE);
-		boolean isNeedRunRadio = sp.getBoolean(BONOVO_RADIO, false);
-		if(isNeedRunRadio){
-			openPackage(BONOVO_RADIO);
-		}
-		return;
-	}
-	
 	private IntentFilter getIntentFilter() {
 		IntentFilter myIntentFilter = new IntentFilter(
 				"android.intent.action.BONOVO_UPDATEBRIGHTNESS_KEY");
@@ -558,11 +373,7 @@ public class HandleService extends Service{
 		myIntentFilter.addAction("android.intent.action.BONOVO_VOLUMEADD_KEY");
 		myIntentFilter.addAction("android.intent.action.BONOVO_VOLUMESUB_KEY");
 		myIntentFilter.addAction("android.intent.action.KEYCODE_BONOVO_SYSTEMMUTE_KEY");
-		myIntentFilter.addAction("android.intent.action.BONOVO_SLEEP_KEY");
 		myIntentFilter.addAction("android.intent.action.BONOVO_WAKEUP_KEY");
-		myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_POWER_ON");
-		myIntentFilter.addAction("android.intent.action.BONOVO_RADIO_POWER_OFF");
-		myIntentFilter.addAction("android.intent.action.KEYCODE_BONOVO_RADIO");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SEND_POWER_KEY");
 		myIntentFilter.addAction("android.intent.action.BONOVO_SET_SOUND_BALANCE");
 		myIntentFilter.addAction("android.intent.action.BONOVO_GET_SOUND_BALANCE");
@@ -589,18 +400,7 @@ public class HandleService extends Service{
 
 		jniSystemInit();
 		mContext = getApplicationContext();
-//		Settings.System.putInt(mContext.getContentResolver(),
-//	                    Settings.System.SCREEN_BRIGHTNESS, getBrightness());
-//		try {
-//            IPowerManager power = IPowerManager.Stub.asInterface(
-//                    ServiceManager.getService("power"));
-//            if (power != null) {
-//                //power.setBacklightBrightness(getBrightness());
-//                power.setTemporaryScreenBrightnessSettingOverride(getBrightness());
-//            }
-//        } catch (RemoteException doe) {
-//            
-//        }
+
         // set the airplane flag if shut down system in sleep last time
         if(!getWakeupStatus()){
             mIsAirplaneOn = getAirplaneFlag();
@@ -630,10 +430,6 @@ public class HandleService extends Service{
         
 		this.registerReceiver(myReceiver, getIntentFilter());
 
-//		//request car type from CanBusService.java
-//		Intent sendIntent = new Intent("com.android.internal.car.can.action.CAR_TYPE_REQUEST");
-//		sendBroadcast(sendIntent);
-		
 		volume = getVolume();
 		if(volume == -1){
 			setVolume(DEF_VOLUME);
@@ -643,23 +439,6 @@ public class HandleService extends Service{
 		}
 		mMute = getMuteStatus();
 		setMuteStatus(mMute);
-//		Log.d(TAG, "+++++++++ volume:" + volume + " mMute:" + mMute);
-
-		if(mInitProcessList == null){
-			mInitProcessList = new ArrayList<String>();
-		}else{
-			mInitProcessList.clear();
-		}
-		ActivityManager activityManager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
-		List<RunningAppProcessInfo> procList = activityManager.getRunningAppProcesses();
-		for(Iterator<RunningAppProcessInfo> iterator = procList.iterator(); iterator.hasNext();){
-			RunningAppProcessInfo procInfo = iterator.next();
-			if(isSystemApp(procInfo.processName)){
-				continue;
-			}
-			mInitProcessList.add(procInfo.processName);
-		}
-		mHandler.sendMessageDelayed(mHandler.obtainMessage(OPEN_LAST_APP), 10);
 	}
 
 	@Override
@@ -752,10 +531,6 @@ public class HandleService extends Service{
 				}
 				setMuteStatus(mMute);
 				break;
-			case OPEN_LAST_APP:
-				//readAndOpenProcess();
-				openBonovoRadio();
-				break;
 			case ACTIVATE_AIRPLANE_MODE:
 				mIsAirplaneOn = isAirplaneOn();              
 				setAirplaneFlag(mIsAirplaneOn);
@@ -771,7 +546,6 @@ public class HandleService extends Service{
 				intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
-				
 				break;
 			default:
 				break;
@@ -910,13 +684,6 @@ public class HandleService extends Service{
 	
 	private int getVolume(){
 		Log.d(TAG, "getVolume!!!");
-//		Intent sendIntent = new Intent("com.android.internal.car.can.action.CAR_TYPE_REQUEST");
-//		sendBroadcast(sendIntent);
-//		try {
-//			Thread.sleep(200);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
 		if(carType != 1){
 			Log.e(TAG, "getVolume!!!--->is not Sonata8");
 			int volume;
@@ -928,8 +695,6 @@ public class HandleService extends Service{
 		}else if (carType == 1) {
 			SharedPreferences sp = mContext.getSharedPreferences(STORAGE_S8, MODE_WORLD_READABLE);
 			s8Volume = sp.getInt(SYSTEM_VOLUME, 15);
-//			Intent intent = new Intent("com.android.internal.car.can.action.ACTION_S8_READINFO");
-//			sendBroadcast(intent);
 			Log.d(TAG, "getVolume!!!return--->s8Volume=" + s8Volume);
 			return s8Volume;
 		}
